@@ -46,6 +46,18 @@ public class cameraController : MonoBehaviour {
             }
         }
 
+
+        if(Input.GetKey(KeyCode.E))
+        {
+            transform.Rotate(0,50*Time.deltaTime,0);
+        }
+        else if(Input.GetKey(KeyCode.Q))
+        {
+            transform.Rotate(0, -50 * Time.deltaTime, 0);
+
+        }
+
+
         if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
         {
             transform.Translate(0, -100 * Time.deltaTime, 0);
