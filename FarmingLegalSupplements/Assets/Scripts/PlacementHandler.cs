@@ -170,6 +170,16 @@ public class PlacementHandler : MonoBehaviour
 
         }
 
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            m_iCurrentlyPlacing = 0;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Alpha2))
+        {
+            m_iCurrentlyPlacing = 1;
+        }
+
         if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Break();
