@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlacementHandler : MonoBehaviour
 {
+    [Tooltip("Add all possible objects to this array - add them linearly to the following to arrays as well")]
     public GameObject[] m_goPossibleObjects;
+    [Tooltip("Possible objs displaying a transparent green mesh")]
     public GameObject[] m_goObjPlacementOk;
+    [Tooltip("Possible objs displaying a transparent red mesh")]
     public GameObject[] m_goObjPlacementBad;
     public GameObject m_goPlacementDefault;
     public GameObject m_goCurrentlyPlacing;
