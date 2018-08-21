@@ -64,9 +64,9 @@ public class PlacementHandler : MonoBehaviour
     private bool PlacementUnacceptable(Vector3 _vec3DesiredPos)
     {
         bool _bObjExists = false;
-        if (m_iObjsPlaced != 0)
+        if (m_goObjsPlaced.Count != 0)
         {
-            for (int i = 0; i < m_iObjsPlaced; i++)
+            for (int i = 0; i < m_goObjsPlaced.Count; i++)
             {
                 /*if (Vector3.Distance(_vec3DesiredPos, m_goObjsPlaced[i].transform.position) <= 9.5f)
                 {
@@ -101,9 +101,8 @@ public class PlacementHandler : MonoBehaviour
             {
                 HouseController.CashAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().Cost;
                 //m_goSuccessfulBuild = Instantiate(m_goParticleEffects[0], m_vec3Pos, m_goParticleEffects[0].transform.rotation) as GameObject;
-                m_goObjsPlaced[m_iObjsPlaced] = Instantiate(m_goPossibleObjects[m_iCurrentlyPlacing], pos, Quaternion.identity) as GameObject;
-                m_goObjsPlaced[m_iObjsPlaced].transform.rotation = m_goPlacementDefault.transform.rotation;
-                m_iObjsPlaced += 1;
+                m_goObjsPlaced.Add(Instantiate(m_goPossibleObjects[m_iCurrentlyPlacing], pos, Quaternion.identity));
+                m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.rotation = m_goPlacementDefault.transform.rotation;
             }
         }
     }
@@ -163,6 +162,16 @@ public class PlacementHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        for(int i = 0; i < m_goObjsPlaced.Count; i++)
+        {
+            if(m_goObjsPlaced[i] == null)
+            {
+                m_goObjsPlaced.RemoveAt(i);
+            }
+        }
+
+
         if (Input.GetKeyUp(KeyCode.F))
         {
 
