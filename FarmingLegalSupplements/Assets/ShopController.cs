@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ShopController : MonoBehaviour {
+    public int CostOfGreen;
+    public int CostOfWhite;
 
 	// Use this for initialization
 	void Start () {

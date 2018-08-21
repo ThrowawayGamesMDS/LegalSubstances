@@ -14,9 +14,7 @@ public class PlacementHandler : MonoBehaviour
     public GameObject m_goCurrentlyPlacing;
     public GameObject[] m_goParticleEffects; // 0 = building
     public GameObject m_goSuccessfulBuild;
-    public GameObject[] m_goObjsPlaced;
-
-    public List<GameObject> m_lPlacedObjects;
+    public List<GameObject> m_goObjsPlaced;
     public int m_iObjsPlaced;
     public int m_iMaxObjsPlaceable;
     public int m_iCurrentlyPlacing;
@@ -31,16 +29,21 @@ public class PlacementHandler : MonoBehaviour
     void Start()
     {
         m_vec2MouseCoords = Input.mousePosition;
-        m_iObjsPlaced = 0;
         m_iCurrentlyPlacing = 0;
         m_goCurrentlyPlacing = m_goPossibleObjects[0];
         m_ePlayerState = PlayerStates.DEFAULT;
         m_iMaxObjsPlaceable = 50;
-        m_goObjsPlaced = new GameObject[m_iMaxObjsPlaceable];
         m_goPlacementDefault = m_goObjPlacementOk[m_iCurrentlyPlacing];
         m_bBadPlacement = false;
     }
-    
+
+
+   /* void Pickup(int amount)
+    {
+        PublicStats.g_fResourceCount += amount;
+        print(PublicStats.g_fResourceCount);
+    }*/
+
 
     RaycastHit GenerateRayCast(float _fDistanceOfRay)
     {
@@ -65,18 +68,17 @@ public class PlacementHandler : MonoBehaviour
         {
             for (int i = 0; i < m_iObjsPlaced; i++)
             {
-                if (Vector3.Distance(_vec3DesiredPos, m_lPlacedObjects[i].transform.position) <= 9.8f)
+                /*if (Vector3.Distance(_vec3DesiredPos, m_goObjsPlaced[i].transform.position) <= 9.5f)
                 {
                     // a turret already exists in the desired position
                     _bObjExists = true;
-                }
-                if (m_lPlacedObjects[i].transform.position.x - 4 < _vec3DesiredPos.x && _vec3DesiredPos.x < m_lPlacedObjects[i].transform.position.x + 4)
+                }*/
+                if(_vec3DesiredPos.x > m_goObjsPlaced[i].transform.position.x - 9.8f && _vec3DesiredPos.x < m_goObjsPlaced[i].transform.position.x + 9.8f)
                 {
-                    _bObjExists = true;
-                }
-                if (m_lPlacedObjects[i].transform.position.z - 4 < _vec3DesiredPos.z && _vec3DesiredPos.z < m_lPlacedObjects[i].transform.position.z + 4)
-                {
-                    _bObjExists = true;
+                    if(_vec3DesiredPos.z > m_goObjsPlaced[i].transform.position.z - 9.8f && _vec3DesiredPos.z < m_goObjsPlaced[i].transform.position.z + 9.8f)
+                    {
+                        _bObjExists = true;
+                    }
                 }
             }
         }
@@ -92,11 +94,17 @@ public class PlacementHandler : MonoBehaviour
     {
         RaycastHit _rhCheck = GenerateRayCast(Camera.main.transform.position.y * 2);
         Vector3 pos = _rhCheck.point;
+        pos = new Vector3(Mathf.Round(pos.x/10)*10, pos.y, Mathf.Round(pos.z / 10) * 10);
         if (!PlacementUnacceptable(pos))
         {
-            m_lPlacedObjects.Add(Instantiate(m_goPossibleObjects[m_iCurrentlyPlacing], pos, Quaternion.identity) as GameObject);
-            m_lPlacedObjects[m_iObjsPlaced].transform.rotation = m_goPlacementDefault.transform.rotation;
-            m_iObjsPlaced += 1;
+            if(HouseController.CashAmount >= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().Cost)
+            {
+                HouseController.CashAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().Cost;
+                //m_goSuccessfulBuild = Instantiate(m_goParticleEffects[0], m_vec3Pos, m_goParticleEffects[0].transform.rotation) as GameObject;
+                m_goObjsPlaced[m_iObjsPlaced] = Instantiate(m_goPossibleObjects[m_iCurrentlyPlacing], pos, Quaternion.identity) as GameObject;
+                m_goObjsPlaced[m_iObjsPlaced].transform.rotation = m_goPlacementDefault.transform.rotation;
+                m_iObjsPlaced += 1;
+            }
         }
     }
 
@@ -106,6 +114,8 @@ public class PlacementHandler : MonoBehaviour
         _rhCheck = GenerateRayCast(Camera.main.transform.position.y * 2);
         Vector3 pos = _rhCheck.point;
         pos.y = 0;
+        pos = new Vector3(Mathf.Round(pos.x / 10) * 10, pos.y, Mathf.Round(pos.z / 10) * 10);
+        
         if (m_ePlayerState == PlayerStates.DEFAULT)
         {
             m_goPlacementDefault = Instantiate(m_goObjPlacementOk[m_iCurrentlyPlacing], pos, Quaternion.identity) as GameObject;
@@ -113,6 +123,9 @@ public class PlacementHandler : MonoBehaviour
 
         else
         {
+            //if (PlayerCanPlace(_rhCheck))
+           // {
+                // accepted
                 if (!PlacementUnacceptable(pos))
                 {
                     if (m_bBadPlacement)
@@ -125,6 +138,7 @@ public class PlacementHandler : MonoBehaviour
                     {
                         m_goPlacementDefault.transform.position = pos;
                     }
+                    // accepted
                 }
                 else
                 {
@@ -138,6 +152,7 @@ public class PlacementHandler : MonoBehaviour
                     {
                         m_goPlacementDefault.transform.position = pos;
                     }
+                    // unaccepted
                 }
 
           
@@ -155,6 +170,7 @@ public class PlacementHandler : MonoBehaviour
             {
                 case PlayerStates.PLACING:
                     Destroy(m_goPlacementDefault);
+                    //Destroy(m_goBuilderUI3D);
                     m_ePlayerState = PlayerStates.DEFAULT;
                     break;
                 case PlayerStates.DEFAULT:

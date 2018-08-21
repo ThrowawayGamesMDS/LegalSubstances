@@ -43,33 +43,22 @@ public class SellerController : MonoBehaviour {
                 {
                     if (isGoingHome)
                     {
-                        GreenCarryingAmount += Home.GetComponent<HouseController>().GreenAmount;
-                        GreenCarryingAmount = 0;
-                        Home.GetComponent<HouseController>().WhiteAmount += WhiteCarryingAmount;
-                        WhiteCarryingAmount = 0;
-                        
+                        GreenCarryingAmount += Home.GetComponent<HouseController>().GreenProcessed;
+                        Home.GetComponent<HouseController>().GreenProcessed = 0;
+                        WhiteCarryingAmount += Home.GetComponent<HouseController>().WhiteProcessed;
+                        Home.GetComponent<HouseController>().WhiteProcessed = 0;
+                        HouseController.CashAmount += CashCarryingAmount;
+                        CashCarryingAmount = 0;
                         isGoingHome = !isGoingHome;
                     }
                     else
                     {
-                        if (Work.GetComponent<farmController>().typeOfFarm == "Green")
-                        {
-                            if (Work.GetComponent<farmController>().resources >= Work.GetComponent<farmController>().TimeToHarvest)
-                            {
-                                GreenCarryingAmount += Work.GetComponent<farmController>().Yield;
-                                Work.GetComponent<farmController>().resources = 0;
-                                isGoingHome = !isGoingHome;
-                            }
-                        }
-                        else if (Work.GetComponent<farmController>().typeOfFarm == "White")
-                        {
-                            if (Work.GetComponent<farmController>().resources >= Work.GetComponent<farmController>().TimeToHarvest)
-                            {
-                                WhiteCarryingAmount += Work.GetComponent<farmController>().Yield;
-                                Work.GetComponent<farmController>().resources = 0;
-                                isGoingHome = !isGoingHome;
-                            }
-                        }
+                        CashCarryingAmount += GreenCarryingAmount * Work.GetComponent<ShopController>().CostOfGreen;
+                        GreenCarryingAmount = 0;
+                        CashCarryingAmount += WhiteCarryingAmount * Work.GetComponent<ShopController>().CostOfWhite;
+                        WhiteCarryingAmount = 0;
+                        
+                        isGoingHome = !isGoingHome;
                     }
                 }
             }
