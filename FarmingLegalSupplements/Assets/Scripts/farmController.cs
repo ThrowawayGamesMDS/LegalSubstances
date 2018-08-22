@@ -19,6 +19,7 @@ public class farmController : MonoBehaviour {
         {
             resources = TimeToHarvest;
         }
+
 	}
 
     void GainResources()
