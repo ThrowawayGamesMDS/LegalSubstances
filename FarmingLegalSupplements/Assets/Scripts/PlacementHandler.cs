@@ -98,6 +98,7 @@ public class PlacementHandler : MonoBehaviour
                 //m_goSuccessfulBuild = Instantiate(m_goParticleEffects[0], m_vec3Pos, m_goParticleEffects[0].transform.rotation) as GameObject;
                 m_goObjsPlaced.Add(Instantiate(m_goPossibleObjects[m_iCurrentlyPlacing], pos, Quaternion.identity));
                 m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.rotation = m_goPlacementDefault.transform.rotation;
+                m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.SetParent(GameObject.FindGameObjectWithTag("PlacementObjs").transform);
             }
         }
     }
