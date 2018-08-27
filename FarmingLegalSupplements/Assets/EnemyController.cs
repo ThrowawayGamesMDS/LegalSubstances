@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour {
     public NavMeshAgent agent;
     public List<GameObject> targetsInArea;
     public Animator anim;
+    public float m_fEnemyHealth;
 
 	// Use this for initialization
 	void Start () {
@@ -54,8 +55,11 @@ public class EnemyController : MonoBehaviour {
                 }
             }
         }
-        
-        
+        if (m_fEnemyHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+
     }
     void OnTriggerEnter(Collider other)
     {
@@ -63,5 +67,12 @@ public class EnemyController : MonoBehaviour {
         {
             targetsInArea.Add(other.gameObject);
         }
+    }
+
+
+    void EnemyShot(float damage)
+    {
+        print("EnemyShot");
+        m_fEnemyHealth -= damage;
     }
 }

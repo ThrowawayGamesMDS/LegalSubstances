@@ -340,9 +340,10 @@ GameObject:
   - component: {fileID: 114089809821141566}
   - component: {fileID: 135847557775760700}
   - component: {fileID: 54323163565509672}
+  - component: {fileID: 65974949989314124}
   m_Layer: 0
   m_Name: Fiend
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -570,7 +571,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1839611185692650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.5, y: 0, z: -130.8}
+  m_LocalPosition: {x: -79.9, y: 1.5951228e-15, z: -29.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4238006564352220}
@@ -727,6 +728,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!65 &65974949989314124
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1839611185692650}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.306178, y: 3.731101, z: 4.606827}
+  m_Center: {x: -0.78667593, y: 1.8850532, z: -0.08163452}
 --- !u!95 &95924506539732818
 Animator:
   serializedVersion: 3
@@ -760,6 +773,7 @@ MonoBehaviour:
   agent: {fileID: 195295472422719258}
   targetsInArea: []
   anim: {fileID: 95924506539732818}
+  m_fEnemyHealth: 100
 --- !u!135 &135847557775760700
 SphereCollider:
   m_ObjectHideFlags: 1

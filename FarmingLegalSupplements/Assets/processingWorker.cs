@@ -12,6 +12,7 @@ public class processingWorker : MonoBehaviour {
     public int GreenProcessedAmount;
     public int WhiteProcessedAmount;
     public bool isGreenWorker;
+    public int capacity;
     // Use this for initialization
     void Start()
     {
@@ -56,13 +57,30 @@ public class processingWorker : MonoBehaviour {
                     {
                         if(isGreenWorker)
                         {
-                            GreenCarryingAmount += Home.GetComponent<HouseController>().GreenAmount;
-                            Home.GetComponent<HouseController>().GreenAmount = 0;
+                            if(Home.GetComponent<HouseController>().GreenAmount > capacity)
+                            {
+                                GreenCarryingAmount += capacity;
+                                Home.GetComponent<HouseController>().GreenAmount -= capacity;
+                            }
+                            else
+                            {
+                                GreenCarryingAmount += Home.GetComponent<HouseController>().GreenAmount;
+                                Home.GetComponent<HouseController>().GreenAmount = 0;
+                            }
+                            
                         }
                         else
                         {
-                            WhiteCarryingAmount += Home.GetComponent<HouseController>().WhiteAmount;
-                            Home.GetComponent<HouseController>().WhiteAmount = 0;
+                            if (Home.GetComponent<HouseController>().WhiteAmount > capacity)
+                            {
+                                WhiteCarryingAmount += capacity;
+                                Home.GetComponent<HouseController>().WhiteAmount -= capacity;
+                            }
+                            else
+                            {
+                                WhiteCarryingAmount += Home.GetComponent<HouseController>().WhiteAmount;
+                                Home.GetComponent<HouseController>().WhiteAmount = 0;
+                            }
                         }
                         Home.GetComponent<HouseController>().GreenProcessed += GreenProcessedAmount;
                         GreenProcessedAmount = 0;
