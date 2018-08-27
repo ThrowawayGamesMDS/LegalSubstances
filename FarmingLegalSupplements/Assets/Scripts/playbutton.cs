@@ -32,4 +32,14 @@ public class playbutton : MonoBehaviour {
 
         Application.Quit();
     }
+    public void unpause()
+    {
+        //unpasue game
+        //GameObject.FindGameObjectWithTag("HomeBuilding").GetComponent<HouseController>() //player can move
+       
+
+        gameObject.SetActive(false);
+        GetComponent<pause>().Pause = false;
+        Time.timeScale = 1f;
+    }
 }
