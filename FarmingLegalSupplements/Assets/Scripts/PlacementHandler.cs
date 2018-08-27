@@ -68,11 +68,6 @@ public class PlacementHandler : MonoBehaviour
         {
             for (int i = 0; i < m_goObjsPlaced.Count; i++)
             {
-                /*if (Vector3.Distance(_vec3DesiredPos, m_goObjsPlaced[i].transform.position) <= 9.5f)
-                {
-                    // a turret already exists in the desired position
-                    _bObjExists = true;
-                }*/
                 if(_vec3DesiredPos.x > m_goObjsPlaced[i].transform.position.x - 9.8f && _vec3DesiredPos.x < m_goObjsPlaced[i].transform.position.x + 9.8f)
                 {
                     if(_vec3DesiredPos.z > m_goObjsPlaced[i].transform.position.z - 9.8f && _vec3DesiredPos.z < m_goObjsPlaced[i].transform.position.z + 9.8f)
@@ -122,9 +117,6 @@ public class PlacementHandler : MonoBehaviour
 
         else
         {
-            //if (PlayerCanPlace(_rhCheck))
-           // {
-                // accepted
                 if (!PlacementUnacceptable(pos))
                 {
                     if (m_bBadPlacement)

@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 114684461533929464}
   - component: {fileID: 114827766962112368}
   - component: {fileID: 65184612153863514}
+  - component: {fileID: 114782836897235200}
   m_Layer: 0
   m_Name: FarmWhite
   m_TagString: Untagged
@@ -350,6 +351,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cost: 1000
+--- !u!114 &114782836897235200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1369641390980098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e4bea4241eff54ca4333411c2c0b38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_sDescription: White powder production plant cher
+  m_iResourceCount: 0
 --- !u!114 &114827766962112368
 MonoBehaviour:
   m_ObjectHideFlags: 1
