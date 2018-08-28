@@ -8,6 +8,7 @@ public class SellerController : MonoBehaviour {
     public GameObject Work;
     public bool isGoingHome;
     public NavMeshAgent agent;
+    public Animator anim;
     public int GreenCarryingAmount;
     public int WhiteCarryingAmount;
     public int CashCarryingAmount;
@@ -28,10 +29,18 @@ public class SellerController : MonoBehaviour {
         if (isGoingHome)
         {
             agent.SetDestination(Home.transform.position);
+            if (agent.velocity.magnitude > 0)
+            {
+                anim.Play("WalkCycle");
+            }
         }
         else
         {
             agent.SetDestination(Work.transform.position);
+            if (agent.velocity.magnitude > 0)
+            {
+                anim.Play("CarryCycle");
+            }
         }
 
 
