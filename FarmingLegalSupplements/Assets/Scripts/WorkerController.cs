@@ -10,6 +10,7 @@ public class WorkerController : MonoBehaviour {
     public NavMeshAgent agent;
     public int GreenCarryingAmount;
     public int WhiteCarryingAmount;
+    public Animator anim;
     // Use this for initialization
     void Start () {
         Work = transform.parent.gameObject;
@@ -24,10 +25,19 @@ public class WorkerController : MonoBehaviour {
 		if(isGoingHome)
         {
             agent.SetDestination(Home.transform.position);
+            if (agent.velocity.magnitude > 0)
+            {
+                anim.Play("CarryCycle");
+            }
+                
         }
         else
         {
             agent.SetDestination(Work.transform.position);
+            if(agent.velocity.magnitude > 0)
+            {
+                anim.Play("WalkCycle");
+            }
         }
 
 
@@ -39,6 +49,7 @@ public class WorkerController : MonoBehaviour {
                 {
                     if(isGoingHome)
                     {
+                        
                         Home.GetComponent<HouseController>().GreenAmount += GreenCarryingAmount;
                         GreenCarryingAmount = 0;
                         Home.GetComponent<HouseController>().WhiteAmount += WhiteCarryingAmount;
@@ -47,6 +58,11 @@ public class WorkerController : MonoBehaviour {
                     }
                     else
                     {
+                        if(!anim.GetCurrentAnimatorStateInfo(0).IsName("FarmingLoop"))
+                        {
+                            anim.Play("FarmingLoop");
+                        }
+                        
                         if (Work.GetComponent<farmController>().typeOfFarm == "Green")
                         {
                             if(Work.GetComponent<farmController>().resources >= Work.GetComponent<farmController>().TimeToHarvest)
