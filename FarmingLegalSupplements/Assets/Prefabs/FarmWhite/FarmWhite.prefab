@@ -365,6 +365,7 @@ MonoBehaviour:
   m_eFarmType: 2
   m_sDescription: White powder production plant cher
   m_iResourceCount: 0
+  m_iLastDisplayedFarmLevel: 0
 --- !u!114 &114827766962112368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -376,6 +377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d41db3d0982ecb4f9efb1d336bc746c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WhatAmI: 1
   BuildingHealth: 50
 --- !u!136 &136502810406696904
 CapsuleCollider:
