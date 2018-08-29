@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class cameraController : MonoBehaviour {
     public int scrollSpeed;
+    public Vector3 m_vec2CursorPos;
 	// Use this for initialization
 	void Start () {
 		
@@ -57,6 +58,19 @@ public class cameraController : MonoBehaviour {
 
         }
 
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            if (m_vec2CursorPos.x < Input.mousePosition.x)
+            {
+                transform.Rotate(0, 150 * Time.deltaTime, 0);
+            }
+            else if (m_vec2CursorPos.x > Input.mousePosition.x)
+            {
+                transform.Rotate(0, -150 * Time.deltaTime, 0);
+            }
+            m_vec2CursorPos = Input.mousePosition;
+        }
+
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
         {
@@ -75,7 +89,7 @@ public class cameraController : MonoBehaviour {
         {
             transform.position = new Vector3(transform.position.x, 60, transform.position.z);
         }
-
+        m_vec2CursorPos = Input.mousePosition;
 
     }
 }
