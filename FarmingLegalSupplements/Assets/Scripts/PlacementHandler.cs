@@ -20,10 +20,12 @@ public class PlacementHandler : MonoBehaviour
     public int m_iCurrentlyPlacing;
     private Vector2 m_vec2MouseCoords;
     private bool m_bBadPlacement;
+
     public enum PlayerStates
     {
         PLACING, DEFAULT
     }
+
     public PlayerStates m_ePlayerState;
 
     void Start()
@@ -84,8 +86,26 @@ public class PlacementHandler : MonoBehaviour
       
         return _bObjExists;
     }
-    
-    private void PlaceAnObject()
+
+    private void GenerateUpgradeWindow(int windowID)
+    {
+        GUI.Button(new Rect(Screen.width - 50, Screen.height - 50, Screen.width, Screen.height), "Click Me!");
+    }
+
+    private void OnGUI()
+    {
+        // Make a toggle button for hiding and showing the window
+       // doWindow0 = GUI.Toggle(new Rect(10, 10, 100, 20), doWindow0, "Window 0");
+
+        // Make sure we only call GUI.Window if doWindow0 is true.
+        if (m_ePlayerState == PlayerStates.DEFAULT)
+        {
+            GUI.Window(0, new Rect(m_vec2MouseCoords.x, m_vec2MouseCoords.y, 200, 200), GenerateUpgradeWindow, "Upgrade your farm");
+
+        }
+    }
+
+private void PlaceAnObject()
     {
         RaycastHit _rhCheck = GenerateRayCast(Camera.main.transform.position.y * 2);
         Vector3 pos = _rhCheck.point;
@@ -211,11 +231,11 @@ public class PlacementHandler : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            print("player trying to left click");
             switch (m_ePlayerState)
             {
                 case PlayerStates.DEFAULT:
                     {
+
                         break;
                     }
                 case PlayerStates.PLACING:
