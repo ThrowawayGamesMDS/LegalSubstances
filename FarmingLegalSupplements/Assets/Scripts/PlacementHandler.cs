@@ -228,6 +228,17 @@ private void PlaceAnObject()
             m_iCurrentlyPlacing = 1;
             UpdatePlacement();
         }
+        if (Input.GetKeyUp(KeyCode.Alpha3))
+        {
+            m_iCurrentlyPlacing = 2;
+            UpdatePlacement();
+        }
+
+        if (Input.GetKeyUp(KeyCode.Alpha4))
+        {
+            m_iCurrentlyPlacing = 3;
+            UpdatePlacement();
+        }
 
         if (Input.GetKeyDown(KeyCode.P))
         {

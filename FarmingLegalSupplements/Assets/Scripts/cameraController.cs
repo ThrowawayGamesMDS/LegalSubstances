@@ -13,6 +13,28 @@ public class cameraController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //scrolling on x axis
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            gameObject.transform.Translate(-scrollSpeed * Time.deltaTime, 0, 0);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            gameObject.transform.Translate(scrollSpeed * Time.deltaTime, 0, 0);
+        }
+        //scrolling on y axis
+        if (Input.GetKey(KeyCode.S))
+        {
+            gameObject.transform.Translate(0, 0, -scrollSpeed * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            gameObject.transform.Translate(0, 0, scrollSpeed * Time.deltaTime);
+        }
+
+
+
+        /*
         if (Input.mousePosition.x < 100 || Input.GetKey(KeyCode.A))
         {
             gameObject.transform.Translate(-scrollSpeed * Time.deltaTime,0,0);
@@ -46,9 +68,10 @@ public class cameraController : MonoBehaviour {
                 gameObject.transform.Translate(0, 0, scrollSpeed * Time.deltaTime);
             }
         }
+        */
 
 
-        if(Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.E))
         {
             transform.Rotate(0,50*Time.deltaTime,0);
         }
