@@ -122,6 +122,24 @@ private void PlaceAnObject()
         }
     }
 
+    private void UpdatePlacement()
+    {
+        RaycastHit _rhCheck;
+        _rhCheck = GenerateRayCast(Camera.main.transform.position.y * 2);
+        Vector3 pos = _rhCheck.point;
+        pos.y = 0;
+        pos = new Vector3(Mathf.Round(pos.x / 10) * 10, pos.y, Mathf.Round(pos.z / 10) * 10);
+        Destroy(m_goPlacementDefault);
+        if (!PlacementUnacceptable(pos))
+        {
+            m_goPlacementDefault = Instantiate(m_goObjPlacementOk[m_iCurrentlyPlacing], pos, Quaternion.identity) as GameObject;
+        }
+        else
+        {
+
+        }
+    }
+
    private void CheckIfPlacementIsOkay()
     {
         RaycastHit _rhCheck;
@@ -202,11 +220,13 @@ private void PlaceAnObject()
         if (Input.GetKeyUp(KeyCode.Alpha1))
         {
             m_iCurrentlyPlacing = 0;
+            UpdatePlacement();
         }
 
         if (Input.GetKeyUp(KeyCode.Alpha2))
         {
             m_iCurrentlyPlacing = 1;
+            UpdatePlacement();
         }
 
         if (Input.GetKeyDown(KeyCode.P))
