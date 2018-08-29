@@ -7,6 +7,7 @@ public class processingWorker : MonoBehaviour {
     public GameObject Work;
     public bool isGoingHome;
     public NavMeshAgent agent;
+    public Animator anim;
     public int GreenCarryingAmount;
     public int WhiteCarryingAmount;
     public int GreenProcessedAmount;
@@ -39,11 +40,21 @@ public class processingWorker : MonoBehaviour {
     {
         if (isGoingHome)
         {
+            agent.stoppingDistance = 9;
             agent.SetDestination(Home.transform.position);
+            if (agent.velocity.magnitude > 0)
+            {
+                anim.Play("CarryCycle");
+            }
         }
         else
         {
+            agent.stoppingDistance = 5;
             agent.SetDestination(Work.transform.position);
+            if (agent.velocity.magnitude > 0)
+            {
+                anim.Play("CarryCycle");
+            }
         }
 
 
@@ -55,7 +66,11 @@ public class processingWorker : MonoBehaviour {
                 {
                     if (isGoingHome)
                     {
-                        if(isGreenWorker)
+                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+                        {
+                            anim.Play("Idle");
+                        }
+                        if (isGreenWorker)
                         {
                             if(Home.GetComponent<HouseController>().GreenAmount > capacity)
                             {
@@ -94,6 +109,10 @@ public class processingWorker : MonoBehaviour {
                     }
                     else
                     {
+                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FarmingLoop"))
+                        {
+                            anim.Play("FarmingLoop");
+                        }
                         if (Work.GetComponent<PlantController>().typeOfPlant == "Green")
                         {
                             Work.GetComponent<PlantController>().greenAmount += GreenCarryingAmount;

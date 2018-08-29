@@ -100,8 +100,7 @@ public class PlacementHandler : MonoBehaviour
         // Make sure we only call GUI.Window if doWindow0 is true.
         if (m_ePlayerState == PlayerStates.DEFAULT)
         {
-            GUI.Window(0, new Rect(m_vec2MouseCoords.x, m_vec2MouseCoords.y, 200, 200), GenerateUpgradeWindow, "Upgrade your farm");
-
+            //GUI.Window(0, new Rect(m_vec2MouseCoords.x, m_vec2MouseCoords.y, 200, 200), GenerateUpgradeWindow, "Upgrade your farm");
         }
     }
 
@@ -135,7 +134,6 @@ private void PlaceAnObject()
         {
             m_goPlacementDefault = Instantiate(m_goObjPlacementOk[m_iCurrentlyPlacing], pos, Quaternion.identity) as GameObject;
         }
-
         else
         {
                 if (!PlacementUnacceptable(pos))
@@ -166,10 +164,7 @@ private void PlaceAnObject()
                     }
                     // unaccepted
                 }
-
-          
         }
-
     }
     
     // Update is called once per frame

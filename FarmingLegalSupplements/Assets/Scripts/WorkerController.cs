@@ -24,6 +24,7 @@ public class WorkerController : MonoBehaviour {
 	void Update () {
 		if(isGoingHome)
         {
+            agent.stoppingDistance = 9;
             agent.SetDestination(Home.transform.position);
             if (agent.velocity.magnitude > 0)
             {
@@ -33,6 +34,7 @@ public class WorkerController : MonoBehaviour {
         }
         else
         {
+            agent.stoppingDistance = 1;
             agent.SetDestination(Work.transform.position);
             if(agent.velocity.magnitude > 0)
             {
@@ -62,13 +64,14 @@ public class WorkerController : MonoBehaviour {
                         {
                             anim.Play("FarmingLoop");
                         }
-                        
+                        Work.GetComponent<farmController>().hasSeeded = true;
                         if (Work.GetComponent<farmController>().typeOfFarm == "Green")
                         {
                             if(Work.GetComponent<farmController>().resources >= Work.GetComponent<farmController>().TimeToHarvest)
                             {
                                 GreenCarryingAmount += Work.GetComponent<farmController>().Yield;
                                 Work.GetComponent<farmController>().resources = 0;
+                                Work.GetComponent<farmController>().hasSeeded = false;
                                 isGoingHome = !isGoingHome;
                             }
                         }
@@ -78,6 +81,7 @@ public class WorkerController : MonoBehaviour {
                             {
                                 WhiteCarryingAmount += Work.GetComponent<farmController>().Yield;
                                 Work.GetComponent<farmController>().resources = 0;
+                                Work.GetComponent<farmController>().hasSeeded = false;
                                 isGoingHome = !isGoingHome;
                             }
                         }

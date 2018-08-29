@@ -5,12 +5,13 @@ using UnityEngine;
 public class farmController : MonoBehaviour {
     public int TimeToHarvest;
     public int Yield;
-    public int resources;
+    public float resources;
     public string typeOfFarm;
+    public bool hasSeeded;
 	// Use this for initialization
 	void Start () {
         resources = 0;
-        InvokeRepeating("GainResources", 0.1f, 1.0f);
+        hasSeeded = true;
     }
 	
 	// Update is called once per frame
@@ -19,11 +20,11 @@ public class farmController : MonoBehaviour {
         {
             resources = TimeToHarvest;
         }
+        if(hasSeeded)
+        {
+            resources += 1 * Time.deltaTime;
+        }
 
 	}
-
-    void GainResources()
-    {
-        resources += 1;
-    }
+    
 }
