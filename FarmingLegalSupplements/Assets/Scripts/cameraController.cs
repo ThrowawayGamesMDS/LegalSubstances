@@ -85,11 +85,11 @@ public class cameraController : MonoBehaviour {
         {
             if (m_vec2CursorPos.x < Input.mousePosition.x)
             {
-                transform.Rotate(0, 150 * Time.deltaTime, 0);
+                transform.Rotate(0, 200 * Time.deltaTime, 0);
             }
             else if (m_vec2CursorPos.x > Input.mousePosition.x)
             {
-                transform.Rotate(0, -150 * Time.deltaTime, 0);
+                transform.Rotate(0, -200 * Time.deltaTime, 0);
             }
             m_vec2CursorPos = Input.mousePosition;
         }

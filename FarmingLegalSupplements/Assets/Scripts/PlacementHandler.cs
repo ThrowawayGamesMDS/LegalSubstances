@@ -20,6 +20,7 @@ public class PlacementHandler : MonoBehaviour
     public int m_iCurrentlyPlacing;
     private Vector2 m_vec2MouseCoords;
     private bool m_bBadPlacement;
+    private bool m_bRefreshBuild;
 
     public enum PlayerStates
     {
@@ -37,6 +38,8 @@ public class PlacementHandler : MonoBehaviour
         m_iMaxObjsPlaceable = 50;
         m_goPlacementDefault = m_goObjPlacementOk[m_iCurrentlyPlacing];
         m_bBadPlacement = false;
+
+        m_bRefreshBuild = false;
     }
 
 
@@ -45,6 +48,11 @@ public class PlacementHandler : MonoBehaviour
         PublicStats.g_fResourceCount += amount;
         print(PublicStats.g_fResourceCount);
     }*/
+
+    private void RefreshBuilder()
+    {
+        m_bRefreshBuild = false;
+    }
 
 
     RaycastHit GenerateRayCast(float _fDistanceOfRay)
@@ -87,23 +95,6 @@ public class PlacementHandler : MonoBehaviour
         return _bObjExists;
     }
 
-    private void GenerateUpgradeWindow(int windowID)
-    {
-        GUI.Button(new Rect(Screen.width - 50, Screen.height - 50, Screen.width, Screen.height), "Click Me!");
-    }
-
-    private void OnGUI()
-    {
-        // Make a toggle button for hiding and showing the window
-       // doWindow0 = GUI.Toggle(new Rect(10, 10, 100, 20), doWindow0, "Window 0");
-
-        // Make sure we only call GUI.Window if doWindow0 is true.
-        if (m_ePlayerState == PlayerStates.DEFAULT)
-        {
-            //GUI.Window(0, new Rect(m_vec2MouseCoords.x, m_vec2MouseCoords.y, 200, 200), GenerateUpgradeWindow, "Upgrade your farm");
-        }
-    }
-
 private void PlaceAnObject()
     {
         RaycastHit _rhCheck = GenerateRayCast(Camera.main.transform.position.y * 2);
@@ -118,6 +109,8 @@ private void PlaceAnObject()
                 m_goObjsPlaced.Add(Instantiate(m_goPossibleObjects[m_iCurrentlyPlacing], pos, Quaternion.identity));
                 m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.rotation = m_goPlacementDefault.transform.rotation;
                 m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.SetParent(GameObject.FindGameObjectWithTag("PlacementObjs").transform);
+                Destroy(m_goPlacementDefault);
+                m_ePlayerState = PlayerStates.DEFAULT;
             }
         }
     }
@@ -130,13 +123,13 @@ private void PlaceAnObject()
         pos.y = 0;
         pos = new Vector3(Mathf.Round(pos.x / 10) * 10, pos.y, Mathf.Round(pos.z / 10) * 10);
         Destroy(m_goPlacementDefault);
-        if (!PlacementUnacceptable(pos))
+        if (!PlacementUnacceptable(pos) && !m_bRefreshBuild)
         {
             m_goPlacementDefault = Instantiate(m_goObjPlacementOk[m_iCurrentlyPlacing], pos, Quaternion.identity) as GameObject;
         }
         else
         {
-
+            m_goPlacementDefault = Instantiate(m_goObjPlacementBad[m_iCurrentlyPlacing], pos, Quaternion.identity) as GameObject;
         }
     }
 
@@ -147,48 +140,69 @@ private void PlaceAnObject()
         Vector3 pos = _rhCheck.point;
         pos.y = 0;
         pos = new Vector3(Mathf.Round(pos.x / 10) * 10, pos.y, Mathf.Round(pos.z / 10) * 10);
-        
+
         if (m_ePlayerState == PlayerStates.DEFAULT)
         {
             m_goPlacementDefault = Instantiate(m_goObjPlacementOk[m_iCurrentlyPlacing], pos, Quaternion.identity) as GameObject;
         }
         else
         {
-                if (!PlacementUnacceptable(pos))
+            if (!PlacementUnacceptable(pos))
+            {
+                if (m_bBadPlacement)
                 {
-                    if (m_bBadPlacement)
-                    {
-                        Destroy(m_goPlacementDefault);
-                        m_goPlacementDefault = Instantiate(m_goObjPlacementOk[m_iCurrentlyPlacing], pos, Quaternion.identity) as GameObject;
-                        m_bBadPlacement = false;
-                    }
-                    else
-                    {
-                        m_goPlacementDefault.transform.position = pos;
-                    }
-                    // accepted
+                    Destroy(m_goPlacementDefault);
+                    m_goPlacementDefault = Instantiate(m_goObjPlacementOk[m_iCurrentlyPlacing], pos, Quaternion.identity) as GameObject;
+                    m_bBadPlacement = false;
                 }
                 else
                 {
-                    if (!m_bBadPlacement)
-                    {
-                        Destroy(m_goPlacementDefault);
-                        m_goPlacementDefault = Instantiate(m_goObjPlacementBad[m_iCurrentlyPlacing], pos, Quaternion.identity) as GameObject;
-                        m_bBadPlacement = true;
-                    }
-                    else
-                    {
-                        m_goPlacementDefault.transform.position = pos;
-                    }
-                    // unaccepted
+                    m_goPlacementDefault.transform.position = pos;
                 }
+                // accepted
+            }
+            else
+            {
+                if (!m_bBadPlacement)
+                {
+                    Destroy(m_goPlacementDefault);
+                    m_goPlacementDefault = Instantiate(m_goObjPlacementBad[m_iCurrentlyPlacing], pos, Quaternion.identity) as GameObject;
+                    m_bBadPlacement = true;
+                }
+                else
+                {
+                    m_goPlacementDefault.transform.position = pos;
+                }
+                // unaccepted
+            }
         }
     }
     
     public void BuildButton(int i)
     {
         m_iCurrentlyPlacing = i;
-        UpdatePlacement();
+        print("updating to " + i);
+
+        m_bRefreshBuild = true;
+        Invoke("RefreshBuilder", 0.1f);
+        CheckIfPlacementIsOkay();
+        m_vec2MouseCoords = Input.mousePosition;
+        m_ePlayerState = PlayerStates.PLACING;
+       /* switch (m_ePlayerState)
+        {
+            case PlayerStates.PLACING:
+                Destroy(m_goPlacementDefault);
+                //Destroy(m_goBuilderUI3D);
+                m_ePlayerState = PlayerStates.DEFAULT;
+                break;
+            case PlayerStates.DEFAULT:
+                m_bRefreshBuild = true;
+                Invoke("RefreshBuilder", 0.1f);
+                CheckIfPlacementIsOkay();
+                m_vec2MouseCoords = Input.mousePosition;
+                m_ePlayerState = PlayerStates.PLACING;
+                break;
+        }*/
     }
 
 
@@ -205,7 +219,7 @@ private void PlaceAnObject()
         }
 
 
-        if (Input.GetKeyUp(KeyCode.F))
+        /*if (Input.GetKeyUp(KeyCode.F))
         {
 
             switch (m_ePlayerState)
@@ -222,7 +236,7 @@ private void PlaceAnObject()
                     break;
             }
 
-        }
+        }*/
 
         if (Input.GetKeyUp(KeyCode.Alpha1))
         {
@@ -273,7 +287,10 @@ private void PlaceAnObject()
                     }
                 case PlayerStates.PLACING:
                     {
-                        PlaceAnObject();
+                        if (!m_bRefreshBuild)
+                        {
+                            PlaceAnObject();
+                        }
                         break;
                     }
             }
