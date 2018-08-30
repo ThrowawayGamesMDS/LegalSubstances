@@ -181,55 +181,59 @@ private void PlaceAnObject()
     private bool CanPurchase(int _iPurchasing)
     {
         bool _bAccepted = false;
-        switch (_iPurchasing)
+        if (HouseController.CashAmount >= m_goPlacementDefault.GetComponent<costToPlace>().Cost)
         {
-            case 0: // HEART FARM
-                {
-                    //1000
-                    if (HouseController.CashAmount >= 1000)
-                    {
-                        _bAccepted = true;
-                    }
-                    break;
-                }
-            case 1: // GREEN FARM
-                {
-                    //300
-                    if (HouseController.CashAmount >= 300)
-                    {
-                        _bAccepted = true;
-                    }
-                    break;
-                }
-            case 2: // HEART PROCESSING PLANT
-                {
-                    if (HouseController.CashAmount >= 1000)
-                    {
-                        _bAccepted = true;
-                    }
-                    break;
-                }
-
-            case 3: // GREEN PROCESSING PLANT
-                {
-                    if (HouseController.CashAmount >= 1000)
-                    {
-                        _bAccepted = true;
-                    }
-                    break;
-                }
-
-            case 4: // DEFENCE
-                {
-                    if (HouseController.CashAmount >= 1000)
-                    {
-                        _bAccepted = true;
-                    }
-                    break;
-                }
-            default:
-                break;
+            _bAccepted = true;
         }
+        /* switch (_iPurchasing)
+         {
+             case 0: // HEART FARM
+                 {
+                     //1000
+                     if (HouseController.CashAmount >= 1000)
+                     {
+                         _bAccepted = true;
+                     }
+                     break;
+                 }
+             case 1: // GREEN FARM
+                 {
+                     //300
+                     if (HouseController.CashAmount >= 600)
+                     {
+                         _bAccepted = true;
+                     }
+                     break;
+                 }
+             case 2: // HEART PROCESSING PLANT
+                 {
+                     if (HouseController.CashAmount >= m_goPlacementDefault.GetComponent<costToPlace>().Cost)
+                     {
+                         _bAccepted = true;
+                     }
+                     break;
+                 }
+
+             case 3: // GREEN PROCESSING PLANT
+                 {
+                     if (HouseController.CashAmount >= 1000)
+                     {
+                         _bAccepted = true;
+                     }
+                     break;
+                 }
+
+             case 4: // DEFENCE
+                 {
+                     if (HouseController.CashAmount >= 1000)
+                     {
+                         _bAccepted = true;
+                     }
+                     break;
+                 }
+             default:
+                 break;
+         }*/
         return _bAccepted;
     }
     
