@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class playbutton : MonoBehaviour {
     CursorLockMode wantedMode;
+    public GameObject helpmenu;
     // Use this for initialization
     void Start () {
 
@@ -20,11 +21,11 @@ public class playbutton : MonoBehaviour {
     }
     public void help()
     {
-        SceneManager.LoadScene(1);
+        helpmenu.SetActive(true);
     }
     public void back()
     {
-        SceneManager.LoadScene(0);
+        helpmenu.SetActive(false);
     }
     public void quit()
     {

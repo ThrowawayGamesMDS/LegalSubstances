@@ -131,7 +131,7 @@ public class processingWorker : MonoBehaviour {
                             WhiteCarryingAmount = 0;
                             if (Work.GetComponent<PlantController>().timer >= Work.GetComponent<PlantController>().TimeToProcess)
                             {
-                                WhiteCarryingAmount += Work.GetComponent<PlantController>().whiteAmount;
+                                WhiteProcessedAmount += Work.GetComponent<PlantController>().whiteAmount;
                                 Work.GetComponent<PlantController>().whiteAmount = 0;
                                 Work.GetComponent<PlantController>().timer = 0;
                                 isGoingHome = !isGoingHome;

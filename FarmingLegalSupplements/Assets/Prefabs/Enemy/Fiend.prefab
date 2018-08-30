@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 135847557775760700}
   - component: {fileID: 54323163565509672}
   - component: {fileID: 65974949989314124}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fiend
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -571,7 +571,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1839611185692650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -79.9, y: 1.5951228e-15, z: -29.6}
+  m_LocalPosition: {x: 81.400154, y: 9.9798864e-17, z: -4.494541}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4238006564352220}
@@ -738,8 +738,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.306178, y: 3.731101, z: 4.606827}
-  m_Center: {x: -0.78667593, y: 1.8850532, z: -0.08163452}
+  m_Size: {x: 6.565254, y: 3.731101, z: 5.0525436}
+  m_Center: {x: -0.63809586, y: 1.8850532, z: 0.14122391}
 --- !u!95 &95924506539732818
 Animator:
   serializedVersion: 3

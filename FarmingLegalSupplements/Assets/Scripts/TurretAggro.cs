@@ -70,7 +70,8 @@ public class TurretAggro : MonoBehaviour
                             Vector3 rayOrigin = endofturret.position;
                             Vector3 rayDirection = Targets[0].transform.position - endofturret.position;
                             RaycastHit hit;
-                            if (Physics.Raycast(endofturret.position, rayDirection, out hit, 10000))
+                            int layermask = LayerMask.GetMask("Enemy");
+                            if (Physics.Raycast(endofturret.position, rayDirection, out hit, 1000, layermask))
                             {
                                 if (hit.transform.tag == "Enemy")
                                 {

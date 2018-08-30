@@ -193,9 +193,9 @@ public class PlacementHandler : MonoBehaviour
     private bool CanPurchase(int _iPurchasing)
     {
         bool _bAccepted = false;
-        
-         if (HouseController.CashAmount >= m_goCurrentlyPlacing.GetComponent<costToPlace>().Cost)
-         {
+
+        if (HouseController.CashAmount >= m_goPossibleObjects[_iPurchasing].GetComponent<costToPlace>().Cost)
+        {
              _bAccepted = true;
          }
 
