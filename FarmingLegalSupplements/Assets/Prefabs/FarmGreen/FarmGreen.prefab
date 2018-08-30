@@ -1132,7 +1132,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 375946fe9be85b74db0ffb4eb3bcb443, type: 2}
+  - {fileID: 2100000, guid: 70f20866d750f2542bbf5fbbb20dd7bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1256,7 +1256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ac6a47f34aa64468ee80ba2aff14bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeToHarvest: 15
+  TimeToHarvest: 10
   Yield: 5
   resources: 0
   typeOfFarm: Green
@@ -1427,7 +1427,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 8daeaac71d0da3446babcf4dbb823acd, type: 2}
+  - {fileID: 2100000, guid: 411fc4952dbe87647ad3dcac5568368c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

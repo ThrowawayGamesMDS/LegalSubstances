@@ -27,6 +27,10 @@ public class EnemyController : MonoBehaviour {
             }
             agent.SetDestination(targetsInArea[0].transform.position);
         }
+        else
+        {
+            agent.SetDestination(home.transform.position);
+        }
             
         
         
@@ -46,7 +50,7 @@ public class EnemyController : MonoBehaviour {
             {
                 if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                 {
-                    targetsInArea[0].GetComponent<PlayerBuilding>().BuildingHealth -= 1 * Time.deltaTime;
+                    targetsInArea[0].GetComponent<PlayerBuilding>().BuildingHealth -= 2 * Time.deltaTime;
 
                     if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AttackLoop"))
                     {
