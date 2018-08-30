@@ -182,7 +182,7 @@ private void PlaceAnObject()
     {
         m_iCurrentlyPlacing = i;
         print("updating to " + i);
-
+        gameObject.GetComponent<AudioHandler>().PlaySound("PurchaseOk");
         m_bRefreshBuild = true;
         Invoke("RefreshBuilder", 0.1f);
         CheckIfPlacementIsOkay();
