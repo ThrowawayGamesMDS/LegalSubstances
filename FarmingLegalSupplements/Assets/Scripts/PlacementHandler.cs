@@ -122,7 +122,7 @@ private void PlaceAnObject()
         }
     }
 
-    private void UpdatePlacement()
+    public void UpdatePlacement()
     {
         RaycastHit _rhCheck;
         _rhCheck = GenerateRayCast(Camera.main.transform.position.y * 2);
@@ -185,6 +185,13 @@ private void PlaceAnObject()
         }
     }
     
+    public void BuildButton(int i)
+    {
+        m_iCurrentlyPlacing = i;
+        UpdatePlacement();
+    }
+
+
     // Update is called once per frame
     void Update()
     {

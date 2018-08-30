@@ -34,7 +34,7 @@ public class WorkerController : MonoBehaviour {
         }
         else
         {
-            agent.stoppingDistance = 1;
+            agent.stoppingDistance = 3;
             agent.SetDestination(Work.transform.position);
             if(agent.velocity.magnitude > 0)
             {
