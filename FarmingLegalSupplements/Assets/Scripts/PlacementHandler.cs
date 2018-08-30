@@ -177,18 +177,81 @@ private void PlaceAnObject()
             }
         }
     }
+
+    private bool CanPurchase(int _iPurchasing)
+    {
+        bool _bAccepted = false;
+        switch (_iPurchasing)
+        {
+            case 0: // HEART FARM
+                {
+                    //1000
+                    if (HouseController.CashAmount >= 1000)
+                    {
+                        _bAccepted = true;
+                    }
+                    break;
+                }
+            case 1: // GREEN FARM
+                {
+                    //300
+                    if (HouseController.CashAmount >= 300)
+                    {
+                        _bAccepted = true;
+                    }
+                    break;
+                }
+            case 2: // HEART PROCESSING PLANT
+                {
+                    if (HouseController.CashAmount >= 1000)
+                    {
+                        _bAccepted = true;
+                    }
+                    break;
+                }
+
+            case 3: // GREEN PROCESSING PLANT
+                {
+                    if (HouseController.CashAmount >= 1000)
+                    {
+                        _bAccepted = true;
+                    }
+                    break;
+                }
+
+            case 4: // DEFENCE
+                {
+                    if (HouseController.CashAmount >= 1000)
+                    {
+                        _bAccepted = true;
+                    }
+                    break;
+                }
+            default:
+                break;
+        }
+        return _bAccepted;
+    }
     
     public void BuildButton(int i)
     {
-        m_iCurrentlyPlacing = i;
-        gameObject.GetComponent<AudioHandler>().PlaySound("PurchaseOk");
 
-        m_bRefreshBuild = true;
-        Invoke("RefreshBuilder", 0.1f);
+        if (CanPurchase(i))
+        {
+            m_iCurrentlyPlacing = i;
+            gameObject.GetComponent<AudioHandler>().PlaySound("PurchaseOk");
 
-        CheckIfPlacementIsOkay();
-        m_vec2MouseCoords = Input.mousePosition;
-        m_ePlayerState = PlayerStates.PLACING;
+            m_bRefreshBuild = true;
+            Invoke("RefreshBuilder", 0.1f);
+
+            CheckIfPlacementIsOkay();
+            m_vec2MouseCoords = Input.mousePosition;
+            m_ePlayerState = PlayerStates.PLACING;
+        }
+        else
+        {
+            gameObject.GetComponent<AudioHandler>().PlaySound("PurchaseBad");
+        }
     }
 
 

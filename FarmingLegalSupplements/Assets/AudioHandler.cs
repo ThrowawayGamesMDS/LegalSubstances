@@ -6,6 +6,7 @@ public class AudioHandler : MonoBehaviour
 {
     public AudioClip[] m_vecacAudioClips;
     // clip 0 = successful purhcase
+    // clip 1 = failed purchase
     public AudioSource m_asSoundSource;
 	// Use this for initialization
 	void Start ()
@@ -22,6 +23,14 @@ public class AudioHandler : MonoBehaviour
                     m_asSoundSource.Play();
                     break;
                 }
+            case "PurchaseBad":
+                {
+                    m_asSoundSource.clip = m_vecacAudioClips[1];
+                    m_asSoundSource.Play();
+                    break;
+                }
+            default:
+                break;
         }
     }
 	
