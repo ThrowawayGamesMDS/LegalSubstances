@@ -54,6 +54,11 @@ public class PlacementHandler : MonoBehaviour
         m_bRefreshBuild = false;
     }
 
+    private void SelectiveDestroy(GameObject _destroy)
+    {
+        Destroy(_destroy);
+    }
+
 
     RaycastHit GenerateRayCast(float _fDistanceOfRay)
     {
@@ -95,7 +100,13 @@ public class PlacementHandler : MonoBehaviour
         return _bObjExists;
     }
 
-private void PlaceAnObject()
+    IEnumerator DestroyParticle(GameObject _destroy, float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        Destroy(_destroy);
+    }
+
+    private void PlaceAnObject()
     {
         RaycastHit _rhCheck = GenerateRayCast(Camera.main.transform.position.y * 2);
         Vector3 pos = _rhCheck.point;
@@ -105,11 +116,12 @@ private void PlaceAnObject()
             if(HouseController.CashAmount >= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().Cost)
             {
                 HouseController.CashAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().Cost;
-                //m_goSuccessfulBuild = Instantiate(m_goParticleEffects[0], m_vec3Pos, m_goParticleEffects[0].transform.rotation) as GameObject;
+                m_goSuccessfulBuild = Instantiate(m_goParticleEffects[0], pos, m_goParticleEffects[0].transform.rotation) as GameObject;
                 m_goObjsPlaced.Add(Instantiate(m_goPossibleObjects[m_iCurrentlyPlacing], pos, Quaternion.identity));
                 m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.rotation = m_goPlacementDefault.transform.rotation;
-                m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.SetParent(GameObject.FindGameObjectWithTag("PlacementObjs").transform);
+               // m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.SetParent(GameObject.FindGameObjectWithTag("PlacementObjs").transform);
                 Destroy(m_goPlacementDefault);
+                StartCoroutine(DestroyParticle(m_goSuccessfulBuild, 1.5f));
                 m_ePlayerState = PlayerStates.DEFAULT;
             }
         }
@@ -181,11 +193,14 @@ private void PlaceAnObject()
     private bool CanPurchase(int _iPurchasing)
     {
         bool _bAccepted = false;
-        if (HouseController.CashAmount >= m_goPlacementDefault.GetComponent<costToPlace>().Cost)
-        {
-            _bAccepted = true;
-        }
-        /* switch (_iPurchasing)
+        
+         if (HouseController.CashAmount >= m_goCurrentlyPlacing.GetComponent<costToPlace>().Cost)
+         {
+             _bAccepted = true;
+         }
+
+         /*
+        switch (_iPurchasing)
          {
              case 0: // HEART FARM
                  {
@@ -207,8 +222,9 @@ private void PlaceAnObject()
                  }
              case 2: // HEART PROCESSING PLANT
                  {
-                     if (HouseController.CashAmount >= m_goPlacementDefault.GetComponent<costToPlace>().Cost)
-                     {
+                    //if (HouseController.CashAmount >= m_goPlacementDefault.GetComponent<costToPlace>().Cost)
+                    if (HouseController.CashAmount >= 700)
+                    {
                          _bAccepted = true;
                      }
                      break;
