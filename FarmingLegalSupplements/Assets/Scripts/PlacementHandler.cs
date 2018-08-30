@@ -181,28 +181,14 @@ private void PlaceAnObject()
     public void BuildButton(int i)
     {
         m_iCurrentlyPlacing = i;
-        print("updating to " + i);
         gameObject.GetComponent<AudioHandler>().PlaySound("PurchaseOk");
+
         m_bRefreshBuild = true;
         Invoke("RefreshBuilder", 0.1f);
+
         CheckIfPlacementIsOkay();
         m_vec2MouseCoords = Input.mousePosition;
         m_ePlayerState = PlayerStates.PLACING;
-       /* switch (m_ePlayerState)
-        {
-            case PlayerStates.PLACING:
-                Destroy(m_goPlacementDefault);
-                //Destroy(m_goBuilderUI3D);
-                m_ePlayerState = PlayerStates.DEFAULT;
-                break;
-            case PlayerStates.DEFAULT:
-                m_bRefreshBuild = true;
-                Invoke("RefreshBuilder", 0.1f);
-                CheckIfPlacementIsOkay();
-                m_vec2MouseCoords = Input.mousePosition;
-                m_ePlayerState = PlayerStates.PLACING;
-                break;
-        }*/
     }
 
 
@@ -237,29 +223,6 @@ private void PlaceAnObject()
             }
 
         }*/
-
-        if (Input.GetKeyUp(KeyCode.Alpha1))
-        {
-            m_iCurrentlyPlacing = 0;
-            UpdatePlacement();
-        }
-
-        if (Input.GetKeyUp(KeyCode.Alpha2))
-        {
-            m_iCurrentlyPlacing = 1;
-            UpdatePlacement();
-        }
-        if (Input.GetKeyUp(KeyCode.Alpha3))
-        {
-            m_iCurrentlyPlacing = 2;
-            UpdatePlacement();
-        }
-
-        if (Input.GetKeyUp(KeyCode.Alpha4))
-        {
-            m_iCurrentlyPlacing = 3;
-            UpdatePlacement();
-        }
 
         if (Input.GetKeyDown(KeyCode.P))
         {
