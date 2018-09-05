@@ -22,6 +22,13 @@ public class PlacementHandler : MonoBehaviour
     private bool m_bBadPlacement;
     private bool m_bRefreshBuild;
 
+    public enum m_ePlayerSelected
+    {
+        DEFAULT,HOME, GREEN_FARM, WHITE_FARM, CONTRACT_KILLER
+    }
+    public m_ePlayerSelected m_eDisplayUi;
+
+
     public enum PlayerStates
     {
         PLACING, DEFAULT
@@ -38,7 +45,7 @@ public class PlacementHandler : MonoBehaviour
         m_iMaxObjsPlaceable = 50;
         m_goPlacementDefault = m_goObjPlacementOk[m_iCurrentlyPlacing];
         m_bBadPlacement = false;
-
+        m_eDisplayUi = m_ePlayerSelected.DEFAULT;
         m_bRefreshBuild = false;
     }
 
@@ -63,7 +70,6 @@ public class PlacementHandler : MonoBehaviour
     RaycastHit GenerateRayCast(float _fDistanceOfRay, bool _bUseLayermask)
     {
         RaycastHit _rh;
-        RaycastHit _bugFix;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Debug.DrawRay(ray.origin, ray.direction * _fDistanceOfRay, new Color(1f, 0.922f, 0.016f, 1f));
         int _iLayerMask;
@@ -165,7 +171,27 @@ public class PlacementHandler : MonoBehaviour
     {
         RaycastHit _rhCheck = GenerateRayCast(Camera.main.transform.position.y * 2, false);
         //Destroy(_rhCheck.transform.gameObject);
-        print(_rhCheck.transform.gameObject);
+
+        switch(_rhCheck.transform.tag)
+        {
+            case "Home":
+                {
+                    m_eDisplayUi = m_ePlayerSelected.HOME;
+                    break;
+                }
+            case "green_farm":
+                {
+                    m_eDisplayUi = m_ePlayerSelected.GREEN_FARM;
+                    break;
+                }
+            case "white_farm":
+                {
+                    m_eDisplayUi = m_ePlayerSelected.WHITE_FARM;
+                    break;
+                }
+            default:
+                break;
+        }
 
     }
 
