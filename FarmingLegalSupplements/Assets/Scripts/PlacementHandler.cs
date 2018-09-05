@@ -60,19 +60,35 @@ public class PlacementHandler : MonoBehaviour
     }
 
 
-    RaycastHit GenerateRayCast(float _fDistanceOfRay)
+    RaycastHit GenerateRayCast(float _fDistanceOfRay, bool _bUseLayermask)
     {
         RaycastHit _rh;
+        RaycastHit _bugFix;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Debug.DrawRay(ray.origin, ray.direction * _fDistanceOfRay, new Color(1f, 0.922f, 0.016f, 1f));
-        int _iLayerMask = LayerMask.GetMask("Ground");
-        if (Physics.Raycast(ray.origin, ray.direction * _fDistanceOfRay, out _rh, 250.0f, _iLayerMask))
+        int _iLayerMask;
+        if (_bUseLayermask)
         {
-            return _rh;
+            _iLayerMask = LayerMask.GetMask("Ground");
+            if (Physics.Raycast(ray.origin, ray.direction * _fDistanceOfRay, out _rh, 250.0f, _iLayerMask))
+            {
+                return _rh;
+            }
+            else
+            {
+                return _rh;
+            }
         }
         else
         {
-            return _rh;
+            if (Physics.Raycast(ray.origin, ray.direction * _fDistanceOfRay, out _rh, 250.0f))
+            {
+               return _rh;
+            }
+            else
+            {
+                return _rh;
+            }
         }
     }
     
@@ -108,7 +124,7 @@ public class PlacementHandler : MonoBehaviour
 
     private void PlaceAnObject()
     {
-        RaycastHit _rhCheck = GenerateRayCast(Camera.main.transform.position.y * 2);
+        RaycastHit _rhCheck = GenerateRayCast(Camera.main.transform.position.y * 2, true);
         Vector3 pos = _rhCheck.point;
         pos = new Vector3(Mathf.Round(pos.x/10)*10, pos.y, Mathf.Round(pos.z / 10) * 10);
         if (!PlacementUnacceptable(pos))
@@ -130,7 +146,7 @@ public class PlacementHandler : MonoBehaviour
     public void UpdatePlacement()
     {
         RaycastHit _rhCheck;
-        _rhCheck = GenerateRayCast(Camera.main.transform.position.y * 2);
+        _rhCheck = GenerateRayCast(Camera.main.transform.position.y * 2, true);
         Vector3 pos = _rhCheck.point;
         pos.y = 0;
         pos = new Vector3(Mathf.Round(pos.x / 10) * 10, pos.y, Mathf.Round(pos.z / 10) * 10);
@@ -145,10 +161,18 @@ public class PlacementHandler : MonoBehaviour
         }
     }
 
+    private void DetermineIfSuccesfulClick() // Users click hit an obj
+    {
+        RaycastHit _rhCheck = GenerateRayCast(Camera.main.transform.position.y * 2, false);
+        //Destroy(_rhCheck.transform.gameObject);
+        print(_rhCheck.transform.gameObject);
+
+    }
+
    private void CheckIfPlacementIsOkay()
     {
         RaycastHit _rhCheck;
-        _rhCheck = GenerateRayCast(Camera.main.transform.position.y * 2);
+        _rhCheck = GenerateRayCast(Camera.main.transform.position.y * 2, true);
         Vector3 pos = _rhCheck.point;
         pos.y = 0;
         pos = new Vector3(Mathf.Round(pos.x / 10) * 10, pos.y, Mathf.Round(pos.z / 10) * 10);
@@ -198,58 +222,6 @@ public class PlacementHandler : MonoBehaviour
         {
              _bAccepted = true;
          }
-
-         /*
-        switch (_iPurchasing)
-         {
-             case 0: // HEART FARM
-                 {
-                     //1000
-                     if (HouseController.CashAmount >= 1000)
-                     {
-                         _bAccepted = true;
-                     }
-                     break;
-                 }
-             case 1: // GREEN FARM
-                 {
-                     //300
-                     if (HouseController.CashAmount >= 600)
-                     {
-                         _bAccepted = true;
-                     }
-                     break;
-                 }
-             case 2: // HEART PROCESSING PLANT
-                 {
-                    //if (HouseController.CashAmount >= m_goPlacementDefault.GetComponent<costToPlace>().Cost)
-                    if (HouseController.CashAmount >= 700)
-                    {
-                         _bAccepted = true;
-                     }
-                     break;
-                 }
-
-             case 3: // GREEN PROCESSING PLANT
-                 {
-                     if (HouseController.CashAmount >= 1000)
-                     {
-                         _bAccepted = true;
-                     }
-                     break;
-                 }
-
-             case 4: // DEFENCE
-                 {
-                     if (HouseController.CashAmount >= 1000)
-                     {
-                         _bAccepted = true;
-                     }
-                     break;
-                 }
-             default:
-                 break;
-         }*/
         return _bAccepted;
     }
     
@@ -328,7 +300,9 @@ public class PlacementHandler : MonoBehaviour
             {
                 case PlayerStates.DEFAULT:
                     {
-
+                        // click to select obj
+                        //raycast out -> get obj type (maybe make a class to return type...) -> update UI to display possible options for selected item... :D
+                        DetermineIfSuccesfulClick();
                         break;
                     }
                 case PlayerStates.PLACING:
