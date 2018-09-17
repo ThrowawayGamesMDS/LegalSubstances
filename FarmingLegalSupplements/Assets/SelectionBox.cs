@@ -72,7 +72,7 @@ public class SelectionBox : MonoBehaviour {
 
     bool isSelecting = false;
     Vector3 mousePosition1;
-
+    public Camera camera;
     public GameObject selectionCirclePrefab;
 
     void Update()
@@ -106,6 +106,30 @@ public class SelectionBox : MonoBehaviour {
 
             
             isSelecting = false;
+
+
+            int layermask = LayerMask.GetMask("Wongle");
+            RaycastHit hit;
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit, layermask))
+            {
+
+                if(hit.transform.gameObject.GetComponent<SelectableUnitComponent>() != null)
+                {
+                    SelectableUnitComponent unit = hit.transform.gameObject.GetComponent<SelectableUnitComponent>();
+                    if (unit.selectionCircle == null)
+                    {
+                        unit.selectionCircle = Instantiate(selectionCirclePrefab);
+                        unit.selectionCircle.transform.SetParent(unit.transform, false);
+                        unit.selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
+                    }
+
+                    unit.isSelected = true;
+                }
+                
+            }
+
         }
 
         // Highlight all objects within the selection box

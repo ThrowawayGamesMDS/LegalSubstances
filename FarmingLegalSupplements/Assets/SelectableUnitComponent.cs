@@ -139,6 +139,12 @@ public class SelectableUnitComponent : MonoBehaviour {
                                         outputAmount = 0;
                                         break;
                                     }
+                                case "White":
+                                    {
+                                        Home.GetComponent<HouseController>().WhiteAmount += outputAmount;
+                                        outputAmount = 0;
+                                        break;
+                                    }
                                 default:
                                     {
                                         break;
