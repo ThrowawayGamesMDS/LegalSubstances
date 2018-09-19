@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         home = GameObject.FindGameObjectWithTag("HomeBuilding");
-        agent.SetDestination(home.transform.position);
+        //agent.SetDestination(home.transform.position);
 	}
 
     // Update is called once per frame
@@ -25,11 +25,11 @@ public class EnemyController : MonoBehaviour {
             {
                 targetsInArea.RemoveAt(0);
             }
-            agent.SetDestination(targetsInArea[0].transform.position);
+            //agent.SetDestination(targetsInArea[0].transform.position);
         }
         else
         {
-            agent.SetDestination(home.transform.position);
+            //agent.SetDestination(home.transform.position);
         }
             
         
@@ -50,8 +50,10 @@ public class EnemyController : MonoBehaviour {
             {
                 if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                 {
-                    targetsInArea[0].GetComponent<PlayerBuilding>().BuildingHealth -= 2 * Time.deltaTime;
-
+                    if (targetsInArea.Count > 0)
+                    {
+                        targetsInArea[0].GetComponent<PlayerBuilding>().BuildingHealth -= 2 * Time.deltaTime;
+                    }
                     if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AttackLoop"))
                     {
                         anim.Play("AttackLoop");
