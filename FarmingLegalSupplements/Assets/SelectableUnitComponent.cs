@@ -18,6 +18,9 @@ public class SelectableUnitComponent : MonoBehaviour {
     public bool canAttack;
     public GameObject attackEffect;
     public GameObject handPosition;
+    public float WongleHealth;
+    public List<GameObject> Enemies;
+
 
     public void AttackCooldown()
     {
@@ -33,6 +36,10 @@ public class SelectableUnitComponent : MonoBehaviour {
 
     public void Update()
     {
+        if(WongleHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
         if (agent.velocity.magnitude > 0)
         {
             anim.Play("WalkCycle");
@@ -192,12 +199,27 @@ public class SelectableUnitComponent : MonoBehaviour {
 
             if (Work.tag == "Army")
             {
+
+                if(Target == null)
+                {
+                    if(FindClosestEnemy() != null)
+                    {
+                        GameObject obj = FindClosestEnemy();
+                        if (Vector3.Distance(transform.position, obj.transform.position) <= 30)
+                        {
+                            Target = obj;
+                        }
+                    }
+                }
+
+
                 if(Target != null)
                 {
 
-                    if(Vector3.Distance(transform.position, Target.transform.position) > 10)
+                    if(Vector3.Distance(transform.position, Target.transform.position) > 20)
                     {
-                        agent.stoppingDistance = 8;
+                        agent.isStopped = false;
+                        agent.stoppingDistance = 19;
                         agent.SetDestination(Target.transform.position);
                     }
                     else
@@ -206,7 +228,8 @@ public class SelectableUnitComponent : MonoBehaviour {
                         if (canAttack)
                         {
                             GameObject instance = Instantiate(attackEffect, handPosition.transform.position, handPosition.transform.rotation);
-                            instance.transform.LookAt(Target.transform.position);
+                            instance.GetComponent<LookAtTarget>().target = Target.transform.GetChild(0).gameObject;
+                            
                             canAttack = false;
                             Invoke("AttackCooldown", 5f);
                         }
@@ -214,7 +237,58 @@ public class SelectableUnitComponent : MonoBehaviour {
                 }
             }
         }
-            
-    }            
+          
+        
+        if(agent.isStopped)
+        {
+            if(Target != null)
+            {
+                Vector3 lookpos = Target.transform.position - transform.position;
+                lookpos.y = 0;
+                Quaternion rotation = Quaternion.LookRotation(lookpos);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 10);
+            }
+        }
+    }
+
+
+
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Enemy")
+        {
+            Enemies.Insert(Enemies.Count, other.gameObject);
+        }
+
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Enemy")
+        {
+            Enemies.Remove(other.gameObject);
+        }
+    }
+
+    public GameObject FindClosestEnemy()
+    {
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject go in gos)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closest = go;
+                distance = curDistance;
+            }
+        }
+        return closest;
+    }
 
 }

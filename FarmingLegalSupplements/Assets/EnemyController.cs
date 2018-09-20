@@ -52,7 +52,21 @@ public class EnemyController : MonoBehaviour {
                 {
                     if (targetsInArea.Count > 0)
                     {
-                        targetsInArea[0].GetComponent<PlayerBuilding>().BuildingHealth -= 2 * Time.deltaTime;
+                        switch (targetsInArea[0].tag)
+                        {
+                            case "Building":
+                                {
+                                    targetsInArea[0].GetComponent<PlayerBuilding>().BuildingHealth -= 2 * Time.deltaTime;
+                                    break;
+                                }
+                            case "Wongle":
+                                {
+                                    //targetsInArea[0].GetComponent<SelectableUnitComponent>().WongleHealth -= 33 * Time.deltaTime;
+                                    break;
+                                }
+                        }
+
+                        
                     }
                     if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AttackLoop"))
                     {
@@ -70,6 +84,10 @@ public class EnemyController : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         if(other.GetComponent<PlayerBuilding>() != null)
+        {
+            targetsInArea.Add(other.gameObject);
+        }
+        if (other.GetComponent<SelectableUnitComponent>() != null)
         {
             targetsInArea.Add(other.gameObject);
         }

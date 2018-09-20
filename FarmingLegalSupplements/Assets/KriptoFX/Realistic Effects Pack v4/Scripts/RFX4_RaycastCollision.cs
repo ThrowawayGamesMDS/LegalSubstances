@@ -72,7 +72,8 @@ public class RFX4_RaycastCollision : MonoBehaviour
     {
        
         RaycastHit raycastHit;
-        if (Physics.Raycast(transform.position, transform.forward, out raycastHit, RaycastDistance)) {
+        int layermask = LayerMask.GetMask("Enemy");
+        if (Physics.Raycast(transform.position, transform.forward, out raycastHit, RaycastDistance, layermask)) {
             Vector3 position;
             if (UsePivotPosition)
                 position = raycastHit.transform.position;
@@ -83,6 +84,10 @@ public class RFX4_RaycastCollision : MonoBehaviour
                 foreach (var effect in Effects) {
                     var instance = Instantiate(effect, position, new Quaternion()) as GameObject;
                     instance.transform.LookAt(gameObject.transform.position);
+
+                    raycastHit.transform.SendMessage("EnemyShot", 34);
+
+
                     CollidedInstances.Add(instance);
                     if (HUE > -0.9f)
                     {
