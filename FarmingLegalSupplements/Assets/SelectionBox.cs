@@ -67,69 +67,173 @@ public static class Utils
 
 }
 
+/***
+ * 
+ * TO DO: Check for whether the npc has already been control selected.. 
+ *          you can currently keep clicking and adding the same npc to the ctrl selected list
+ * 
+ ***/
+
 
 public class SelectionBox : MonoBehaviour {
 
     bool isSelecting = false;
+    bool m_bCtrlSelectUnits = false;
+    public List <GameObject> m_lCtrlUnits;
     Vector3 mousePosition1;
     public Camera camera;
     public GameObject selectionCirclePrefab;
 
+    private RaycastHit GenerateRayCast(Ray ray, int layermask, bool _bCtrlSelect)
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, layermask))
+        {
+
+            if (hit.transform.gameObject.GetComponent<SelectableUnitComponent>() != null)
+            {
+                SelectableUnitComponent unit = hit.transform.gameObject.GetComponent<SelectableUnitComponent>();
+                if (unit.selectionCircle == null && _bCtrlSelect)
+                {
+                    unit.selectionCircle = Instantiate(selectionCirclePrefab);
+                    unit.selectionCircle.transform.SetParent(unit.transform, false);
+                    unit.selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
+                }
+
+                unit.isSelected = true;
+            }
+
+        }
+        return hit;
+    }
+
     void Update()
     {
         // If we press the left mouse button, begin selection and remember the location of the mouse
+        if(Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+        {
+            m_bCtrlSelectUnits = true;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.RightControl))
+        {
+            m_bCtrlSelectUnits = false;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
-            isSelecting = true;
-            mousePosition1 = Input.mousePosition;
-
-            foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
+            switch(m_bCtrlSelectUnits)
             {
-                if (selectableObject.selectionCircle != null)
-                {
-                    Destroy(selectableObject.selectionCircle.gameObject);
-                    selectableObject.selectionCircle = null;
-                }
+                case false:
+                    {
+                        if (m_lCtrlUnits.Count > 0)
+                        {
+                            foreach (var unit in m_lCtrlUnits)
+                            {
+                                if (unit.GetComponent<SelectableUnitComponent>().selectionCircle != null)
+                                {
+                                    Destroy(unit.GetComponent<SelectableUnitComponent>().selectionCircle.gameObject);
+                                    unit.GetComponent<SelectableUnitComponent>().selectionCircle = null;
+                                }
+                            }
+                            m_lCtrlUnits.Clear();
+                        }
+
+                        isSelecting = true;
+                        mousePosition1 = Input.mousePosition;
+
+                        foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
+                        {
+                            if (selectableObject.selectionCircle != null)
+                            {
+                                Destroy(selectableObject.selectionCircle.gameObject);
+                                selectableObject.selectionCircle = null;
+                            }
+                        }
+                        break;
+                    }
+                case true:
+                    {
+                        mousePosition1 = Input.mousePosition;
+
+                        foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
+                        {
+                            if (selectableObject.selectionCircle != null)
+                            {
+                                Destroy(selectableObject.selectionCircle.gameObject);
+                                selectableObject.selectionCircle = null;
+                            }
+                        }
+                        break;
+                    }
             }
         }
         // If we let go of the left mouse button, end selection
         if (Input.GetMouseButtonUp(0))
         {
-            var selectedObjects = new List<SelectableUnitComponent>();
-            foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
+            switch(m_bCtrlSelectUnits)
             {
-                if (IsWithinSelectionBounds(selectableObject.gameObject))
-                {
-                    selectedObjects.Add(selectableObject);
-                }
-            }
-
-            
-            isSelecting = false;
-
-
-            int layermask = LayerMask.GetMask("Wongle");
-            RaycastHit hit;
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit, layermask))
-            {
-
-                if(hit.transform.gameObject.GetComponent<SelectableUnitComponent>() != null)
-                {
-                    SelectableUnitComponent unit = hit.transform.gameObject.GetComponent<SelectableUnitComponent>();
-                    if (unit.selectionCircle == null)
+                case false:
                     {
-                        unit.selectionCircle = Instantiate(selectionCirclePrefab);
-                        unit.selectionCircle.transform.SetParent(unit.transform, false);
-                        unit.selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
-                    }
+                        var selectedObjects = new List<SelectableUnitComponent>();
+                        foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
+                        {
+                            if (IsWithinSelectionBounds(selectableObject.gameObject))
+                            {
+                                selectedObjects.Add(selectableObject);
+                            }
+                        }
 
-                    unit.isSelected = true;
-                }
-                
+
+                        isSelecting = false;
+
+
+                        int layermask = LayerMask.GetMask("Wongle");
+                        
+                        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+                        RaycastHit hit = GenerateRayCast(ray, layermask, false);
+                        
+                        break;
+                    }
+                case true:
+                    {
+                        int layermask = LayerMask.GetMask("Wongle");
+
+                        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+                        RaycastHit hit = GenerateRayCast(ray, layermask, true);
+                        if (hit.transform.tag == "Wongle")
+                        {
+                            m_lCtrlUnits.Add(hit.transform.gameObject);
+                        }
+                        else // bundy draw bug fix for misclicking - without this it will undraw all ctrl selected npcs
+                        {
+                            foreach (var unit in m_lCtrlUnits)
+                            {
+                                if (unit.GetComponent<SelectableUnitComponent>().selectionCircle == null)
+                                {
+                                    unit.GetComponent<SelectableUnitComponent>().selectionCircle = Instantiate(selectionCirclePrefab);
+                                    unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.SetParent(unit.transform, false);
+                                    unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
+                                }
+                            }
+                        }
+                        print("Controlled units size: " + m_lCtrlUnits.Count);
+                        break;
+                    }
             }
 
+        }
+
+        if (m_bCtrlSelectUnits)
+        {
+            foreach (var unit in m_lCtrlUnits)
+            {
+                if (unit.GetComponent<SelectableUnitComponent>().selectionCircle == null)
+                {
+                    unit.GetComponent<SelectableUnitComponent>().selectionCircle = Instantiate(selectionCirclePrefab);
+                    unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.SetParent(unit.transform, false);
+                    unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
+                }
+            }
         }
 
         // Highlight all objects within the selection box
