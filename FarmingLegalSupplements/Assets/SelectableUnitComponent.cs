@@ -20,6 +20,7 @@ public class SelectableUnitComponent : MonoBehaviour {
     public GameObject handPosition;
     public float WongleHealth;
     public List<GameObject> Enemies;
+    public GameObject attackinstance;
 
 
     public void AttackCooldown()
@@ -73,6 +74,16 @@ public class SelectableUnitComponent : MonoBehaviour {
                                     }
                                     Work = null;
                                 }
+                                if(Target != null)
+                                {
+                                    if(attackinstance != null)
+                                    {
+                                        Destroy(attackinstance);
+                                    }
+                                    Target = null;
+                                }
+
+
                                 agent.stoppingDistance = 7;
                                 agent.SetDestination(hit.point);
 
@@ -227,8 +238,8 @@ public class SelectableUnitComponent : MonoBehaviour {
                         agent.isStopped = true;
                         if (canAttack)
                         {
-                            GameObject instance = Instantiate(attackEffect, handPosition.transform.position, handPosition.transform.rotation);
-                            instance.GetComponent<LookAtTarget>().target = Target.transform.GetChild(0).gameObject;
+                            attackinstance = Instantiate(attackEffect, handPosition.transform.position, handPosition.transform.rotation);
+                            attackinstance.GetComponent<LookAtTarget>().target = Target.transform.GetChild(0).gameObject;
                             
                             canAttack = false;
                             Invoke("AttackCooldown", 5f);
