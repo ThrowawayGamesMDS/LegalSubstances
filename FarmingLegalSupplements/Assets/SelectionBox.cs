@@ -93,6 +93,15 @@ public class SelectionBox : MonoBehaviour {
             if (hit.transform.gameObject.GetComponent<SelectableUnitComponent>() != null)
             {
                 SelectableUnitComponent unit = hit.transform.gameObject.GetComponent<SelectableUnitComponent>();
+
+                foreach (var _npc in m_lCtrlUnits)
+                {
+                    if (hit.transform.gameObject == _npc)
+                    {
+                        return hit;
+                    }
+                }
+                m_lCtrlUnits.Add(hit.transform.gameObject);
                 if (unit.selectionCircle == null && _bCtrlSelect)
                 {
                     unit.selectionCircle = Instantiate(selectionCirclePrefab);
@@ -200,11 +209,7 @@ public class SelectionBox : MonoBehaviour {
 
                         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
                         RaycastHit hit = GenerateRayCast(ray, layermask, true);
-                        if (hit.transform.tag == "Wongle")
-                        {
-                            m_lCtrlUnits.Add(hit.transform.gameObject);
-                        }
-                        else // bundy draw bug fix for misclicking - without this it will undraw all ctrl selected npcs
+                        if (hit.transform.tag != null)
                         {
                             foreach (var unit in m_lCtrlUnits)
                             {
