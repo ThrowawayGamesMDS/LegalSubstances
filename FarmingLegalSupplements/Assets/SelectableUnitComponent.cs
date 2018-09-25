@@ -118,6 +118,7 @@ public class SelectableUnitComponent : MonoBehaviour {
                                 {
                                     if (hit.transform.GetChild(0).gameObject.GetComponent<BuildingController>().worker == null)
                                     {
+                                        isGoingHome = true;
                                         hit.transform.GetChild(0).gameObject.GetComponent<BuildingController>().worker = gameObject;
                                         Work = hit.transform.GetChild(0).gameObject;
                                     }
