@@ -89,20 +89,28 @@ public class SelectionBox : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, layermask))
         {
-
+            List<GameObject> _goUpdateList = new List<GameObject>();
             if (hit.transform.gameObject.GetComponent<SelectableUnitComponent>() != null)
             {
                 SelectableUnitComponent unit = hit.transform.gameObject.GetComponent<SelectableUnitComponent>();
                 if (_bCtrlSelect)
                 {
+                    int _iBundyCount = 0;
                     foreach (var _npc in m_lCtrlUnits)
                     {
                         if (hit.transform.gameObject == _npc)
                         {
+                            Destroy(unit.GetComponent<SelectableUnitComponent>().selectionCircle.gameObject);
+                            unit.GetComponent<SelectableUnitComponent>().selectionCircle = null;
+                            unit.isSelected = false;
+                            print("deselect");
+                            _goUpdateList.Add(_npc);
+                            m_lCtrlUnits.RemoveAt(_iBundyCount);
+                            _iBundyCount++;
                             return hit;
                         }
                     }
-                    m_lCtrlUnits.Add(hit.transform.gameObject);
+                        m_lCtrlUnits.Add(hit.transform.gameObject);
                 }
                 else if (unit.selectionCircle == null)
                 {
@@ -110,12 +118,6 @@ public class SelectionBox : MonoBehaviour {
                     unit.selectionCircle.transform.SetParent(unit.transform, false);
                     unit.selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
                 }
-                /*if (unit.selectionCircle == null && _bCtrlSelect)
-                {
-                    unit.selectionCircle = Instantiate(selectionCirclePrefab);
-                    unit.selectionCircle.transform.SetParent(unit.transform, false);
-                    unit.selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
-                }*/
 
                 unit.isSelected = true;
             }
@@ -174,7 +176,7 @@ public class SelectionBox : MonoBehaviour {
 
                         foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
                         {
-                            if (selectableObject.selectionCircle != null)
+                            if (selectableObject.selectionCircle != null && !m_bCtrlSelectUnits)
                             {
                                 Destroy(selectableObject.selectionCircle.gameObject);
                                 selectableObject.selectionCircle = null;
@@ -219,7 +221,7 @@ public class SelectionBox : MonoBehaviour {
                         RaycastHit hit = GenerateRayCast(ray, layermask, true);
                         if (hit.transform.tag != null)
                         {
-                            foreach (var unit in m_lCtrlUnits)
+                            foreach (var unit in m_lCtrlUnits) // update all of the ctrl selected workers
                             {
                                 if (unit.GetComponent<SelectableUnitComponent>().selectionCircle == null)
                                 {
@@ -229,6 +231,17 @@ public class SelectionBox : MonoBehaviour {
                                 }
                             }
                         }
+                        else // deselection bug fix?
+                        {
+                            if (hit.transform.GetComponent<SelectableUnitComponent>().selectionCircle != null)
+                            {
+                                Destroy(hit.transform.GetComponent<SelectableUnitComponent>().selectionCircle);
+                                hit.transform.GetComponent<SelectableUnitComponent>().selectionCircle = null;
+                            }
+                            print("maybe do deslection here");
+                        }
+
+                     
                         print("Controlled units size: " + m_lCtrlUnits.Count);
                         break;
                     }
