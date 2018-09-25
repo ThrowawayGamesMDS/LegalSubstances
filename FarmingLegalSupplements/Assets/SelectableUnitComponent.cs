@@ -21,6 +21,7 @@ public class SelectableUnitComponent : MonoBehaviour {
     public float WongleHealth;
     public List<GameObject> Enemies;
     public GameObject attackinstance;
+    public GameObject WandEnd;
 
 
     public void AttackCooldown()
@@ -43,11 +44,18 @@ public class SelectableUnitComponent : MonoBehaviour {
         }
         if (agent.velocity.magnitude > 0)
         {
-            anim.Play("WalkCycle");
+            if(!anim.GetCurrentAnimatorStateInfo(0).IsName("BasicSwingAttack"))
+            {
+                anim.Play("WalkCycle");
+            }
+            
         }
         else
         {
-            anim.Play("Idle");
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("BasicSwingAttack"))
+            {
+                anim.Play("Idle");
+            }
         }
 
         if (isSelected)
@@ -239,8 +247,11 @@ public class SelectableUnitComponent : MonoBehaviour {
                         if (canAttack)
                         {
                             attackinstance = Instantiate(attackEffect, handPosition.transform.position, handPosition.transform.rotation);
-                            attackinstance.GetComponent<LookAtTarget>().target = Target.transform.GetChild(0).gameObject;
-                            
+                            attackinstance.transform.parent = handPosition.transform;
+                            attackinstance.GetComponent<LookAtTarget>().target = Target.transform.GetChild(1).gameObject;
+
+                            StartCoroutine(PlayAnim());
+
                             canAttack = false;
                             Invoke("AttackCooldown", 5f);
                         }
@@ -300,6 +311,18 @@ public class SelectableUnitComponent : MonoBehaviour {
             }
         }
         return closest;
+    }
+
+    IEnumerator PlayAnim()
+    {
+        yield return new WaitForSeconds(2.3f);
+        print("anim");
+        anim.Play("BasicSwingAttack");
+        yield return new WaitForSeconds(0.5f);
+        if(attackinstance != null)
+        {
+            attackinstance.transform.parent = null;
+        }
     }
 
 }
