@@ -93,21 +93,29 @@ public class SelectionBox : MonoBehaviour {
             if (hit.transform.gameObject.GetComponent<SelectableUnitComponent>() != null)
             {
                 SelectableUnitComponent unit = hit.transform.gameObject.GetComponent<SelectableUnitComponent>();
-
-                foreach (var _npc in m_lCtrlUnits)
+                if (_bCtrlSelect)
                 {
-                    if (hit.transform.gameObject == _npc)
+                    foreach (var _npc in m_lCtrlUnits)
                     {
-                        return hit;
+                        if (hit.transform.gameObject == _npc)
+                        {
+                            return hit;
+                        }
                     }
+                    m_lCtrlUnits.Add(hit.transform.gameObject);
                 }
-                m_lCtrlUnits.Add(hit.transform.gameObject);
-                if (unit.selectionCircle == null && _bCtrlSelect)
+                else if (unit.selectionCircle == null)
                 {
                     unit.selectionCircle = Instantiate(selectionCirclePrefab);
                     unit.selectionCircle.transform.SetParent(unit.transform, false);
                     unit.selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
                 }
+                /*if (unit.selectionCircle == null && _bCtrlSelect)
+                {
+                    unit.selectionCircle = Instantiate(selectionCirclePrefab);
+                    unit.selectionCircle.transform.SetParent(unit.transform, false);
+                    unit.selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
+                }*/
 
                 unit.isSelected = true;
             }
