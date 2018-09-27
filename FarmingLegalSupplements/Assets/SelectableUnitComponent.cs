@@ -22,6 +22,7 @@ public class SelectableUnitComponent : MonoBehaviour {
     public List<GameObject> Enemies;
     public GameObject attackinstance;
     public GameObject WandEnd;
+    private Vector3 placeholderPosition;
 
 
     public void AttackCooldown()
@@ -105,7 +106,6 @@ public class SelectableUnitComponent : MonoBehaviour {
                                     {
                                         Work.GetComponent<BuildingController>().worker = null;
                                     }
-
                                 }
                                 Work = GameObject.FindGameObjectWithTag("Army");
                                 transform.parent = Work.transform;
@@ -114,6 +114,7 @@ public class SelectableUnitComponent : MonoBehaviour {
                             }
                         case "Building":
                             {
+
                                 if (hit.transform.GetChild(0).gameObject.GetComponent<BuildingController>() != null)
                                 {
                                     if (hit.transform.GetChild(0).gameObject.GetComponent<BuildingController>().worker == null)
@@ -127,6 +128,23 @@ public class SelectableUnitComponent : MonoBehaviour {
                                         agent.SetDestination(hit.point);
                                     }
                                 }
+                                break;
+                            }
+                        case "Wood":
+                            {
+                                if (Work != null)
+                                {
+                                    if (Work.tag == "Building")
+                                    {
+                                        Work.GetComponent<BuildingController>().worker = null;
+                                    }
+
+                                }
+                                agent.stoppingDistance = 7;
+                                Work = GameObject.FindGameObjectWithTag("WoodCutter");
+                                transform.parent = Work.transform;
+                                Target = hit.transform.gameObject;
+                                isGoingHome = false;
                                 break;
                             }
 
@@ -222,9 +240,9 @@ public class SelectableUnitComponent : MonoBehaviour {
 
                 if(Target == null)
                 {
-                    if(FindClosestEnemy() != null)
+                    if(FindClosestTag("Enemy") != null)
                     {
-                        GameObject obj = FindClosestEnemy();
+                        GameObject obj = FindClosestTag("Enemy");
                         if (Vector3.Distance(transform.position, obj.transform.position) <= 30)
                         {
                             Target = obj;
@@ -259,6 +277,85 @@ public class SelectableUnitComponent : MonoBehaviour {
                     }
                 }
             }
+
+
+            if (Work.tag == "WoodCutter")
+            {
+
+                if (Target == null)
+                {
+                    if (FindClosestTag("Wood") != null)
+                    {
+                        agent.isStopped = false;
+                        GameObject obj = FindClosestTag("Wood");
+                        if (Vector3.Distance(transform.position, obj.transform.position) <= 50)
+                        {
+                            Target = obj;
+                        }
+                    }
+                    else
+                    {
+                        agent.isStopped = false;
+                        agent.SetDestination(placeholderPosition);
+                        
+                    }
+                }
+
+                if (isGoingHome)
+                {
+                    agent.SetDestination(Home.transform.position);
+                }
+
+                if (!agent.pathPending)
+                {
+                    if (agent.remainingDistance <= agent.stoppingDistance)
+                    {
+                        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                        {
+                            if (isGoingHome)
+                            {
+                                
+                                Home.GetComponent<HouseController>().WoodAmount += outputAmount;
+                                outputAmount = 0;
+                                
+                                isGoingHome = !isGoingHome;
+                            }
+                        }
+                    }
+                }
+
+
+                if (Target != null)
+                {
+
+                    if (Vector3.Distance(transform.position, Target.transform.position) > 8)
+                    {
+                        
+                        if(!isGoingHome)
+                        {
+                            agent.isStopped = false;
+                            agent.stoppingDistance = 7;
+                            agent.SetDestination(Target.transform.position);
+                        }
+                        
+                    }
+                    else
+                    {
+                        agent.isStopped = true;
+                        //woodchop animation
+                        Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
+                        if(Target.GetComponent<WoodScript>().WoodHealth <= 0)
+                        {
+                            outputAmount += Target.GetComponent<WoodScript>().yield;
+                            isGoingHome = true;
+                            placeholderPosition = Target.transform.position;
+                            Destroy(Target);
+                        }
+                    }
+                }
+            }
+
+
         }
           
         
@@ -294,10 +391,10 @@ public class SelectableUnitComponent : MonoBehaviour {
         }
     }
 
-    public GameObject FindClosestEnemy()
+    public GameObject FindClosestTag(string tag)
     {
         GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("Enemy");
+        gos = GameObject.FindGameObjectsWithTag(tag);
         GameObject closest = null;
         float distance = Mathf.Infinity;
         Vector3 position = transform.position;
@@ -313,6 +410,7 @@ public class SelectableUnitComponent : MonoBehaviour {
         }
         return closest;
     }
+
 
     IEnumerator PlayAnim()
     {
