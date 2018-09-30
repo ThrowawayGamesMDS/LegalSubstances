@@ -8,7 +8,7 @@ public class HouseController : MonoBehaviour {
     public int GreenProcessed;
     public int WhiteProcessed;
     public int WoodAmount;
-    public int MetalAmount;
+    public int CrystalAmount;
     public int StartingMoney;
     public static int CashAmount;
 
@@ -19,7 +19,7 @@ public class HouseController : MonoBehaviour {
         GreenProcessed = 0;
         WhiteProcessed = 0;
         WoodAmount = 0;
-        MetalAmount = 0;
+        CrystalAmount = 0;
         CashAmount = StartingMoney;
 	}
 	

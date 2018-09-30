@@ -25,6 +25,7 @@ public class LookAtTarget : MonoBehaviour {
         }
         
 	}
+    
     void LateUpdate()
     {
         transform.rotation = rotation;

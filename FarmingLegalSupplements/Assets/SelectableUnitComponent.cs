@@ -4,26 +4,28 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class SelectableUnitComponent : MonoBehaviour {
-    public bool isSelected;
-    public GameObject selectionCircle;
     public NavMeshAgent agent;
     public Camera camera;
     public Animator anim;
+    public GameObject selectionCircle;
     public GameObject Home;
     public GameObject Work;
-    public bool isGoingHome;
-    public int inputAmount;
-    public int outputAmount;
     public GameObject Target;
-    public bool canAttack;
     public GameObject attackEffect;
     public GameObject handPosition;
-    public float WongleHealth;
-    public List<GameObject> Enemies;
     public GameObject attackinstance;
     public GameObject WandEnd;
+    public List<GameObject> Enemies;
+    public bool isSelected;
+    public bool isGoingHome;
+    public int inputAmount;
+    public float outputAmount;
+    public bool canAttack;
+    public float WongleHealth;
+    
+    
     private Vector3 placeholderPosition;
-
+    private bool lockout;
 
     public void AttackCooldown()
     {
@@ -32,6 +34,7 @@ public class SelectableUnitComponent : MonoBehaviour {
 
     private void Start()
     {
+        lockout = false;
         Home = GameObject.FindGameObjectWithTag("HomeBuilding");
         isGoingHome = true;
         canAttack = true;
@@ -45,17 +48,25 @@ public class SelectableUnitComponent : MonoBehaviour {
         }
         if (agent.velocity.magnitude > 0)
         {
-            if(!anim.GetCurrentAnimatorStateInfo(0).IsName("BasicSwingAttack"))
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("BasicSwingAttack"))
             {
-                anim.Play("WalkCycle");
+                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AxeChop"))
+                {
+                    anim.Play("WalkCycle");
+                }
+
             }
-            
+
         }
         else
         {
             if (!anim.GetCurrentAnimatorStateInfo(0).IsName("BasicSwingAttack"))
             {
-                anim.Play("Idle");
+                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AxeChop"))
+                {
+                    anim.Play("Idle");
+                }
+                
             }
         }
 
@@ -147,6 +158,23 @@ public class SelectableUnitComponent : MonoBehaviour {
                                 isGoingHome = false;
                                 break;
                             }
+                        case "Crystal":
+                            {
+                                if (Work != null)
+                                {
+                                    if (Work.tag == "Building")
+                                    {
+                                        Work.GetComponent<BuildingController>().worker = null;
+                                    }
+
+                                }
+                                agent.stoppingDistance = 7;
+                                Work = GameObject.FindGameObjectWithTag("Miner");
+                                transform.parent = Work.transform;
+                                Target = hit.transform.gameObject;
+                                isGoingHome = false;
+                                break;
+                            }
 
                         default:
                             {
@@ -200,13 +228,13 @@ public class SelectableUnitComponent : MonoBehaviour {
                                 {
                                     case "Green":
                                         {
-                                            Home.GetComponent<HouseController>().GreenAmount += outputAmount;
+                                            Home.GetComponent<HouseController>().GreenAmount += Mathf.RoundToInt(outputAmount);
                                             outputAmount = 0;
                                             break;
                                         }
                                     case "White":
                                         {
-                                            Home.GetComponent<HouseController>().WhiteAmount += outputAmount;
+                                            Home.GetComponent<HouseController>().WhiteAmount += Mathf.RoundToInt(outputAmount);
                                             outputAmount = 0;
                                             break;
                                         }
@@ -282,28 +310,58 @@ public class SelectableUnitComponent : MonoBehaviour {
             if (Work.tag == "WoodCutter")
             {
 
-                if (Target == null)
+                if(Target != null)
                 {
-                    if (FindClosestTag("Wood") != null)
+                    if (Vector3.Distance(transform.position, Target.transform.position) > 3)
                     {
-                        agent.isStopped = false;
-                        GameObject obj = FindClosestTag("Wood");
-                        if (Vector3.Distance(transform.position, obj.transform.position) <= 50)
+                        if (!isGoingHome)
                         {
-                            Target = obj;
+                            agent.isStopped = false;
+                            agent.stoppingDistance = 2;
+                            agent.SetDestination(Target.transform.position);
+                            anim.Play("WalkCycle");
                         }
                     }
                     else
                     {
-                        agent.isStopped = false;
-                        agent.SetDestination(placeholderPosition);
+                        if(!isGoingHome)
+                        {
+                            agent.isStopped = true;
+                            //woodchop animation
+                            if(!anim.GetCurrentAnimatorStateInfo(0).IsName("AxeChop"))
+                            {
+                                anim.Play("AxeChop");
+                            }
+                            
+                            Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
+                            outputAmount += ((Target.GetComponent<WoodScript>().yield * Time.deltaTime) / 5);
+                            if (Target.GetComponent<WoodScript>().WoodHealth <= 0)
+                            {
+                                placeholderPosition = Target.transform.position;
+                                Destroy(Target);
+                            }
+                        }
                         
                     }
                 }
+                else
+                {
+                    FindNewTarget("Wood");
+                }
+
+                if(outputAmount >= 10)
+                {
+                    isGoingHome = true;
+
+                }
+
 
                 if (isGoingHome)
                 {
+                    anim.Play("WalkCycle");
+                    agent.isStopped = false;
                     agent.SetDestination(Home.transform.position);
+
                 }
 
                 if (!agent.pathPending)
@@ -314,47 +372,84 @@ public class SelectableUnitComponent : MonoBehaviour {
                         {
                             if (isGoingHome)
                             {
-                                
-                                Home.GetComponent<HouseController>().WoodAmount += outputAmount;
+                                Home.GetComponent<HouseController>().WoodAmount += Mathf.RoundToInt(outputAmount);
                                 outputAmount = 0;
-                                
                                 isGoingHome = !isGoingHome;
                             }
                         }
                     }
                 }
+            }
 
+            if (Work.tag == "Miner")
+            {
 
                 if (Target != null)
                 {
-
-                    if (Vector3.Distance(transform.position, Target.transform.position) > 8)
+                    if (Vector3.Distance(transform.position, Target.transform.position) > 7)
                     {
-                        
-                        if(!isGoingHome)
+                        if (!isGoingHome)
                         {
                             agent.isStopped = false;
-                            agent.stoppingDistance = 7;
+                            agent.stoppingDistance = 5;
                             agent.SetDestination(Target.transform.position);
+                            anim.Play("WalkCycle");
                         }
-                        
                     }
                     else
                     {
-                        agent.isStopped = true;
-                        //woodchop animation
-                        Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
-                        if(Target.GetComponent<WoodScript>().WoodHealth <= 0)
+                        if (!isGoingHome)
                         {
-                            outputAmount += Target.GetComponent<WoodScript>().yield;
-                            isGoingHome = true;
-                            placeholderPosition = Target.transform.position;
-                            Destroy(Target);
+                            agent.isStopped = true;
+                            //Mining Animation animation
+                            anim.Play("AxeChop");
+                            Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
+                            outputAmount += ((Target.GetComponent<WoodScript>().yield * Time.deltaTime) / 5);
+                            if (Target.GetComponent<WoodScript>().WoodHealth <= 0)
+                            {
+                                placeholderPosition = Target.transform.position;
+                                Destroy(Target);
+                            }
+                        }
+
+                    }
+                }
+                else
+                {
+                    FindNewTarget("Crystal");
+                }
+
+                if (outputAmount >= 10)
+                {
+                    isGoingHome = true;
+
+                }
+
+
+                if (isGoingHome)
+                {
+                    anim.Play("WalkCycle");
+                    agent.isStopped = false;
+                    agent.SetDestination(Home.transform.position);
+
+                }
+
+                if (!agent.pathPending)
+                {
+                    if (agent.remainingDistance <= agent.stoppingDistance)
+                    {
+                        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                        {
+                            if (isGoingHome)
+                            {
+                                Home.GetComponent<HouseController>().CrystalAmount += Mathf.RoundToInt(outputAmount);
+                                outputAmount = 0;
+                                isGoingHome = !isGoingHome;
+                            }
                         }
                     }
                 }
             }
-
 
         }
           
@@ -424,4 +519,24 @@ public class SelectableUnitComponent : MonoBehaviour {
         }
     }
 
+
+
+    void FindNewTarget(string tag)
+    {
+        if (FindClosestTag(tag) != null)
+        {
+            agent.isStopped = false;
+            GameObject obj = FindClosestTag(tag);
+            if (Vector3.Distance(transform.position, obj.transform.position) <= 50)
+            {
+                Target = obj;
+            }
+        }
+        else
+        {
+            agent.isStopped = false;
+            agent.SetDestination(placeholderPosition);
+
+        }
+    }
 }
