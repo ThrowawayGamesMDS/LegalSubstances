@@ -26,6 +26,7 @@ public class SelectableUnitComponent : MonoBehaviour {
                     {
                         case "Ground":
                             {
+
                                 if (controller.Work != null)
                                 {
                                     if (controller.Work.tag == "Building")
@@ -44,7 +45,7 @@ public class SelectableUnitComponent : MonoBehaviour {
                                     }
                                     
                                 }
-                                
+                                controller.agent.isStopped = false;
                                 controller.agent.stoppingDistance = 7;
                                 controller.agent.SetDestination(hit.point);
                                 break;

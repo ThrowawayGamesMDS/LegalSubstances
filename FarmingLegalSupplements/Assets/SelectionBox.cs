@@ -87,7 +87,7 @@ public class SelectionBox : MonoBehaviour {
     private RaycastHit GenerateRayCast(Ray ray, int layermask, bool _bCtrlSelect)
     {
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, layermask))
+        if (Physics.Raycast(ray, out hit, 1000, layermask))
         {
             List<GameObject> _goUpdateList = new List<GameObject>();
             if (hit.transform.gameObject.GetComponent<SelectableUnitComponent>() != null)
@@ -164,7 +164,7 @@ public class SelectionBox : MonoBehaviour {
                         {
                             if (selectableObject.selectionCircle != null)
                             {
-                                DestroyImmediate(selectableObject.selectionCircle.gameObject, true);
+                                Destroy(selectableObject.selectionCircle.gameObject);
                                 selectableObject.selectionCircle = null;
                             }
                         }
