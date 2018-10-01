@@ -4,72 +4,14 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class SelectableUnitComponent : MonoBehaviour {
-    public NavMeshAgent agent;
     public Camera camera;
-    public Animator anim;
     public GameObject selectionCircle;
-    public GameObject Home;
-    public GameObject Work;
-    public GameObject Target;
-    public GameObject attackEffect;
-    public GameObject handPosition;
-    public GameObject attackinstance;
-    public GameObject WandEnd;
-    public List<GameObject> Enemies;
     public bool isSelected;
-    public bool isGoingHome;
-    public int inputAmount;
-    public float outputAmount;
-    public bool canAttack;
-    public float WongleHealth;
+    public WongleController controller;
     
-    
-    private Vector3 placeholderPosition;
-    private bool lockout;
-
-    public void AttackCooldown()
-    {
-        canAttack = true;
-    }
-
-    private void Start()
-    {
-        lockout = false;
-        Home = GameObject.FindGameObjectWithTag("HomeBuilding");
-        isGoingHome = true;
-        canAttack = true;
-    }
 
     public void Update()
     {
-        if(WongleHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
-        if (agent.velocity.magnitude > 0)
-        {
-            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("BasicSwingAttack"))
-            {
-                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AxeChop"))
-                {
-                    anim.Play("WalkCycle");
-                }
-
-            }
-
-        }
-        else
-        {
-            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("BasicSwingAttack"))
-            {
-                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AxeChop"))
-                {
-                    anim.Play("Idle");
-                }
-                
-            }
-        }
-
         if (isSelected)
         {
             if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -80,47 +22,45 @@ public class SelectableUnitComponent : MonoBehaviour {
 
                 if (Physics.Raycast(ray, out hit, layermask))
                 {
-                    agent.isStopped = false;
                     switch (hit.transform.tag)
                     {
                         case "Ground":
                             {
-                                if (Work != null)
+                                if (controller.Work != null)
                                 {
-                                    if (Work.tag == "Building")
+                                    if (controller.Work.tag == "Building")
                                     {
-                                        Work.GetComponent<BuildingController>().worker = null;
-                                        
+                                        controller.Work.GetComponent<BuildingController>().worker = null;
                                     }
-                                    Work = null;
-                                }
-                                if(Target != null)
-                                {
-                                    if(attackinstance != null)
-                                    {
-                                        Destroy(attackinstance);
-                                    }
-                                    Target = null;
+                                    controller.Work = null;
                                 }
 
-
-                                agent.stoppingDistance = 7;
-                                agent.SetDestination(hit.point);
-
+                                if(controller.Target != null)
+                                {
+                                    controller.Target = null;
+                                    if (controller.attackinstance != null)
+                                    {
+                                        Destroy(controller.attackinstance);
+                                    }
+                                    
+                                }
+                                
+                                controller.agent.stoppingDistance = 7;
+                                controller.agent.SetDestination(hit.point);
                                 break;
                             }
                         case "Enemy":
                             {
-                                if(Work != null)
+                                if(controller.Work != null)
                                 {
-                                    if (Work.tag == "Building")
+                                    if (controller.Work.tag == "Building")
                                     {
-                                        Work.GetComponent<BuildingController>().worker = null;
+                                        controller.Work.GetComponent<BuildingController>().worker = null;
                                     }
                                 }
-                                Work = GameObject.FindGameObjectWithTag("Army");
-                                transform.parent = Work.transform;
-                                Target = hit.transform.gameObject;
+                                controller.Work = GameObject.FindGameObjectWithTag("Army");
+                                transform.parent = controller.Work.transform;
+                                controller.Target = hit.transform.gameObject;
                                 break;
                             }
                         case "Building":
@@ -130,49 +70,49 @@ public class SelectableUnitComponent : MonoBehaviour {
                                 {
                                     if (hit.transform.GetChild(0).gameObject.GetComponent<BuildingController>().worker == null)
                                     {
-                                        isGoingHome = true;
+                                        controller.isGoingHome = true;
                                         hit.transform.GetChild(0).gameObject.GetComponent<BuildingController>().worker = gameObject;
-                                        Work = hit.transform.GetChild(0).gameObject;
+                                        controller.Work = hit.transform.GetChild(0).gameObject;
                                     }
                                     else
                                     {
-                                        agent.SetDestination(hit.point);
+                                        controller.agent.SetDestination(hit.point);
                                     }
                                 }
                                 break;
                             }
                         case "Wood":
                             {
-                                if (Work != null)
+                                if (controller.Work != null)
                                 {
-                                    if (Work.tag == "Building")
+                                    if (controller.Work.tag == "Building")
                                     {
-                                        Work.GetComponent<BuildingController>().worker = null;
+                                        controller.Work.GetComponent<BuildingController>().worker = null;
                                     }
 
                                 }
-                                agent.stoppingDistance = 7;
-                                Work = GameObject.FindGameObjectWithTag("WoodCutter");
-                                transform.parent = Work.transform;
-                                Target = hit.transform.gameObject;
-                                isGoingHome = false;
+                                controller.agent.stoppingDistance = 7;
+                                controller.Work = GameObject.FindGameObjectWithTag("WoodCutter");
+                                transform.parent = controller.Work.transform;
+                                controller.Target = hit.transform.gameObject;
+                                controller.isGoingHome = false;
                                 break;
                             }
                         case "Crystal":
                             {
-                                if (Work != null)
+                                if (controller.Work != null)
                                 {
-                                    if (Work.tag == "Building")
+                                    if (controller.Work.tag == "Building")
                                     {
-                                        Work.GetComponent<BuildingController>().worker = null;
+                                        controller.Work.GetComponent<BuildingController>().worker = null;
                                     }
 
                                 }
-                                agent.stoppingDistance = 7;
-                                Work = GameObject.FindGameObjectWithTag("Miner");
-                                transform.parent = Work.transform;
-                                Target = hit.transform.gameObject;
-                                isGoingHome = false;
+                                controller.agent.stoppingDistance = 7;
+                                controller.Work = GameObject.FindGameObjectWithTag("Miner");
+                                transform.parent = controller.Work.transform;
+                                controller.Target = hit.transform.gameObject;
+                                controller.isGoingHome = false;
                                 break;
                             }
 
@@ -180,363 +120,12 @@ public class SelectableUnitComponent : MonoBehaviour {
                             {
                                 break;
                             }
-
-                    }
-                    
-
-                }
-            }
-        }
-
-        
-        if(Work != null)
-        {
-            if (Work.tag == "Building")
-            {
-                if (isGoingHome)
-                {
-                    agent.SetDestination(Home.transform.position);
-                }
-                else
-                {
-                    agent.SetDestination(Work.transform.position);
-                }
-
-
-                if (!agent.pathPending)
-                {
-                    if (agent.remainingDistance <= agent.stoppingDistance)
-                    {
-                        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-                        {
-                            if (isGoingHome)
-                            {
-                                switch (Work.GetComponent<BuildingController>().input)
-                                {
-                                    case "Seeds":
-                                        {
-                                            inputAmount += Work.GetComponent<BuildingController>().AmountProduced;
-
-                                            break;
-                                        }
-                                    default:
-                                        {
-                                            break;
-                                        }
-                                }
-                                switch (Work.GetComponent<BuildingController>().output)
-                                {
-                                    case "Green":
-                                        {
-                                            Home.GetComponent<HouseController>().GreenAmount += Mathf.RoundToInt(outputAmount);
-                                            outputAmount = 0;
-                                            break;
-                                        }
-                                    case "White":
-                                        {
-                                            Home.GetComponent<HouseController>().WhiteAmount += Mathf.RoundToInt(outputAmount);
-                                            outputAmount = 0;
-                                            break;
-                                        }
-                                    default:
-                                        {
-                                            break;
-                                        }
-                                }
-                                isGoingHome = !isGoingHome;
-                            }
-                            else
-                            {
-                                Work.GetComponent<BuildingController>().inputAmount += inputAmount;
-                                inputAmount = 0;
-                                Work.GetComponent<BuildingController>().isOccupied = true;
-                                if (Work.GetComponent<BuildingController>().outputAmount > 0)
-                                {
-                                    outputAmount += Work.GetComponent<BuildingController>().outputAmount;
-                                    Work.GetComponent<BuildingController>().outputAmount = 0;
-                                    isGoingHome = !isGoingHome;
-                                    Work.GetComponent<BuildingController>().isOccupied = false;
-                                }
-                            }
-                        }
                     }
                 }
-            }
-
-            if (Work.tag == "Army")
-            {
-
-                if(Target == null)
-                {
-                    if(FindClosestTag("Enemy") != null)
-                    {
-                        GameObject obj = FindClosestTag("Enemy");
-                        if (Vector3.Distance(transform.position, obj.transform.position) <= 30)
-                        {
-                            Target = obj;
-                        }
-                    }
-                }
-
-
-                if(Target != null)
-                {
-
-                    if(Vector3.Distance(transform.position, Target.transform.position) > 20)
-                    {
-                        agent.isStopped = false;
-                        agent.stoppingDistance = 19;
-                        agent.SetDestination(Target.transform.position);
-                    }
-                    else
-                    {
-                        agent.isStopped = true;
-                        if (canAttack)
-                        {
-                            attackinstance = Instantiate(attackEffect, handPosition.transform.position, handPosition.transform.rotation);
-                            attackinstance.transform.parent = handPosition.transform;
-                            attackinstance.GetComponent<LookAtTarget>().target = Target.transform.GetChild(1).gameObject;
-
-                            StartCoroutine(PlayAnim());
-
-                            canAttack = false;
-                            Invoke("AttackCooldown", 5f);
-                        }
-                    }
-                }
-            }
-
-
-            if (Work.tag == "WoodCutter")
-            {
-
-                if(Target != null)
-                {
-                    if (Vector3.Distance(transform.position, Target.transform.position) > 3)
-                    {
-                        if (!isGoingHome)
-                        {
-                            agent.isStopped = false;
-                            agent.stoppingDistance = 2;
-                            agent.SetDestination(Target.transform.position);
-                            anim.Play("WalkCycle");
-                        }
-                    }
-                    else
-                    {
-                        if(!isGoingHome)
-                        {
-                            agent.isStopped = true;
-                            //woodchop animation
-                            if(!anim.GetCurrentAnimatorStateInfo(0).IsName("AxeChop"))
-                            {
-                                anim.Play("AxeChop");
-                            }
-                            
-                            Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
-                            outputAmount += ((Target.GetComponent<WoodScript>().yield * Time.deltaTime) / 5);
-                            if (Target.GetComponent<WoodScript>().WoodHealth <= 0)
-                            {
-                                placeholderPosition = Target.transform.position;
-                                Destroy(Target);
-                            }
-                        }
-                        
-                    }
-                }
-                else
-                {
-                    FindNewTarget("Wood");
-                }
-
-                if(outputAmount >= 10)
-                {
-                    isGoingHome = true;
-
-                }
-
-
-                if (isGoingHome)
-                {
-                    anim.Play("WalkCycle");
-                    agent.isStopped = false;
-                    agent.SetDestination(Home.transform.position);
-
-                }
-
-                if (!agent.pathPending)
-                {
-                    if (agent.remainingDistance <= agent.stoppingDistance)
-                    {
-                        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-                        {
-                            if (isGoingHome)
-                            {
-                                Home.GetComponent<HouseController>().WoodAmount += Mathf.RoundToInt(outputAmount);
-                                outputAmount = 0;
-                                isGoingHome = !isGoingHome;
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (Work.tag == "Miner")
-            {
-
-                if (Target != null)
-                {
-                    if (Vector3.Distance(transform.position, Target.transform.position) > 7)
-                    {
-                        if (!isGoingHome)
-                        {
-                            agent.isStopped = false;
-                            agent.stoppingDistance = 5;
-                            agent.SetDestination(Target.transform.position);
-                            anim.Play("WalkCycle");
-                        }
-                    }
-                    else
-                    {
-                        if (!isGoingHome)
-                        {
-                            agent.isStopped = true;
-                            //Mining Animation animation
-                            anim.Play("AxeChop");
-                            Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
-                            outputAmount += ((Target.GetComponent<WoodScript>().yield * Time.deltaTime) / 5);
-                            if (Target.GetComponent<WoodScript>().WoodHealth <= 0)
-                            {
-                                placeholderPosition = Target.transform.position;
-                                Destroy(Target);
-                            }
-                        }
-
-                    }
-                }
-                else
-                {
-                    FindNewTarget("Crystal");
-                }
-
-                if (outputAmount >= 10)
-                {
-                    isGoingHome = true;
-
-                }
-
-
-                if (isGoingHome)
-                {
-                    anim.Play("WalkCycle");
-                    agent.isStopped = false;
-                    agent.SetDestination(Home.transform.position);
-
-                }
-
-                if (!agent.pathPending)
-                {
-                    if (agent.remainingDistance <= agent.stoppingDistance)
-                    {
-                        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-                        {
-                            if (isGoingHome)
-                            {
-                                Home.GetComponent<HouseController>().CrystalAmount += Mathf.RoundToInt(outputAmount);
-                                outputAmount = 0;
-                                isGoingHome = !isGoingHome;
-                            }
-                        }
-                    }
-                }
-            }
-
-        }
-          
-        
-        if(agent.isStopped)
-        {
-            if(Target != null)
-            {
-                Vector3 lookpos = Target.transform.position - transform.position;
-                lookpos.y = 0;
-                Quaternion rotation = Quaternion.LookRotation(lookpos);
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 10);
             }
         }
     }
 
 
 
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Enemy")
-        {
-            Enemies.Insert(Enemies.Count, other.gameObject);
-        }
-
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.tag == "Enemy")
-        {
-            Enemies.Remove(other.gameObject);
-        }
-    }
-
-    public GameObject FindClosestTag(string tag)
-    {
-        GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag(tag);
-        GameObject closest = null;
-        float distance = Mathf.Infinity;
-        Vector3 position = transform.position;
-        foreach (GameObject go in gos)
-        {
-            Vector3 diff = go.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance)
-            {
-                closest = go;
-                distance = curDistance;
-            }
-        }
-        return closest;
-    }
-
-
-    IEnumerator PlayAnim()
-    {
-        yield return new WaitForSeconds(2.3f);
-        print("anim");
-        anim.Play("BasicSwingAttack");
-        yield return new WaitForSeconds(0.5f);
-        if(attackinstance != null)
-        {
-            attackinstance.transform.parent = null;
-        }
-    }
-
-
-
-    void FindNewTarget(string tag)
-    {
-        if (FindClosestTag(tag) != null)
-        {
-            agent.isStopped = false;
-            GameObject obj = FindClosestTag(tag);
-            if (Vector3.Distance(transform.position, obj.transform.position) <= 50)
-            {
-                Target = obj;
-            }
-        }
-        else
-        {
-            agent.isStopped = false;
-            agent.SetDestination(placeholderPosition);
-
-        }
-    }
 }

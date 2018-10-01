@@ -12,9 +12,9 @@ public class ToggleWongleHand : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(WongleMain.GetComponent<SelectableUnitComponent>().Work != null)
+        if(WongleMain.GetComponent<WongleController>().Work != null)
         {
-            switch (WongleMain.GetComponent<SelectableUnitComponent>().Work.tag)
+            switch (WongleMain.GetComponent<WongleController>().Work.tag)
             {
                 case "Army":
                     {

@@ -164,7 +164,7 @@ public class SelectionBox : MonoBehaviour {
                         {
                             if (selectableObject.selectionCircle != null)
                             {
-                                Destroy(selectableObject.selectionCircle.gameObject);
+                                DestroyImmediate(selectableObject.selectionCircle.gameObject, true);
                                 selectableObject.selectionCircle = null;
                             }
                         }
