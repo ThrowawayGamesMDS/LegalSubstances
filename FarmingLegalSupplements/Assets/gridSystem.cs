@@ -23,7 +23,7 @@ public class gridSystem : MonoBehaviour {
             fz = 1;
         }
 
-        StartCoroutine(checkChildren());
+        //StartCoroutine(checkChildren());
 	}
 
 
