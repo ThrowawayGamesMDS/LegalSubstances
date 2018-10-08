@@ -13,7 +13,7 @@ public class ItemSelection : MonoBehaviour {
 	void Update () {
         //if left mouse button pressed
         
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+       /* if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             //create raycast to mouse position
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
@@ -58,7 +58,7 @@ public class ItemSelection : MonoBehaviour {
             
         }
 
-
+    */
 
 
     }
