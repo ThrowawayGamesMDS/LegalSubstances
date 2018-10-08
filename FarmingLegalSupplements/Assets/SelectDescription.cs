@@ -73,6 +73,12 @@ public class SelectDescription : MonoBehaviour
             }
         }
     }
+
+    public void OnClickExit()
+    {
+        m_goTechTree.SetActive(false);
+        m_goDescriptionBox.SetActive(true);
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -80,11 +86,6 @@ public class SelectDescription : MonoBehaviour
 		if (Input.GetKeyUp(KeyCode.Mouse0))
         {
            RaycastHit _clickView = GenerateRayCast(9999.5f);
-        }
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            m_goTechTree.SetActive(false);
-            m_goDescriptionBox.SetActive(true);
         }
         if (m_pgoSelectedObj != null)
         {
@@ -111,8 +112,6 @@ public class SelectDescription : MonoBehaviour
                         break;
                     }
             }
-            // provide description
-            print("provide description for " + m_pgoSelectedObj.tag);
             m_pgoSelectedObj = null;
         }
     }
