@@ -8,9 +8,11 @@ public class GridObject : MonoBehaviour {
     public bool isCorrupted;
     public MeshRenderer rnd;
     public GameObject tobeccorrupted;
+    private bool hasDone;
     // Use this for initialization
     void Start()
     {
+        hasDone = false;
         tobeccorrupted = GameObject.FindGameObjectWithTag("ToBeCorrupted");
         //InvokeRepeating("CheckCorrupt", 0.1f, 3);
         if (!isCorrupted)
@@ -74,11 +76,16 @@ public class GridObject : MonoBehaviour {
 
     void Update()
     {
-        if(isCorrupted)
+        if(!hasDone)
         {
-            transform.parent = GameObject.FindGameObjectWithTag("CorruptedGrid").transform;
-            rnd.enabled = true;
+            if (isCorrupted)
+            {
+                transform.parent = GameObject.FindGameObjectWithTag("CorruptedGrid").transform;
+                rnd.enabled = true;
+                hasDone = true;
+            }
         }
+        
     }
 
     public int BorderingCorrupted()
@@ -146,7 +153,7 @@ public class GridObject : MonoBehaviour {
                         }
                         case 2:
                         {
-                            if (odds < 50)
+                            if (odds < 1000)
                             {
                                 Corrupt();
                             }
@@ -154,7 +161,8 @@ public class GridObject : MonoBehaviour {
                         }
                         case 3:
                         {
-                            if (odds < 1000)
+                            
+                            if (odds < 10000)
                             {
                                 Corrupt();
                             }

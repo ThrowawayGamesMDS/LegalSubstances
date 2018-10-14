@@ -10,8 +10,37 @@ public class EnemyController : MonoBehaviour {
     public Animator anim;
     public float m_fEnemyHealth;
 
-	// Use this for initialization
-	void Start () {
+
+
+    public float wanderRadius;
+    public float wanderTimer;
+
+    private Transform target;
+    private float timer;
+
+    // Use this for initialization
+    void OnEnable()
+    {
+        timer = wanderTimer;
+    }
+ 
+
+    public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
+    {
+        Vector3 randDirection = Random.insideUnitSphere * dist;
+
+        randDirection += origin;
+
+        NavMeshHit navHit;
+
+        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
+
+        return navHit.position;
+    }
+
+    
+    // Use this for initialization
+    void Start () {
         home = GameObject.FindGameObjectWithTag("HomeBuilding");
         //agent.SetDestination(home.transform.position);
 	}
@@ -19,13 +48,46 @@ public class EnemyController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (targetsInArea.Count > 0)
+
+        timer += Time.deltaTime;
+
+
+
+        if (timer >= wanderTimer)
+        {
+            Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
+            if(targetsInArea.Count <= 0)
+            {
+                if(DayNight.isDay)
+                {
+                    agent.SetDestination(newPos);
+                    timer = 0;
+                }
+                else
+                {
+                    print("o targets and night time");
+
+                    agent.SetDestination(home.transform.position);
+                }
+            }
+            
+            
+        }
+
+
+        for (int i = 0; i < targetsInArea.Count; i++)
         {
             if (targetsInArea[0] == null)
             {
                 targetsInArea.RemoveAt(0);
             }
-            //agent.SetDestination(targetsInArea[0].transform.position);
+        }
+        
+
+        
+        if (targetsInArea.Count > 0)
+        {
+            agent.SetDestination(targetsInArea[0].transform.position);
         }
         else
         {
@@ -61,17 +123,31 @@ public class EnemyController : MonoBehaviour {
                                 }
                             case "Wongle":
                                 {
-                                    //targetsInArea[0].GetComponent<SelectableUnitComponent>().WongleHealth -= 33 * Time.deltaTime;
+                                    targetsInArea[0].GetComponent<WongleController>().WongleHealth -= 20 * Time.deltaTime;
                                     break;
                                 }
                         }
 
                         
                     }
-                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AttackLoop"))
+
+                    if (targetsInArea.Count != 0)
                     {
-                        anim.Play("AttackLoop");
+                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AttackLoop"))
+                        {
+                            anim.Play("AttackLoop");
+                        }
+                        
                     }
+                    else
+                    {
+                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+                        {
+                            anim.Play("Idle");
+                        }
+                    }
+
+                    
                 }
             }
         }

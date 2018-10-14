@@ -4,13 +4,16 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class BroodShroomController : MonoBehaviour {
-    public NavMeshAgent agent;
     public GameObject Fiend;
     public Animator anim;
-	// Use this for initialization
-	void Start () {
-        agent.SetDestination(GameObject.FindGameObjectWithTag("HomeBuilding").transform.position);
-        InvokeRepeating("repeat", 5, 10);
+    public float m_fEnemyHealth;
+    private bool triggered;
+    private bool lockout;
+    // Use this for initialization
+    void Start () {
+        InvokeRepeating("repeat", 5, 20);
+        triggered = false;
+        lockout = false;
 	}
 	
     void repeat()
@@ -20,14 +23,57 @@ public class BroodShroomController : MonoBehaviour {
 
     IEnumerator Spawn()
     {
-        anim.Play("spawning");
-        yield return new WaitForSeconds(2);
-        Instantiate(Fiend, transform.position, transform.rotation);
+        if(triggered)
+        {
+            anim.Play("spawning");
+            yield return new WaitForSeconds(2);
+            Instantiate(Fiend, transform.position, transform.rotation);
+        }
+        
     }
 
-	// Update is called once per frame
-	void Update () {
-	}
 
+    void Update()
+    {
+        if (m_fEnemyHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+        if(DayNight.isDay)
+        {
+            if(!lockout)
+            {
+                triggered = false;
+            }
+        }
+        else
+        {
+            triggered = true;
+        }
+    }
+
+    void EnemyShot(float damage)
+    {
+        print("EnemyShot");
+        m_fEnemyHealth -= damage;
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.tag == "Wongle")
+        {
+            triggered = true;
+            lockout = true;
+        }
+
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.transform.tag == "Wongle")
+        {
+            triggered = false;
+            lockout = false;
+        }
+
+    }
 
 }

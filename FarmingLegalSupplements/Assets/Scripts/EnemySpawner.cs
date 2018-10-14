@@ -5,10 +5,8 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour {
     private bool isinvoked;
     public GameObject obj;
-    public Vector3 pos1;
-    public Vector3 pos2;
-    public Vector3 pos3;
-    public Vector3 pos4;
+    
+    public GameObject corruptedGrids;
 	// Use this for initialization
 	void Start () {
         isinvoked = false;	
@@ -16,62 +14,26 @@ public class EnemySpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(!isinvoked)
-        {
-            if(!DayNight.isDay)
+        
+            if (!DayNight.isDay)
             {
-                for(int i = 0; i < DayNight.DaysPlayed;i++)
+                if (!isinvoked)
                 {
-                    switch (Random.Range(0, 4))
+                    for (int i = 0; i < DayNight.DaysPlayed; i++)
                     {
-                        case 0:
-                            {
-                                Instantiate(obj, pos1, transform.rotation);
-                                break;
-                            }
-                        case 1:
-                            {
-                                Instantiate(obj, pos2, transform.rotation);
-                                break;
-                            }
-                        case 2:
-                            {
-                                Instantiate(obj, pos3, transform.rotation);
-                                break;
-                            }
-                        case 3:
-                            {
-                                Instantiate(obj, pos4, transform.rotation);
-                                break;
-                            }
-                        default:
-                            {
-                                Instantiate(obj, pos4, transform.rotation);
-                                break;
-                            }
-
+                        int temp = Random.Range(0, corruptedGrids.transform.childCount - 1);
+                        Instantiate(obj, corruptedGrids.transform.GetChild(temp).position, Quaternion.Euler(new Vector3(0, 45, 0)));
+                        isinvoked = true;
                     }
-
-                    
                 }
-                isinvoked = true;
             }
-
-        }
-        else
-        {
-            if(DayNight.isDay)
+            else
             {
-                CancelInvoke("SpawnEnemy");
                 isinvoked = false;
             }
-            
-        }
+        
+        
 	}
 
 
-    void SpawnEnemy()
-    {
-        Instantiate(obj, transform.position, transform.rotation);
-    }
 }
