@@ -33,9 +33,43 @@ public class WongleController : MonoBehaviour
         canAttack = true;
     }
 
+
+    void ChangePriority()
+    {
+        if (Work != null)
+        {
+            switch (Work.tag)
+
+            {
+                case "Army":
+                    {
+                        gameObject.GetComponent<DangerPriority>().m_iDangerPriority = 2;
+                        if (!canAttack)
+                        {
+                            gameObject.GetComponent<DangerPriority>().m_iDangerPriority = 0;
+                        }
+                        break;
+                    }
+                default:
+                    {
+                        gameObject.GetComponent<DangerPriority>().m_iDangerPriority = 5;
+                        break;
+                    }
+            }
+        }
+        else
+        {
+            gameObject.GetComponent<DangerPriority>().m_iDangerPriority = 5;
+        }
+        
+        
+    }
+
+
     // Update is called once per frame
     void Update()
     {
+        ChangePriority();
         if (WongleHealth <= 0)
         {
             Destroy(gameObject);

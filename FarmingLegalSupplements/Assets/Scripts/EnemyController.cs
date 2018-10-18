@@ -51,7 +51,7 @@ public class EnemyController : MonoBehaviour {
 
         timer += Time.deltaTime;
 
-
+        targetsInArea.Sort(SortByPriority);
 
         if (timer >= wanderTimer)
         {
@@ -65,8 +65,6 @@ public class EnemyController : MonoBehaviour {
                 }
                 else
                 {
-                    print("o targets and night time");
-
                     agent.SetDestination(home.transform.position);
                 }
             }
@@ -168,6 +166,12 @@ public class EnemyController : MonoBehaviour {
             targetsInArea.Add(other.gameObject);
         }
     }
+
+    public int SortByPriority(GameObject p1, GameObject p2)
+    {
+        return p1.GetComponent<DangerPriority>().m_iDangerPriority.CompareTo(p2.GetComponent<DangerPriority>().m_iDangerPriority);
+    }
+
 
 
     void EnemyShot(float damage)
