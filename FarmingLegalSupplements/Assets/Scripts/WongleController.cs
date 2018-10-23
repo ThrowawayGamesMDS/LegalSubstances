@@ -147,15 +147,9 @@ public class WongleController : MonoBehaviour
                                 }
                                 switch (Work.GetComponent<BuildingController>().output)
                                 {
-                                    case "Green":
-                                        {
-                                            Home.GetComponent<HouseController>().GreenAmount += Mathf.RoundToInt(outputAmount);
-                                            outputAmount = 0;
-                                            break;
-                                        }
                                     case "White":
                                         {
-                                            Home.GetComponent<HouseController>().WhiteAmount += Mathf.RoundToInt(outputAmount);
+                                            HouseController.WhiteAmount += Mathf.RoundToInt(outputAmount);
                                             outputAmount = 0;
                                             break;
                                         }
@@ -319,7 +313,7 @@ public class WongleController : MonoBehaviour
                         {
                             if (isGoingHome)
                             {
-                                Home.GetComponent<HouseController>().WoodAmount += Mathf.RoundToInt(outputAmount);
+                                HouseController.WoodAmount += Mathf.RoundToInt(outputAmount);
                                 outputAmount = 0;
                                 isGoingHome = !isGoingHome;
                             }
@@ -389,7 +383,7 @@ public class WongleController : MonoBehaviour
                         {
                             if (isGoingHome)
                             {
-                                Home.GetComponent<HouseController>().CrystalAmount += Mathf.RoundToInt(outputAmount);
+                                HouseController.CrystalAmount += Mathf.RoundToInt(outputAmount);
                                 outputAmount = 0;
                                 isGoingHome = !isGoingHome;
                             }

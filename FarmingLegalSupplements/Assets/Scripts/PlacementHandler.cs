@@ -135,17 +135,27 @@ public class PlacementHandler : MonoBehaviour
         pos = new Vector3(Mathf.Round(pos.x/10)*10, pos.y, Mathf.Round(pos.z / 10) * 10);
         if (!PlacementUnacceptable(pos))
         {
-            if(HouseController.CashAmount >= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().Cost)
+            if (HouseController.WhiteAmount >= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().FoodCost)
             {
-                HouseController.CashAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().Cost;
-                m_goSuccessfulBuild = Instantiate(m_goParticleEffects[0], pos, m_goParticleEffects[0].transform.rotation) as GameObject;
-                m_goObjsPlaced.Add(Instantiate(m_goPossibleObjects[m_iCurrentlyPlacing], pos, Quaternion.identity));
-                m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.rotation = m_goPlacementDefault.transform.rotation;
-               // m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.SetParent(GameObject.FindGameObjectWithTag("PlacementObjs").transform);
-                Destroy(m_goPlacementDefault);
-                StartCoroutine(DestroyParticle(m_goSuccessfulBuild, 1.5f));
-                m_ePlayerState = PlayerStates.DEFAULT;
+                if (HouseController.WoodAmount >= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().WoodCost)
+                {
+                    if (HouseController.CrystalAmount >= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().CrystalCost)
+                    {
+                        HouseController.WhiteAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().FoodCost;
+                        HouseController.WoodAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().WoodCost;
+                        HouseController.CrystalAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().CrystalCost;
+                        m_goSuccessfulBuild = Instantiate(m_goParticleEffects[0], pos, m_goParticleEffects[0].transform.rotation) as GameObject;
+                        m_goObjsPlaced.Add(Instantiate(m_goPossibleObjects[m_iCurrentlyPlacing], pos, Quaternion.identity));
+                        m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.rotation = m_goPlacementDefault.transform.rotation;
+                        // m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.SetParent(GameObject.FindGameObjectWithTag("PlacementObjs").transform);
+                        Destroy(m_goPlacementDefault);
+                        StartCoroutine(DestroyParticle(m_goSuccessfulBuild, 1.5f));
+                        m_ePlayerState = PlayerStates.DEFAULT;
+                    }
+                }
             }
+
+            
         }
     }
 
@@ -244,10 +254,17 @@ public class PlacementHandler : MonoBehaviour
     {
         bool _bAccepted = false;
 
-        if (HouseController.CashAmount >= m_goPossibleObjects[_iPurchasing].GetComponent<costToPlace>().Cost)
+        if (HouseController.WhiteAmount >= m_goPossibleObjects[_iPurchasing].GetComponent<costToPlace>().FoodCost)
         {
-             _bAccepted = true;
-         }
+            if (HouseController.WoodAmount >= m_goPossibleObjects[_iPurchasing].GetComponent<costToPlace>().WoodCost)
+            {
+                if (HouseController.CrystalAmount >= m_goPossibleObjects[_iPurchasing].GetComponent<costToPlace>().CrystalCost)
+                {
+                    _bAccepted = true;
+                }
+            }
+        }
+        
         return _bAccepted;
     }
     
@@ -257,7 +274,7 @@ public class PlacementHandler : MonoBehaviour
         if (CanPurchase(i))
         {
             m_iCurrentlyPlacing = i;
-            gameObject.GetComponent<AudioHandler>().PlaySound("PurchaseOk");
+            //gameObject.GetComponent<AudioHandler>().PlaySound("PurchaseOk");
 
             m_bRefreshBuild = true;
             Invoke("RefreshBuilder", 0.1f);
@@ -268,7 +285,7 @@ public class PlacementHandler : MonoBehaviour
         }
         else
         {
-            gameObject.GetComponent<AudioHandler>().PlaySound("PurchaseBad");
+           // gameObject.GetComponent<AudioHandler>().PlaySound("PurchaseBad");
         }
     }
 
