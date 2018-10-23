@@ -51,7 +51,7 @@ public class EnemyController : MonoBehaviour {
 
         timer += Time.deltaTime;
 
-        targetsInArea.Sort(SortByPriority);
+        //targetsInArea.Sort(SortByPriority);
 
         if (timer >= wanderTimer)
         {

@@ -8,8 +8,12 @@ public class SelectableUnitComponent : MonoBehaviour {
     public GameObject selectionCircle;
     public bool isSelected;
     public WongleController controller;
-    
-
+    public enum workerType {Worker, Ranged, Melee};
+    public workerType Type;
+    public void Start()
+    {
+        camera = Camera.main;
+    }
     public void Update()
     {
         if (isSelected)
@@ -52,68 +56,175 @@ public class SelectableUnitComponent : MonoBehaviour {
                             }
                         case "Enemy":
                             {
-                                if(controller.Work != null)
+                                if(Type != workerType.Worker)
                                 {
-                                    if (controller.Work.tag == "Building")
+                                    if (controller.Work != null)
                                     {
-                                        controller.Work.GetComponent<BuildingController>().worker = null;
+                                        if (controller.Work.tag == "Building")
+                                        {
+                                            controller.Work.GetComponent<BuildingController>().worker = null;
+                                        }
                                     }
+                                    controller.Work = GameObject.FindGameObjectWithTag("Army");
+                                    transform.parent = controller.Work.transform;
+                                    controller.Target = hit.transform.gameObject;
                                 }
-                                controller.Work = GameObject.FindGameObjectWithTag("Army");
-                                transform.parent = controller.Work.transform;
-                                controller.Target = hit.transform.gameObject;
+                                else
+                                {
+                                    if (controller.Work != null)
+                                    {
+                                        if (controller.Work.tag == "Building")
+                                        {
+                                            controller.Work.GetComponent<BuildingController>().worker = null;
+                                        }
+                                        controller.Work = null;
+                                    }
+
+                                    if (controller.Target != null)
+                                    {
+                                        controller.Target = null;
+                                        if (controller.attackinstance != null)
+                                        {
+                                            Destroy(controller.attackinstance);
+                                        }
+
+                                    }
+                                    controller.agent.isStopped = false;
+                                    controller.agent.stoppingDistance = 7;
+                                    controller.agent.SetDestination(hit.point);
+                                }
                                 break;
                             }
                         case "Building":
                             {
-
-                                if (hit.transform.GetChild(0).gameObject.GetComponent<BuildingController>() != null)
+                                if (Type == workerType.Worker)
                                 {
-                                    if (hit.transform.GetChild(0).gameObject.GetComponent<BuildingController>().worker == null)
+                                    if (hit.transform.GetChild(0).gameObject.GetComponent<BuildingController>() != null)
                                     {
-                                        controller.isGoingHome = true;
-                                        hit.transform.GetChild(0).gameObject.GetComponent<BuildingController>().worker = gameObject;
-                                        controller.Work = hit.transform.GetChild(0).gameObject;
+                                        if (hit.transform.GetChild(0).gameObject.GetComponent<BuildingController>().worker == null)
+                                        {
+                                            controller.isGoingHome = true;
+                                            hit.transform.GetChild(0).gameObject.GetComponent<BuildingController>().worker = gameObject;
+                                            controller.Work = hit.transform.GetChild(0).gameObject;
+                                        }
+                                        else
+                                        {
+                                            controller.agent.SetDestination(hit.point);
+                                        }
                                     }
-                                    else
+                                }
+                                else
+                                {
+                                    if (controller.Work != null)
                                     {
-                                        controller.agent.SetDestination(hit.point);
+                                        if (controller.Work.tag == "Building")
+                                        {
+                                            controller.Work.GetComponent<BuildingController>().worker = null;
+                                        }
+                                        controller.Work = null;
                                     }
+
+                                    if (controller.Target != null)
+                                    {
+                                        controller.Target = null;
+                                        if (controller.attackinstance != null)
+                                        {
+                                            Destroy(controller.attackinstance);
+                                        }
+
+                                    }
+                                    controller.agent.isStopped = false;
+                                    controller.agent.stoppingDistance = 7;
+                                    controller.agent.SetDestination(hit.point);
                                 }
                                 break;
                             }
                         case "Wood":
                             {
-                                if (controller.Work != null)
+                                if (Type == workerType.Worker)
                                 {
-                                    if (controller.Work.tag == "Building")
+                                    if (controller.Work != null)
                                     {
-                                        controller.Work.GetComponent<BuildingController>().worker = null;
+                                        if (controller.Work.tag == "Building")
+                                        {
+                                            controller.Work.GetComponent<BuildingController>().worker = null;
+                                        }
+
+                                    }
+                                    controller.agent.stoppingDistance = 7;
+                                    controller.Work = GameObject.FindGameObjectWithTag("WoodCutter");
+                                    transform.parent = controller.Work.transform;
+                                    controller.Target = hit.transform.gameObject;
+                                    controller.isGoingHome = false;
+                                }
+                                else
+                                {
+                                    if (controller.Work != null)
+                                    {
+                                        if (controller.Work.tag == "Building")
+                                        {
+                                            controller.Work.GetComponent<BuildingController>().worker = null;
+                                        }
+                                        controller.Work = null;
                                     }
 
+                                    if (controller.Target != null)
+                                    {
+                                        controller.Target = null;
+                                        if (controller.attackinstance != null)
+                                        {
+                                            Destroy(controller.attackinstance);
+                                        }
+
+                                    }
+                                    controller.agent.isStopped = false;
+                                    controller.agent.stoppingDistance = 7;
+                                    controller.agent.SetDestination(hit.point);
                                 }
-                                controller.agent.stoppingDistance = 7;
-                                controller.Work = GameObject.FindGameObjectWithTag("WoodCutter");
-                                transform.parent = controller.Work.transform;
-                                controller.Target = hit.transform.gameObject;
-                                controller.isGoingHome = false;
                                 break;
                             }
                         case "Crystal":
                             {
-                                if (controller.Work != null)
+                                if (Type == workerType.Worker)
                                 {
-                                    if (controller.Work.tag == "Building")
+                                    if (controller.Work != null)
                                     {
-                                        controller.Work.GetComponent<BuildingController>().worker = null;
+                                        if (controller.Work.tag == "Building")
+                                        {
+                                            controller.Work.GetComponent<BuildingController>().worker = null;
+                                        }
+
+                                    }
+                                    controller.agent.stoppingDistance = 7;
+                                    controller.Work = GameObject.FindGameObjectWithTag("Miner");
+                                    transform.parent = controller.Work.transform;
+                                    controller.Target = hit.transform.gameObject;
+                                    controller.isGoingHome = false;
+                                }
+                                else
+                                {
+                                    if (controller.Work != null)
+                                    {
+                                        if (controller.Work.tag == "Building")
+                                        {
+                                            controller.Work.GetComponent<BuildingController>().worker = null;
+                                        }
+                                        controller.Work = null;
                                     }
 
+                                    if (controller.Target != null)
+                                    {
+                                        controller.Target = null;
+                                        if (controller.attackinstance != null)
+                                        {
+                                            Destroy(controller.attackinstance);
+                                        }
+
+                                    }
+                                    controller.agent.isStopped = false;
+                                    controller.agent.stoppingDistance = 7;
+                                    controller.agent.SetDestination(hit.point);
                                 }
-                                controller.agent.stoppingDistance = 7;
-                                controller.Work = GameObject.FindGameObjectWithTag("Miner");
-                                transform.parent = controller.Work.transform;
-                                controller.Target = hit.transform.gameObject;
-                                controller.isGoingHome = false;
                                 break;
                             }
 

@@ -36,6 +36,16 @@ public class ToggleWongleHand : MonoBehaviour {
                         items[1].SetActive(true);
                         break;
                     }
+                case "Miner":
+                    {
+
+                        for (int i = 0; i < items.Count; i++)
+                        {
+                            items[i].SetActive(false);
+                        }
+                        items[4].SetActive(true);
+                        break;
+                    }
                 default:
                     {
                         for (int i = 0; i < items.Count; i++)

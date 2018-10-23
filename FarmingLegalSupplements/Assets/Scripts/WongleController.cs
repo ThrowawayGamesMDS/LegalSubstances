@@ -23,11 +23,14 @@ public class WongleController : MonoBehaviour
     public float outputAmount;
     public bool canAttack;
     public float WongleHealth;
+    public SelectableUnitComponent.workerType type;
     private Vector3 placeholderPosition;
+    
 
     // Use this for initialization
     void Start()
     {
+        type = gameObject.GetComponent<SelectableUnitComponent>().Type;
         Home = GameObject.FindGameObjectWithTag("HomeBuilding");
         isGoingHome = true;
         canAttack = true;
@@ -82,7 +85,10 @@ public class WongleController : MonoBehaviour
             {
                 if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AxeChop"))
                 {
-                    anim.Play("WalkCycle");
+                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("PickaxeSwing"))
+                    {
+                            anim.Play("WalkCycle");
+                    }
                 }
 
             }
@@ -94,7 +100,10 @@ public class WongleController : MonoBehaviour
             {
                 if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AxeChop"))
                 {
-                    anim.Play("Idle");
+                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("PickaxeSwing"))
+                    {
+                        anim.Play("Idle");
+                    }
                 }
 
             }
@@ -193,28 +202,55 @@ public class WongleController : MonoBehaviour
 
                 if (Target != null)
                 {
-
-                    if (Vector3.Distance(transform.position, Target.transform.position) > 20)
+                    if(type == SelectableUnitComponent.workerType.Ranged)
                     {
-                        agent.isStopped = false;
-                        agent.stoppingDistance = 19;
-                        agent.SetDestination(Target.transform.position);
-                    }
-                    else
-                    {
-                        agent.isStopped = true;
-                        if (canAttack)
+                        if (Vector3.Distance(transform.position, Target.transform.position) > 20)
                         {
-                            attackinstance = Instantiate(attackEffect, handPosition.transform.position, handPosition.transform.rotation);
-                            attackinstance.transform.parent = handPosition.transform;
-                            attackinstance.GetComponent<LookAtTarget>().target = Target.transform.GetChild(1).gameObject;
+                            agent.isStopped = false;
+                            agent.stoppingDistance = 19;
+                            agent.SetDestination(Target.transform.position);
+                        }
+                        else
+                        {
+                            agent.isStopped = true;
+                            if (canAttack)
+                            {
+                                attackinstance = Instantiate(attackEffect, handPosition.transform.position, handPosition.transform.rotation);
+                                attackinstance.transform.parent = handPosition.transform;
+                                attackinstance.GetComponent<LookAtTarget>().target = Target.transform.GetChild(1).gameObject;
 
-                            StartCoroutine(PlayAnim());
+                                StartCoroutine(PlayAnim());
 
-                            canAttack = false;
-                            Invoke("AttackCooldown", 5f);
+                                canAttack = false;
+                                Invoke("AttackCooldown", 5f);
+                            }
                         }
                     }
+
+                    if(type == SelectableUnitComponent.workerType.Melee)
+                    {
+                        if (Vector3.Distance(transform.position, Target.transform.position) > 5)
+                        {
+                            agent.isStopped = false;
+                            agent.stoppingDistance = 4;
+                            agent.SetDestination(Target.transform.position);
+                        }
+                        else
+                        {
+                            agent.isStopped = true;
+                            if (canAttack)
+                            {
+                                //attackinstance = Instantiate(attackEffect, handPosition.transform.position, handPosition.transform.rotation);
+                                //attackinstance.transform.parent = handPosition.transform;
+                                //attackinstance.GetComponent<LookAtTarget>().target = Target.transform.GetChild(1).gameObject;
+
+                                StartCoroutine(MeleeAttack());
+                                canAttack = false;
+                                Invoke("AttackCooldown", 1.2f);
+                            }
+                        }
+                    }
+                    
                 }
             }
 
@@ -297,7 +333,7 @@ public class WongleController : MonoBehaviour
 
                 if (Target != null)
                 {
-                    if (Vector3.Distance(transform.position, Target.transform.position) > 7)
+                    if (Vector3.Distance(transform.position, Target.transform.position) > 6)
                     {
                         if (!isGoingHome)
                         {
@@ -313,7 +349,7 @@ public class WongleController : MonoBehaviour
                         {
                             agent.isStopped = true;
                             //Mining Animation animation
-                            anim.Play("AxeChop");
+                            anim.Play("PickaxeSwing");
                             Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
                             outputAmount += ((Target.GetComponent<WoodScript>().yield * Time.deltaTime) / 5);
                             if (Target.GetComponent<WoodScript>().WoodHealth <= 0)
@@ -388,7 +424,16 @@ public class WongleController : MonoBehaviour
     }
 
 
-
+    IEnumerator MeleeAttack()
+    {
+        anim.Play("BasicSwingAttack");
+        yield return new WaitForSeconds(0.5f);
+        if (Target != null)
+        {
+            Target.SendMessage("EnemyShot", 30);
+        }
+        
+    }
 
 
 
