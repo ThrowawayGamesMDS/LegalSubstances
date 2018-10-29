@@ -72,6 +72,8 @@ public class WongleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         ChangePriority();
         if (WongleHealth <= 0)
         {
@@ -102,7 +104,10 @@ public class WongleController : MonoBehaviour
                 {
                     if (!anim.GetCurrentAnimatorStateInfo(0).IsName("PickaxeSwing"))
                     {
-                        anim.Play("Idle");
+                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FlossDance"))
+                        {
+                            anim.Play("Idle");
+                        }
                     }
                 }
 

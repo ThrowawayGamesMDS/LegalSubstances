@@ -18,6 +18,10 @@ public class SelectableUnitComponent : MonoBehaviour {
     {
         if (isSelected)
         {
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                controller.anim.Play("FlossDance");
+            }
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 int layermask = LayerMask.GetMask("Ground", "Enemy", "Building");
