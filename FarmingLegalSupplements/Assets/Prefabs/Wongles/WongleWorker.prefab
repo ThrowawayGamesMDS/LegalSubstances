@@ -1362,6 +1362,7 @@ GameObject:
   - component: {fileID: 135695354037577974}
   - component: {fileID: 114982584175308038}
   - component: {fileID: 114918341632213198}
+  - component: {fileID: 114195342817636414}
   m_Layer: 11
   m_Name: WongleWorker
   m_TagString: Wongle
@@ -4075,6 +4076,20 @@ MonoBehaviour:
   canAttack: 0
   WongleHealth: 100
   type: 0
+--- !u!114 &114195342817636414
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1619824420385786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5db4dc02560072140aa4782889f7feb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WoodCost: 0
+  CrystalCost: 0
+  FoodCost: 10
 --- !u!114 &114328893541499344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4773,7 +4788,7 @@ NavMeshAgent:
   m_Acceleration: 100
   avoidancePriority: 99
   m_AngularSpeed: 1000
-  m_StoppingDistance: 20
+  m_StoppingDistance: 7
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

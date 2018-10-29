@@ -771,6 +771,7 @@ GameObject:
   - component: {fileID: 135830557952232628}
   - component: {fileID: 114690475682251470}
   - component: {fileID: 114096677852655668}
+  - component: {fileID: 114973195194817828}
   m_Layer: 11
   m_Name: WongleWizard
   m_TagString: Wongle
@@ -1677,6 +1678,20 @@ MonoBehaviour:
   Description: A Primitive worker unit
   hasSpecificWindow: 0
   UIPanel: {fileID: 0}
+--- !u!114 &114973195194817828
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1914297654606578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5db4dc02560072140aa4782889f7feb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WoodCost: 0
+  CrystalCost: 50
+  FoodCost: 10
 --- !u!135 &135374402060265922
 SphereCollider:
   m_ObjectHideFlags: 1

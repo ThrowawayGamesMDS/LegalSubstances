@@ -6,22 +6,49 @@ using UnityEngine.EventSystems;
 
 public class buttonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public string Name;
+    public GameObject refOBJ;
     public GameObject hoverui;
+    public bool isResource;
 	void Start () {
-        hoverui.SetActive(false);
+        if(hoverui != null)
+        {
+            hoverui.SetActive(false);
+        }
+        
 	}
 	void Update () {
-		if(hoverui.activeSelf == true)
+        if(hoverui != null)
         {
-            hoverui.transform.position = Input.mousePosition;
+            if (hoverui.activeSelf == true)
+            {
+                hoverui.transform.position = Input.mousePosition;
+            }
         }
+		
 	}
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
-        hoverui.SetActive(true);
+        if(!isResource)
+        {
+            hoverui.GetComponent<updatePriceUI>().UpdateFloats(refOBJ.GetComponent<costToPlace>().WoodCost, refOBJ.GetComponent<costToPlace>().CrystalCost, refOBJ.GetComponent<costToPlace>().FoodCost, Name);
+            hoverui.SetActive(true);
+        }
+        else
+        {
+            transform.GetChild(0).gameObject.SetActive(true);
+        }
     }
     public void OnPointerExit(PointerEventData pointerEventData)
     {
-        hoverui.SetActive(false);
+        if(!isResource)
+        {
+            hoverui.SetActive(false);
+        }
+        else
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
+        }
+
     }
 }

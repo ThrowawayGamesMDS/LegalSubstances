@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23594709968537996}
   - component: {fileID: 65611377785042888}
   - component: {fileID: 114894303995732594}
+  - component: {fileID: 114448158979619694}
   m_Layer: 0
   m_Name: Wonder
   m_TagString: Building
@@ -97,6 +98,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 106.61468, y: 82.672325, z: 108.27862}
   m_Center: {x: 0, y: 41.336155, z: 0}
+--- !u!114 &114448158979619694
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1939373043451518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5db4dc02560072140aa4782889f7feb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WoodCost: 100
+  CrystalCost: 100
+  FoodCost: 100
 --- !u!114 &114894303995732594
 MonoBehaviour:
   m_ObjectHideFlags: 1
