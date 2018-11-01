@@ -1,0 +1,211 @@
+fileFormatVersion: 2
+guid: 41871c7af923d1344a84186ddf4fc674
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: areaLight2
+    100002: Belly
+    100004: ButtL
+    100006: ButtR
+    100008: Chest
+    100010: ClavicleL
+    100012: ClavicleR
+    100014: ElbowL
+    100016: ElbowR
+    100018: FootL
+    100020: FootR
+    100022: geigerstrainv3lo:Group14524
+    100024: HandL
+    100026: HandR
+    100028: Head
+    100030: herocap
+    100032: herohatmid
+    100034: herohatroot
+    100036: herohattip
+    100038: KneeL
+    100040: KneeR
+    100042: Neck
+    100044: Nosemid
+    100046: NoseTop
+    100048: Root
+    100050: tailbase
+    100052: tailend
+    100054: tailmid
+    100056: tailtop
+    100058: ThighL
+    100060: ThighR
+    100062: wandbase
+    100064: wonglecutterlo:Group35539
+    100066: wonglepickaxe
+    100068: wonglepilgrimlo:Group36031
+    100070: WongleWorker
+    100072: //RootNode
+    400000: areaLight2
+    400002: Belly
+    400004: ButtL
+    400006: ButtR
+    400008: Chest
+    400010: ClavicleL
+    400012: ClavicleR
+    400014: ElbowL
+    400016: ElbowR
+    400018: FootL
+    400020: FootR
+    400022: geigerstrainv3lo:Group14524
+    400024: HandL
+    400026: HandR
+    400028: Head
+    400030: herocap
+    400032: herohatmid
+    400034: herohatroot
+    400036: herohattip
+    400038: KneeL
+    400040: KneeR
+    400042: Neck
+    400044: Nosemid
+    400046: NoseTop
+    400048: Root
+    400050: tailbase
+    400052: tailend
+    400054: tailmid
+    400056: tailtop
+    400058: ThighL
+    400060: ThighR
+    400062: wandbase
+    400064: wonglecutterlo:Group35539
+    400066: wonglepickaxe
+    400068: wonglepilgrimlo:Group36031
+    400070: WongleWorker
+    400072: //RootNode
+    2100000: StingrayPBS2
+    2100002: HeroHat
+    2100004: WongleCutter
+    2100006: WonglePilgrimHat
+    2100008: GeigerStrain
+    2100010: WonglePickaxe
+    4300000: WongleWorker
+    4300002: herocap
+    4300004: wonglecutterlo:Group35539
+    4300006: wonglepilgrimlo:Group36031
+    4300008: geigerstrainv3lo:Group14524
+    4300010: wonglepickaxe
+    7400000: FlossDance
+    9500000: //RootNode
+    10800000: areaLight2
+    13700000: geigerstrainv3lo:Group14524
+    13700002: herocap
+    13700004: wonglecutterlo:Group35539
+    13700006: wonglepickaxe
+    13700008: wonglepilgrimlo:Group36031
+    13700010: WongleWorker
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: FlossDance
+      takeName: FlossDance
+      firstFrame: 480
+      lastFrame: 540
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
