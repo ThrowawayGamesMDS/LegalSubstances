@@ -331,11 +331,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: Seeds
   output: White
-  TimeToComplete: 20
+  TimeToComplete: 30
   timer: 0
   inputAmount: 0
   outputAmount: 0
-  AmountProduced: 5
+  AmountProduced: 10
   isOccupied: 1
   worker: {fileID: 0}
 --- !u!114 &114468323715934816
@@ -349,8 +349,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db4dc02560072140aa4782889f7feb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WoodCost: 0
-  CrystalCost: 10
+  WoodCost: 30
+  CrystalCost: 0
   FoodCost: 0
 --- !u!114 &114549211439295278
 MonoBehaviour:
