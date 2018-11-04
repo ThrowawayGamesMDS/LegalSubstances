@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class playbutton : MonoBehaviour {
     CursorLockMode wantedMode;
+    public GameObject playmenu;
     public GameObject helpmenu;
+    public GameObject controlsmenu;
     // Use this for initialization
     void Start () {
 
@@ -21,11 +23,21 @@ public class playbutton : MonoBehaviour {
     }
     public void help()
     {
+        playmenu.SetActive(false);
         helpmenu.SetActive(true);
+        controlsmenu.SetActive(false);
     }
     public void back()
     {
+        playmenu.SetActive(true);
         helpmenu.SetActive(false);
+        controlsmenu.SetActive(false);
+    }
+    public void con()
+    {
+        playmenu.SetActive(false);
+        helpmenu.SetActive(false);
+        controlsmenu.SetActive(true);
     }
     public void quit()
     {
@@ -33,14 +45,5 @@ public class playbutton : MonoBehaviour {
 
         Application.Quit();
     }
-    public void unpause()
-    {
-        //unpasue game
-        //GameObject.FindGameObjectWithTag("HomeBuilding").GetComponent<HouseController>() //player can move
-       
-
-        gameObject.SetActive(false);
-        GetComponent<pause>().Pause = false;
-        Time.timeScale = 1f;
-    }
+    
 }

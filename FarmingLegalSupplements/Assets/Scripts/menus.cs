@@ -9,7 +9,13 @@ public class menus : MonoBehaviour {
     public AudioMixer mix;
     // Use this for initialization
     void Start() {
-
+        float temp;
+        mix.GetFloat("master", out temp);
+        Vol.value = temp;
+        mix.GetFloat("music", out temp);
+        Mus.value = temp;
+        mix.GetFloat("sf", out temp);
+        SF.value = temp;
     }
 
     // Update is called once per frame
@@ -18,15 +24,36 @@ public class menus : MonoBehaviour {
     }
 
     public void mainVolChange(){
-        mix.SetFloat("master",(Vol.value));
-       
+        if (Vol.value == 0)
+        {
+            mix.SetFloat("master", -80);
+        }
+        else
+        {
+            mix.SetFloat("master", Vol.value);
+        }
     }
     public void musicVolChange()
     {
-        mix.SetFloat("music", Mus.value);
+      
+        if (Mus.value == 0)
+        {
+            mix.SetFloat("music", -80);
+        }
+        else
+        {
+            mix.SetFloat("music", Mus.value);
+        }
     }
     public void SFVolChange()
     {
-        mix.SetFloat("sf", SF.value);
+        if (SF.value == 0)
+        {
+            mix.SetFloat("sf", -80);
+        }
+        else
+        {
+            mix.SetFloat("sf", SF.value);
+        }
     }
 }
