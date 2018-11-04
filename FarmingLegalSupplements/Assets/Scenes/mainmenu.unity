@@ -5086,7 +5086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &687550216
 Transform:
   m_ObjectHideFlags: 0
@@ -5441,6 +5441,16 @@ Prefab:
         type: 2}
       propertyPath: m_AnchoredPosition.y
       value: 239
+      objectReference: {fileID: 0}
+    - target: {fileID: 114269169494229810, guid: 6fb2f14c155221f49978e9d3190a4470,
+        type: 2}
+      propertyPath: Pause
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114269169494229810, guid: 6fb2f14c155221f49978e9d3190a4470,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fb2f14c155221f49978e9d3190a4470, type: 2}
@@ -32021,6 +32031,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &1446349363 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1796585751300308, guid: 6fb2f14c155221f49978e9d3190a4470,
+    type: 2}
+  m_PrefabInternal: {fileID: 718315056}
 --- !u!1 &1447813257
 GameObject:
   m_ObjectHideFlags: 0
@@ -45286,6 +45301,31 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114443825896749678, guid: 310530007de060e4d98a4d4837cf68de,
+        type: 2}
+      propertyPath: intensiy
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 114110807831982320, guid: 310530007de060e4d98a4d4837cf68de,
+        type: 2}
+      propertyPath: intensiy
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 108358227535164644, guid: 310530007de060e4d98a4d4837cf68de,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.022116425
+      objectReference: {fileID: 0}
+    - target: {fileID: 108358227535164644, guid: 310530007de060e4d98a4d4837cf68de,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.17734918
+      objectReference: {fileID: 0}
+    - target: {fileID: 108358227535164644, guid: 310530007de060e4d98a4d4837cf68de,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.6698113
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 310530007de060e4d98a4d4837cf68de, type: 2}
   m_IsPrefabAsset: 0
@@ -45879,6 +45919,7 @@ GameObject:
   - component: {fileID: 2047678004}
   - component: {fileID: 2047678009}
   - component: {fileID: 2047678010}
+  - component: {fileID: 2047678011}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -46007,6 +46048,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   veiwingsize: {fileID: 341870870}
   screenview: {fileID: 1004073929}
+--- !u!114 &2047678011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2047678003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a727a1453eed284192b8f519605a05a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Pause: 0
+  pauseButton: {fileID: 1446349363}
 --- !u!4 &2060504576 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 63fa0cfaa3955284ea98eec4ed2ae807,

@@ -10,17 +10,18 @@ public class pause : MonoBehaviour {
     public GameObject pauseButton;
     // Use this for initialization
     void Start() {
-
+        Time.timeScale = 0f;
     }
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Backslash))
         {
             if (Pause == false)
             {
                 //pasue game
-                //GameObject.FindGameObjectWithTag("HomeBuilding").GetComponent<HouseController>() //player can't move
+               
+               
                 paused();
             }
             else
@@ -31,38 +32,32 @@ public class pause : MonoBehaviour {
 
 
         }
+
         if (Pause == false)
         {
             //pasue game
-            //GameObject.FindGameObjectWithTag("HomeBuilding").GetComponent<HouseController>() //player can't move
+            
             pauseButton.SetActive(false);
-           
+            Time.timeScale = 1f;
         }
         else
         {
             pauseButton.SetActive(true);
-            if (Time.timeScale !=0)
-            {
-                Pause = false;
-            }
-            
-            
+            Time.timeScale = 0f;
+
+
         }
     }
 
     public void paused (){
-        
-        Time.timeScale = 0f;
         Pause = true;
+     
     }
 
     public void Unpaused()
     {
         Pause = false;
-        Time.timeScale = 1f;
        
-        
-        
     }
 
 
