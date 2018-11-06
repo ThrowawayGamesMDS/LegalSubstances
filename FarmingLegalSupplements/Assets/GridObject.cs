@@ -8,6 +8,8 @@ public class GridObject : MonoBehaviour {
     public bool isCorrupted;
     public MeshRenderer rnd;
     public GameObject tobeccorrupted;
+    public GameObject scuffedtree;
+    public GameObject fog;
     private bool hasDone;
     // Use this for initialization
     void Start()
@@ -22,20 +24,30 @@ public class GridObject : MonoBehaviour {
                 tobeccorrupted.GetComponent<ToBeCorruptedScript>().tobeCorrupted.Insert(tobeccorrupted.GetComponent<ToBeCorruptedScript>().tobeCorrupted.Count, gameObject);
             }
         }
+        else
+        {
+            Instantiate(fog, transform.position, transform.rotation);
+        }
     }
 	
     public void Corrupt()
     {
         transform.parent = GameObject.FindGameObjectWithTag("CorruptedGrid").transform;
         isCorrupted = true;
-        rnd.enabled = true;
+        //rnd.enabled = true;
         tobeccorrupted.GetComponent<ToBeCorruptedScript>().tobeCorrupted.Remove(gameObject);
-
+        Instantiate(fog, transform.position, transform.rotation);
 
         foreach (Transform child in transform)
         {
             //corrupt child
             print("corrupted " + child.name);
+            if (child.tag == "Wood")
+            {
+                Instantiate(scuffedtree, child.transform.position, child.transform.rotation);
+                Destroy(child.gameObject);
+            }
+            
         }
         
         GameObject temp;
@@ -81,7 +93,7 @@ public class GridObject : MonoBehaviour {
             if (isCorrupted)
             {
                 transform.parent = GameObject.FindGameObjectWithTag("CorruptedGrid").transform;
-                rnd.enabled = true;
+                //rnd.enabled = true;
                 hasDone = true;
             }
         }
