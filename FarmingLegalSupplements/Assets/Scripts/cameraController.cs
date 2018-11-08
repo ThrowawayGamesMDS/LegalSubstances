@@ -5,10 +5,13 @@ using UnityEngine;
 public class cameraController : MonoBehaviour {
     public float scrollSpeed;
     public Vector3 m_vec2CursorPos;
+    public Camera m_pCamera;
+    private bool m_pAlterFov;
 	// Use this for initialization
 	void Start () {
-		
-	}
+        m_pAlterFov = false;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -41,42 +44,121 @@ public class cameraController : MonoBehaviour {
             scrollSpeed = 20.0f;
         }
 
+        if (Input.GetMouseButton(2))
+        {
+            Vector3 _temp = new Vector3(gameObject.transform.rotation.x, gameObject.transform.rotation.y, gameObject.transform.rotation.z);
+            print("X: " +Input.mousePosition.x + ", Y: " + Input.mousePosition.y);
+            
+            if (m_vec2CursorPos.x - 20 < Input.mousePosition.x && m_vec2CursorPos.x + 20 > Input.mousePosition.x)
+            {
+                if (Input.mousePosition.x > Screen.width / 2)
+                {
+                    _temp.y += 4;
+                }
+                else
+                {
+                    _temp.y -= 4;
+                }
+            }
 
-        /*
-        if (Input.mousePosition.x < 100 || Input.GetKey(KeyCode.A))
-        {
-            gameObject.transform.Translate(-scrollSpeed * Time.deltaTime,0,0);
-            if (Input.mousePosition.x < 50)
+            /*if (m_vec2CursorPos.y-20 < Input.mousePosition.y && m_vec2CursorPos.y + 20 > Input.mousePosition.y)
             {
-                gameObject.transform.Translate(-scrollSpeed * Time.deltaTime, 0, 0);
+                if (Input.mousePosition.y > Screen.height / 2)
+                {
+                    _temp.x += 3;
+                }
+                else
+                {
+                    _temp.x -= 3;
+                }
+            }*/
+            gameObject.transform.Rotate(_temp);
+            m_vec2CursorPos = Input.mousePosition;
+
+        }
+
+        /* if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+         {
+             print ("FUCKING ALTER THE FOV");
+             if (Input.GetAxis("Mouse ScrollWheel") > 0.0f) // forward
+             {
+                 if (m_pCamera.fieldOfView < 115)
+                 {
+                     // m_pCamera.fieldOfView += 0.25f;
+                     Camera.main.fieldOfView = 115;
+                   //  m_pCamera.fieldOfView = 115;
+                     //gameObject.GetComponent<Camera>().fieldOfView += 0.25f;
+                 }
+             }
+             else if (Input.GetAxis("Mouse ScrollWheel") < 0.0f) // backwards
+             {
+                 if (m_pCamera.fieldOfView > 60)
+                 {
+                     //m_pCamera.fieldOfView = 60;
+                     Camera.main.fieldOfView = 60;
+                     //m_pCamera.fieldOfView -= 0.25f;
+                 }
+             }
+         }
+         else
+         {
+             if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
+             {
+                 transform.Translate(0, -100 * Time.deltaTime, 0);
+             }
+             else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
+             {
+                 transform.Translate(0, 100 * Time.deltaTime, 0);
+             }
+         }*/
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+        {
+            m_pAlterFov = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+        {
+            m_pAlterFov = false;
+        }
+
+        if (Input.GetAxis("Mouse ScrollWheel") > 0.0f) // forward
+        {
+            switch (m_pAlterFov)
+            {
+                case true:
+                    {
+                        if (m_pCamera.fieldOfView > 60)
+                        {
+                            m_pCamera.fieldOfView -= 2.5f;
+                        }
+                        break;
+                    }
+                case false:
+                    {
+                        transform.Translate(0, -100 * Time.deltaTime, 0);
+                        break;
+                    }
             }
         }
-        if(Input.mousePosition.x > Screen.width - 100 || Input.GetKey(KeyCode.D))
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0.0f) // backwards
         {
-            gameObject.transform.Translate(scrollSpeed * Time.deltaTime, 0, 0);
-            if (Input.mousePosition.x > Screen.width - 50)
+            switch (m_pAlterFov)
             {
-                gameObject.transform.Translate(scrollSpeed * Time.deltaTime, 0, 0);
+                case true:
+                    {
+                        if (m_pCamera.fieldOfView < 115)
+                        {
+                            m_pCamera.fieldOfView += 2.5f;
+                        }
+                        break;
+                    }
+                case false:
+                    {
+                        transform.Translate(0, 100 * Time.deltaTime, 0);
+                        break;
+                    }
             }
         }
-        //scrolling on y axis
-        if (Input.mousePosition.y < 100 || Input.GetKey(KeyCode.S))
-        {
-            gameObject.transform.Translate(0, 0, -scrollSpeed * Time.deltaTime);
-            if (Input.mousePosition.y < 50)
-            {
-                gameObject.transform.Translate(0, 0, -scrollSpeed * Time.deltaTime);
-            }
-        }
-        if (Input.mousePosition.y > Screen.height - 100 || Input.GetKey(KeyCode.W))
-        {
-            gameObject.transform.Translate(0, 0, scrollSpeed * Time.deltaTime);
-            if (Input.mousePosition.y > Screen.height - 50)
-            {
-                gameObject.transform.Translate(0, 0, scrollSpeed * Time.deltaTime);
-            }
-        }
-        */
 
 
         if (Input.GetKey(KeyCode.E))
@@ -87,29 +169,6 @@ public class cameraController : MonoBehaviour {
         {
             transform.Rotate(0, -50 * Time.deltaTime, 0);
 
-        }
-
-        /*if (Input.GetKey(KeyCode.Mouse1))
-        {
-            if (m_vec2CursorPos.x < Input.mousePosition.x)
-            {
-                transform.Rotate(0, 200 * Time.deltaTime, 0);
-            }
-            else if (m_vec2CursorPos.x > Input.mousePosition.x)
-            {
-                transform.Rotate(0, -200 * Time.deltaTime, 0);
-            }
-            m_vec2CursorPos = Input.mousePosition;
-        }*/
-
-
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
-        {
-            transform.Translate(0, -100 * Time.deltaTime, 0);
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
-        {
-            transform.Translate(0, 100 * Time.deltaTime, 0);
         }
 
         if(transform.position.y < 10)
