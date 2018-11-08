@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class cameraController : MonoBehaviour {
-    public int scrollSpeed;
+    public float scrollSpeed;
     public Vector3 m_vec2CursorPos;
 	// Use this for initialization
 	void Start () {
@@ -32,6 +32,14 @@ public class cameraController : MonoBehaviour {
             gameObject.transform.Translate(0, 0, scrollSpeed * Time.deltaTime);
         }
 
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        {
+            scrollSpeed *= 2;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift))
+        {
+            scrollSpeed = 20.0f;
+        }
 
 
         /*

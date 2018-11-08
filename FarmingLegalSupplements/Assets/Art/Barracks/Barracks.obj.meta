@@ -1,26 +1,22 @@
 fileFormatVersion: 2
-guid: 363696425a4ed2b4784d84219c68dd97
+guid: 0e8bb55ea97e747459c0f8be7182bbf9
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: polySurface3
-    100002: //RootNode
-    400000: polySurface3
-    400002: //RootNode
-    2300000: polySurface3
-    3300000: polySurface3
-    4300000: polySurface3
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: polySurface3Mat
-    second: {fileID: 2100000, guid: aeaf3ca3458e2c7439fe40c14df5effb, type: 2}
+    100000: //RootNode
+    100002: polySurface145
+    400000: //RootNode
+    400002: polySurface145
+    2100000: StingrayPBS3SG
+    2300000: polySurface145
+    3300000: polySurface145
+    4300000: polySurface145
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0

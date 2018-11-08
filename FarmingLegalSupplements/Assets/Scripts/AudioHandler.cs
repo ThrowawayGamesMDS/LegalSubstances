@@ -2,41 +2,65 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
+
 public class AudioHandler : MonoBehaviour
 {
-    public AudioClip[] m_vecacAudioClips;
-    // clip 0 = successful purhcase
-    // clip 1 = failed purchase
-    public AudioSource m_asSoundSource;
-	// Use this for initialization
-	void Start ()
+    public List<AudioClip> m_lDamageSounds;
+    public AudioClip[] m_arrDamageSounds;
+    public List<AudioClip> m_lSuccesfulSounds;
+    public List<AudioClip> m_lFailureSounds;
+    public AudioSource m_asHandle;
+    private bool m_bPlaySound;
+    public enum m_soundTypes
     {
-    }
+        DAMAGE, SUCCESS, FAILURE
+    };
 
-    public void PlaySound(string _sound)
+    public void PlaySound(m_soundTypes _playType)
     {
-        switch(_sound)
+        if (!m_asHandle.isPlaying)
         {
-            case "PurchaseOk":
-                {
-                    m_asSoundSource.clip = m_vecacAudioClips[0];
-                    m_asSoundSource.Play();
-                    break;
-                }
-            case "PurchaseBad":
-                {
-                    m_asSoundSource.clip = m_vecacAudioClips[1];
-                    m_asSoundSource.Play();
-                    break;
-                }
-            default:
-                break;
+            int _play;
+            switch (_playType)
+            {
+                case m_soundTypes.DAMAGE:
+                    {
+                        _play = Random.Range(0, m_lDamageSounds.Count);
+                        m_asHandle.clip = m_lDamageSounds[_play];
+                        break;
+                    }
+
+                case m_soundTypes.SUCCESS:
+                    {
+                        _play = Random.Range(0, m_lSuccesfulSounds.Count);
+                        m_asHandle.clip = m_lSuccesfulSounds[_play];
+                        break;
+                    }
+
+                case m_soundTypes.FAILURE:
+                    {
+                        _play = Random.Range(0, m_lFailureSounds.Count);
+                        m_asHandle.clip = m_lFailureSounds[_play];
+                        break;
+                    }
+            }
+            m_asHandle.Play();
         }
     }
-	
-	// Update is called once per frame
-	void Update ()
+    // Use this for initialization
+    void Start()
     {
-		
-	}
+        /*
+          for (int i = 0; i < m_lDamageSounds.Count; i++)
+          {
+              m_arrDamageSounds[i] = m_lDamageSounds[i];
+          }*/
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 }
