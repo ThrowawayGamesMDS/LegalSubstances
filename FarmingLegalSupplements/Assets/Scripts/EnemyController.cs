@@ -119,6 +119,11 @@ public class EnemyController : MonoBehaviour {
                                     targetsInArea[0].GetComponent<PlayerBuilding>().BuildingHealth -= 2 * Time.deltaTime;
                                     break;
                                 }
+                            case "HomeBuilding":
+                                {
+                                    targetsInArea[0].GetComponent<PlayerBuilding>().BuildingHealth -= 2 * Time.deltaTime;
+                                    break;
+                                }
                             case "Wongle":
                                 {
                                     targetsInArea[0].GetComponent<WongleController>().WongleHealth -= 20 * Time.deltaTime;
