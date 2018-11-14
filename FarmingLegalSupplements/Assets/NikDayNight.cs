@@ -9,11 +9,14 @@ public class NikDayNight : MonoBehaviour {
     Material sky;
     bool FinalNight = false;
     bool night = false;
+
+    public int playeddays;
     // Use this for initialization
     void Start () {
         sky = RenderSettings.skybox;
         sky.SetFloat("_AtmosphereThickness", 1);
-        
+
+        playeddays = 0;
     }
 	
 	// Update is called once per frame
@@ -29,6 +32,7 @@ public class NikDayNight : MonoBehaviour {
                 }
             else
             {
+                playeddays++;
                 night = false;
                 sky.SetFloat("_AtmosphereThickness", 1);
                 sun.GetComponent<look>().go();
@@ -44,6 +48,7 @@ public class NikDayNight : MonoBehaviour {
             }
             else
             {
+                playeddays++;
                 night = false;
                 sky.SetFloat("_AtmosphereThickness", 1);
                 sun.GetComponent<look>().go();

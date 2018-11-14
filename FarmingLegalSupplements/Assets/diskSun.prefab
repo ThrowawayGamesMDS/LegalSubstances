@@ -202,7 +202,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 0.9622642, g: 0.84542197, b: 0.5310609, a: 1}
-  m_Intensity: 0.9
+  m_Intensity: 1.6
   m_Range: 1156.6271
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -238,8 +238,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 0.022116425, g: 0.17734918, b: 0.6698113, a: 1}
-  m_Intensity: 0.6
+  m_Color: {r: 0.6928622, g: 0.7297809, b: 0.8490566, a: 1}
+  m_Intensity: 1
   m_Range: 300
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -276,7 +276,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 0.7830189, g: 0.039663974, b: 0.033241354, a: 1}
-  m_Intensity: 0.75
+  m_Intensity: 1.2
   m_Range: 300
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -318,7 +318,7 @@ MonoBehaviour:
   CanMove: 0
   bestspeed: 5
   startingPoint: {fileID: 4870211468737136}
-  intensiy: 0.3
+  intensiy: 1
 --- !u!114 &114317851823850386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -334,7 +334,7 @@ MonoBehaviour:
   CanMove: 0
   bestspeed: 5
   startingPoint: {fileID: 4870211468737136}
-  intensiy: 0.75
+  intensiy: 1.2
 --- !u!114 &114324734630414214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -364,7 +364,7 @@ MonoBehaviour:
   CanMove: 1
   bestspeed: 5
   startingPoint: {fileID: 4870211468737136}
-  intensiy: 0.9
+  intensiy: 1.6
 --- !u!114 &114761703589408204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -379,3 +379,4 @@ MonoBehaviour:
   sun: {fileID: 1056887059822710}
   moon: {fileID: 1464366971867012}
   Bloodmoon: {fileID: 1586255223963506}
+  playeddays: 0
