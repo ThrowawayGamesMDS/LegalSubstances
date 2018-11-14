@@ -27,7 +27,7 @@ public class NikDayNight : MonoBehaviour {
             if (night == false)
             {
                 night = true;
-                sky.SetFloat("_AtmosphereThickness", 5);
+                sky.SetFloat("_AtmosphereThickness", 0);
                 moon.GetComponent<look>().go();
                 }
             else
@@ -43,7 +43,7 @@ public class NikDayNight : MonoBehaviour {
             if (night == false)
             {
                 night = true;
-                sky.SetFloat("_AtmosphereThickness", 5);
+                sky.SetFloat("_AtmosphereThickness", 0);
                 Bloodmoon.GetComponent<look>().go();
             }
             else
