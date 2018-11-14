@@ -21,7 +21,6 @@ public class DayNight : MonoBehaviour {
 
         if(sun.transform.position.y < 0)
         {
-            sun.SetActive(false);
             isDay = false;
             if(counted)
             {

@@ -6,12 +6,15 @@ public class NikDayNight : MonoBehaviour {
     public GameObject sun;
     public GameObject moon;
     public GameObject Bloodmoon;
-    bool FinalNight = true;
+    Material sky;
+    bool FinalNight = false;
     bool night = false;
     // Use this for initialization
     void Start () {
-		
-	}
+        sky = RenderSettings.skybox;
+        sky.SetFloat("_AtmosphereThickness", 1);
+        
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -21,11 +24,13 @@ public class NikDayNight : MonoBehaviour {
             if (night == false)
             {
                 night = true;
+                sky.SetFloat("_AtmosphereThickness", 5);
                 moon.GetComponent<look>().go();
                 }
             else
             {
                 night = false;
+                sky.SetFloat("_AtmosphereThickness", 1);
                 sun.GetComponent<look>().go();
             }
         }
@@ -34,11 +39,13 @@ public class NikDayNight : MonoBehaviour {
             if (night == false)
             {
                 night = true;
+                sky.SetFloat("_AtmosphereThickness", 5);
                 Bloodmoon.GetComponent<look>().go();
             }
             else
             {
                 night = false;
+                sky.SetFloat("_AtmosphereThickness", 1);
                 sun.GetComponent<look>().go();
             }
         }
