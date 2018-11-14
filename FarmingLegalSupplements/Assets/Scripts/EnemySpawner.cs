@@ -19,7 +19,7 @@ public class EnemySpawner : MonoBehaviour {
             {
                 if (!isinvoked)
                 {
-                    for (int i = 0; i < DayNight.DaysPlayed; i++)
+                    for (int i = 0; i < DayNight.DaysPlayed - 1; i++)
                     {
                         int temp = Random.Range(0, corruptedGrids.transform.childCount - 1);
                         Instantiate(obj, corruptedGrids.transform.GetChild(temp).position, Quaternion.Euler(new Vector3(0, 45, 0)));

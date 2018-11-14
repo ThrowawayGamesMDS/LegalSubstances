@@ -37,6 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4897738284152532}
   - component: {fileID: 208196888492700622}
+  - component: {fileID: 114147595358471050}
   m_Layer: 0
   m_Name: scuffedtree
   m_TagString: Untagged
@@ -113,6 +114,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1223485949585134}
   m_Mesh: {fileID: 4300000, guid: 27393959a439baa419f84802b9c8cdcd, type: 3}
+--- !u!114 &114147595358471050
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1498340812808836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4785eff19217f4a8a01912b2d58bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Dead Tree
+  Description: Looks like the corruption has killed this tree
+  hasSpecificWindow: 0
+  UIPanel: {fileID: 0}
 --- !u!208 &208196888492700622
 NavMeshObstacle:
   m_ObjectHideFlags: 1

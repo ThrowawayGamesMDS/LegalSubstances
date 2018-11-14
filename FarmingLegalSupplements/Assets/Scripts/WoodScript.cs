@@ -6,4 +6,5 @@ public class WoodScript : MonoBehaviour {
     public float WoodHealth;
     public int yield;
     public GameObject worker;
+    public GameObject trunk;
 }

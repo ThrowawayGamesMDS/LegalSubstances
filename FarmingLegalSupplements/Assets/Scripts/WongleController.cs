@@ -284,6 +284,7 @@ public class WongleController : MonoBehaviour
                             if (Target.GetComponent<WoodScript>().WoodHealth <= 0)
                             {
                                 placeholderPosition = Target.transform.position;
+                                Instantiate(Target.GetComponent<WoodScript>().trunk, Target.transform.position, Target.transform.rotation);
                                 Destroy(Target);
                             }
                         }

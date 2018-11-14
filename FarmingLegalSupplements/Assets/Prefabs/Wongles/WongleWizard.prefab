@@ -1026,7 +1026,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1914297654606578}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.5, y: 0, z: -21.41}
+  m_LocalPosition: {x: 2.5, y: 0, z: -19}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4104139970071460}
@@ -1674,8 +1674,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c4785eff19217f4a8a01912b2d58bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Wongle
-  Description: A Primitive worker unit
+  Name: Wongle Wizard
+  Description: Wongle Wizards are masters of ranged magical combat
   hasSpecificWindow: 0
   UIPanel: {fileID: 0}
 --- !u!114 &114973195194817828

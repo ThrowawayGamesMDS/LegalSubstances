@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 114468323715934816}
   - component: {fileID: 114549211439295278}
   - component: {fileID: 65862027230197262}
+  - component: {fileID: 114167039356222372}
   m_Layer: 12
   m_Name: FarmWhite
   m_TagString: Building
@@ -318,6 +319,21 @@ MonoBehaviour:
   farm1: {fileID: 1719111348878948}
   farm2: {fileID: 1077174038817552}
   farm3: {fileID: 1781100764309494}
+--- !u!114 &114167039356222372
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1720095209189868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4785eff19217f4a8a01912b2d58bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Farm
+  Description: A farm in which wongles can collect food from
+  hasSpecificWindow: 0
+  UIPanel: {fileID: 0}
 --- !u!114 &114195353990855890
 MonoBehaviour:
   m_ObjectHideFlags: 1

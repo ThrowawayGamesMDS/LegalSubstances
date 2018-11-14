@@ -851,7 +851,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1371685903091818}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1, y: 0, z: -21.41}
+  m_LocalPosition: {x: -9.099998, y: 0, z: -19}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4872538738235342}
@@ -1484,8 +1484,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c4785eff19217f4a8a01912b2d58bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Wongle
-  Description: A Primitive worker unit
+  Name: Wongle Knight
+  Description: Wongle Knights are masters of melee combat
   hasSpecificWindow: 0
   UIPanel: {fileID: 0}
 --- !u!114 &114235466044783860
@@ -1653,7 +1653,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 4f9d1dd743094af4a90e3ba69682f45d, type: 3}
+  - {fileID: 2100000, guid: 26b81ca6ffbb58c42a4cac77a3dd48ab, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
