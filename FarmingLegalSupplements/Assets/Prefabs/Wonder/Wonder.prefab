@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 65611377785042888}
   - component: {fileID: 114894303995732594}
   - component: {fileID: 114448158979619694}
+  - component: {fileID: 114046223945472898}
   m_Layer: 0
   m_Name: Wonder
   m_TagString: Building
@@ -98,6 +99,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.333406, y: 6.151314, z: 6.082861}
   m_Center: {x: 0, y: 3.075657, z: -0.05436945}
+--- !u!114 &114046223945472898
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1939373043451518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d41db3d0982ecb4f9efb1d336bc746c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuildingHealth: 50
+  isWonder: 1
 --- !u!114 &114448158979619694
 MonoBehaviour:
   m_ObjectHideFlags: 1

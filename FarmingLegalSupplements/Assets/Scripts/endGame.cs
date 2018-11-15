@@ -14,7 +14,7 @@ public class endGame : MonoBehaviour {
 	void Update () {
 		if(home == null || home.GetComponent<PlayerBuilding>().BuildingHealth <= 0)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(3);
         }
 	}
 }

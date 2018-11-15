@@ -10,7 +10,7 @@ public class WinBuilding : MonoBehaviour {
 	void Start () {
         GameObject.FindGameObjectWithTag("WonderUI2").transform.GetChild(0).gameObject.SetActive(true);
         GameObject temp = GameObject.FindGameObjectWithTag("WonderUi").GetComponent<UpdateWonderUi>().wonder = gameObject;
-        
+        GameObject.FindGameObjectWithTag("DAYNIGHT").GetComponent<DayNight>().WonderMode();
     }
 	
 	// Update is called once per frame

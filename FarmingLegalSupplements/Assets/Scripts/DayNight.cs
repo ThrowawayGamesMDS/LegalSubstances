@@ -21,23 +21,44 @@ public class DayNight : MonoBehaviour {
 
         if(sun.transform.position.y < 0)
         {
+            
             isDay = false;
-            if(counted)
+            sun.SetActive(false);
+            if (counted)
             {
+                
                 counted = !counted;
             }
         }
         else
         {
-            if(!counted)
+            
+            if (!counted)
             {
                 playeddays++;
                 counted = !counted;
             }
             isDay = true;
+            sun.SetActive(true);
         }
         transform.Rotate(daynightSpeed * Time.deltaTime, 0, 0);
         b_day = isDay;
         DaysPlayed = playeddays;
 	}
+
+    public void WonderMode()
+    {
+        transform.eulerAngles = new Vector3(180, 0, 0);
+        DaysPlayed = 8;
+        daynightSpeed = 0;
+        isDay = false;
+        //InvokeRepeating("invokeroony", 0.1f, 40.0f);
+    }
+
+
+    void invokeroony()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<EnemySpawner>().isinvoked = false;
+    }
+
 }

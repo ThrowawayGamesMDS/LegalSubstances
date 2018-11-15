@@ -506,4 +506,15 @@ public class WongleController : MonoBehaviour
 
         }
     }
+
+
+
+    public void ChopEvent()
+    {
+        gameObject.GetComponent<AudioHandler>().PlaySound(AudioHandler.m_soundTypes.WOOD);
+    }
+    public void MineEvent()
+    {
+        gameObject.GetComponent<AudioHandler>().PlaySound(AudioHandler.m_soundTypes.MINE);
+    }
 }

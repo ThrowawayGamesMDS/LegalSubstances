@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBuilding : MonoBehaviour {
     public float BuildingHealth;
+    public bool isWonder;
 	// Use this for initialization
 	void Start () {
 		
@@ -13,6 +15,10 @@ public class PlayerBuilding : MonoBehaviour {
 	void Update () {
         if (BuildingHealth <= 0)
         {
+            if(isWonder)
+            {
+                SceneManager.LoadScene(3);
+            }
             Destroy(gameObject);
         }
 	}

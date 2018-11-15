@@ -7,6 +7,8 @@ using UnityEngine;
 public class AudioHandler : MonoBehaviour
 {
     public List<AudioClip> m_lDamageSounds;
+    public List<AudioClip> m_lWoodCut;
+    public List<AudioClip> m_lMine;
     public AudioClip[] m_arrDamageSounds;
     public List<AudioClip> m_lSuccesfulSounds;
     public List<AudioClip> m_lFailureSounds;
@@ -14,11 +16,12 @@ public class AudioHandler : MonoBehaviour
     private bool m_bPlaySound;
     public enum m_soundTypes
     {
-        DAMAGE, SUCCESS, FAILURE
+        DAMAGE, SUCCESS, FAILURE, WOOD, MINE
     };
 
     public void PlaySound(m_soundTypes _playType)
     {
+        
         if (!m_asHandle.isPlaying)
         {
             int _play;
@@ -42,6 +45,18 @@ public class AudioHandler : MonoBehaviour
                     {
                         _play = Random.Range(0, m_lFailureSounds.Count);
                         m_asHandle.clip = m_lFailureSounds[_play];
+                        break;
+                    }
+                case m_soundTypes.WOOD:
+                    {
+                        _play = Random.Range(0, m_lWoodCut.Count);
+                        m_asHandle.clip = m_lWoodCut[_play];
+                        break;
+                    }
+                case m_soundTypes.MINE:
+                    {
+                        _play = Random.Range(0, m_lMine.Count);
+                        m_asHandle.clip = m_lMine[_play];
                         break;
                     }
             }
