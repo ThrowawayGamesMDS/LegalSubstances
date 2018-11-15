@@ -1630,6 +1630,7 @@ GameObject:
   - component: {fileID: 223464268275452750}
   - component: {fileID: 114494409667712622}
   - component: {fileID: 114116666209643024}
+  - component: {fileID: 114191171162168876}
   m_Layer: 1
   m_Name: Canvas
   m_TagString: Untagged
@@ -3720,7 +3721,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1619824420385786}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.400002, y: 0, z: -19}
+  m_LocalPosition: {x: 9.6, y: 0, z: -17.7}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4285027765002698}
@@ -4323,6 +4324,18 @@ MonoBehaviour:
   canAttack: 0
   WongleHealth: 100
   type: 0
+--- !u!114 &114191171162168876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1821115775453970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6e77fae70036549b55d77196209a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OGRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &114195342817636414
 MonoBehaviour:
   m_ObjectHideFlags: 1

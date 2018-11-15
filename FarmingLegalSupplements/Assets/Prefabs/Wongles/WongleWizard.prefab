@@ -339,6 +339,7 @@ GameObject:
   - component: {fileID: 223505254236063326}
   - component: {fileID: 114374822227291826}
   - component: {fileID: 114347685861083488}
+  - component: {fileID: 114062399107711562}
   m_Layer: 1
   m_Name: Canvas (1)
   m_TagString: Untagged
@@ -1061,7 +1062,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1914297654606578}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.27, y: 0, z: -21.8}
+  m_LocalPosition: {x: -26.5, y: 0, z: -29.1}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4104139970071460}
@@ -1640,6 +1641,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114062399107711562
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1531270739373934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6e77fae70036549b55d77196209a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OGRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &114078615418207760
 MonoBehaviour:
   m_ObjectHideFlags: 1
