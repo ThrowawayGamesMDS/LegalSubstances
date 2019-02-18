@@ -82,7 +82,7 @@ public class SelectionBox : MonoBehaviour {
     public List <GameObject> m_lCtrlUnits;
     Vector3 mousePosition1;
     public Camera camera;
-    public GameObject ClickOBJ;
+    public GameObject[] m_goSelectOBJ; // 0 = DEFAULT, 1 = NPC, 2 = RESOURCE
     public GameObject selectionCirclePrefab;
 
     private RaycastHit GenerateRayCast(Ray ray, int layermask, bool _bCtrlSelect)
@@ -144,9 +144,20 @@ public class SelectionBox : MonoBehaviour {
             int layermask = LayerMask.GetMask("Ground");
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if(Physics.Raycast(ray, out hit, 1000, layermask))
+            if (Physics.Raycast(ray, out hit, 1000))
             {
-                Instantiate(ClickOBJ, hit.point, camera.transform.rotation);
+                if (hit.transform.gameObject.tag == "Wood")
+                {
+                    Instantiate(m_goSelectOBJ[2], hit.point, camera.transform.rotation);
+                }
+                else if (hit.transform.gameObject.tag == "Enemy")
+                {
+                    Instantiate(m_goSelectOBJ[1], hit.point, camera.transform.rotation);
+                }
+                else
+                {
+                    Instantiate(m_goSelectOBJ[0], hit.point, camera.transform.rotation);
+                }
             }
         }
 

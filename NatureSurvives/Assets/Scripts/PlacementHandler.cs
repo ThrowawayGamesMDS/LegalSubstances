@@ -30,9 +30,9 @@ public class PlacementHandler : MonoBehaviour
     }
     public m_ePlayerSelected m_eDisplayUi;
 
-    public enum m_ePlayerBuilding
+    public enum m_ePlayerBuilding // 
     {
-       DEFAULT, P_MID_WALL ,P_WALL_START, P_WALL_FINISH, P_WALL_DOOR
+       DEFAULT = 5, P_MID_WALL = 1 ,P_WALL_START = 0, P_WALL_FINISH = 2, P_WALL_DOOR = 3
     }
     public m_ePlayerBuilding m_ePlayerIsBuilding;
 
@@ -137,14 +137,15 @@ public class PlacementHandler : MonoBehaviour
     }
 
 
-    private void PlaceHandle(bool _bBarricade, int _iObj, Vector3 _vec3Pos) // iObj == object to spawn within array
+    //private void PlaceHandle(bool _bBarricade, int _iObj, Vector3 _vec3Pos) // iObj == object to spawn within array
+    private void PlaceHandle(bool _bBarricade, Vector3 _vec3Pos)
     {
         m_goSuccessfulBuild = Instantiate(m_goParticleEffects[0], _vec3Pos, m_goParticleEffects[0].transform.rotation) as GameObject;
         switch (_bBarricade)
         {
             case true:
                 {
-                    m_goBarricadePlacements.Add(Instantiate(m_goBarricadeWallObj[_iObj], _vec3Pos, Quaternion.identity));
+                    m_goBarricadePlacements.Add(Instantiate(m_goBarricadeWallObj[(int)m_ePlayerIsBuilding], _vec3Pos, Quaternion.identity));
                     if (m_goBarricadePlacements.Count != 0)
                     {
                         m_goBarricadePlacements[m_goBarricadePlacements.Count - 1].transform.rotation = m_goPlacementDefault.transform.rotation;
@@ -154,6 +155,7 @@ public class PlacementHandler : MonoBehaviour
                         m_goBarricadePlacements[m_goBarricadePlacements.Count].transform.rotation = m_goPlacementDefault.transform.rotation;
                     }
                     Destroy(m_goPlacementDefault);
+                    
                     break;
                 }
             case false:
@@ -199,6 +201,9 @@ public class PlacementHandler : MonoBehaviour
                  * Do door placement post wall placement and replace adjacent pieces with the door
                  * 
                  * 
+                 * TO DO: figure out a cost for each placement, create AI to adjust overall placement incl door to player's current cash val
+                 *          if the total amount exceeds their resource amt
+                 * 
                  ***/
 
                 switch(m_ePlayerIsBuilding)
@@ -206,26 +211,26 @@ public class PlacementHandler : MonoBehaviour
                     case m_ePlayerBuilding.P_WALL_START:
                         {
                            
-                            PlaceHandle(true, 0, pos);
+                            PlaceHandle(true, pos);
                             m_ePlayerIsBuilding = m_ePlayerBuilding.P_MID_WALL;
                             break;
                         }
                     case m_ePlayerBuilding.P_MID_WALL:
                         {
-                            PlaceHandle(true, 1, pos);
+                            PlaceHandle(true, pos);
                             m_ePlayerIsBuilding = m_ePlayerBuilding.P_MID_WALL;
                             break;
                         }
                     case m_ePlayerBuilding.P_WALL_DOOR:
 
                         {
-                            PlaceHandle(true, 0, pos);
+                            PlaceHandle(true, pos);
                             m_ePlayerIsBuilding = m_ePlayerBuilding.DEFAULT;
                             break;
                         }
                     case m_ePlayerBuilding.P_WALL_FINISH:
                         {
-                            PlaceHandle(true, 2, pos);
+                            PlaceHandle(true, pos);
                             m_ePlayerIsBuilding = m_ePlayerBuilding.P_WALL_DOOR;
                             break;
                         }
@@ -242,7 +247,7 @@ public class PlacementHandler : MonoBehaviour
                     {
                         if (HouseController.CrystalAmount >= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().CrystalCost)
                         {
-                            PlaceHandle(false, m_iCurrentlyPlacing, pos);
+                            PlaceHandle(false, pos);
                             m_ePlayerState = PlayerStates.DEFAULT;
                         }
                     }
@@ -421,6 +426,7 @@ public class PlacementHandler : MonoBehaviour
         {
             Debug.Break();
         }
+        
 
         if (m_ePlayerState == PlayerStates.PLACING)
         {
