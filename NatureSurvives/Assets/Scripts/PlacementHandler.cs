@@ -136,6 +136,53 @@ public class PlacementHandler : MonoBehaviour
         Destroy(_destroy);
     }
 
+
+    private void PlaceHandle(bool _bBarricade, int _iObj, Vector3 _vec3Pos) // iObj == object to spawn within array
+    {
+        m_goSuccessfulBuild = Instantiate(m_goParticleEffects[0], _vec3Pos, m_goParticleEffects[0].transform.rotation) as GameObject;
+        switch (_bBarricade)
+        {
+            case true:
+                {
+                    m_goBarricadePlacements.Add(Instantiate(m_goBarricadeWallObj[_iObj], _vec3Pos, Quaternion.identity));
+                    if (m_goBarricadePlacements.Count != 0)
+                    {
+                        m_goBarricadePlacements[m_goBarricadePlacements.Count - 1].transform.rotation = m_goPlacementDefault.transform.rotation;
+                    }
+                    else
+                    {
+                        m_goBarricadePlacements[m_goBarricadePlacements.Count].transform.rotation = m_goPlacementDefault.transform.rotation;
+                    }
+                    Destroy(m_goPlacementDefault);
+                    break;
+                }
+            case false:
+                {
+                    // Adjust player resources
+                    HouseController.WhiteAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().FoodCost;
+                    HouseController.WoodAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().WoodCost;
+                    HouseController.CrystalAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().CrystalCost;
+
+                    //Placement Occurs Here
+                    m_goObjsPlaced.Add(Instantiate(m_goPossibleObjects[m_iCurrentlyPlacing], _vec3Pos, Quaternion.identity));
+
+                    // Bundy Null fix
+                    if (m_goObjsPlaced.Count != 0)
+                    {
+                        m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.rotation = m_goPlacementDefault.transform.rotation;
+                    }
+                    else
+                    {
+                        m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.rotation = m_goPlacementDefault.transform.rotation;
+                    }
+
+                    Destroy(m_goPlacementDefault);
+                    break;
+                }
+        }
+        StartCoroutine(DestroyParticle(m_goSuccessfulBuild, 1.5f));
+    }
+
     private void PlaceAnObject()
     {
         RaycastHit _rhCheck = GenerateRayCast(Camera.main.transform.position.y * 2, true);
@@ -158,30 +205,28 @@ public class PlacementHandler : MonoBehaviour
                 {
                     case m_ePlayerBuilding.P_WALL_START:
                         {
-                            m_goSuccessfulBuild = Instantiate(m_goParticleEffects[0], pos, m_goParticleEffects[0].transform.rotation) as GameObject;
-                            m_goBarricadePlacements.Add(Instantiate(m_goBarricadeWallObj[0], pos, Quaternion.identity));
-                            m_goBarricadePlacements[m_goBarricadePlacements.Count - 1].transform.rotation = m_goPlacementDefault.transform.rotation;
-                            Destroy(m_goPlacementDefault);
-                            StartCoroutine(DestroyParticle(m_goSuccessfulBuild, 1.5f));
+                           
+                            PlaceHandle(true, 0, pos);
                             m_ePlayerIsBuilding = m_ePlayerBuilding.P_MID_WALL;
                             break;
                         }
                     case m_ePlayerBuilding.P_MID_WALL:
                         {
-
+                            PlaceHandle(true, 1, pos);
+                            m_ePlayerIsBuilding = m_ePlayerBuilding.P_MID_WALL;
                             break;
                         }
                     case m_ePlayerBuilding.P_WALL_DOOR:
+
                         {
-                            m_goSuccessfulBuild = Instantiate(m_goParticleEffects[0], pos, m_goParticleEffects[0].transform.rotation) as GameObject;
-                            m_goObjsPlaced.Add(Instantiate(m_goBarricadeWallObj[2], pos, Quaternion.identity));
-                            m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.rotation = m_goPlacementDefault.transform.rotation;
-                            Destroy(m_goPlacementDefault);
-                            StartCoroutine(DestroyParticle(m_goSuccessfulBuild, 1.5f));
+                            PlaceHandle(true, 0, pos);
+                            m_ePlayerIsBuilding = m_ePlayerBuilding.DEFAULT;
                             break;
                         }
                     case m_ePlayerBuilding.P_WALL_FINISH:
                         {
+                            PlaceHandle(true, 2, pos);
+                            m_ePlayerIsBuilding = m_ePlayerBuilding.P_WALL_DOOR;
                             break;
                         }
                     default:
@@ -197,25 +242,7 @@ public class PlacementHandler : MonoBehaviour
                     {
                         if (HouseController.CrystalAmount >= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().CrystalCost)
                         {
-                            HouseController.WhiteAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().FoodCost;
-                            HouseController.WoodAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().WoodCost;
-                            HouseController.CrystalAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().CrystalCost;
-                            m_goSuccessfulBuild = Instantiate(m_goParticleEffects[0], pos, m_goParticleEffects[0].transform.rotation) as GameObject;
-                            m_goObjsPlaced.Add(Instantiate(m_goPossibleObjects[m_iCurrentlyPlacing], pos, Quaternion.identity));
-
-
-                            if (m_goObjsPlaced.Count != 0)
-                            {
-                                m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.rotation = m_goPlacementDefault.transform.rotation;
-                            }
-                            else
-                            {
-                                m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.rotation = m_goPlacementDefault.transform.rotation;
-                            }
-
-
-                            Destroy(m_goPlacementDefault);
-                            StartCoroutine(DestroyParticle(m_goSuccessfulBuild, 1.5f));
+                            PlaceHandle(false, m_iCurrentlyPlacing, pos);
                             m_ePlayerState = PlayerStates.DEFAULT;
                         }
                     }
