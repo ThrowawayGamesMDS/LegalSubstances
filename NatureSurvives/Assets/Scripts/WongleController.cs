@@ -9,6 +9,7 @@ public class WongleController : MonoBehaviour
     public Camera camera;
     public Animator anim;
     public GameObject Home;
+    public GameObject StorageBuilding;
     public GameObject Work;
     public GameObject Target;
     public GameObject attackEffect;
@@ -32,6 +33,7 @@ public class WongleController : MonoBehaviour
     {
         type = gameObject.GetComponent<SelectableUnitComponent>().Type;
         Home = GameObject.FindGameObjectWithTag("HomeBuilding");
+        StorageBuilding = Home;
         isGoingHome = true;
         canAttack = true;
     }
@@ -121,7 +123,7 @@ public class WongleController : MonoBehaviour
             {
                 if (isGoingHome)
                 {
-                    agent.SetDestination(Home.transform.position);
+                    agent.SetDestination(StorageBuilding.transform.position);
                 }
                 else
                 {
@@ -288,7 +290,6 @@ public class WongleController : MonoBehaviour
                                 Destroy(Target);
                             }
                         }
-
                     }
                 }
                 else
@@ -305,9 +306,26 @@ public class WongleController : MonoBehaviour
 
                 if (isGoingHome)
                 {
+                    if(FindClosestTag("Storage") != null)
+                    {
+                        GameObject obj = FindClosestTag("Storage");
+                        if (Vector3.Distance(Home.transform.position, transform.position) > Vector3.Distance(obj.transform.position, transform.position))
+                        {
+                            StorageBuilding = obj;
+                        }
+                        else
+                        {
+                            StorageBuilding = Home;    
+                        }
+                    }
+                    else
+                    {
+                        StorageBuilding = Home;
+                    }
+
                     anim.Play("WalkCycle");
                     agent.isStopped = false;
-                    agent.SetDestination(Home.transform.position);
+                    agent.SetDestination(StorageBuilding.transform.position);
 
                 }
 
@@ -375,9 +393,25 @@ public class WongleController : MonoBehaviour
 
                 if (isGoingHome)
                 {
+                    if (FindClosestTag("Storage") != null)
+                    {
+                        GameObject obj = FindClosestTag("Storage");
+                        if (Vector3.Distance(Home.transform.position, transform.position) > Vector3.Distance(obj.transform.position, transform.position))
+                        {
+                            StorageBuilding = obj;
+                        }
+                        else
+                        {
+                            StorageBuilding = Home;
+                        }
+                    }
+                    else
+                    {
+                        StorageBuilding = Home;
+                    }
                     anim.Play("WalkCycle");
                     agent.isStopped = false;
-                    agent.SetDestination(Home.transform.position);
+                    agent.SetDestination(StorageBuilding.transform.position);
 
                 }
 
