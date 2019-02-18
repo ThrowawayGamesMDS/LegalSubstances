@@ -14,7 +14,9 @@ public class PlacementHandler : MonoBehaviour
     public GameObject m_goCurrentlyPlacing;
     public GameObject[] m_goParticleEffects; // 0 = building
     public GameObject m_goSuccessfulBuild;
+    public GameObject[] m_goBarricadeWallObj;
     public List<GameObject> m_goObjsPlaced;
+    public List<GameObject> m_goBarricadePlacements;
     public int m_iObjsPlaced;
     public int m_iMaxObjsPlaceable;
     public int m_iCurrentlyPlacing;
@@ -28,6 +30,11 @@ public class PlacementHandler : MonoBehaviour
     }
     public m_ePlayerSelected m_eDisplayUi;
 
+    public enum m_ePlayerBuilding
+    {
+       DEFAULT, P_MID_WALL ,P_WALL_START, P_WALL_FINISH, P_WALL_DOOR
+    }
+    public m_ePlayerBuilding m_ePlayerIsBuilding;
 
     public enum PlayerStates
     {
@@ -46,6 +53,7 @@ public class PlacementHandler : MonoBehaviour
         m_goPlacementDefault = m_goObjPlacementOk[m_iCurrentlyPlacing];
         m_bBadPlacement = false;
         m_eDisplayUi = m_ePlayerSelected.DEFAULT;
+        m_ePlayerIsBuilding = m_ePlayerBuilding.DEFAULT;
         m_bRefreshBuild = false;
     }
 
@@ -135,22 +143,81 @@ public class PlacementHandler : MonoBehaviour
         pos = new Vector3(Mathf.Round(pos.x/10)*10, pos.y, Mathf.Round(pos.z / 10) * 10);
         if (!PlacementUnacceptable(pos))
         {
-            if (HouseController.WhiteAmount >= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().FoodCost)
+            if (m_ePlayerIsBuilding != m_ePlayerBuilding.DEFAULT)
             {
-                if (HouseController.WoodAmount >= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().WoodCost)
+                /***
+                 * 
+                 * 
+                 * Need to remember the cost - adjust the possible amount to be placed and update the last with the wall_end obj.
+                 * Do door placement post wall placement and replace adjacent pieces with the door
+                 * 
+                 * 
+                 ***/
+
+                switch(m_ePlayerIsBuilding)
                 {
-                    if (HouseController.CrystalAmount >= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().CrystalCost)
+                    case m_ePlayerBuilding.P_WALL_START:
+                        {
+                            m_goSuccessfulBuild = Instantiate(m_goParticleEffects[0], pos, m_goParticleEffects[0].transform.rotation) as GameObject;
+                            m_goBarricadePlacements.Add(Instantiate(m_goBarricadeWallObj[0], pos, Quaternion.identity));
+                            m_goBarricadePlacements[m_goBarricadePlacements.Count - 1].transform.rotation = m_goPlacementDefault.transform.rotation;
+                            Destroy(m_goPlacementDefault);
+                            StartCoroutine(DestroyParticle(m_goSuccessfulBuild, 1.5f));
+                            m_ePlayerIsBuilding = m_ePlayerBuilding.P_MID_WALL;
+                            break;
+                        }
+                    case m_ePlayerBuilding.P_MID_WALL:
+                        {
+
+                            break;
+                        }
+                    case m_ePlayerBuilding.P_WALL_DOOR:
+                        {
+                            m_goSuccessfulBuild = Instantiate(m_goParticleEffects[0], pos, m_goParticleEffects[0].transform.rotation) as GameObject;
+                            m_goObjsPlaced.Add(Instantiate(m_goBarricadeWallObj[2], pos, Quaternion.identity));
+                            m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.rotation = m_goPlacementDefault.transform.rotation;
+                            Destroy(m_goPlacementDefault);
+                            StartCoroutine(DestroyParticle(m_goSuccessfulBuild, 1.5f));
+                            break;
+                        }
+                    case m_ePlayerBuilding.P_WALL_FINISH:
+                        {
+                            break;
+                        }
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                // BASE PLACEMENT
+                if (HouseController.WhiteAmount >= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().FoodCost)
+                {
+                    if (HouseController.WoodAmount >= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().WoodCost)
                     {
-                        HouseController.WhiteAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().FoodCost;
-                        HouseController.WoodAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().WoodCost;
-                        HouseController.CrystalAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().CrystalCost;
-                        m_goSuccessfulBuild = Instantiate(m_goParticleEffects[0], pos, m_goParticleEffects[0].transform.rotation) as GameObject;
-                        m_goObjsPlaced.Add(Instantiate(m_goPossibleObjects[m_iCurrentlyPlacing], pos, Quaternion.identity));
-                        m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.rotation = m_goPlacementDefault.transform.rotation;
-                        // m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.SetParent(GameObject.FindGameObjectWithTag("PlacementObjs").transform);
-                        Destroy(m_goPlacementDefault);
-                        StartCoroutine(DestroyParticle(m_goSuccessfulBuild, 1.5f));
-                        m_ePlayerState = PlayerStates.DEFAULT;
+                        if (HouseController.CrystalAmount >= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().CrystalCost)
+                        {
+                            HouseController.WhiteAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().FoodCost;
+                            HouseController.WoodAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().WoodCost;
+                            HouseController.CrystalAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().CrystalCost;
+                            m_goSuccessfulBuild = Instantiate(m_goParticleEffects[0], pos, m_goParticleEffects[0].transform.rotation) as GameObject;
+                            m_goObjsPlaced.Add(Instantiate(m_goPossibleObjects[m_iCurrentlyPlacing], pos, Quaternion.identity));
+
+
+                            if (m_goObjsPlaced.Count != 0)
+                            {
+                                m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.rotation = m_goPlacementDefault.transform.rotation;
+                            }
+                            else
+                            {
+                                m_goObjsPlaced[m_goObjsPlaced.Count - 1].transform.rotation = m_goPlacementDefault.transform.rotation;
+                            }
+
+
+                            Destroy(m_goPlacementDefault);
+                            StartCoroutine(DestroyParticle(m_goSuccessfulBuild, 1.5f));
+                            m_ePlayerState = PlayerStates.DEFAULT;
+                        }
                     }
                 }
             }
@@ -199,6 +266,7 @@ public class PlacementHandler : MonoBehaviour
                     m_eDisplayUi = m_ePlayerSelected.WHITE_FARM;
                     break;
                 }
+
             default:
                 break;
         }
