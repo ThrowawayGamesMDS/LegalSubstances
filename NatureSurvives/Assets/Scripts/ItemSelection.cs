@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ItemSelection : MonoBehaviour {
-    public Camera camera;
+    public Camera Ccamera;
     public GameObject SelectedObject;
-    public Text name;
+    public Text nametxt;
     public Text description;
 	
 	// Update is called once per frame
@@ -16,7 +16,7 @@ public class ItemSelection : MonoBehaviour {
        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             //create raycast to mouse position
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Ccamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             int layermask =~ LayerMask.GetMask("GridSquare");
             if (Physics.Raycast(ray, out hit, 1000))
@@ -46,14 +46,14 @@ public class ItemSelection : MonoBehaviour {
         if (SelectedObject != null)
         {
             //change ui text to objects specific text
-            name.text = SelectedObject.GetComponent<SelectableObject>().Name;
+            nametxt.text = SelectedObject.GetComponent<SelectableObject>().Name;
             description.text = SelectedObject.GetComponent<SelectableObject>().Description;
         }
         //if no object is selected
         else
         {
             //set ui text to nothing
-            name.text = "";
+            nametxt.text = "";
             description.text = "";
             
         }

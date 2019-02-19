@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class WongleController : MonoBehaviour
 {
     public NavMeshAgent agent;
-    public Camera camera;
     public Animator anim;
     public GameObject Home;
     public GameObject StorageBuilding;
@@ -26,7 +25,16 @@ public class WongleController : MonoBehaviour
     public float WongleHealth;
     public SelectableUnitComponent.workerType type;
     private Vector3 placeholderPosition;
-    
+
+    [Header("XP Stuff")]
+    public int iOverallLevel;
+    public int iWoodCutLevel;
+    public int iMineLevel, iFarmLevel;
+    public float iTreesCut, iRocksMined, iFarmsHarvested;
+
+
+
+
 
     // Use this for initialization
     void Start()
@@ -74,7 +82,15 @@ public class WongleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //check level of resource gathering
+        iWoodCutLevel = Mathf.FloorToInt(Mathf.Sqrt((iTreesCut/3)));
+        iFarmLevel = Mathf.FloorToInt(Mathf.Sqrt((iFarmsHarvested/3)));
+        iMineLevel = Mathf.FloorToInt(Mathf.Sqrt((iRocksMined/3)));
+        iOverallLevel = iWoodCutLevel + iMineLevel + iFarmLevel;
         
+        agent.speed = 7 + iOverallLevel;
+    
+      
 
         ChangePriority();
         if (WongleHealth <= 0)
@@ -139,32 +155,15 @@ public class WongleController : MonoBehaviour
                         {
                             if (isGoingHome)
                             {
-                                switch (Work.GetComponent<BuildingController>().input)
-                                {
-                                    case "Seeds":
-                                        {
-                                            inputAmount += Work.GetComponent<BuildingController>().AmountProduced;
+                                inputAmount += Work.GetComponent<BuildingController>().AmountProduced;
 
-                                            break;
-                                        }
-                                    default:
-                                        {
-                                            break;
-                                        }
-                                }
-                                switch (Work.GetComponent<BuildingController>().output)
+                                //HouseController.WhiteAmount += Mathf.RoundToInt(outputAmount * (iFarmLevel / 3));
+                                if(iFarmLevel > 0)
                                 {
-                                    case "White":
-                                        {
-                                            HouseController.WhiteAmount += Mathf.RoundToInt(outputAmount);
-                                            outputAmount = 0;
-                                            break;
-                                        }
-                                    default:
-                                        {
-                                            break;
-                                        }
+                                    outputAmount += ((iFarmLevel * outputAmount) / 3);
                                 }
+                                HouseController.WhiteAmount += Mathf.RoundToInt(outputAmount);
+                                outputAmount = 0;
                                 isGoingHome = !isGoingHome;
                             }
                             else
@@ -176,6 +175,7 @@ public class WongleController : MonoBehaviour
                                 {
                                     outputAmount += Work.GetComponent<BuildingController>().outputAmount;
                                     Work.GetComponent<BuildingController>().outputAmount = 0;
+                                    iFarmsHarvested++;
                                     isGoingHome = !isGoingHome;
                                     Work.GetComponent<BuildingController>().isOccupied = false;
                                 }
@@ -337,8 +337,13 @@ public class WongleController : MonoBehaviour
                         {
                             if (isGoingHome)
                             {
+                                if (iWoodCutLevel > 0)
+                                {
+                                    outputAmount += ((iWoodCutLevel * outputAmount) / 3);
+                                }
                                 HouseController.WoodAmount += Mathf.RoundToInt(outputAmount);
                                 outputAmount = 0;
+                                iWoodCutLevel++;
                                 isGoingHome = !isGoingHome;
                             }
                         }
@@ -409,6 +414,8 @@ public class WongleController : MonoBehaviour
                     {
                         StorageBuilding = Home;
                     }
+
+
                     anim.Play("WalkCycle");
                     agent.isStopped = false;
                     agent.SetDestination(StorageBuilding.transform.position);
@@ -423,8 +430,13 @@ public class WongleController : MonoBehaviour
                         {
                             if (isGoingHome)
                             {
+                                if (iMineLevel > 0)
+                                {
+                                    outputAmount += ((iMineLevel * outputAmount) / 3);
+                                }
                                 HouseController.CrystalAmount += Mathf.RoundToInt(outputAmount);
                                 outputAmount = 0;
+                                iRocksMined++;
                                 isGoingHome = !isGoingHome;
                             }
                         }
