@@ -106,6 +106,7 @@ public class EnemyController : MonoBehaviour {
 
         if (!agent.pathPending)
         {
+            gameObject.transform.LookAt(targetsInArea[0].transform);
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
                 if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
@@ -129,6 +130,7 @@ public class EnemyController : MonoBehaviour {
                                     targetsInArea[0].GetComponent<WongleController>().WongleHealth -= 20 * Time.deltaTime;
                                     break;
                                 }
+                               
                         }
 
                         
