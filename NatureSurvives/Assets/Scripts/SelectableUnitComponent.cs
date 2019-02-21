@@ -28,8 +28,9 @@ public class SelectableUnitComponent : MonoBehaviour {
                 RaycastHit hit;
                 Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
-                if (Physics.Raycast(ray, out hit, layermask))
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, layermask))
                 {
+                    print(hit.transform.tag);
                     switch (hit.transform.tag)
                     {
                         case "Ground":
