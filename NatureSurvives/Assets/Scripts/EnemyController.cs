@@ -116,7 +116,7 @@ public class EnemyController : MonoBehaviour {
              ***/
             if (targetsInArea[0].transform.tag == "HomeBuilding")
             {
-                gameObject.transform.LookAt(targetsInArea[0].transform);
+                //gameObject.transform.LookAt(targetsInArea[0].transform);
             }
 
 

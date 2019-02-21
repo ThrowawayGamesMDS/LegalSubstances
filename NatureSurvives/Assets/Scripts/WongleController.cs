@@ -192,7 +192,7 @@ public class WongleController : MonoBehaviour
                 {
                     if (FindClosestTag("Enemy") != null)
                     {
-                        gameObject.transform.LookAt(Target.transform);
+                        //gameObject.transform.LookAt(Target.transform);
                         GameObject obj = FindClosestTag("Enemy");
                         if (Vector3.Distance(transform.position, obj.transform.position) <= 30)
                         {

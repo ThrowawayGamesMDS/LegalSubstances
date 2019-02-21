@@ -23,7 +23,7 @@ public class DayNight : MonoBehaviour {
         {
             
             isDay = false;
-            sun.SetActive(false);
+            //sun.SetActive(false);
             if (counted)
             {
                 
@@ -39,7 +39,7 @@ public class DayNight : MonoBehaviour {
                 counted = !counted;
             }
             isDay = true;
-            sun.SetActive(true);
+            //sun.SetActive(true);
         }
         transform.Rotate(daynightSpeed * Time.deltaTime, 0, 0);
         b_day = isDay;

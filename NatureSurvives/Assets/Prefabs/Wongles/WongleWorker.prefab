@@ -3347,9 +3347,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 195241972787841118}
-  camera: {fileID: 0}
   anim: {fileID: 95011237048766116}
   Home: {fileID: 0}
+  StorageBuilding: {fileID: 0}
   Work: {fileID: 0}
   Target: {fileID: 0}
   attackEffect: {fileID: 197384, guid: 14a2785dfaaacbf48801d0d9b05f7138, type: 3}
@@ -3365,6 +3365,13 @@ MonoBehaviour:
   canAttack: 0
   WongleHealth: 100
   type: 0
+  iOverallLevel: 0
+  iWoodCutLevel: 0
+  iMineLevel: 0
+  iFarmLevel: 0
+  iTreesCut: 0
+  iRocksMined: 0
+  iFarmsHarvested: 0
 --- !u!114 &114328893541499344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4913,7 +4920,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a8a75bc20d2cc0b42b8c227f52d3f263, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d6a101ae1935ae241a522993553755c8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

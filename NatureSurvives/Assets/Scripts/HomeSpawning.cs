@@ -4,88 +4,97 @@ using UnityEngine;
 
 public class HomeSpawning : MonoBehaviour {
     public List<GameObject> Prefabs;
-    
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
+    public int iCurrentWongleCount;
+    public int iMaximumWongleCount;
+
+    private void Start()
+    {
+        iMaximumWongleCount = 10;
+    }
     public void SpawnUnit(string unittype)
     {
-        GameObject temp;
-        switch (unittype)
+        if(iCurrentWongleCount < iMaximumWongleCount)
         {
-            case "Worker":
-                {
-                    if(HouseController.WoodAmount >= Prefabs[0].GetComponent<costToPlace>().WoodCost)
+            GameObject temp;
+            switch (unittype)
+            {
+                case "Worker":
                     {
-                        if (HouseController.CrystalAmount >= Prefabs[0].GetComponent<costToPlace>().CrystalCost)
+                        if(HouseController.WoodAmount >= Prefabs[0].GetComponent<costToPlace>().WoodCost)
                         {
-                            if (HouseController.WhiteAmount >= Prefabs[0].GetComponent<costToPlace>().FoodCost)
+                            if (HouseController.CrystalAmount >= Prefabs[0].GetComponent<costToPlace>().CrystalCost)
                             {
-                                temp = Instantiate(Prefabs[0], transform.position, Prefabs[0].transform.rotation);
-                                temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
-                                temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(20, 0, -20));
-                                HouseController.WoodAmount -= Prefabs[0].GetComponent<costToPlace>().WoodCost;
-                                HouseController.CrystalAmount -= Prefabs[0].GetComponent<costToPlace>().CrystalCost;
-                                HouseController.WhiteAmount -= Prefabs[0].GetComponent<costToPlace>().FoodCost;
+                                if (HouseController.WhiteAmount >= Prefabs[0].GetComponent<costToPlace>().FoodCost)
+                                {
+                                    temp = Instantiate(Prefabs[0], transform.position, Prefabs[0].transform.rotation);
+                                    temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
+                                    temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(20, 0, -20));
+                                    HouseController.WoodAmount -= Prefabs[0].GetComponent<costToPlace>().WoodCost;
+                                    HouseController.CrystalAmount -= Prefabs[0].GetComponent<costToPlace>().CrystalCost;
+                                    HouseController.WhiteAmount -= Prefabs[0].GetComponent<costToPlace>().FoodCost;
 
+                                }
                             }
                         }
-                    }
                     
-                    break;
-                }
-            case "Wizard":
-                {
-                    if (HouseController.WoodAmount >= Prefabs[1].GetComponent<costToPlace>().WoodCost)
+                        break;
+                    }
+                case "Wizard":
                     {
-                        if (HouseController.CrystalAmount >= Prefabs[1].GetComponent<costToPlace>().CrystalCost)
+                        if (HouseController.WoodAmount >= Prefabs[1].GetComponent<costToPlace>().WoodCost)
                         {
-                            if (HouseController.WhiteAmount >= Prefabs[1].GetComponent<costToPlace>().FoodCost)
+                            if (HouseController.CrystalAmount >= Prefabs[1].GetComponent<costToPlace>().CrystalCost)
                             {
-                                temp = Instantiate(Prefabs[1], transform.position, Prefabs[1].transform.rotation);
-                                temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
-                                temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(10, 0, -20));
-                                HouseController.WoodAmount -= Prefabs[1].GetComponent<costToPlace>().WoodCost;
-                                HouseController.CrystalAmount -= Prefabs[1].GetComponent<costToPlace>().CrystalCost;
-                                HouseController.WhiteAmount -= Prefabs[1].GetComponent<costToPlace>().FoodCost;
+                                if (HouseController.WhiteAmount >= Prefabs[1].GetComponent<costToPlace>().FoodCost)
+                                {
+                                    temp = Instantiate(Prefabs[1], transform.position, Prefabs[1].transform.rotation);
+                                    temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
+                                    temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(10, 0, -20));
+                                    HouseController.WoodAmount -= Prefabs[1].GetComponent<costToPlace>().WoodCost;
+                                    HouseController.CrystalAmount -= Prefabs[1].GetComponent<costToPlace>().CrystalCost;
+                                    HouseController.WhiteAmount -= Prefabs[1].GetComponent<costToPlace>().FoodCost;
 
+                                }
                             }
                         }
-                    }
 
                     
-                    break;
-                }
-            case "Knight":
-                {
-
-                    if (HouseController.WoodAmount >= Prefabs[2].GetComponent<costToPlace>().WoodCost)
+                        break;
+                    }
+                case "Knight":
                     {
-                        if (HouseController.CrystalAmount >= Prefabs[2].GetComponent<costToPlace>().CrystalCost)
-                        {
-                            if (HouseController.WhiteAmount >= Prefabs[0].GetComponent<costToPlace>().FoodCost)
-                            {
-                                temp = Instantiate(Prefabs[2], transform.position, Prefabs[2].transform.rotation);
-                                temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
-                                temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(0, 0, -20));
-                                HouseController.WoodAmount -= Prefabs[2].GetComponent<costToPlace>().WoodCost;
-                                HouseController.CrystalAmount -= Prefabs[2].GetComponent<costToPlace>().CrystalCost;
-                                HouseController.WhiteAmount -= Prefabs[2].GetComponent<costToPlace>().FoodCost;
 
+                        if (HouseController.WoodAmount >= Prefabs[2].GetComponent<costToPlace>().WoodCost)
+                        {
+                            if (HouseController.CrystalAmount >= Prefabs[2].GetComponent<costToPlace>().CrystalCost)
+                            {
+                                if (HouseController.WhiteAmount >= Prefabs[0].GetComponent<costToPlace>().FoodCost)
+                                {
+                                    temp = Instantiate(Prefabs[2], transform.position, Prefabs[2].transform.rotation);
+                                    temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
+                                    temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(0, 0, -20));
+                                    HouseController.WoodAmount -= Prefabs[2].GetComponent<costToPlace>().WoodCost;
+                                    HouseController.CrystalAmount -= Prefabs[2].GetComponent<costToPlace>().CrystalCost;
+                                    HouseController.WhiteAmount -= Prefabs[2].GetComponent<costToPlace>().FoodCost;
+
+                                }
                             }
                         }
-                    }
                     
-                    break;
-                }
-            default:
-                {
-                    break;
-                }
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
+            }
         }
+        
 
     }
 
+    private void Update()
+    {
+        iCurrentWongleCount = GameObject.FindGameObjectsWithTag("Wongle").Length;
+    }
 }
