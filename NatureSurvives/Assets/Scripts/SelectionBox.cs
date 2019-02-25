@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public static class Utils
 {
@@ -85,6 +86,8 @@ public class SelectionBox : MonoBehaviour {
     public GameObject[] m_goSelectOBJ; // 0 = DEFAULT, 1 = NPC, 2 = RESOURCE
     public GameObject selectionCirclePrefab;
 
+    private int m_iUserID = -1;
+
     /***
      * Unit controller variables
      *      - FUNCTION(1 & 2) Controller 
@@ -94,6 +97,13 @@ public class SelectionBox : MonoBehaviour {
     public List<GameObject> m_goMeleeUnits;
     public List<GameObject> m_goRangedUnits;
     private bool[] m_bUnitsSelected;
+
+    private void Awake()
+    {
+        #if !UNITY_EDITOR
+            m_iUserID = 0;
+        #endif
+    }
 
     private void Start()
     {
@@ -311,42 +321,47 @@ public class SelectionBox : MonoBehaviour {
             {
                 case false:
                     {
-                        if (m_lCtrlUnits.Count > 0)
+                        if (EventSystem.current.IsPointerOverGameObject(m_iUserID) == false)
                         {
-                            foreach (var unit in m_lCtrlUnits)
+                            if (m_lCtrlUnits.Count > 0)
                             {
-                                if (unit.GetComponent<SelectableUnitComponent>().selectionCircle != null)
+                                foreach (var unit in m_lCtrlUnits)
                                 {
-                                    Destroy(unit.GetComponent<SelectableUnitComponent>().selectionCircle.gameObject);
-                                    unit.GetComponent<SelectableUnitComponent>().selectionCircle = null;
+                                    if (unit.GetComponent<SelectableUnitComponent>().selectionCircle != null)
+                                    {
+                                        Destroy(unit.GetComponent<SelectableUnitComponent>().selectionCircle.gameObject);
+                                        unit.GetComponent<SelectableUnitComponent>().selectionCircle = null;
+                                    }
                                 }
+                                m_lCtrlUnits.Clear();
                             }
-                            m_lCtrlUnits.Clear();
-                        }
+                            isSelecting = true;
+                            mousePosition1 = Input.mousePosition;
 
-                        isSelecting = true;
-                        mousePosition1 = Input.mousePosition;
-
-                        foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
-                        {
-                            if (selectableObject.selectionCircle != null)
+                            foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
                             {
-                                Destroy(selectableObject.selectionCircle.gameObject);
-                                selectableObject.selectionCircle = null;
+                                if (selectableObject.selectionCircle != null)
+                                {
+                                    Destroy(selectableObject.selectionCircle.gameObject);
+                                    selectableObject.selectionCircle = null;
+                                }
                             }
                         }
                         break;
                     }
                 case true:
                     {
-                        mousePosition1 = Input.mousePosition;
-
-                        foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
+                        if (EventSystem.current.IsPointerOverGameObject(m_iUserID) == false)
                         {
-                            if (selectableObject.selectionCircle != null && !m_bCtrlSelectUnits)
+                            mousePosition1 = Input.mousePosition;
+
+                            foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
                             {
-                                Destroy(selectableObject.selectionCircle.gameObject);
-                                selectableObject.selectionCircle = null;
+                                if (selectableObject.selectionCircle != null && !m_bCtrlSelectUnits)
+                                {
+                                    Destroy(selectableObject.selectionCircle.gameObject);
+                                    selectableObject.selectionCircle = null;
+                                }
                             }
                         }
                         break;
@@ -360,23 +375,24 @@ public class SelectionBox : MonoBehaviour {
             {
                 case false:
                     {
-                        var selectedObjects = new List<SelectableUnitComponent>();
-                        foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
-                        {
-                            if (IsWithinSelectionBounds(selectableObject.gameObject))
-                            {
-                                selectedObjects.Add(selectableObject);
-                            }
-                        }
-
+                         var selectedObjects = new List<SelectableUnitComponent>();
+                         foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
+                         {
+                             if (IsWithinSelectionBounds(selectableObject.gameObject))
+                             {
+                                 selectedObjects.Add(selectableObject);
+                             }
+                         }
 
                         isSelecting = false;
 
 
                         int layermask = LayerMask.GetMask("Wongle");
-                        
+
                         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
                         RaycastHit hit = GenerateRayCast(ray, layermask, false);
+
+                       
                         
                         break;
                     }
@@ -400,17 +416,20 @@ public class SelectionBox : MonoBehaviour {
                         }
                         else // deselection bug fix?
                         {
-                            if (hit.transform.GetComponent<SelectableUnitComponent>().selectionCircle != null)
+                            if (EventSystem.current.IsPointerOverGameObject(m_iUserID) == false)
                             {
-                                Destroy(hit.transform.GetComponent<SelectableUnitComponent>().selectionCircle);
-                                hit.transform.GetComponent<SelectableUnitComponent>().selectionCircle = null;
+                                if (hit.transform.GetComponent<SelectableUnitComponent>().selectionCircle != null)
+                                {
+                                    Destroy(hit.transform.GetComponent<SelectableUnitComponent>().selectionCircle);
+                                    hit.transform.GetComponent<SelectableUnitComponent>().selectionCircle = null;
+                                }
                             }
                             print("maybe do deslection here");
                         }
 
                      
                         print("Controlled units size: " + m_lCtrlUnits.Count);
-                        break;
+                            break;
                     }
             }
 
