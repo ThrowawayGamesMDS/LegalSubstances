@@ -17,7 +17,6 @@ public class WongleController : MonoBehaviour
     public GameObject WandEnd;
     public GameObject UnitSelect;
     public List<GameObject> Enemies;
-    public bool isSelected;
     public bool isGoingHome;
     public int inputAmount;
     public float outputAmount;

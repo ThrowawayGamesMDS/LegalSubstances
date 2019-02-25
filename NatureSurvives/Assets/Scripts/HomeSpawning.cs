@@ -9,6 +9,7 @@ public class HomeSpawning : MonoBehaviour {
 
     private void Start()
     {
+        iCurrentWongleCount = 5;
         iMaximumWongleCount = 10;
     }
     public void SpawnUnit(string unittype)
@@ -53,7 +54,7 @@ public class HomeSpawning : MonoBehaviour {
                                     HouseController.WoodAmount -= Prefabs[1].GetComponent<costToPlace>().WoodCost;
                                     HouseController.CrystalAmount -= Prefabs[1].GetComponent<costToPlace>().CrystalCost;
                                     HouseController.WhiteAmount -= Prefabs[1].GetComponent<costToPlace>().FoodCost;
-
+                                    GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>().m_goRangedUnits.Add(temp);
                                 }
                             }
                         }
@@ -76,7 +77,7 @@ public class HomeSpawning : MonoBehaviour {
                                     HouseController.WoodAmount -= Prefabs[2].GetComponent<costToPlace>().WoodCost;
                                     HouseController.CrystalAmount -= Prefabs[2].GetComponent<costToPlace>().CrystalCost;
                                     HouseController.WhiteAmount -= Prefabs[2].GetComponent<costToPlace>().FoodCost;
-
+                                    GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>().m_goMeleeUnits.Add(temp);
                                 }
                             }
                         }

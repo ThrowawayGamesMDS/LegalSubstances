@@ -85,6 +85,47 @@ public class SelectionBox : MonoBehaviour {
     public GameObject[] m_goSelectOBJ; // 0 = DEFAULT, 1 = NPC, 2 = RESOURCE
     public GameObject selectionCirclePrefab;
 
+    /***
+     * Unit controller variables
+     *      - FUNCTION(1 & 2) Controller 
+     ***/
+
+    private int m_iActiveCombatWongles;
+    public List<GameObject> m_goMeleeUnits;
+    public List<GameObject> m_goRangedUnits;
+    private bool[] m_bUnitsSelected;
+
+    private void Start()
+    {
+        m_goMeleeUnits = new List<GameObject>();
+        m_goRangedUnits = new List<GameObject>();
+        m_bUnitsSelected = new bool[2];
+
+        // bool system cheaper on performance then rechecking through an auto loop...
+        m_bUnitsSelected[0] = false; // Melee units
+        m_bUnitsSelected[1] = false; // Ranged Units
+
+
+        GameObject[] _goUnits;
+        _goUnits = GameObject.FindGameObjectsWithTag("Wongle");
+        //int _iTotalWongles = GameObject.FindGameObjectWithTag("HomeBuilding").GetComponent<HomeSpawning>().iCurrentWongleCount;
+        int _iTotalWongles = 5;
+       // GET THE HOMESPAWNER TOTAL WONGLE SPAWN COUNT
+        for (int i = 0; i < _iTotalWongles; i++)
+        {
+            if (_goUnits[i].GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Melee)
+            {
+                m_goMeleeUnits.Add(_goUnits[i]);
+                m_iActiveCombatWongles++;
+            }
+            else if (_goUnits[i].GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Ranged)
+            {
+                m_goRangedUnits.Add(_goUnits[i]);
+                m_iActiveCombatWongles++;
+            }
+        }
+    }
+
     private RaycastHit GenerateRayCast(Ray ray, int layermask, bool _bCtrlSelect)
     {
         RaycastHit hit;
@@ -127,6 +168,65 @@ public class SelectionBox : MonoBehaviour {
         return hit;
     }
 
+
+    private void RemoveSelectionCircleFromObjects()
+    {
+        foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
+        {
+            selectableObject.isSelected = false;
+            if (selectableObject.selectionCircle != null)
+            {
+                Destroy(selectableObject.selectionCircle.gameObject);
+                selectableObject.selectionCircle = null;
+            }
+        }
+    }
+
+    private void SelectEntireUnit(bool _bMeleeUnit)
+    {
+
+        // deselect other units?
+        RemoveSelectionCircleFromObjects();
+        switch (_bMeleeUnit)
+        {
+            case true:
+                {
+                    foreach (var unit in m_goMeleeUnits)
+                    {
+                        if (unit.GetComponent<SelectableUnitComponent>().selectionCircle == null)
+                        {
+                            unit.GetComponent<SelectableUnitComponent>().selectionCircle = Instantiate(selectionCirclePrefab);
+                            unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.SetParent(unit.transform, false);
+                            unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
+                            unit.GetComponent<SelectableUnitComponent>().isSelected = true;
+                        }
+                    }
+                    m_bUnitsSelected[1] = false;
+                    break;
+                }
+            case false:
+                {
+                    foreach (var unit in m_goRangedUnits)
+                    {
+                        if (unit.GetComponent<SelectableUnitComponent>().selectionCircle == null)
+                        {
+                            unit.GetComponent<SelectableUnitComponent>().selectionCircle = Instantiate(selectionCirclePrefab);
+                            unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.SetParent(unit.transform, false);
+                            unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
+                            unit.GetComponent<SelectableUnitComponent>().isSelected = true;
+                        }
+                    }
+                    m_bUnitsSelected[0] = false;
+                    break;
+                }
+        }
+    }
+
+    public static void UpdateUnitLists()
+    {
+
+    }
+
     void Update()
     {
         // If we press the left mouse button, begin selection and remember the location of the mouse
@@ -134,12 +234,55 @@ public class SelectionBox : MonoBehaviour {
         {
             m_bCtrlSelectUnits = true;
         }
+
         if (Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.RightControl))
         {
             m_bCtrlSelectUnits = false;
         }
 
-        if(Input.GetMouseButtonDown(1))
+        if (Input.GetKeyUp(KeyCode.F1))
+        {
+            switch (m_bUnitsSelected[0])
+            {
+                case true:
+                    {
+                        m_bUnitsSelected[0] = false;
+
+                        RemoveSelectionCircleFromObjects();
+                        break;
+                    }
+                case false:
+                    {
+                        m_bUnitsSelected[0] = true;
+                        SelectEntireUnit(true);
+                        break;
+                    }
+            }
+          
+        }
+
+        if (Input.GetKeyUp(KeyCode.F2))
+        {
+            switch (m_bUnitsSelected[1])
+            {
+                case true:
+                    {
+                        m_bUnitsSelected[1] = false;
+
+                        RemoveSelectionCircleFromObjects();
+                        break;
+                    }
+                case false:
+                    {
+                        m_bUnitsSelected[1] = true;
+                        SelectEntireUnit(false);
+                        break;
+                    }
+            }
+
+        }
+
+        if (Input.GetMouseButtonDown(1))
         {
             int layermask = LayerMask.GetMask("Ground");
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
@@ -285,6 +428,7 @@ public class SelectionBox : MonoBehaviour {
                 }
             }
         }
+
 
         // Highlight all objects within the selection box
         if (isSelecting)
