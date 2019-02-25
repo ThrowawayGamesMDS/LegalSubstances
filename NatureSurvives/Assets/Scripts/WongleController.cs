@@ -31,7 +31,9 @@ public class WongleController : MonoBehaviour
     public int iMineLevel, iFarmLevel;
     public float iTreesCut, iRocksMined, iFarmsHarvested;
 
-
+    [Header("Fishing Stuff")]
+    public float m_fTimeToFish;
+    public float m_fCurrentFishTime;
 
 
 
@@ -444,6 +446,30 @@ public class WongleController : MonoBehaviour
                 }
             }
 
+            if (Work.tag == "Builder")
+            {
+
+                if (Target != null)
+                {
+                    if (Vector3.Distance(transform.position, Target.transform.position) > 6)
+                    {
+                        if (!isGoingHome)
+                        {
+                            agent.isStopped = false;
+                            agent.stoppingDistance = 5;
+                            agent.SetDestination(Target.transform.position);
+                            anim.Play("WalkCycle");
+                        }
+                    }
+                    else
+                    {
+                        agent.isStopped = true;
+                        //building Animation animation
+                        anim.Play("PickaxeSwing");
+                        Target.GetComponent<ConstructionScript>().m_fCurrentCompletion += 1 * Time.deltaTime;                            
+                    }
+                }
+            }
         }
 
         if (agent.isStopped)
@@ -548,7 +574,11 @@ public class WongleController : MonoBehaviour
         else
         {
             agent.isStopped = false;
-            agent.SetDestination(placeholderPosition);
+            if (placeholderPosition != null)
+            {
+                agent.SetDestination(placeholderPosition);
+            }
+            
 
         }
     }
