@@ -78,6 +78,54 @@ public class ToggleWongleHand : MonoBehaviour {
                         }
                         break;
                     }
+                case "Builder":
+                    {
+
+                        if (!isLeftHand)
+                        {
+                            for (int i = 0; i < items.Count; i++)
+                            {
+                                items[i].SetActive(false);
+                            }
+                            items[4].SetActive(true);
+                        }
+                        else
+                        {
+                            for (int i = 0; i < items.Count; i++)
+                            {
+                                items[i].SetActive(false);
+                            }
+                            if (WongleMain.GetComponent<WongleController>().isGoingHome)
+                            {
+                                //items[1].SetActive(true);
+                            }
+                        }
+                        break;
+                    }
+                case "Fishermen":
+                    {
+
+                        if (!isLeftHand)
+                        {
+                            for (int i = 0; i < items.Count; i++)
+                            {
+                                items[i].SetActive(false);
+                            }
+                            items[5].SetActive(true);
+                        }
+                        else
+                        {
+                            for (int i = 0; i < items.Count; i++)
+                            {
+                                items[i].SetActive(false);
+                            }
+                            if (WongleMain.GetComponent<WongleController>().isGoingHome)
+                            {
+                                //items[1].SetActive(true);
+                            }
+                        }
+                        break;
+                    }
                 default:
                     {
                         if (!isLeftHand)

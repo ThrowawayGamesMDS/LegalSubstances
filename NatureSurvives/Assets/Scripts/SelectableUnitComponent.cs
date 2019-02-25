@@ -24,7 +24,7 @@ public class SelectableUnitComponent : MonoBehaviour {
             }
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                int layermask = LayerMask.GetMask("Ground", "Enemy", "Building", "GridObj");
+                int layermask = LayerMask.GetMask("Ground", "Enemy", "Building", "GridObj", "River");
                 RaycastHit hit;
                 Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
@@ -247,6 +247,50 @@ public class SelectableUnitComponent : MonoBehaviour {
                                     controller.Work = GameObject.FindGameObjectWithTag("Builder");
                                     transform.parent = controller.Work.transform;
                                     controller.Target = hit.transform.gameObject;
+                                    controller.isGoingHome = false;
+                                }
+                                else
+                                {
+                                    if (controller.Work != null)
+                                    {
+                                        if (controller.Work.tag == "Building")
+                                        {
+                                            controller.Work.GetComponent<BuildingController>().worker = null;
+                                        }
+                                        controller.Work = null;
+                                    }
+
+                                    if (controller.Target != null)
+                                    {
+                                        controller.Target = null;
+                                        if (controller.attackinstance != null)
+                                        {
+                                            Destroy(controller.attackinstance);
+                                        }
+
+                                    }
+                                    controller.agent.isStopped = false;
+                                    controller.agent.stoppingDistance = 7;
+                                    controller.agent.SetDestination(hit.point);
+                                }
+                                break;
+                            }
+                        case "River":
+                            {
+                                if (Type == workerType.Worker)
+                                {
+                                    if (controller.Work != null)
+                                    {
+                                        if (controller.Work.tag == "Building")
+                                        {
+                                            controller.Work.GetComponent<BuildingController>().worker = null;
+                                        }
+                                    }
+                                    controller.agent.stoppingDistance = 7;
+                                    controller.Work = GameObject.FindGameObjectWithTag("Fishermen");
+                                    transform.parent = controller.Work.transform;
+                                    controller.Target = hit.transform.gameObject;
+                                    controller.m_vFishingSpot = hit.point;
                                     controller.isGoingHome = false;
                                 }
                                 else

@@ -41,7 +41,7 @@ public class GridObject : MonoBehaviour {
         foreach (Transform child in transform)
         {
             //corrupt child
-            print("corrupted " + child.name);
+            //print("corrupted " + child.name);
             if (child.tag == "Wood")
             {
                 Instantiate(scuffedtree, child.transform.position, child.transform.rotation);

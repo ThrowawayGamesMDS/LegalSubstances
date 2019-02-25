@@ -28,13 +28,16 @@ public class WongleController : MonoBehaviour
     [Header("XP Stuff")]
     public int iOverallLevel;
     public int iWoodCutLevel;
+    public int iFishingLevel;
     public int iMineLevel, iFarmLevel;
-    public float iTreesCut, iRocksMined, iFarmsHarvested;
+    public float iTreesCut, iRocksMined, iFarmsHarvested, iFishCaught;
 
     [Header("Fishing Stuff")]
     public float m_fTimeToFish;
     public float m_fCurrentFishTime;
-
+    public float m_fFishingYield;
+    public Vector3 m_vFishingSpot;
+    public bool animlock, animlock2 = false;
 
 
     // Use this for initialization
@@ -75,23 +78,31 @@ public class WongleController : MonoBehaviour
         {
             gameObject.GetComponent<DangerPriority>().m_iDangerPriority = 5;
         }
-        
-        
+
+
     }
 
 
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            anim.Play("RodCast");
+        }
+
+
         //check level of resource gathering
-        iWoodCutLevel = Mathf.FloorToInt(Mathf.Sqrt((iTreesCut/3)));
-        iFarmLevel = Mathf.FloorToInt(Mathf.Sqrt((iFarmsHarvested/3)));
-        iMineLevel = Mathf.FloorToInt(Mathf.Sqrt((iRocksMined/3)));
+        iWoodCutLevel = Mathf.FloorToInt(Mathf.Sqrt((iTreesCut / 3)));
+        iFarmLevel = Mathf.FloorToInt(Mathf.Sqrt((iFarmsHarvested / 3)));
+        iMineLevel = Mathf.FloorToInt(Mathf.Sqrt((iRocksMined / 3)));
+        iFishingLevel = Mathf.FloorToInt(Mathf.Sqrt((iFishCaught / 3)));
         iOverallLevel = iWoodCutLevel + iMineLevel + iFarmLevel;
-        
+
         agent.speed = 7 + iOverallLevel;
-    
-      
+
+
 
         ChangePriority();
         if (WongleHealth <= 0)
@@ -108,7 +119,7 @@ public class WongleController : MonoBehaviour
                 {
                     if (!anim.GetCurrentAnimatorStateInfo(0).IsName("PickaxeSwing"))
                     {
-                            anim.Play("WalkCycle");
+                        anim.Play("WalkCycle");
                     }
                 }
 
@@ -125,7 +136,22 @@ public class WongleController : MonoBehaviour
                     {
                         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FlossDance"))
                         {
-                            anim.Play("Idle");
+                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("RodCast"))
+                            {
+                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FishingIdle"))
+                                {
+                                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("CatchReel"))
+                                    {
+                                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("CatchAdmireIdle"))
+                                        {
+                                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FishingEnd"))
+                                            {
+                                                anim.Play("Idle");
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -159,7 +185,7 @@ public class WongleController : MonoBehaviour
                                 inputAmount += Work.GetComponent<BuildingController>().AmountProduced;
 
                                 //HouseController.WhiteAmount += Mathf.RoundToInt(outputAmount * (iFarmLevel / 3));
-                                if(iFarmLevel > 0)
+                                if (iFarmLevel > 0)
                                 {
                                     outputAmount += ((iFarmLevel * outputAmount) / 3);
                                 }
@@ -205,7 +231,7 @@ public class WongleController : MonoBehaviour
 
                 if (Target != null)
                 {
-                    if(type == SelectableUnitComponent.workerType.Ranged)
+                    if (type == SelectableUnitComponent.workerType.Ranged)
                     {
                         if (Vector3.Distance(transform.position, Target.transform.position) > 20)
                         {
@@ -230,7 +256,7 @@ public class WongleController : MonoBehaviour
                         }
                     }
 
-                    if(type == SelectableUnitComponent.workerType.Melee)
+                    if (type == SelectableUnitComponent.workerType.Melee)
                     {
                         if (Vector3.Distance(transform.position, Target.transform.position) > 5)
                         {
@@ -253,7 +279,7 @@ public class WongleController : MonoBehaviour
                             }
                         }
                     }
-                    
+
                 }
             }
 
@@ -308,7 +334,7 @@ public class WongleController : MonoBehaviour
 
                 if (isGoingHome)
                 {
-                    if(FindClosestTag("Storage") != null)
+                    if (FindClosestTag("Storage") != null)
                     {
                         GameObject obj = FindClosestTag("Storage");
                         if (Vector3.Distance(Home.transform.position, transform.position) > Vector3.Distance(obj.transform.position, transform.position))
@@ -317,7 +343,7 @@ public class WongleController : MonoBehaviour
                         }
                         else
                         {
-                            StorageBuilding = Home;    
+                            StorageBuilding = Home;
                         }
                     }
                     else
@@ -466,7 +492,102 @@ public class WongleController : MonoBehaviour
                         agent.isStopped = true;
                         //building Animation animation
                         anim.Play("PickaxeSwing");
-                        Target.GetComponent<ConstructionScript>().m_fCurrentCompletion += 1 * Time.deltaTime;                            
+                        Target.GetComponent<ConstructionScript>().m_fCurrentCompletion += 1 * Time.deltaTime;
+                    }
+                }
+            }
+
+            if (Work.tag == "Fishermen")
+            {
+
+                if (Target != null)
+                {
+                    if (Vector3.Distance(transform.position, m_vFishingSpot) > 3)
+                    {
+                        if (!isGoingHome)
+                        {
+                            agent.isStopped = false;
+                            agent.stoppingDistance = 2;
+                            agent.SetDestination(m_vFishingSpot);
+                            anim.Play("WalkCycle");
+                        }
+                    }
+                    else
+                    {
+                        if (!isGoingHome)
+                        {
+                            agent.isStopped = true;
+                            //fishing animation
+                            if (!animlock2)
+                            {
+                                if(agent.velocity.magnitude == 0)
+                                {
+                                    anim.Play("RodCast");
+                                }
+                                
+
+                            }
+                            m_fCurrentFishTime += Time.deltaTime;
+                            if (m_fCurrentFishTime >= m_fTimeToFish)
+                            {
+                                if (!animlock)
+                                {
+                                    anim.Play("CatchReel");
+                                    animlock = true;
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+                if (isGoingHome)
+                {
+                    if (FindClosestTag("Storage") != null)
+                    {
+                        GameObject obj = FindClosestTag("Storage");
+                        if (Vector3.Distance(Home.transform.position, transform.position) > Vector3.Distance(obj.transform.position, transform.position))
+                        {
+                            StorageBuilding = obj;
+                        }
+                        else
+                        {
+                            StorageBuilding = Home;
+                        }
+                    }
+                    else
+                    {
+                        StorageBuilding = Home;
+                    }
+
+                    anim.Play("WalkCycle");
+                    agent.isStopped = false;
+                    agent.SetDestination(StorageBuilding.transform.position);
+
+                }
+
+                if (!agent.pathPending)
+                {
+                    if (agent.remainingDistance <= agent.stoppingDistance)
+                    {
+                        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                        {
+                            if (isGoingHome)
+                            {
+                                if (iFishingLevel > 0)
+                                {
+                                    outputAmount += ((iFishingLevel * outputAmount) / 3);
+                                }
+                                HouseController.WhiteAmount += Mathf.RoundToInt(outputAmount);
+                                outputAmount = 0;
+                                m_fCurrentFishTime = 0;
+                                iFishCaught++;
+                                animlock = false;
+                                animlock2 = false;
+                                isGoingHome = !isGoingHome;
+                            }
+                        }
                     }
                 }
             }
@@ -504,7 +625,7 @@ public class WongleController : MonoBehaviour
         {
             Target.SendMessage("EnemyShot", 30);
         }
-        
+
     }
 
 
@@ -578,7 +699,7 @@ public class WongleController : MonoBehaviour
             {
                 agent.SetDestination(placeholderPosition);
             }
-            
+
 
         }
     }
@@ -593,4 +714,18 @@ public class WongleController : MonoBehaviour
     {
         gameObject.GetComponent<AudioHandler>().PlaySound(AudioHandler.m_soundTypes.MINE);
     }
+
+    public void GoHome()
+    {
+        print("GoHome");
+        outputAmount += m_fFishingYield;
+        m_fCurrentFishTime = 0;
+        isGoingHome = true;
+    }
+    public void UnlockAnim()
+    {
+        animlock2 = true;
+    }
+
+
 }
