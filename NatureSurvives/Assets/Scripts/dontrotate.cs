@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class dontrotate : MonoBehaviour {
-    public Quaternion OGRotation;
+    private Quaternion OGRotation;
 	// Use this for initialization
 	void Start () {
         OGRotation = transform.rotation;
