@@ -2004,6 +2004,9 @@ MonoBehaviour:
   m_fCurrentFishTime: 0
   m_fFishingYield: 0
   m_vFishingSpot: {x: 0, y: 0, z: 0}
+  animlock: 0
+  animlock2: 0
+  hide: {fileID: 0}
 --- !u!114 &114197887775898012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2273,7 +2276,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c205ae82b6f1c1045944357d74978f7b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9ddfbe73e4d2c80489a4eaa95ef38133, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
