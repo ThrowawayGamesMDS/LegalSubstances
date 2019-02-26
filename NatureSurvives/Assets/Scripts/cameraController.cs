@@ -7,10 +7,14 @@ public class cameraController : MonoBehaviour {
     public Vector3 m_vec2CursorPos;
     public Camera m_pCamera;
     private bool m_pAlterFov;
+    public float m_zoomSpeed;
 	// Use this for initialization
 	void Start () {
         m_pAlterFov = false;
-
+        if (m_zoomSpeed == 0)
+        {
+            m_zoomSpeed = 2.5f;
+        }
     }
 	
 	// Update is called once per frame
@@ -53,11 +57,11 @@ public class cameraController : MonoBehaviour {
             {
                 if (Input.mousePosition.x > Screen.width / 2)
                 {
-                    _temp.y += 4;
+                    _temp.y += 1;
                 }
                 else
                 {
-                    _temp.y -= 4;
+                    _temp.y -= 1;
                 }
             }
 
@@ -129,7 +133,7 @@ public class cameraController : MonoBehaviour {
                     {
                         if (m_pCamera.fieldOfView > 60)
                         {
-                            m_pCamera.fieldOfView -= 2.5f;
+                            m_pCamera.fieldOfView -= m_zoomSpeed;
                         }
                         break;
                     }
@@ -148,7 +152,7 @@ public class cameraController : MonoBehaviour {
                     {
                         if (m_pCamera.fieldOfView < 115)
                         {
-                            m_pCamera.fieldOfView += 2.5f;
+                            m_pCamera.fieldOfView += m_zoomSpeed;
                         }
                         break;
                     }

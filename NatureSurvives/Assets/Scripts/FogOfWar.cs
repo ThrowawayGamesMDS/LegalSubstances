@@ -39,6 +39,8 @@ public class FogOfWar : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(r, out hit, 1000, m_fogLayer, QueryTriggerInteraction.Collide))
             {
+                
+
                 for (int i = 0; i < m_vertices.Length; i++)
                 {
                     Vector3 v = m_fogOfWar.transform.TransformPoint(m_vertices[i]);
@@ -47,6 +49,13 @@ public class FogOfWar : MonoBehaviour
                     if (dist < m_radiusSqr)
                     {
                         float alpha = Mathf.Min(m_colors[i].a, dist / m_radiusSqr);
+                        //float alpha = dist / m_radiusSqr;
+
+                        if (m_colors[i].a > alpha)
+                        {
+                            print("alpha" + alpha);
+                        }
+
                         m_colors[i].a = alpha;
                     }
                 }
