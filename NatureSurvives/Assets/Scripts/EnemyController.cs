@@ -106,20 +106,6 @@ public class EnemyController : MonoBehaviour {
 
         if (!agent.pathPending)
         {
-
-            /***
-             * 
-             * Rotates the NPC enemy incorrectly when attacking the home-base
-             *  needs to be fixed, but the following if statement will rotate the enemy NPC
-             *  in the direction of it's target
-             * 
-             ***/
-            if (targetsInArea[0].transform.tag == "HomeBuilding")
-            {
-                //gameObject.transform.LookAt(targetsInArea[0].transform);
-            }
-
-
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
                 if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)

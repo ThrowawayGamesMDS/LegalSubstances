@@ -38,7 +38,7 @@ public class WongleController : MonoBehaviour
     public float m_fFishingYield;
     public Vector3 m_vFishingSpot;
     public bool animlock, animlock2 = false;
-
+    public hidefishyboy hide;
 
     // Use this for initialization
     void Start()
@@ -523,9 +523,7 @@ public class WongleController : MonoBehaviour
                                 if(agent.velocity.magnitude == 0)
                                 {
                                     anim.Play("RodCast");
-                                }
-                                
-
+                                }      
                             }
                             m_fCurrentFishTime += Time.deltaTime;
                             if (m_fCurrentFishTime >= m_fTimeToFish)
@@ -533,6 +531,7 @@ public class WongleController : MonoBehaviour
                                 if (!animlock)
                                 {
                                     anim.Play("CatchReel");
+                                    hide.isVisible = true;
                                     animlock = true;
                                 }
                             }
@@ -597,10 +596,21 @@ public class WongleController : MonoBehaviour
         {
             if (Target != null)
             {
-                Vector3 lookpos = Target.transform.position - transform.position;
-                lookpos.y = 0;
-                Quaternion rotation = Quaternion.LookRotation(lookpos);
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 10);
+                if(Work.tag == "Fishermen")
+                {
+                    Vector3 lookpos2 = m_vFishingSpot - transform.position;
+                    lookpos2.y = 0;
+                    Quaternion rotation2 = Quaternion.LookRotation(lookpos2);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, rotation2, Time.deltaTime * 10);
+                }
+                else
+                {
+                    Vector3 lookpos = Target.transform.position - transform.position;
+                    lookpos.y = 0;
+                    Quaternion rotation = Quaternion.LookRotation(lookpos);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 10);
+                }
+                
             }
         }
     }
@@ -706,15 +716,22 @@ public class WongleController : MonoBehaviour
 
 
 
+
+    
+    // these functions get called in certain frames of the animations animations
+
+//woodcut anim
     public void ChopEvent()
     {
         gameObject.GetComponent<AudioHandler>().PlaySound(AudioHandler.m_soundTypes.WOOD);
     }
+    //mining animation
     public void MineEvent()
     {
         gameObject.GetComponent<AudioHandler>().PlaySound(AudioHandler.m_soundTypes.MINE);
     }
 
+    //end of admire animation
     public void GoHome()
     {
         print("GoHome");
@@ -722,10 +739,14 @@ public class WongleController : MonoBehaviour
         m_fCurrentFishTime = 0;
         isGoingHome = true;
     }
+    //start of cast anim
     public void UnlockAnim()
     {
         animlock2 = true;
     }
-
-
+    //end of admire anim
+    public void Visible()
+    {
+        hide.isVisible = false;
+    }
 }
