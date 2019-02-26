@@ -192,12 +192,12 @@ public class SelectionBox : MonoBehaviour {
         }
     }
 
-    private void SelectEntireUnit(bool _bMeleeUnit)
+    private void SelectEntireUnit(bool _bAllUnits, bool _bMeleeUnits)
     {
 
         // deselect other units?
         RemoveSelectionCircleFromObjects();
-        switch (_bMeleeUnit)
+        switch (_bAllUnits)
         {
             case true:
                 {
@@ -211,11 +211,6 @@ public class SelectionBox : MonoBehaviour {
                             unit.GetComponent<SelectableUnitComponent>().isSelected = true;
                         }
                     }
-                    m_bUnitsSelected[1] = false;
-                    break;
-                }
-            case false:
-                {
                     foreach (var unit in m_goRangedUnits)
                     {
                         if (unit.GetComponent<SelectableUnitComponent>().selectionCircle == null)
@@ -226,7 +221,41 @@ public class SelectionBox : MonoBehaviour {
                             unit.GetComponent<SelectableUnitComponent>().isSelected = true;
                         }
                     }
-                    m_bUnitsSelected[0] = false;
+                    break;
+                }
+            case false:
+                {
+                   switch(_bMeleeUnits)
+                    {
+                        case true:
+                            {
+                                foreach (var unit in m_goMeleeUnits)
+                                {
+                                    if (unit.GetComponent<SelectableUnitComponent>().selectionCircle == null)
+                                    {
+                                        unit.GetComponent<SelectableUnitComponent>().selectionCircle = Instantiate(selectionCirclePrefab);
+                                        unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.SetParent(unit.transform, false);
+                                        unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
+                                        unit.GetComponent<SelectableUnitComponent>().isSelected = true;
+                                    }
+                                }
+                                break;
+                            }
+                        case false:
+                            {
+                                foreach (var unit in m_goRangedUnits)
+                                {
+                                    if (unit.GetComponent<SelectableUnitComponent>().selectionCircle == null)
+                                    {
+                                        unit.GetComponent<SelectableUnitComponent>().selectionCircle = Instantiate(selectionCirclePrefab);
+                                        unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.SetParent(unit.transform, false);
+                                        unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
+                                        unit.GetComponent<SelectableUnitComponent>().isSelected = true;
+                                    }
+                                }
+                                break;
+                            }
+                    }
                     break;
                 }
         }
@@ -250,46 +279,19 @@ public class SelectionBox : MonoBehaviour {
             m_bCtrlSelectUnits = false;
         }
 
-        if (Input.GetKeyUp(KeyCode.F1))
+        if (Input.GetKeyUp(KeyCode.Alpha1))
         {
-            switch (m_bUnitsSelected[0])
-            {
-                case true:
-                    {
-                        m_bUnitsSelected[0] = false;
-
-                        RemoveSelectionCircleFromObjects();
-                        break;
-                    }
-                case false:
-                    {
-                        m_bUnitsSelected[0] = true;
-                        SelectEntireUnit(true);
-                        break;
-                    }
-            }
-          
+            SelectEntireUnit(true,false);
         }
 
-        if (Input.GetKeyUp(KeyCode.F2))
+        if (Input.GetKeyUp(KeyCode.Alpha2))
         {
-            switch (m_bUnitsSelected[1])
-            {
-                case true:
-                    {
-                        m_bUnitsSelected[1] = false;
+            SelectEntireUnit(false,true);
+        }
 
-                        RemoveSelectionCircleFromObjects();
-                        break;
-                    }
-                case false:
-                    {
-                        m_bUnitsSelected[1] = true;
-                        SelectEntireUnit(false);
-                        break;
-                    }
-            }
-
+        if (Input.GetKeyUp(KeyCode.Alpha3))
+        {
+            SelectEntireUnit(false, false);
         }
 
         if (Input.GetMouseButtonDown(1))

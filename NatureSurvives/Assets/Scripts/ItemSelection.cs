@@ -15,13 +15,20 @@ public class ItemSelection : MonoBehaviour {
         
        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+
+            /***
+             * 
+             * the hell is this 
+             * 
+             ***/
+
             //create raycast to mouse position
             Ray ray = Ccamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             int layermask =~ LayerMask.GetMask("GridSquare");
             if (Physics.Raycast(ray, out hit, 1000))
             {
-                print("You clicked: " + hit.transform.name);
+                //print("You clicked: " + hit.transform.name);
                 //if ray cast hits object with selectableobject script
                 if (hit.transform.GetComponent<SelectableObject>() != null)
                 {

@@ -83,7 +83,7 @@ public class PlacementHandler : MonoBehaviour
         int _iLayerMask;
         if (_bUseLayermask)
         {
-            _iLayerMask = LayerMask.GetMask("Ground");
+            _iLayerMask = LayerMask.GetMask("GridSquare","Ground");
             if (Physics.Raycast(ray.origin, ray.direction * _fDistanceOfRay, out _rh, 250.0f, _iLayerMask))
             {
                 return _rh;
@@ -164,7 +164,6 @@ public class PlacementHandler : MonoBehaviour
                     HouseController.WhiteAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().FoodCost;
                     HouseController.WoodAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().WoodCost;
                     HouseController.CrystalAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().CrystalCost;
-
                     //Placement Occurs Here
                     m_goObjsPlaced.Add(Instantiate(m_goPossibleObjects[m_iCurrentlyPlacing], _vec3Pos, Quaternion.identity));
 
@@ -247,32 +246,21 @@ public class PlacementHandler : MonoBehaviour
                     {
                         if (HouseController.CrystalAmount >= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().CrystalCost)
                         {
-                            PlaceHandle(false, pos);
-                            m_ePlayerState = PlayerStates.DEFAULT;
+                            if (_rhCheck.transform.tag != "CorruptedGrid")
+                            {
+                                PlaceHandle(false, pos);
+                                m_ePlayerState = PlayerStates.DEFAULT;
+                            }
+                            else
+                            {
+                               // gameObject.GetComponent<AudioHandler>().PlaySound(AudioHandler.m_soundTypes.FAILURE);
+                            }
                         }
                     }
                 }
             }
 
             
-        }
-    }
-
-    public void UpdatePlacement()
-    {
-        RaycastHit _rhCheck;
-        _rhCheck = GenerateRayCast(Camera.main.transform.position.y * 2, true);
-        Vector3 pos = _rhCheck.point;
-        pos.y = 0;
-        pos = new Vector3(Mathf.Round(pos.x / 10) * 10, pos.y, Mathf.Round(pos.z / 10) * 10);
-        Destroy(m_goPlacementDefault);
-        if (!PlacementUnacceptable(pos) && !m_bRefreshBuild)
-        {
-            m_goPlacementDefault = Instantiate(m_goObjPlacementOk[m_iCurrentlyPlacing], pos, Quaternion.identity) as GameObject;
-        }
-        else
-        {
-            m_goPlacementDefault = Instantiate(m_goObjPlacementBad[m_iCurrentlyPlacing], pos, Quaternion.identity) as GameObject;
         }
     }
 
@@ -305,7 +293,7 @@ public class PlacementHandler : MonoBehaviour
 
     }
 
-   private void CheckIfPlacementIsOkay()
+    private void CheckIfPlacementIsOkay()
     {
         RaycastHit _rhCheck;
         _rhCheck = GenerateRayCast(Camera.main.transform.position.y * 2, true);
@@ -315,10 +303,27 @@ public class PlacementHandler : MonoBehaviour
 
         if (m_ePlayerState == PlayerStates.DEFAULT)
         {
-            m_goPlacementDefault = Instantiate(m_goObjPlacementOk[m_iCurrentlyPlacing], pos, Quaternion.identity) as GameObject;
+            if (_rhCheck.transform.tag != "CorruptedGrid")
+            {
+                m_goPlacementDefault = Instantiate(m_goObjPlacementOk[m_iCurrentlyPlacing], pos, Quaternion.identity) as GameObject;
+            }
+            else
+            {
+                m_goPlacementDefault = Instantiate(m_goObjPlacementBad[m_iCurrentlyPlacing], pos, Quaternion.identity) as GameObject;
+            }
         }
         else
         {
+            if (_rhCheck.transform.tag == "CorruptedGrid")
+            {
+                if (m_goPlacementDefault != null)
+                {
+                    Destroy(m_goPlacementDefault);
+                }
+                m_goPlacementDefault = Instantiate(m_goObjPlacementBad[m_iCurrentlyPlacing], pos, Quaternion.identity) as GameObject;
+                m_bBadPlacement = true;
+                return;
+            }
             if (!PlacementUnacceptable(pos))
             {
                 if (m_bBadPlacement)
@@ -402,29 +407,16 @@ public class PlacementHandler : MonoBehaviour
             }
         }
 
-
-        /*if (Input.GetKeyUp(KeyCode.F))
-        {
-
-            switch (m_ePlayerState)
-            {
-                case PlayerStates.PLACING:
-                    Destroy(m_goPlacementDefault);
-                    //Destroy(m_goBuilderUI3D);
-                    m_ePlayerState = PlayerStates.DEFAULT;
-                    break;
-                case PlayerStates.DEFAULT:
-                    CheckIfPlacementIsOkay();
-                    m_vec2MouseCoords = Input.mousePosition;
-                    m_ePlayerState = PlayerStates.PLACING;
-                    break;
-            }
-
-        }*/
-
+        
         if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Break();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Destroy(m_goPlacementDefault);
+            m_ePlayerState = PlayerStates.DEFAULT;
         }
         
 
@@ -435,7 +427,6 @@ public class PlacementHandler : MonoBehaviour
                 CheckIfPlacementIsOkay();
                 m_vec2MouseCoords = Input.mousePosition;
             }
-            //CheckIfPlacementIsOkay();
         }
 
         if (Input.GetKeyUp(KeyCode.Mouse0))
