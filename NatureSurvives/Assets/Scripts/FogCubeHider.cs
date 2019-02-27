@@ -13,7 +13,6 @@ public class FogCubeHider : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print("do scale = " + m_doScale);
     }
 
     // Update is called once per frame
@@ -21,6 +20,10 @@ public class FogCubeHider : MonoBehaviour
     {
         foreach(Transform child in m_fogGameObject.transform)
         {
+            //we need to optimize this
+            //1.  we need to skip the cubes that have already been de-activated
+            //2.  we need don't need to do this method anymore when the entire map is revealed
+
             float distance = Vector3.Distance(child.position, transform.position);
 
             if(distance < m_radius)
