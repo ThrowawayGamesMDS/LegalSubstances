@@ -99,24 +99,24 @@ public class FogGenerator : MonoBehaviour
         Vector3 m_playerPosition = m_player.position;
         int childCount = transform.childCount;
 
-        //for (int i = 0; i < childCount; ++i)
-        //{
-        //    Transform child = transform.GetChild(i);
-        //    GameObject childObject = child.gameObject;
+        for (int i = 0; i < childCount; ++i)
+        {
+            Transform child = transform.GetChild(i);
+            GameObject childObject = child.gameObject;
 
-        //    if (childObject.activeInHierarchy)
-        //    {
-        //        countVisibleCubes++;
+            if (childObject.activeInHierarchy)
+            {
+                countVisibleCubes++;
 
-        //        float distanceSquared = (child.position - m_playerPosition).sqrMagnitude;
+                float distanceSquared = (child.position - m_playerPosition).sqrMagnitude;
 
-        //        if (distanceSquared < m_radiusSqrared)
-        //        {
-        //            Destroy(child.gameObject);
-        //            //child.gameObject.SetActive(false);
-        //        }
-        //    }
-        //}
+                if (distanceSquared < m_radiusSqrared)
+                {
+                    Destroy(child.gameObject);
+                    //child.gameObject.SetActive(false);
+                }
+            }
+        }
         //print("child count " + childCount);
 
 
@@ -201,27 +201,27 @@ public class FogGenerator : MonoBehaviour
         //    }
         //}
 
-        foreach (Transform child in transform)
-        {
-            //we need to skip the cubes that have already been deactivated
-            if (child.gameObject.activeInHierarchy)
-            {
-                countVisibleCubes++;
+        //foreach (Transform child in transform)
+        //{
+        //    //we need to skip the cubes that have already been deactivated
+        //    if (child.gameObject.activeInHierarchy)
+        //    {
+        //        countVisibleCubes++;
 
-                float distance = Vector3.Distance(child.position, m_player.position);
-                //float distance = GetSqrDistXZ(child.position, m_player.position);
+        //        float distance = Vector3.Distance(child.position, m_player.position);
+        //        //float distance = GetSqrDistXZ(child.position, m_player.position);
 
-                if (distance < m_radius)
-                {
-                    //hide the child (fog cube)
-                    //if (child.gameObject.activeInHierarchy)
-                    //{
-                    //Destroy(child.gameObject);
-                    child.gameObject.SetActive(false);
-                    //}
-                }
-            }
-        }
+        //        if (distance < m_radius)
+        //        {
+        //            //hide the child (fog cube)
+        //            //if (child.gameObject.activeInHierarchy)
+        //            //{
+        //            //Destroy(child.gameObject);
+        //            child.gameObject.SetActive(false);
+        //            //}
+        //        }
+        //    }
+        //}
 
         if (countVisibleCubes == 0)
         {
