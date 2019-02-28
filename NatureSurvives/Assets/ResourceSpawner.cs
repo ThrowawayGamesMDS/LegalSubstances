@@ -21,7 +21,8 @@ public class ResourceSpawner : MonoBehaviour
     [Tooltip("How far apart the resource(s) should spawn")]
     public int[] m_iSpawnDensity;
     private GameObject m_goGround;
-    public GameObject m_goTetser;
+
+
     private List<GameObject> m_goResourcesSpawned; // could split up into two lists for better management 
     private bool m_bResourcesSpwaned;
     private float[] m_fGroundRegion;
@@ -40,8 +41,7 @@ public class ResourceSpawner : MonoBehaviour
         m_fGroundRegion[0] = m_goGround.GetComponent<Renderer>().bounds.size.x / 2;
         m_fGroundRegion[1] = m_goGround.GetComponent<Renderer>().bounds.size.z / 2;
         m_vec3CenterRegion = m_goGround.GetComponent<Renderer>().bounds.center;
-
-        print("Wood length: " + GameObject.FindGameObjectsWithTag("Wood").Length + ", Misc length: " + GameObject.FindGameObjectsWithTag("Misc").Length);
+        
         
         GameObject[] _treePotential = GameObject.FindGameObjectsWithTag("Wood");
         GameObject[] _miscPotential = GameObject.FindGameObjectsWithTag("Misc");
@@ -60,7 +60,33 @@ public class ResourceSpawner : MonoBehaviour
 
     private Vector3 CreateNewPosition()
     {
-        Vector3 _newPos = new Vector3(m_vec3CenterRegion.x + Random.Range(-m_fGroundRegion[0] * 1.0f, m_fGroundRegion[0] * 1.0f), 0.31f, m_vec3CenterRegion.z + Random.Range(-m_fGroundRegion[1] * 1.0f, m_fGroundRegion[1] * 1.0f));
+        //Vector3 _newPos = new Vector3(m_vec3CenterRegion.x + Random.Range(-m_fGroundRegion[0] * 1.0f, m_fGroundRegion[0] * 1.0f), 0.31f, m_vec3CenterRegion.z + Random.Range(-m_fGroundRegion[1] * 1.0f, m_fGroundRegion[1] * 1.0f));
+
+        float _iRandXRange1 = Random.Range((-m_fGroundRegion[0] * 1.0f), m_fGroundRegion[0] * 1.0f);
+
+        float _iRandZRange1 = Random.Range((-m_fGroundRegion[1] * 0.3f), -m_fGroundRegion[1] * 0.9f);
+        float _iRandZRange2 = Random.Range((m_fGroundRegion[1] * 0.3f), m_fGroundRegion[1] * 0.9f);
+
+        Vector3 _newPos;
+
+        int _iRand = Random.Range(0, 2);
+        print("Random number: " + _iRand);
+
+        if (Random.Range(0,1) == 1)
+        {
+            _newPos = new Vector3(m_vec3CenterRegion.x + _iRandXRange1,
+            0.31f,
+            m_vec3CenterRegion.z + _iRandZRange2);
+        }
+        else
+        {
+            _newPos =  new Vector3(m_vec3CenterRegion.x + _iRandXRange1,
+           0.31f,
+           m_vec3CenterRegion.z + _iRandZRange1);
+        }
+        
+
+
         return _newPos;
     }
 
@@ -116,14 +142,17 @@ public class ResourceSpawner : MonoBehaviour
             for (int i = 0; i < _iAttempts; i++)
             {
                 bool _bObjClear = false;
-                Vector3 spawnPos = new Vector3(m_vec3CenterRegion.x + Random.Range(-m_fGroundRegion[0] * 1.0f, m_fGroundRegion[0] * 1.0f),0 , m_vec3CenterRegion.z + Random.Range(-m_fGroundRegion[1] * 1.0f, m_fGroundRegion[1] * 1.0f));
-                spawnPos.y = 0.31f;
+
+
+
+                Vector3 spawnPos = CreateNewPosition();
 
                  _bObjClear = CheckForNearbyObjects(spawnPos);
 
                 if (_bObjClear)
                 {
-                _goObjPosToAlter.transform.position = new Vector3(spawnPos.x, spawnPos.y, spawnPos.z);
+                    print("Object clear :: SPAWN ACCEPTED");
+                    _goObjPosToAlter.transform.position = new Vector3(spawnPos.x, spawnPos.y, spawnPos.z);
                     return true;
                 }
             }
