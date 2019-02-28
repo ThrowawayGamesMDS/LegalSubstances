@@ -7,14 +7,16 @@ public class cameraController : MonoBehaviour {
     public Vector3 m_vec2CursorPos;
     public Camera m_pCamera;
     private bool m_pAlterFov;
-    public float m_zoomSpeed;
-	// Use this for initialization
-	void Start () {
+    public float m_zoomSpeed = 2.5f;
+    public bool testPanning = true;
+    // Use this for initialization
+    void Start () {
         m_pAlterFov = false;
         if (m_zoomSpeed == 0)
         {
             m_zoomSpeed = 2.5f;
         }
+        testPanning = true;
     }
 	
 	// Update is called once per frame
@@ -174,6 +176,37 @@ public class cameraController : MonoBehaviour {
             transform.Rotate(0, -50 * Time.deltaTime, 0);
 
         }
+
+
+        float screenMargin = 30f;
+        if(testPanning)
+        {
+            float x = 0, y = 0, z = 0;
+            float panSpeed = screenMargin * Time.deltaTime;
+
+            if(Input.mousePosition.x < screenMargin)
+            {
+                gameObject.transform.Translate(-scrollSpeed * Time.deltaTime, 0, 0);
+            }
+            else if(Input.mousePosition.x > Screen.width - screenMargin)
+            {
+                gameObject.transform.Translate(scrollSpeed * Time.deltaTime, 0, 0);
+            }
+
+            if (Input.mousePosition.y < screenMargin)
+            {
+                gameObject.transform.Translate(0, 0, -scrollSpeed * Time.deltaTime);
+            }
+            else if (Input.mousePosition.y > Screen.height - screenMargin)
+            {
+                gameObject.transform.Translate(0, 0, scrollSpeed * Time.deltaTime);
+            }
+            //Vector3 move = new Vector3(x, y, z) + transform.position;
+            //transform.position = move;
+        }
+
+
+
 
         if(transform.position.y < 10)
         {
