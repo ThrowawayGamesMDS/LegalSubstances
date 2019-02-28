@@ -9,9 +9,9 @@ public class HouseController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        WhiteAmount    = 1000;
-        WoodAmount     = 1000;
-        CrystalAmount  = 1000;
+        WhiteAmount    = 100;
+        WoodAmount     = 100;
+        CrystalAmount  = 100;
 	}
 	
 }

@@ -531,7 +531,7 @@ public class WongleController : MonoBehaviour
                                 if (!animlock)
                                 {
                                     anim.Play("CatchReel");
-                                    hide.isVisible = true;
+                                    //hide.isVisible = true;
                                     animlock = true;
                                 }
                             }
