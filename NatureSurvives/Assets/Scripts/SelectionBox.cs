@@ -138,7 +138,7 @@ public class SelectionBox : MonoBehaviour {
             }
         }
     }
-    private string CheckUnitForType(Ray ray, int layermask)
+    private void CheckUnitForType(Ray ray, int layermask)
     {
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 1000, layermask))
@@ -146,17 +146,34 @@ public class SelectionBox : MonoBehaviour {
             if (hit.transform.gameObject.GetComponent<SelectableUnitComponent>() != null)
             {
                 SelectableUnitComponent unit = hit.transform.gameObject.GetComponent<SelectableUnitComponent>();
-                return unit.Type.ToString();
-            }
-            else
-            {
-                return "";
-            }
+
+                    switch (unit.Type.ToString())
+                    {
+                        case "Melee":
+                            {
+                                SelectEntireUnit(false, true);
+                                break;
+                            }
+                        case "Ranged":
+                            {
+                                SelectEntireUnit(false, false);
+                                break;
+                            }
+                        default:
+                            {
+                                RemoveSelectionCircleFromObjects();
+                                SelectRegular(ray, layermask, false);
+                                break;
+                            }
+                    }
+                }
+            
         }
-        else
-        {
-            return "";
-        }
+        return;
+
+
+
+
     }
 
     private RaycastHit GenerateRayCast(Ray ray, int layermask, bool _bCtrlSelect)
@@ -328,7 +345,6 @@ public class SelectionBox : MonoBehaviour {
         // Wee c++ style timer handle for double click select - coroutine was fucking out mega
         if (m_fUserClickedTime < Time.time && m_bUserLClicked == true)
         {
-            print("reseting left click bool because of timer");
             m_bUserLClicked = false;
         }
 
@@ -465,33 +481,8 @@ public class SelectionBox : MonoBehaviour {
                             case true:
                                 {
                                     // Get the type of unit selected...
-                                    string _sType = "";
-                                    _sType = CheckUnitForType(ray, layermask);
-                                    print("We are selecting all of: " + _sType);
-                                    switch (_sType)
-                                    {
-                                        case "Melee":
-                                            {
-                                                SelectEntireUnit(false, true);
-                                                break;
-                                            }
-                                        case "Ranged":
-                                            {
-                                                SelectEntireUnit(false, false);
-                                                break;
-                                            }
-                                        default:
-                                            {
-                                                /***
-                                                 * 
-                                                 * Wongle worker click bug fix - basically it won't highlight because of the nooby system
-                                                 * 
-                                                 *///
-                                                RemoveSelectionCircleFromObjects();
-                                                SelectRegular(ray, layermask,false);
-                                                break;
-                                            }
-                                    }
+                                    CheckUnitForType(ray, layermask);
+                                  
                                     m_bUserLClicked = false;
                                     return;
                                 }
