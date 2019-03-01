@@ -299,21 +299,30 @@ public class SelectionBox : MonoBehaviour {
             int layermask = LayerMask.GetMask("Ground");
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+            string _sOriginalHitResult = "";
             if (Physics.Raycast(ray, out hit, 1000))
             {
-                if (hit.transform.gameObject.tag == "Wood")
-                {
-                    Instantiate(m_goSelectOBJ[2], hit.point, camera.transform.rotation);
-                }
-                else if (hit.transform.gameObject.tag == "Enemy")
-                {
-                    Instantiate(m_goSelectOBJ[1], hit.point, camera.transform.rotation);
-                }
-                else
-                {
-                    Instantiate(m_goSelectOBJ[0], hit.point, camera.transform.rotation);
-                }
+                _sOriginalHitResult = hit.transform.gameObject.tag;
             }
+                Physics.Raycast(ray, out hit, 1000, layermask);
+                switch(_sOriginalHitResult)
+                {
+                    case "Wood":
+                        {
+                            Instantiate(m_goSelectOBJ[2], hit.point, camera.transform.rotation);
+                            break;
+                        }
+                    case "Enemy":
+                        {
+                            Instantiate(m_goSelectOBJ[1], hit.point, camera.transform.rotation);
+                            break;
+                        }
+                    default:
+                        {
+                            Instantiate(m_goSelectOBJ[0], hit.point, camera.transform.rotation);
+                            break;
+                        }
+                }
         }
 
 
