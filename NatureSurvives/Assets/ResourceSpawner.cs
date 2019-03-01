@@ -70,7 +70,7 @@ public class ResourceSpawner : MonoBehaviour
         Vector3 _newPos;
 
         int _iRand = Random.Range(0, 2);
-        print("Random number: " + _iRand);
+        //print("Random number: " + _iRand);
 
         if (Random.Range(0,1) == 1)
         {
@@ -151,7 +151,7 @@ public class ResourceSpawner : MonoBehaviour
 
                 if (_bObjClear)
                 {
-                    print("Object clear :: SPAWN ACCEPTED");
+                    //print("Object clear :: SPAWN ACCEPTED");
                     _goObjPosToAlter.transform.position = new Vector3(spawnPos.x, spawnPos.y, spawnPos.z);
                     return true;
                 }

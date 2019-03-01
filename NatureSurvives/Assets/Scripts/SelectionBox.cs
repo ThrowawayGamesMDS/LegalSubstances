@@ -87,6 +87,9 @@ public class SelectionBox : MonoBehaviour {
     public GameObject selectionCirclePrefab;
 
     private int m_iUserID = -1;
+    private bool m_bUserLClicked;
+    // whats up with the fucking coroutine system these days?????
+    private float m_fUserClickedTime;
 
     /***
      * Unit controller variables
@@ -133,6 +136,26 @@ public class SelectionBox : MonoBehaviour {
                 m_goRangedUnits.Add(_goUnits[i]);
                 m_iActiveCombatWongles++;
             }
+        }
+    }
+    private string CheckUnitForType(Ray ray, int layermask)
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 1000, layermask))
+        {
+            if (hit.transform.gameObject.GetComponent<SelectableUnitComponent>() != null)
+            {
+                SelectableUnitComponent unit = hit.transform.gameObject.GetComponent<SelectableUnitComponent>();
+                return unit.Type.ToString();
+            }
+            else
+            {
+                return "";
+            }
+        }
+        else
+        {
+            return "";
         }
     }
 
@@ -192,6 +215,9 @@ public class SelectionBox : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Nooby as hell, SEU(true,false) = select every spawned combat unit.. SEU(FALSE,TRUE) = select all melee units.. SEU(FALSE,FALES) = select all ranged units..
+    /// </summary>
     private void SelectEntireUnit(bool _bAllUnits, bool _bMeleeUnits)
     {
 
@@ -261,15 +287,53 @@ public class SelectionBox : MonoBehaviour {
         }
     }
 
-    public static void UpdateUnitLists()
+    /// <summary>
+    /// Nooby as again, if _bCheckIfWorker it will check the unit's type else it will always return true
+    /// </summary>
+    private bool SelectRegular(Ray ray, int layermask, bool _bCheckIfWorker)
     {
+        var selectedObjects = new List<SelectableUnitComponent>();
+        foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
+        {
+            if (IsWithinSelectionBounds(selectableObject.gameObject))
+            {
+                selectedObjects.Add(selectableObject);
+            }
+        }
+
+        isSelecting = false;
+
+        RaycastHit hit = GenerateRayCast(ray, layermask, false);
+
+        if (_bCheckIfWorker && hit.transform != null)
+        {
+            if (hit.transform.gameObject.GetComponent<SelectableUnitComponent>().Type.ToString() == "Worker")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return true;
+        }
 
     }
 
     void Update()
     {
+        // Wee c++ style timer handle for double click select - coroutine was fucking out mega
+        if (m_fUserClickedTime < Time.time && m_bUserLClicked == true)
+        {
+            print("reseting left click bool because of timer");
+            m_bUserLClicked = false;
+        }
+
         // If we press the left mouse button, begin selection and remember the location of the mouse
-        if(Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
         {
             m_bCtrlSelectUnits = true;
         }
@@ -328,90 +392,126 @@ public class SelectionBox : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0))
         {
-            switch(m_bCtrlSelectUnits)
+            if (!m_bUserLClicked)
             {
-                case false:
-                    {
-                        if (EventSystem.current.IsPointerOverGameObject(m_iUserID) == false)
+                switch (m_bCtrlSelectUnits)
+                {
+                    case false:
                         {
-                            if (m_lCtrlUnits.Count > 0)
+                            if (EventSystem.current.IsPointerOverGameObject(m_iUserID) == false)
                             {
-                                foreach (var unit in m_lCtrlUnits)
+                                if (m_lCtrlUnits.Count > 0)
                                 {
-                                    if (unit.GetComponent<SelectableUnitComponent>().selectionCircle != null)
+                                    foreach (var unit in m_lCtrlUnits)
                                     {
-                                        Destroy(unit.GetComponent<SelectableUnitComponent>().selectionCircle.gameObject);
-                                        unit.GetComponent<SelectableUnitComponent>().selectionCircle = null;
+                                        if (unit.GetComponent<SelectableUnitComponent>().selectionCircle != null)
+                                        {
+                                            Destroy(unit.GetComponent<SelectableUnitComponent>().selectionCircle.gameObject);
+                                            unit.GetComponent<SelectableUnitComponent>().selectionCircle = null;
+                                        }
+                                    }
+                                    m_lCtrlUnits.Clear();
+                                }
+                                isSelecting = true;
+                                mousePosition1 = Input.mousePosition;
+
+                                foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
+                                {
+                                    if (selectableObject.selectionCircle != null)
+                                    {
+                                        Destroy(selectableObject.selectionCircle.gameObject);
+                                        selectableObject.selectionCircle = null;
                                     }
                                 }
-                                m_lCtrlUnits.Clear();
                             }
-                            isSelecting = true;
-                            mousePosition1 = Input.mousePosition;
-
-                            foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
-                            {
-                                if (selectableObject.selectionCircle != null)
-                                {
-                                    Destroy(selectableObject.selectionCircle.gameObject);
-                                    selectableObject.selectionCircle = null;
-                                }
-                            }
+                            break;
                         }
-                        break;
-                    }
-                case true:
-                    {
-                        if (EventSystem.current.IsPointerOverGameObject(m_iUserID) == false)
+                    case true:
                         {
-                            mousePosition1 = Input.mousePosition;
-
-                            foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
+                            if (EventSystem.current.IsPointerOverGameObject(m_iUserID) == false)
                             {
-                                if (selectableObject.selectionCircle != null && !m_bCtrlSelectUnits)
+                                mousePosition1 = Input.mousePosition;
+
+                                foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
                                 {
-                                    Destroy(selectableObject.selectionCircle.gameObject);
-                                    selectableObject.selectionCircle = null;
+                                    if (selectableObject.selectionCircle != null && !m_bCtrlSelectUnits)
+                                    {
+                                        Destroy(selectableObject.selectionCircle.gameObject);
+                                        selectableObject.selectionCircle = null;
+                                    }
                                 }
                             }
+                            break;
                         }
-                        break;
-                    }
+                }
             }
         }
         // If we let go of the left mouse button, end selection
         if (Input.GetMouseButtonUp(0))
         {
-            switch(m_bCtrlSelectUnits)
+            int layermask = LayerMask.GetMask("Wongle");
+
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+
+
+
+            switch (m_bCtrlSelectUnits)
             {
                 case false:
                     {
-                         var selectedObjects = new List<SelectableUnitComponent>();
-                         foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
-                         {
-                             if (IsWithinSelectionBounds(selectableObject.gameObject))
-                             {
-                                 selectedObjects.Add(selectableObject);
-                             }
-                         }
 
-                        isSelecting = false;
+                        switch (m_bUserLClicked)
+                        {
+                            case true:
+                                {
+                                    // Get the type of unit selected...
+                                    string _sType = "";
+                                    _sType = CheckUnitForType(ray, layermask);
+                                    print("We are selecting all of: " + _sType);
+                                    switch (_sType)
+                                    {
+                                        case "Melee":
+                                            {
+                                                SelectEntireUnit(false, true);
+                                                break;
+                                            }
+                                        case "Ranged":
+                                            {
+                                                SelectEntireUnit(false, false);
+                                                break;
+                                            }
+                                        default:
+                                            {
+                                                /***
+                                                 * 
+                                                 * Wongle worker click bug fix - basically it won't highlight because of the nooby system
+                                                 * 
+                                                 *///
+                                                RemoveSelectionCircleFromObjects();
+                                                SelectRegular(ray, layermask,false);
+                                                break;
+                                            }
+                                    }
+                                    m_bUserLClicked = false;
+                                    return;
+                                }
+                            case false:
+                                {
+                                    bool _bWorkerCheck = SelectRegular(ray, layermask, true);
+                                    if (!_bWorkerCheck)
+                                    {
+                                        m_bUserLClicked = true;
+                                        m_fUserClickedTime = Time.time + 1.0f;
+                                    }
+                                    break;
+                                }
+                        }
 
 
-                        int layermask = LayerMask.GetMask("Wongle");
-
-                        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-                        RaycastHit hit = GenerateRayCast(ray, layermask, false);
-
-                       
-                        
                         break;
                     }
                 case true:
                     {
-                        int layermask = LayerMask.GetMask("Wongle");
-
-                        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
                         RaycastHit hit = GenerateRayCast(ray, layermask, true);
                         if (hit.transform.tag != null)
                         {
