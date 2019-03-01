@@ -9,7 +9,7 @@ public class cameraController : MonoBehaviour {
     private bool m_pAlterFov;
     private Rect m_rScreenRect;
     public float m_zoomSpeed = 2.5f;
-    public bool testPanning = true;
+    public bool testPanning = false;
     // Use this for initialization
     void Start () {
         m_pAlterFov = false;
@@ -17,7 +17,6 @@ public class cameraController : MonoBehaviour {
         {
             m_zoomSpeed = 2.5f;
         }
-        testPanning = true;
 
         m_rScreenRect = new Rect(0,0, Screen.width, Screen.height);
     }
@@ -184,11 +183,9 @@ public class cameraController : MonoBehaviour {
         float screenMargin = 30f;
         if(testPanning)
         {
-
             // sorry saw you could turn off by bool but thought i'd add this anyways
             if (!m_rScreenRect.Contains(Input.mousePosition))
                 return;
-
 
             float x = 0, y = 0, z = 0;
             float panSpeed = screenMargin * Time.deltaTime;
