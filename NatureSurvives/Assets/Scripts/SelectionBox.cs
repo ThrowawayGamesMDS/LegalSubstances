@@ -100,6 +100,7 @@ public class SelectionBox : MonoBehaviour {
     public List<GameObject> m_goMeleeUnits;
     public List<GameObject> m_goRangedUnits;
     private bool[] m_bUnitsSelected;
+    private GameObject m_goUnitDoubleClicked;
 
     private void Awake()
     {
@@ -143,9 +144,13 @@ public class SelectionBox : MonoBehaviour {
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 1000, layermask))
         {
-            if (hit.transform.gameObject.GetComponent<SelectableUnitComponent>() != null)
+            if (m_goUnitDoubleClicked == hit.transform.gameObject)
             {
-                SelectableUnitComponent unit = hit.transform.gameObject.GetComponent<SelectableUnitComponent>();
+                if (hit.transform.gameObject.GetComponent<SelectableUnitComponent>() != null)
+                {
+                    SelectableUnitComponent unit = hit.transform.gameObject.GetComponent<SelectableUnitComponent>();
+
+
 
                     switch (unit.Type.ToString())
                     {
@@ -166,7 +171,9 @@ public class SelectionBox : MonoBehaviour {
                                 break;
                             }
                     }
+                    m_goUnitDoubleClicked = new GameObject();
                 }
+            }
             
         }
         return;
@@ -330,6 +337,7 @@ public class SelectionBox : MonoBehaviour {
             }
             else
             {
+                m_goUnitDoubleClicked = hit.transform.gameObject;
                 return false;
             }
         }
@@ -492,7 +500,7 @@ public class SelectionBox : MonoBehaviour {
                                     if (!_bWorkerCheck)
                                     {
                                         m_bUserLClicked = true;
-                                        m_fUserClickedTime = Time.time + 1.0f;
+                                        m_fUserClickedTime = Time.time + 0.3f;
                                     }
                                     break;
                                 }
