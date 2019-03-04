@@ -60,13 +60,30 @@ public class ResourceSpawner : MonoBehaviour
 
     private Vector3 CreateNewPosition()
     {
-        float _iRandXRange = Random.Range(m_fGroundRegion[0] * -1.0f, m_fGroundRegion[0]);
+        float _iRandXRange;
 
-        float _iRandZRange = Random.Range(m_fGroundRegion[1] * -1.0f, m_fGroundRegion[1]);
+        float _iRandZRange;
 
-        Vector3 _newPos = new Vector3(_iRandXRange, 0.31f, _iRandZRange);
+        Vector3 _newPos;
         
+
+        for (int i = 0; i < 30; i++)
+        {
+            _iRandXRange = Random.Range(m_fGroundRegion[0] * -1.0f, m_fGroundRegion[0]);
+            _iRandZRange = Random.Range(m_fGroundRegion[1] * -1.0f, m_fGroundRegion[1]);
+            _newPos = new Vector3(_iRandXRange, 0.31f, _iRandZRange);
+            if (CheckObjectDistance(_newPos, GameObject.FindGameObjectWithTag("HomeBuilding").transform.position) > 70)
+            {
+                return _newPos;
+            }
+        }
+        _iRandXRange = Random.Range(m_fGroundRegion[0] * -1.0f, m_fGroundRegion[0]);
+        _iRandZRange = Random.Range(m_fGroundRegion[1] * -1.0f, m_fGroundRegion[1]);
+        _newPos = new Vector3(_iRandXRange, 0.31f, _iRandZRange); // Give Up
+
+
         return _newPos;
+     
     }
 
 
