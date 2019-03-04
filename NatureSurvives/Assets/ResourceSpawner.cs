@@ -38,8 +38,8 @@ public class ResourceSpawner : MonoBehaviour
 
         m_goGround = GameObject.FindGameObjectWithTag("Ground");
         m_fGroundRegion = new float[2];
-        m_fGroundRegion[0] = m_goGround.GetComponent<Renderer>().bounds.size.x / 2;
-        m_fGroundRegion[1] = m_goGround.GetComponent<Renderer>().bounds.size.z / 2;
+        m_fGroundRegion[0] = m_goGround.GetComponent<Renderer>().bounds.size.x/2;
+        m_fGroundRegion[1] = m_goGround.GetComponent<Renderer>().bounds.size.z/2;
         m_vec3CenterRegion = m_goGround.GetComponent<Renderer>().bounds.center;
         
         
@@ -60,33 +60,12 @@ public class ResourceSpawner : MonoBehaviour
 
     private Vector3 CreateNewPosition()
     {
-        //Vector3 _newPos = new Vector3(m_vec3CenterRegion.x + Random.Range(-m_fGroundRegion[0] * 1.0f, m_fGroundRegion[0] * 1.0f), 0.31f, m_vec3CenterRegion.z + Random.Range(-m_fGroundRegion[1] * 1.0f, m_fGroundRegion[1] * 1.0f));
+        float _iRandXRange = Random.Range(m_fGroundRegion[0] * -1.0f, m_fGroundRegion[0]);
 
-        float _iRandXRange1 = Random.Range((-m_fGroundRegion[0] * 1.0f), m_fGroundRegion[0] * 1.0f);
+        float _iRandZRange = Random.Range(m_fGroundRegion[1] * -1.0f, m_fGroundRegion[1]);
 
-        float _iRandZRange1 = Random.Range((-m_fGroundRegion[1] * 0.3f), -m_fGroundRegion[1] * 0.9f);
-        float _iRandZRange2 = Random.Range((m_fGroundRegion[1] * 0.3f), m_fGroundRegion[1] * 0.9f);
-
-        Vector3 _newPos;
-
-        int _iRand = Random.Range(0, 2);
-        //print("Random number: " + _iRand);
-
-        if (Random.Range(0,1) == 1)
-        {
-            _newPos = new Vector3(m_vec3CenterRegion.x + _iRandXRange1,
-            0.31f,
-            m_vec3CenterRegion.z + _iRandZRange2);
-        }
-        else
-        {
-            _newPos =  new Vector3(m_vec3CenterRegion.x + _iRandXRange1,
-           0.31f,
-           m_vec3CenterRegion.z + _iRandZRange1);
-        }
+        Vector3 _newPos = new Vector3(_iRandXRange, 0.31f, _iRandZRange);
         
-
-
         return _newPos;
     }
 
