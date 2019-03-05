@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5690009330045996498}
   m_Layer: 0
   m_Name: FogOfWar
-  m_TagString: Untagged
+  m_TagString: Fog
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,8 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_fogCube: {fileID: 7732899411855907761, guid: e7cc404e1aa21c54984375c1b30bf855,
     type: 3}
-  m_width: 500
-  m_height: 500
   m_cubeSize: 10
-  m_radius: 20
-  m_wongleObjects: []
+  m_wongleRadius: 20
+  m_buildingRadius: 40
+  m_doScale: 0

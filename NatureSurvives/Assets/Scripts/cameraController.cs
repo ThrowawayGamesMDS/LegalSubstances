@@ -11,7 +11,7 @@ public class cameraController : MonoBehaviour {
     private Rect m_rScreenRect;
     public float m_zoomSpeed = 2.5f;
 
-    public bool testPanning = false;
+    public bool testPanning = true;
     float moveSpeed = 1.0f;
     float rotX = 0.0f;
     float rotY = 0.0f;
@@ -29,6 +29,9 @@ public class cameraController : MonoBehaviour {
         }
 
         m_rScreenRect = new Rect(0,0, Screen.width, Screen.height);
+
+        //added this in the start to get others to test it.  will need to remove
+        testPanning = true;
     }
 	
 	// Update is called once per frame
@@ -70,27 +73,11 @@ public class cameraController : MonoBehaviour {
             mouseX = horizontal;
             mouseY = -vertical;
 
-            //Vector3 m_euler = transform.rotation.ToEuler();
-
-            //rotY = m_euler.x;
-            //rotX = m_euler.y;
-
-
-
             rotY += mouseX * moveSpeed;
             rotX += mouseY * moveSpeed;
 
             localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
-            print("transform.rotation before = " + transform.rotation);
             transform.rotation = localRotation;
-
-            print("mouse horizontal = " + horizontal);
-            print("mouse vertical = " + vertical);
-
-            print("rotY = " + rotY);
-            print("rotx = " + rotX);
-            print("Quaternion = " + localRotation);
-            print("transform.rotation after = " + transform.rotation);
 
             // Vector3 _temp = new Vector3(gameObject.transform.rotation.x, gameObject.transform.rotation.y, gameObject.transform.rotation.z);
             //print("X: " +Input.mousePosition.x + ", Y: " + Input.mousePosition.y);
@@ -287,15 +274,8 @@ public class cameraController : MonoBehaviour {
                 transform.RotateAround(hit.point, Vector3.up, 20 * Time.deltaTime);
                 //transform.RotateAround(pivotPoint, transform.up, 20 * Time.deltaTime);
 
-                print("transform.rotation on Z press = " + transform.rotation);
-
-                Vector3 m_euler = transform.rotation.ToEuler();
-                //transform.localEulerAngles;
-               // transform.eulerAngles();
-
-                //rotY = m_euler.x;
-                //rotX = m_euler.y;
-
+                rotX = transform.rotation.eulerAngles.x;
+                rotY = transform.rotation.eulerAngles.y;              
             }
 
         }
@@ -304,13 +284,12 @@ public class cameraController : MonoBehaviour {
             Ray ray = m_pCamera.ScreenPointToRay(new Vector3(m_pCamera.pixelWidth / 2, m_pCamera.pixelHeight / 2, 0));
             if (Physics.Raycast(ray, out hit))
             {
-                transform.RotateAround(hit.point, Vector3.up, -20 * Time.deltaTime);              
+                transform.RotateAround(hit.point, Vector3.up, -20 * Time.deltaTime);
+
+                rotX = transform.rotation.eulerAngles.x;
+                rotY = transform.rotation.eulerAngles.y;
             }
         }
-        //if (Input.GetKeyUp(KeyCode.Z))
-        //{
-        //    transform.LookAt(hit.point, m_pCamera.transform.up);
-        //}
 
 
         if (transform.position.y < 10)

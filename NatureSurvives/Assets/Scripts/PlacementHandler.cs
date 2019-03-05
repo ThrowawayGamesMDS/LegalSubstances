@@ -155,7 +155,9 @@ public class PlacementHandler : MonoBehaviour
                         m_goBarricadePlacements[m_goBarricadePlacements.Count].transform.rotation = m_goPlacementDefault.transform.rotation;
                     }
                     Destroy(m_goPlacementDefault);
-                    
+
+                    print("am I unfogging at PlaceHandle true?");
+
                     break;
                 }
             case false:
@@ -178,6 +180,15 @@ public class PlacementHandler : MonoBehaviour
                     }
 
                     Destroy(m_goPlacementDefault);
+
+                    GameObject m_fogOfWar = GameObject.FindGameObjectWithTag("Fog");
+                    if (m_fogOfWar)
+                    {
+                        FogGenerator fogComponent = m_fogOfWar.transform.GetComponent<FogGenerator>();
+                        float m_buildingRadius = fogComponent.m_buildingRadius;
+                        fogComponent.Unfog(_vec3Pos, m_buildingRadius * m_buildingRadius);
+                    }                   
+
                     break;
                 }
         }
@@ -322,6 +333,7 @@ public class PlacementHandler : MonoBehaviour
                 }
                 m_goPlacementDefault = Instantiate(m_goObjPlacementBad[m_iCurrentlyPlacing], pos, Quaternion.identity) as GameObject;
                 m_bBadPlacement = true;
+
                 return;
             }
             if (!PlacementUnacceptable(pos))
