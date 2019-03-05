@@ -24,32 +24,66 @@ public class HomeSpawning : MonoBehaviour {
     {
         if (iCurrentWongleCount < iMaximumWongleCount)
         {
-            UnitQueue.Insert(UnitQueue.Count, unittype);
-            if(unittype == "Worker")
+            if (unittype == "Worker")
             {
-                GameObject uiobj = Instantiate(workerUI, canvas);
-                uiobj.transform.SetParent(canvas, false);
-                uiobj.GetComponent<queueUIScript>().placeInQueue = UnitQueue.Count - 1;
-                UIObjQueue.Insert(UIObjQueue.Count, uiobj);
-                //uiobj.transform.position = new Vector3(uiobj.transform.position.x + 35* uiobj.GetComponent<queueUIScript>().placeInQueue, uiobj.transform.position.y, uiobj.transform.position.z);
+                if (HouseController.WoodAmount >= Prefabs[0].GetComponent<costToPlace>().WoodCost)
+                {
+                    if (HouseController.CrystalAmount >= Prefabs[0].GetComponent<costToPlace>().CrystalCost)
+                    {
+                        if (HouseController.WhiteAmount >= Prefabs[0].GetComponent<costToPlace>().FoodCost)
+                        {
+                            UnitQueue.Insert(UnitQueue.Count, unittype);
+                            GameObject uiobj = Instantiate(workerUI, canvas);
+                            uiobj.transform.SetParent(canvas, false);
+                            uiobj.GetComponent<queueUIScript>().placeInQueue = UnitQueue.Count - 1;
+                            UIObjQueue.Insert(UIObjQueue.Count, uiobj);
+                            HouseController.WoodAmount -= Prefabs[0].GetComponent<costToPlace>().WoodCost;
+                            HouseController.CrystalAmount -= Prefabs[0].GetComponent<costToPlace>().CrystalCost;
+                            HouseController.WhiteAmount -= Prefabs[0].GetComponent<costToPlace>().FoodCost;
+                        }
+                    }
+                }
             }
-            else if(unittype == "Wizard")
+            else if (unittype == "Wizard")
             {
-                GameObject uiobj = Instantiate(wizardUI, canvas);
-                uiobj.transform.SetParent(canvas, false);
-                uiobj.GetComponent<queueUIScript>().placeInQueue = UnitQueue.Count - 1;
-                UIObjQueue.Insert(UIObjQueue.Count, uiobj);
-                //uiobj.transform.position = new Vector3(uiobj.transform.position.x + 35 * uiobj.GetComponent<queueUIScript>().placeInQueue, uiobj.transform.position.y, uiobj.transform.position.z);
+                if (HouseController.WoodAmount >= Prefabs[1].GetComponent<costToPlace>().WoodCost)
+                {
+                    if (HouseController.CrystalAmount >= Prefabs[1].GetComponent<costToPlace>().CrystalCost)
+                    {
+                        if (HouseController.WhiteAmount >= Prefabs[1].GetComponent<costToPlace>().FoodCost)
+                        {
+                            UnitQueue.Insert(UnitQueue.Count, unittype);
+                            GameObject uiobj = Instantiate(wizardUI, canvas);
+                            uiobj.transform.SetParent(canvas, false);
+                            uiobj.GetComponent<queueUIScript>().placeInQueue = UnitQueue.Count - 1;
+                            UIObjQueue.Insert(UIObjQueue.Count, uiobj);
+                            HouseController.WoodAmount -= Prefabs[1].GetComponent<costToPlace>().WoodCost;
+                            HouseController.CrystalAmount -= Prefabs[1].GetComponent<costToPlace>().CrystalCost;
+                            HouseController.WhiteAmount -= Prefabs[1].GetComponent<costToPlace>().FoodCost;
+                        }
+                    }
+                }
             }
-            else if(unittype == "Knight")
+            else if (unittype == "Knight")
             {
-                GameObject uiobj = Instantiate(knightUI, canvas);
-                uiobj.transform.SetParent(canvas, false);
-                uiobj.GetComponent<queueUIScript>().placeInQueue = UnitQueue.Count - 1;
-                UIObjQueue.Insert(UIObjQueue.Count, uiobj);
-                //uiobj.transform.position = new Vector3(uiobj.transform.position.x + 35 * uiobj.GetComponent<queueUIScript>().placeInQueue, uiobj.transform.position.y, uiobj.transform.position.z);
+                if (HouseController.WoodAmount >= Prefabs[2].GetComponent<costToPlace>().WoodCost)
+                {
+                    if (HouseController.CrystalAmount >= Prefabs[2].GetComponent<costToPlace>().CrystalCost)
+                    {
+                        if (HouseController.WhiteAmount >= Prefabs[2].GetComponent<costToPlace>().FoodCost)
+                        {
+                            UnitQueue.Insert(UnitQueue.Count, unittype);
+                            GameObject uiobj = Instantiate(knightUI, canvas);
+                            uiobj.transform.SetParent(canvas, false);
+                            uiobj.GetComponent<queueUIScript>().placeInQueue = UnitQueue.Count - 1;
+                            UIObjQueue.Insert(UIObjQueue.Count, uiobj);
+                            HouseController.WoodAmount -= Prefabs[2].GetComponent<costToPlace>().WoodCost;
+                            HouseController.CrystalAmount -= Prefabs[2].GetComponent<costToPlace>().CrystalCost;
+                            HouseController.WhiteAmount -= Prefabs[2].GetComponent<costToPlace>().FoodCost;
+                        }
+                    }
+                }
             }
-            
         }
     }
 
@@ -60,62 +94,29 @@ public class HomeSpawning : MonoBehaviour {
         {
             case "Worker":
                 {
-                    if(HouseController.WoodAmount >= Prefabs[0].GetComponent<costToPlace>().WoodCost)
-                    {
-                        if (HouseController.CrystalAmount >= Prefabs[0].GetComponent<costToPlace>().CrystalCost)
-                        {
-                            if (HouseController.WhiteAmount >= Prefabs[0].GetComponent<costToPlace>().FoodCost)
-                            {
-                                temp = Instantiate(Prefabs[0], transform.position, Prefabs[0].transform.rotation);
-                                temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
-                                temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(20, 0, -20));
-                                HouseController.WoodAmount -= Prefabs[0].GetComponent<costToPlace>().WoodCost;
-                                HouseController.CrystalAmount -= Prefabs[0].GetComponent<costToPlace>().CrystalCost;
-                                HouseController.WhiteAmount -= Prefabs[0].GetComponent<costToPlace>().FoodCost;
-
-                            }
-                        }
-                    }                 
+                    
+                    temp = Instantiate(Prefabs[0], transform.position, Prefabs[0].transform.rotation);
+                    temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
+                    temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(20, 0, -20));
+                    
+                 
                     break;
                 }
             case "Wizard":
                 {
-                    if (HouseController.WoodAmount >= Prefabs[1].GetComponent<costToPlace>().WoodCost)
-                    {
-                        if (HouseController.CrystalAmount >= Prefabs[1].GetComponent<costToPlace>().CrystalCost)
-                        {
-                            if (HouseController.WhiteAmount >= Prefabs[1].GetComponent<costToPlace>().FoodCost)
-                            {
-                                temp = Instantiate(Prefabs[1], transform.position, Prefabs[1].transform.rotation);
-                                temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
-                                temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(10, 0, -20));
-                                HouseController.WoodAmount -= Prefabs[1].GetComponent<costToPlace>().WoodCost;
-                                HouseController.CrystalAmount -= Prefabs[1].GetComponent<costToPlace>().CrystalCost;
-                                HouseController.WhiteAmount -= Prefabs[1].GetComponent<costToPlace>().FoodCost;
-                                GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>().m_goRangedUnits.Add(temp);
-                            }
-                        }
-                    }                    
+                    temp = Instantiate(Prefabs[1], transform.position, Prefabs[1].transform.rotation);
+                    temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
+                    temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(10, 0, -20));                                
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>().m_goRangedUnits.Add(temp);                  
                     break;
                 }
             case "Knight":
                 {
-                    if (HouseController.WoodAmount >= Prefabs[2].GetComponent<costToPlace>().WoodCost)
-                    {
-                        if (HouseController.CrystalAmount >= Prefabs[2].GetComponent<costToPlace>().CrystalCost)
-                        {
-                            if (HouseController.WhiteAmount >= Prefabs[0].GetComponent<costToPlace>().FoodCost)
-                            {
-                                temp = Instantiate(Prefabs[2], transform.position, Prefabs[2].transform.rotation);
-                                temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
-                                temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(0, 0, -20));
-                                HouseController.WoodAmount -= Prefabs[2].GetComponent<costToPlace>().WoodCost;
-                                HouseController.CrystalAmount -= Prefabs[2].GetComponent<costToPlace>().CrystalCost;
-                                HouseController.WhiteAmount -= Prefabs[2].GetComponent<costToPlace>().FoodCost;
-                                GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>().m_goMeleeUnits.Add(temp);
-                            }
-                        }
-                    }                    
+                    
+                    temp = Instantiate(Prefabs[2], transform.position, Prefabs[2].transform.rotation);
+                    temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
+                    temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(0, 0, -20));                                
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>().m_goMeleeUnits.Add(temp);                   
                     break;
                 }
             default:
