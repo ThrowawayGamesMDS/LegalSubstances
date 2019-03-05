@@ -12,8 +12,10 @@ public class FogGenerator : MonoBehaviour
     private float m_height = 500;
 
     public int m_cubeSize = 10;
-    public float m_radius = 20;
-    private float m_radiusSqrared { get { return m_radius * m_radius; } }
+    public float m_wongleRadius = 20;
+    public float m_buildingRadius = 30;
+    private float m_wongleRadiusSqrared { get { return m_wongleRadius * m_wongleRadius; } }
+    private float m_buildingRadiusSqrared { get { return m_buildingRadius * m_buildingRadius; } }
 
     //we need to put this inside the functions
     //private GameObject[] m_wongleObjects;
@@ -43,8 +45,16 @@ public class FogGenerator : MonoBehaviour
         m_wongleObjects = GameObject.FindGameObjectsWithTag("Wongle");
         for( int i = 0; i < m_wongleObjects.Length; i++)
         {
-            Unfog(m_wongleObjects[i].transform);
+            Unfog(m_wongleObjects[i].transform, m_wongleRadiusSqrared);
         }
+
+        GameObject m_treeHouse;
+        m_treeHouse = GameObject.FindGameObjectWithTag("HomeBuilding");
+        if(m_treeHouse)
+        {
+           Unfog(m_treeHouse.transform, m_buildingRadiusSqrared);
+        }
+         
 
         //children = new GameObject[transform.childCount];
         //int j = 0;
@@ -53,7 +63,7 @@ public class FogGenerator : MonoBehaviour
         //    children[j] = child.gameObject;
         //    j++;
         //}
-        
+
     }
 
     //do we still need to do this?  update every 3 frames for optimization
@@ -78,16 +88,14 @@ public class FogGenerator : MonoBehaviour
                     NavMeshAgent agent = m_wongleObjects[i].GetComponent<NavMeshAgent>();
                     if (agent.velocity.sqrMagnitude > 0f)
                     {
-                        Unfog(m_wongleObjects[i].transform);
+                        Unfog(m_wongleObjects[i].transform, m_wongleRadiusSqrared);
                     }
                 }
             }
         }
     }
 
-
-
-    void Unfog(Transform m_player)
+    void Unfog(Transform m_player, float m_radiusSqrared)
     {       
         int countVisibleCubes = 0;
 
