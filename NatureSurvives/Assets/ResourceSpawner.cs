@@ -18,11 +18,11 @@ public class ResourceSpawner : MonoBehaviour
     public GameObject[] m_goResources;
     [Tooltip("The total amount of spawns per resource count NOTE: Spawn Quantity w/UsingDensity == true = Spawn Quantity * Density Quantity")]
     public int[] m_iSpawnQuantity;
-    [Tooltip("How far apart the resource(s) should spawn")]
-    public int[] m_iSpawnDensity;
-    [Tooltip("The quantity of objects to spawn within the current densiy level")]
+    [Tooltip("The volume of spawns per spawn quantity")]
     public int[] m_iDensityQuantity;
-    [Tooltip("Whether or not you're using the de")]
+    [Tooltip("How far apart the resource(s) should spawn per desnityquality lol")]
+    public float m_fDensitySpread;
+    [Tooltip("Whether or not you're using the density spawning system")]
     public bool m_bUsingDensity; //Could use an array for this and set by object.. cause maybe some objs might just be random and not density defined
     private GameObject m_goGround;
 
@@ -62,6 +62,40 @@ public class ResourceSpawner : MonoBehaviour
         m_goResourcesSpawned = new List<GameObject>();
     }
 
+    /// <summary>
+    /// Checks the obj position currently being set by the count of objs stored in the main list of this class
+    /// </summary>
+    /// <returns></returns>
+    private bool CheckByAlreadySetObjects(Vector3 _newPos)
+    {
+       switch(m_bUsingDensity)
+        {
+            case true:
+                {
+                    for (int i = 0; i < m_goResourcesSpawned.Count; i++)
+                    {
+                        if (CheckObjectDistance(_newPos, m_goResourcesSpawned[i].transform.position) < m_fDensitySpread)
+                        {
+                            return false;
+                        }
+                    }
+                    break;
+                }
+            case false:
+                {
+                    for (int i = 0; i < m_goResourcesSpawned.Count; i++)
+                    {
+                        if (CheckObjectDistance(_newPos, m_goResourcesSpawned[i].transform.position) < 10.0f) // 10.0f is just placeholder - dont even know if we will use this
+                        {
+                            return false;
+                        }
+                    }
+                    break;
+                }
+        }
+        return true;
+    }
+
 
     private Vector3 CreateNewPosition(bool _bUsingDensity ,Vector3 _bNearByPos) // have to double check bool because of firstspawn..
     {
@@ -82,7 +116,15 @@ public class ResourceSpawner : MonoBehaviour
                         _newPos = new Vector3(_iRandXRange, 0.31f, _iRandZRange);
                         if (CheckObjectDistance(_newPos, GameObject.FindGameObjectWithTag("HomeBuilding").transform.position) > 70)
                         {
-                            return _newPos;
+                            if (m_goResourcesSpawned.Count > 0)
+                            {
+                                if (!CheckByAlreadySetObjects(_newPos))
+                                {
+                                    return _newPos;
+                                }
+                            }
+                           else
+                                return _newPos;
                         }
                     }
                     break;
@@ -91,12 +133,21 @@ public class ResourceSpawner : MonoBehaviour
                 {
                     for (int i = 0; i < 30; i++)
                     {
-                        _iRandXRange = Random.Range(_bNearByPos.x - 15.0f, _bNearByPos.x + 15.0f); // 15 is default, the range is 15
-                        _iRandZRange = Random.Range(_bNearByPos.z - 15.0f, _bNearByPos.z + 15.0f);
+                       // _iRandXRange = Random.Range(_bNearByPos.x - (m_fDensitySpread + 15.0f), _bNearByPos.x + (m_fDensitySpread + 15.0f)); // 15 is default, the range is 15
+                        //_iRandZRange = Random.Range(_bNearByPos.z - (m_fDensitySpread + 15.0f), _bNearByPos.z + (m_fDensitySpread + 15.0f));
+
+                        _iRandXRange = Random.Range(_bNearByPos.x - (15.0f), _bNearByPos.x + (15.0f)); // 15 is default, the range is 30
+                        _iRandZRange = Random.Range(_bNearByPos.z - (15.0f), _bNearByPos.z + (15.0f));
                         _newPos = new Vector3(_iRandXRange, 0.31f, _iRandZRange);
-                        if (CheckObjectDistance(_newPos, _bNearByPos) > 5)
+                        if (CheckObjectDistance(_newPos, _bNearByPos) > m_fDensitySpread)
                         {
-                            return _newPos;
+                            if (CheckByAlreadySetObjects(_newPos))
+                            {
+                                if (CheckObjectDistance(_newPos, GameObject.FindGameObjectWithTag("HomeBuilding").transform.position) > 70)
+                                {
+                                    return _newPos;
+                                }
+                            }
                         }
                     }
                     break;
@@ -183,7 +234,7 @@ public class ResourceSpawner : MonoBehaviour
                     int _iObjID = -1;
                     for (int i = 0; i < m_iResourceCount; i++)
                     {
-                        for (int j = 0; j < m_iSpawnDensity[i] * 2; j++) // *2 because of the wasted loop caused by if/else
+                        for (int j = 0; j < m_iSpawnQuantity[i] * 2.0f; j++) // *2 because of the wasted loop caused by if/else
                         {
                             _iObjID++;
                                 if (_firstSpawn)
