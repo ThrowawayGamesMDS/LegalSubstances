@@ -91,10 +91,10 @@ public class ResourceSpawner : MonoBehaviour
                 {
                     for (int i = 0; i < 30; i++)
                     {
-                        _iRandXRange = Random.Range(_bNearByPos.x - 7.5f, _bNearByPos.x - 7.5f); // 15 is default, the range is 15
-                        _iRandZRange = Random.Range(_bNearByPos.z - 7.5f, _bNearByPos.z - 7.5f);
+                        _iRandXRange = Random.Range(_bNearByPos.x - 15.0f, _bNearByPos.x + 15.0f); // 15 is default, the range is 15
+                        _iRandZRange = Random.Range(_bNearByPos.z - 15.0f, _bNearByPos.z + 15.0f);
                         _newPos = new Vector3(_iRandXRange, 0.31f, _iRandZRange);
-                        if (CheckObjectDistance(_newPos, GameObject.FindGameObjectWithTag("HomeBuilding").transform.position) > 70)
+                        if (CheckObjectDistance(_newPos, _bNearByPos) > 5)
                         {
                             return _newPos;
                         }
@@ -178,47 +178,34 @@ public class ResourceSpawner : MonoBehaviour
                 }
             case true:
                 {
-                    bool _firstSpawn;
+                    bool _firstSpawn = true;
                     Vector3 _vec3FirstSpawnPos = new Vector3();
-                    int _iObjID = -1; // ezier to keep up with because we end up with having to keep track of j * k and k+1 to check objs
+                    int _iObjID = -1;
                     for (int i = 0; i < m_iResourceCount; i++)
                     {
-                        for (int j = 0; j < m_iSpawnDensity[i]; j++)
+                        for (int j = 0; j < m_iSpawnDensity[i] * 2; j++) // *2 because of the wasted loop caused by if/else
                         {
-                            _firstSpawn = true;
-                            for (int k = 0; k < m_iSpawnQuantity[i]; k++)
-                            {
-                                _iObjID++;
+                            _iObjID++;
                                 if (_firstSpawn)
                                 {
-                                    //createnewpos
                                     _bSpawned = false;
                                     spawnPos = CreateNewPosition(false, new Vector3(0, 0, 0));
                                     m_goResourcesSpawned.Add(Instantiate(m_goResources[i], spawnPos, Quaternion.identity) as GameObject); // COULD JUST CHECK THEIR POS BEFORE SPAWN BUT CEEBS
-                                    _bSpawned = CompleteRegionalObjectCheck(m_goResourcesSpawned[k].gameObject, false, new Vector3(0,0,0));
-                                    _vec3FirstSpawnPos = new Vector3(m_goResourcesSpawned[k].transform.position.x, m_goResourcesSpawned[k].transform.position.y, m_goResourcesSpawned[k].transform.position.z);
-                                    
+                                    _bSpawned = CompleteRegionalObjectCheck(m_goResourcesSpawned[_iObjID].gameObject, false, new Vector3(0,0,0));
+                                    _vec3FirstSpawnPos = new Vector3(m_goResourcesSpawned[_iObjID].transform.position.x, m_goResourcesSpawned[_iObjID].transform.position.y, m_goResourcesSpawned[_iObjID].transform.position.z);
                                     _firstSpawn = false;
-                                    print("First Spawn No: " + k);
                                 }
                                 else
                                 {
-                                     for (int l = 0; l < m_iDensityQuantity[i]; l++)
+                                     for (int l = 0; l < m_iDensityQuantity[i] - 1; l++) // -1 for original spawn
                                     {
                                         _bSpawned = false;
                                         spawnPos = CreateNewPosition(true, _vec3FirstSpawnPos);
                                         m_goResourcesSpawned.Add(Instantiate(m_goResources[i], spawnPos, Quaternion.identity) as GameObject); // COULD JUST CHECK THEIR POS BEFORE SPAWN BUT CEEBS
-                                        _bSpawned = CompleteRegionalObjectCheck(m_goResourcesSpawned[k+l].gameObject, true, _vec3FirstSpawnPos);
-
-                                        // objid = (i * j + k ())
-                                        _iObjID = ((j * 10) + k); 
-
-
-                                        print("First Spawn No: " + k + " Nearby Object No: " + l);
+                                        _bSpawned = CompleteRegionalObjectCheck(m_goResourcesSpawned[_iObjID].gameObject, true, _vec3FirstSpawnPos);
                                     }
-                                }
-
-                            }
+                                    _firstSpawn = true;
+                                 }
                                 
                         }
                     }
