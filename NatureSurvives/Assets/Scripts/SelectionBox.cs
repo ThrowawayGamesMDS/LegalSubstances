@@ -122,8 +122,8 @@ public class SelectionBox : MonoBehaviour {
 
         GameObject[] _goUnits;
         _goUnits = GameObject.FindGameObjectsWithTag("Wongle");
-        //int _iTotalWongles = GameObject.FindGameObjectWithTag("HomeBuilding").GetComponent<HomeSpawning>().iCurrentWongleCount;
-        int _iTotalWongles = 5;
+        int _iTotalWongles = GameObject.FindGameObjectWithTag("HomeBuilding").GetComponent<HomeSpawning>().iCurrentWongleCount;
+        //int _iTotalWongles = 3;
        // GET THE HOMESPAWNER TOTAL WONGLE SPAWN COUNT
         for (int i = 0; i < _iTotalWongles; i++)
         {

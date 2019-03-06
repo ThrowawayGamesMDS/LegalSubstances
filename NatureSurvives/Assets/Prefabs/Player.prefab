@@ -1,87 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7868119282218569508
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7868119282218569511}
-  - component: {fileID: 7868119282218569505}
-  - component: {fileID: 7868119282218569510}
-  m_Layer: 0
-  m_Name: Minimap
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7868119282218569511
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7868119282218569508}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 330, z: 74}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7868119282809492095}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!20 &7868119282218569505
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7868119282218569508}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 1
-  orthographic size: 104.64
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: ed85e9330a122d94e9c68d5696e24b9a, type: 2}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!124 &7868119282218569510
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7868119282218569508}
-  m_Enabled: 1
 --- !u!1 &7868119282378628513
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +119,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7868119282378628515}
-  - {fileID: 7868119282218569511}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -225,6 +142,9 @@ MonoBehaviour:
   scrollSpeed: 20
   m_vec2CursorPos: {x: 0, y: 0, z: 0}
   m_pCamera: {fileID: 7868119282526164570}
+  m_zoomSpeed: 2.5
+  testPanning: 1
+  castleobj: {fileID: 0}
 --- !u!114 &7868119282809492090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,6 +473,8 @@ MonoBehaviour:
   - {fileID: 4668414270486639521, guid: bb66ed70e65c05d43a8cdf88ee7991ae, type: 3}
   selectionCirclePrefab: {fileID: 1799010610970556, guid: ead702d3cab59eb4181414e967de762d,
     type: 3}
+  m_goMeleeUnits: []
+  m_goRangedUnits: []
 --- !u!114 &7868119282809492087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,7 +487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9644d282e7aae45428a2ca992070c767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 7868119282526164570}
+  Ccamera: {fileID: 0}
   SelectedObject: {fileID: 0}
-  name: {fileID: 0}
+  nametxt: {fileID: 0}
   description: {fileID: 0}

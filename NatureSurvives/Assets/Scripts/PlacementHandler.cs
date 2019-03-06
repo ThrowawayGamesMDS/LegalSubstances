@@ -449,7 +449,7 @@ public class PlacementHandler : MonoBehaviour
                     {
                         // click to select obj
                         //raycast out -> get obj type (maybe make a class to return type...) -> update UI to display possible options for selected item... :D
-                        DetermineIfSuccesfulClick();
+                        //DetermineIfSuccesfulClick();
                         break;
                     }
                 case PlayerStates.PLACING:
