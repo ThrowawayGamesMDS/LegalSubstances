@@ -39,8 +39,9 @@ public class ResourceSpawner : MonoBehaviour
     void Start()
     {
         m_bResourcesSpwaned = false;
+        // running circle island
 
-        m_goGround = GameObject.FindGameObjectWithTag("Ground");
+        m_goGround = GameObject.FindGameObjectWithTag("SpawnRegion");
         m_fGroundRegion = new float[2];
         m_fGroundRegion[0] = m_goGround.GetComponent<Renderer>().bounds.size.x/2;
         m_fGroundRegion[1] = m_goGround.GetComponent<Renderer>().bounds.size.z/2;
