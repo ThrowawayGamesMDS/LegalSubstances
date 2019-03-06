@@ -207,7 +207,7 @@ public class cameraController : MonoBehaviour {
         }
 
 
-        float screenMargin = 30f;
+        float screenMargin = 20f;
         if(testPanning)
         {
             // sorry saw you could turn off by bool but thought i'd add this anyways
