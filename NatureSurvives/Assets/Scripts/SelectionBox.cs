@@ -79,7 +79,7 @@ public static class Utils
 public class SelectionBox : MonoBehaviour {
 
     bool isSelecting = false;
-    bool m_bCtrlSelectUnits = false;
+    public bool m_bCtrlSelectUnits = false;
     public List <GameObject> m_lCtrlUnits;
     Vector3 mousePosition1;
     public Camera camera;
@@ -99,7 +99,7 @@ public class SelectionBox : MonoBehaviour {
     private int m_iActiveCombatWongles;
     public List<GameObject> m_goMeleeUnits;
     public List<GameObject> m_goRangedUnits;
-    private bool[] m_bUnitsSelected;
+    public bool[] m_bUnitsSelected;
     private GameObject m_goUnitDoubleClicked;
 
     private void Awake()
@@ -348,6 +348,20 @@ public class SelectionBox : MonoBehaviour {
 
     }
 
+    private void UpdateCameraVariables(Ray ray, int layermask)// for rotation around an obj
+    {
+        RaycastHit hit = GenerateRayCast(ray, layermask, false);
+
+        if (hit.transform != null)
+        {
+            if (hit.transform.gameObject.GetComponent<SelectableUnitComponent>() != null)
+            {
+                gameObject.GetComponent<cameraController>().m_goRotateAround = hit.transform.gameObject;
+                gameObject.GetComponent<cameraController>().m_bCamSelObjRotation = true;
+            }
+        }
+    }
+
     void Update()
     {
         // Wee c++ style timer handle for double click select - coroutine was fucking out mega
@@ -492,6 +506,13 @@ public class SelectionBox : MonoBehaviour {
                                     CheckUnitForType(ray, layermask);
                                   
                                     m_bUserLClicked = false;
+
+                                    if (gameObject.GetComponent<cameraController>().m_bCamSelObjRotation)
+                                    {
+                                        gameObject.GetComponent<cameraController>().m_bCamSelObjRotation = false;
+                                        gameObject.GetComponent<cameraController>().m_goRotateAround = null;
+                                    }
+
                                     return;
                                 }
                             case false:
@@ -502,6 +523,7 @@ public class SelectionBox : MonoBehaviour {
                                         m_bUserLClicked = true;
                                         m_fUserClickedTime = Time.time + 0.3f;
                                     }
+                                    UpdateCameraVariables(ray, layermask);
                                     break;
                                 }
                         }

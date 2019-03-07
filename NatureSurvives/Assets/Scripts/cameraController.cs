@@ -20,6 +20,9 @@ public class cameraController : MonoBehaviour {
     Quaternion localRotation;
     public Transform castleobj;
 
+    public bool m_bCamSelObjRotation; // Camera has an object to rotate around
+    public GameObject m_goRotateAround;
+
     // Use this for initialization
     void Start () {
         m_pAlterFov = false;
@@ -32,11 +35,36 @@ public class cameraController : MonoBehaviour {
 
         //added this in the start to get others to test it.  will need to remove
         testPanning = true;
+        m_bCamSelObjRotation = false;
+        m_goRotateAround = null;
+        
+    }
+
+
+    private bool RotateCameraAroundSelectedObject()
+    {
+        int _test = 0;
+        if (!gameObject.GetComponent<SelectionBox>().m_bCtrlSelectUnits)
+        foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
+        {
+            if (selectableObject.selectionCircle != null)
+            {
+                _test++;
+                m_goRotateAround = selectableObject.gameObject;
+            }
+            if (_test > 1)
+                {
+                    m_goRotateAround = null;
+                    return false;
+                }
+        }
+        return true;
     }
 	
 	// Update is called once per frame
 	void Update () {
         //scrolling on x axis
+        
 
         if (Input.GetKey(KeyCode.A))
         {
@@ -195,14 +223,37 @@ public class cameraController : MonoBehaviour {
             }
         }
 
+       /* if (Input.GetMouseButtonUp(0))
+        {
+            m_bCamSelObjRotation = RotateCameraAroundSelectedObject();
+        }*/
 
         if (Input.GetKey(KeyCode.E))
         {
-            transform.Rotate(0, 50*Time.deltaTime, 0);
+            if (!m_bCamSelObjRotation)
+            {
+                transform.Rotate(0, 50 * Time.deltaTime, 0);
+            }
+            else
+            {
+                Camera.main.transform.LookAt(m_goRotateAround.transform);
+                Camera.main.transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, 50 * Time.deltaTime);
+                transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, 50 * Time.deltaTime);
+            }
         }
+
         else if(Input.GetKey(KeyCode.Q))
         {
-            transform.Rotate(0, -50 * Time.deltaTime, 0);
+            if (!m_bCamSelObjRotation)
+            {
+                transform.Rotate(0, -50 * Time.deltaTime, 0);
+            }
+            else
+            {
+                Camera.main.transform.LookAt(m_goRotateAround.transform);
+                Camera.main.transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, -50 * Time.deltaTime);
+                transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, -50 * Time.deltaTime);
+            }
 
         }
 
