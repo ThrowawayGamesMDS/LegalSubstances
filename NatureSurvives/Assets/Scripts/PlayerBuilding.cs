@@ -22,4 +22,8 @@ public class PlayerBuilding : MonoBehaviour {
             Destroy(gameObject);
         }
 	}
+    public void TakeDamage(int damage)
+    {
+        BuildingHealth -= damage/10;
+    }
 }

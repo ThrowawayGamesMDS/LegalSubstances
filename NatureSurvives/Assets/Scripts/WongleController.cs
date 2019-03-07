@@ -269,13 +269,10 @@ public class WongleController : MonoBehaviour
                             agent.isStopped = true;
                             if (canAttack)
                             {
-                                //attackinstance = Instantiate(attackEffect, handPosition.transform.position, handPosition.transform.rotation);
-                                //attackinstance.transform.parent = handPosition.transform;
-                                //attackinstance.GetComponent<LookAtTarget>().target = Target.transform.GetChild(1).gameObject;
-
-                                StartCoroutine(MeleeAttack());
-                                canAttack = false;
-                                Invoke("AttackCooldown", 1.2f);
+                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("BasicSwingAttack"))
+                                {
+                                    anim.Play("BasicSwingAttack");
+                                }
                             }
                         }
                     }
@@ -625,18 +622,7 @@ public class WongleController : MonoBehaviour
     {
         canAttack = true;
     }
-
-
-    IEnumerator MeleeAttack()
-    {
-        anim.Play("BasicSwingAttack");
-        yield return new WaitForSeconds(0.5f);
-        if (Target != null)
-        {
-            Target.SendMessage("EnemyShot", 30);
-        }
-
-    }
+    
 
 
 
@@ -689,7 +675,17 @@ public class WongleController : MonoBehaviour
         }
     }
 
+    public void MeleeAttack()
+    {
+        Target.SendMessage("EnemyShot", 20);
+        //play wongle hit sound
+    }
 
+    public void TakeDamage(int damage)
+    {
+        WongleHealth -= damage;
+        //play take damage sound
+    }
 
     void FindNewTarget(string tag)
     {

@@ -9,9 +9,7 @@ public class EnemyController : MonoBehaviour {
     public List<GameObject> targetsInArea;
     public Animator anim;
     public float m_fEnemyHealth;
-
-
-
+    
     public float wanderRadius;
     public float wanderTimer;
 
@@ -109,39 +107,13 @@ public class EnemyController : MonoBehaviour {
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
                 if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-                {
-                    if (targetsInArea.Count > 0)
-                    {
-                        switch (targetsInArea[0].tag)
-                        {
-                            case "Building":
-                                {
-                                    targetsInArea[0].GetComponent<PlayerBuilding>().BuildingHealth -= 2 * Time.deltaTime;
-                                    break;
-                                }
-                            case "HomeBuilding":
-                                {
-                                    targetsInArea[0].GetComponent<PlayerBuilding>().BuildingHealth -= 2 * Time.deltaTime;
-                                    break;
-                                }
-                            case "Wongle":
-                                {
-                                    targetsInArea[0].GetComponent<WongleController>().WongleHealth -= 20 * Time.deltaTime;
-                                    break;
-                                }
-                               
-                        }
-
-                        
-                    }
-
+                {     
                     if (targetsInArea.Count != 0)
                     {
                         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AttackLoop"))
                         {
                             anim.Play("AttackLoop");
-                        }
-                        
+                        }                        
                     }
                     else
                     {
@@ -177,12 +149,12 @@ public class EnemyController : MonoBehaviour {
     {
         return p1.GetComponent<DangerPriority>().m_iDangerPriority.CompareTo(p2.GetComponent<DangerPriority>().m_iDangerPriority);
     }
-
-
+    
 
     void EnemyShot(float damage)
     {
         print("EnemyShot");
         m_fEnemyHealth -= damage;
+        //play enemy damage sound
     }
 }
