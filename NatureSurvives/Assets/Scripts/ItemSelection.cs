@@ -52,6 +52,7 @@ public class ItemSelection : MonoBehaviour {
                 // obj selected isn't a unit that's selectable yet the camera is attempting to rotate around an object...
                 {
                     gameObject.GetComponent<cameraController>().m_bCamSelObjRotation = false;
+                    gameObject.GetComponent<cameraController>().m_bCamReset = true;
                     print("Resteting the camera rotation obj");
                 }
             }

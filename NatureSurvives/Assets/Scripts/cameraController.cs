@@ -22,6 +22,7 @@ public class cameraController : MonoBehaviour {
 
     public bool m_bCamSelObjRotation; // Camera has an object to rotate around
     public GameObject m_goRotateAround;
+    public bool m_bCamReset;
 
     // Use this for initialization
     void Start () {
@@ -37,7 +38,9 @@ public class cameraController : MonoBehaviour {
         testPanning = true;
         m_bCamSelObjRotation = false;
         m_goRotateAround = null;
-        
+        m_bCamReset = false;
+
+
     }
 
 
@@ -63,6 +66,20 @@ public class cameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+
+        if (!m_bCamSelObjRotation && Camera.main.transform.rotation.y != gameObject.transform.rotation.y && m_bCamReset)
+        {
+            Vector3 _playerRot = new Vector3(gameObject.transform.rotation.x, gameObject.transform.rotation.y, gameObject.transform.rotation.z);
+            Vector3 _playerPos = gameObject.transform.position;
+
+            //Camera.main.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(gameObject.transform.forward,gameObject.transform.up), 15);
+            Camera.main.transform.forward = gameObject.transform.forward;
+            Camera.main.transform.rotation = Quaternion.Euler(45.0f, _playerRot.y, 0);
+            Camera.main.transform.position = _playerPos;
+            m_bCamReset = false;
+        }
+
         //scrolling on x axis
         
 
@@ -72,7 +89,8 @@ public class cameraController : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.D))
         {
-            gameObject.transform.Translate(scrollSpeed * Time.deltaTime, 0, 0);
+            gameObject.transform.Translate( Vector3.right * scrollSpeed * Time.deltaTime);
+            //gameObject.transform.Translate(Vector3.right * scrollSpeed * Time.deltaTime, 0, 0);
         }
         //scrolling on y axis
         if (Input.GetKey(KeyCode.S))
@@ -107,73 +125,9 @@ public class cameraController : MonoBehaviour {
             localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
             transform.rotation = localRotation;
 
-            // Vector3 _temp = new Vector3(gameObject.transform.rotation.x, gameObject.transform.rotation.y, gameObject.transform.rotation.z);
-            //print("X: " +Input.mousePosition.x + ", Y: " + Input.mousePosition.y);
-
-            //if (m_vec2CursorPos.x - 20 < Input.mousePosition.x && m_vec2CursorPos.x + 20 > Input.mousePosition.x)
-            //{
-            //    if (Input.mousePosition.x > Screen.width / 2)
-            //    {
-            //        _temp.y += 0.5f;
-            //    }
-            //    else
-            //    {
-            //        _temp.y -= 0.5f;
-            //    }
-            //}
-
-            //if (m_vec2CursorPos.y - 20 < Input.mousePosition.y && m_vec2CursorPos.y + 20 > Input.mousePosition.y)
-            //{
-            //    if (Input.mousePosition.y > Screen.height / 2)
-            //    {
-            //        _temp.x += 3;
-            //    }
-            //    else
-            //    {
-            //        _temp.x -= 3;
-            //    }
-            //}
-            //gameObject.transform.Rotate(_temp);
-            //m_vec2CursorPos = Input.mousePosition;
-
-            //gameObject.transform.Rotate
-
         }
 
-        /* if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
-         {
-             print ("FUCKING ALTER THE FOV");
-             if (Input.GetAxis("Mouse ScrollWheel") > 0.0f) // forward
-             {
-                 if (m_pCamera.fieldOfView < 115)
-                 {
-                     // m_pCamera.fieldOfView += 0.25f;
-                     Camera.main.fieldOfView = 115;
-                   //  m_pCamera.fieldOfView = 115;
-                     //gameObject.GetComponent<Camera>().fieldOfView += 0.25f;
-                 }
-             }
-             else if (Input.GetAxis("Mouse ScrollWheel") < 0.0f) // backwards
-             {
-                 if (m_pCamera.fieldOfView > 60)
-                 {
-                     //m_pCamera.fieldOfView = 60;
-                     Camera.main.fieldOfView = 60;
-                     //m_pCamera.fieldOfView -= 0.25f;
-                 }
-             }
-         }
-         else
-         {
-             if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
-             {
-                 transform.Translate(0, -100 * Time.deltaTime, 0);
-             }
-             else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
-             {
-                 transform.Translate(0, 100 * Time.deltaTime, 0);
-             }
-         }*/
+      
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
         {
             m_pAlterFov = true;
@@ -238,7 +192,7 @@ public class cameraController : MonoBehaviour {
             {
                 Camera.main.transform.LookAt(m_goRotateAround.transform);
                 Camera.main.transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, 50 * Time.deltaTime);
-                transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, 50 * Time.deltaTime);
+                //transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, 50 * Time.deltaTime);
             }
         }
 
@@ -252,7 +206,7 @@ public class cameraController : MonoBehaviour {
             {
                 Camera.main.transform.LookAt(m_goRotateAround.transform);
                 Camera.main.transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, -50 * Time.deltaTime);
-                transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, -50 * Time.deltaTime);
+                //transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, -50 * Time.deltaTime);
             }
 
         }
