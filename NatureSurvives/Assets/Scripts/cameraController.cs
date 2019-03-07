@@ -11,7 +11,6 @@ public class cameraController : MonoBehaviour {
     private Rect m_rScreenRect;
     public float m_zoomSpeed = 2.5f;
 
-    public bool testPanning = true;
     float moveSpeed = 1.0f;
     float rotX = 0.0f;
     float rotY = 0.0f;
@@ -24,6 +23,8 @@ public class cameraController : MonoBehaviour {
     public GameObject m_goRotateAround;
     public bool m_bCamReset;
 
+    private float lastFrameTime;
+
     // Use this for initialization
     void Start () {
         m_pAlterFov = false;
@@ -34,13 +35,11 @@ public class cameraController : MonoBehaviour {
 
         m_rScreenRect = new Rect(0,0, Screen.width, Screen.height);
 
-        //added this in the start to get others to test it.  will need to remove
-        testPanning = true;
         m_bCamSelObjRotation = false;
         m_goRotateAround = null;
         m_bCamReset = false;
 
-
+        lastFrameTime = Time.realtimeSinceStartup;
     }
 
 
@@ -67,6 +66,9 @@ public class cameraController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        //I'm using my own delta time calculation, so that the camera can't be paused when Time.timeScale = 0
+        float myDeltaTime = Time.realtimeSinceStartup - lastFrameTime;
+        lastFrameTime = Time.realtimeSinceStartup;
 
         if (!m_bCamSelObjRotation && Camera.main.transform.rotation.y != gameObject.transform.rotation.y && m_bCamReset)
         {
@@ -78,6 +80,9 @@ public class cameraController : MonoBehaviour {
             Camera.main.transform.rotation = Quaternion.Euler(45.0f, _playerRot.y, 0);
             Camera.main.transform.position = _playerPos;
             m_bCamReset = false;
+
+            //rotX = transform.rotation.eulerAngles.x;
+            //rotY = transform.rotation.eulerAngles.y;
         }
 
         //scrolling on x axis
@@ -85,21 +90,25 @@ public class cameraController : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.A))
         {
-            gameObject.transform.Translate(-scrollSpeed * Time.deltaTime, 0, 0);
+            //gameObject.transform.Translate(-scrollSpeed * Time.deltaTime, 0, 0);
+            gameObject.transform.Translate(-scrollSpeed * myDeltaTime, 0, 0);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            gameObject.transform.Translate( Vector3.right * scrollSpeed * Time.deltaTime);
+            gameObject.transform.Translate(Vector3.right * scrollSpeed * myDeltaTime);
+            //gameObject.transform.Translate( Vector3.right * scrollSpeed * Time.deltaTime);
             //gameObject.transform.Translate(Vector3.right * scrollSpeed * Time.deltaTime, 0, 0);
         }
         //scrolling on y axis
         if (Input.GetKey(KeyCode.S))
         {
-            gameObject.transform.Translate(0, 0, -scrollSpeed * Time.deltaTime);
+            //gameObject.transform.Translate(0, 0, -scrollSpeed * Time.deltaTime);
+            gameObject.transform.Translate(0, 0, -scrollSpeed * myDeltaTime);
         }
         if (Input.GetKey(KeyCode.W))
         {
-            gameObject.transform.Translate(0, 0, scrollSpeed * Time.deltaTime);
+            //gameObject.transform.Translate(0, 0, scrollSpeed * Time.deltaTime);
+            gameObject.transform.Translate(0, 0, scrollSpeed * myDeltaTime);
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
@@ -152,7 +161,8 @@ public class cameraController : MonoBehaviour {
                     }
                 case false:
                     {
-                        transform.Translate(0, -100 * Time.deltaTime, 0);
+                        //transform.Translate(0, -100 * Time.deltaTime, 0);
+                        transform.Translate(0, -100 * myDeltaTime, 0);
                         break;
                     }
             }
@@ -171,7 +181,8 @@ public class cameraController : MonoBehaviour {
                     }
                 case false:
                     {
-                        transform.Translate(0, 100 * Time.deltaTime, 0);
+                        //transform.Translate(0, 100 * Time.deltaTime, 0);
+                        transform.Translate(0, 100 * myDeltaTime, 0);
                         break;
                     }
             }
@@ -186,12 +197,17 @@ public class cameraController : MonoBehaviour {
         {
             if (!m_bCamSelObjRotation)
             {
-                transform.Rotate(0, 50 * Time.deltaTime, 0);
+                //transform.Rotate(0, 50 * Time.deltaTime, 0);
+                transform.Rotate(0, 50 * myDeltaTime, 0);
+
+                rotX = transform.rotation.eulerAngles.x;
+                rotY = transform.rotation.eulerAngles.y;
             }
             else
             {
                 Camera.main.transform.LookAt(m_goRotateAround.transform);
-                Camera.main.transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, 50 * Time.deltaTime);
+                //Camera.main.transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, 50 * Time.deltaTime);
+                Camera.main.transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, 50 * myDeltaTime);
                 //transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, 50 * Time.deltaTime);
             }
         }
@@ -200,12 +216,17 @@ public class cameraController : MonoBehaviour {
         {
             if (!m_bCamSelObjRotation)
             {
-                transform.Rotate(0, -50 * Time.deltaTime, 0);
+                //transform.Rotate(0, -50 * Time.deltaTime, 0);
+                transform.Rotate(0, -50 * myDeltaTime, 0);
+
+                rotX = transform.rotation.eulerAngles.x;
+                rotY = transform.rotation.eulerAngles.y;
             }
             else
             {
                 Camera.main.transform.LookAt(m_goRotateAround.transform);
-                Camera.main.transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, -50 * Time.deltaTime);
+                //Camera.main.transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, -50 * Time.deltaTime);
+                Camera.main.transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, -50 * myDeltaTime);
                 //transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, -50 * Time.deltaTime);
             }
 
@@ -213,8 +234,8 @@ public class cameraController : MonoBehaviour {
 
 
         float screenMargin = 20f;
-        if(testPanning)
-        {
+        //if(testPanning)
+        //{
             // sorry saw you could turn off by bool but thought i'd add this anyways
             if (!m_rScreenRect.Contains(Input.mousePosition))
                 return;
@@ -222,28 +243,28 @@ public class cameraController : MonoBehaviour {
             if (!EditorWindow.mouseOverWindow)
                 return;
 
-            float panSpeed = screenMargin * Time.deltaTime;
+            float panSpeed = scrollSpeed * myDeltaTime;
 
                 if (Input.mousePosition.x < screenMargin)
                 {
-                    gameObject.transform.Translate(-scrollSpeed * Time.deltaTime, 0, 0);
+                    gameObject.transform.Translate(-panSpeed, 0, 0);
                 }
                 else if (Input.mousePosition.x > Screen.width - screenMargin)
                 {
-                    gameObject.transform.Translate(scrollSpeed * Time.deltaTime, 0, 0);
+                    gameObject.transform.Translate(panSpeed, 0, 0);
                 }
 
                 if (Input.mousePosition.y < screenMargin)
                 {
-                    gameObject.transform.Translate(0, 0, -scrollSpeed * Time.deltaTime);
+                    gameObject.transform.Translate(0, 0, -panSpeed);
                 }
                 else if (Input.mousePosition.y > Screen.height - screenMargin)
                 {
-                    gameObject.transform.Translate(0, 0, scrollSpeed * Time.deltaTime);
+                    gameObject.transform.Translate(0, 0, panSpeed);
                 }
                 //Vector3 move = new Vector3(x, y, z) + transform.position;
                 //transform.position = move;           
-        }
+        //}
 
         //bool bSetCameraLookat = false;
         //RaycastHit hit = new RaycastHit();
@@ -276,7 +297,8 @@ public class cameraController : MonoBehaviour {
             {
                 //Physics.Raycast(transform.position, -Vector3.up, out hit);
                 //Vector3 pivotPoint = new Vector3(5.0f, 0.0f, 5.0f); //modify that value
-                transform.RotateAround(hit.point, Vector3.up, 20 * Time.deltaTime);
+                //transform.RotateAround(hit.point, Vector3.up, 20 * Time.deltaTime);
+                transform.RotateAround(hit.point, Vector3.up, 20 * myDeltaTime);
                 //transform.RotateAround(pivotPoint, transform.up, 20 * Time.deltaTime);
 
                 rotX = transform.rotation.eulerAngles.x;
@@ -289,7 +311,8 @@ public class cameraController : MonoBehaviour {
             Ray ray = m_pCamera.ScreenPointToRay(new Vector3(m_pCamera.pixelWidth / 2, m_pCamera.pixelHeight / 2, 0));
             if (Physics.Raycast(ray, out hit))
             {
-                transform.RotateAround(hit.point, Vector3.up, -20 * Time.deltaTime);
+                //transform.RotateAround(hit.point, Vector3.up, -20 * Time.deltaTime);
+                transform.RotateAround(hit.point, Vector3.up, -20 * myDeltaTime);
 
                 rotX = transform.rotation.eulerAngles.x;
                 rotY = transform.rotation.eulerAngles.y;

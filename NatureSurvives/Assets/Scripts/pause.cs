@@ -6,47 +6,82 @@ using UnityEngine.SceneManagement;
 
 public class pause : MonoBehaviour {
 
-    public bool Pause = false;
-    public GameObject pauseButton;
+    [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private bool Pause;
+
     // Use this for initialization
     void Start() {
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
     }
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Backslash))
+
+        if (Input.GetKeyDown(KeyCode.Backslash) || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space))
         {
-            if (Pause == false)
+            if (Pause)
             {
-                //pasue game
-               
-               
-                paused();
+                Resume();                
             }
             else
             {
-                Unpaused();
+                PauseGame();
             }
 
-
-
         }
 
-        if (Pause == false)
-        {
-            //pasue game
+        //if (Input.GetKeyDown(KeyCode.Backslash))
+        //{
+        //    if (Pause == false)
+        //    {
+        //        paused();
+        //    }
+        //    else
+        //    {
+        //        Unpaused();
+        //    }
+        //}
+
+        //if (Pause == false)
+        //{
+        //    //pasue game
             
-            pauseButton.SetActive(false);
-            Time.timeScale = 1f;
-        }
-        else
-        {
-            pauseButton.SetActive(true);
-            Time.timeScale = 0f;
+        //    pauseButton.SetActive(false);
+        //    Time.timeScale = 1f;
+        //}
+        //else
+        //{
+        //    pauseButton.SetActive(true);
+        //    Time.timeScale = 0f;
 
 
-        }
+        //}
+    }
+    void PauseGame()
+    {
+        Pause = true;
+        Time.timeScale = 0;
+        AudioListener.pause = true;
+        pauseMenuUI.SetActive(true);
+    }
+
+    //public void DeactivateMenu()
+    public void Resume()
+    {
+        Pause = false;
+        Time.timeScale = 1;
+        AudioListener.pause = false;
+        pauseMenuUI.SetActive(false);
+    }
+
+    public void reset()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(2);
+    }
+    public void quit()
+    {
+        Application.Quit();
     }
 
     public void paused (){
@@ -61,15 +96,7 @@ public class pause : MonoBehaviour {
     }
 
 
-public void reset()
-{
-    SceneManager.LoadScene(2);
-}
-public void quit()
-{
-    print("quit");
 
-    Application.Quit();
-}
+
 }
 
