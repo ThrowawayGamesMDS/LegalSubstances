@@ -128,6 +128,7 @@ MonoBehaviour:
   Description: this is an unfinished building. Use a wongle to finish the construction
   hasSpecificWindow: 0
   UIPanel: {fileID: 0}
+  isSelected: 0
 --- !u!114 &6352745987041887489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d838259aca4c30248948898b3948b7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_fTimeToComplete: 15
+  m_fTimeToComplete: 23
   m_fCurrentCompletion: 0
   worker: {fileID: 0}
   m_Building: {fileID: 1504439094504993796, guid: df62d0aeb7368ea4d9b6509d6cdaed8a,
@@ -157,8 +158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db4dc02560072140aa4782889f7feb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WoodCost: 50
-  CrystalCost: 50
+  WoodCost: 100
+  CrystalCost: 0
   FoodCost: 0
 --- !u!65 &1496450110450186598
 BoxCollider:

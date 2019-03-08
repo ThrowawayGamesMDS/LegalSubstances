@@ -29,33 +29,7 @@ public class pause : MonoBehaviour {
             }
 
         }
-
-        //if (Input.GetKeyDown(KeyCode.Backslash))
-        //{
-        //    if (Pause == false)
-        //    {
-        //        paused();
-        //    }
-        //    else
-        //    {
-        //        Unpaused();
-        //    }
-        //}
-
-        //if (Pause == false)
-        //{
-        //    //pasue game
-            
-        //    pauseButton.SetActive(false);
-        //    Time.timeScale = 1f;
-        //}
-        //else
-        //{
-        //    pauseButton.SetActive(true);
-        //    Time.timeScale = 0f;
-
-
-        //}
+        
     }
     void PauseGame()
     {

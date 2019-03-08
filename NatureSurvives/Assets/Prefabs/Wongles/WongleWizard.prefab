@@ -2054,6 +2054,7 @@ MonoBehaviour:
   Description: Wongle Wizards are masters of ranged magical combat
   hasSpecificWindow: 0
   UIPanel: {fileID: 0}
+  isSelected: 0
 --- !u!114 &114096677852655668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2079,9 +2080,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db4dc02560072140aa4782889f7feb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WoodCost: 0
-  CrystalCost: 20
-  FoodCost: 20
+  WoodCost: 25
+  CrystalCost: 45
+  FoodCost: 0
 --- !u!1 &1928065036929184
 GameObject:
   m_ObjectHideFlags: 0

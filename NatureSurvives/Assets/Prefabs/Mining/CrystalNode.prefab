@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 8.28}
+  m_AnchoredPosition: {x: 0, y: 2.63}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8672917247343046676
@@ -208,8 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd93ae54ae797e47ac7f6b2c4b257d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WoodHealth: 75
-  yield: 5
+  WoodHealth: 300
+  yield: 10
   worker: {fileID: 0}
   trunk: {fileID: 0}
 --- !u!114 &5314606468409721945
@@ -228,6 +228,7 @@ MonoBehaviour:
   Description: Geiger Crystal ore, a Wongle may be able to collect crystals from this
   hasSpecificWindow: 0
   UIPanel: {fileID: 0}
+  isSelected: 0
 --- !u!54 &5314606468409721942
 Rigidbody:
   m_ObjectHideFlags: 0

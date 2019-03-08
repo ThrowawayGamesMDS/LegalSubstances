@@ -10,6 +10,7 @@ public class DayNight : MonoBehaviour {
     public static int DaysPlayed;
     public int playeddays;
     private bool counted;
+    
 	// Use this for initialization
 	void Start () {
         DaysPlayed = 0;

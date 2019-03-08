@@ -717,6 +717,7 @@ MonoBehaviour:
   Description: Wongle Knights are masters of melee combat
   hasSpecificWindow: 0
   UIPanel: {fileID: 0}
+  isSelected: 0
 --- !u!114 &114311933729675776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,8 +744,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WoodCost: 0
-  CrystalCost: 15
-  FoodCost: 20
+  CrystalCost: 20
+  FoodCost: 60
 --- !u!1 &1380978879875354
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public class ItemSelection : MonoBehaviour {
     public GameObject SelectedObject;
     public Text nametxt;
     public Text description;
+    
 	
 	// Update is called once per frame
 	void Update () {
@@ -34,13 +35,21 @@ public class ItemSelection : MonoBehaviour {
                 {
                     //object is selected
                     SelectedObject = hit.transform.gameObject;
+                    hit.transform.GetComponent<SelectableObject>().isSelected = true;
                 }
                 //if raycast doesnt hit object with selectableobject script
                 else
                 {
                     //unselect any objects that are set
-                    SelectedObject = null;
+                    if(SelectedObject != null)
+                    {
+                        SelectedObject.GetComponent<SelectableObject>().isSelected = false;
+                        SelectedObject = null;
+                    }
+                    
                 }
+
+
 
 
                 /***
@@ -67,15 +76,15 @@ public class ItemSelection : MonoBehaviour {
         if (SelectedObject != null)
         {
             //change ui text to objects specific text
-            nametxt.text = SelectedObject.GetComponent<SelectableObject>().Name;
-            description.text = SelectedObject.GetComponent<SelectableObject>().Description;
+            //nametxt.text = SelectedObject.GetComponent<SelectableObject>().Name;
+            //description.text = SelectedObject.GetComponent<SelectableObject>().Description;
         }
         //if no object is selected
         else
         {
             //set ui text to nothing
-            nametxt.text = "";
-            description.text = "";
+            //nametxt.text = "";
+            //description.text = "";
             
         }
 

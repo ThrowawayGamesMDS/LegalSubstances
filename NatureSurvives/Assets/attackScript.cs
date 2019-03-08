@@ -8,6 +8,6 @@ public class attackScript : MonoBehaviour
     public Transform handpos;
     public void AttackAOE()
     {
-        Instantiate(AOEObj, handpos.position, Quaternion.identity);
+        Instantiate(AOEObj, handpos.position, AOEObj.transform.rotation);
     }
 }

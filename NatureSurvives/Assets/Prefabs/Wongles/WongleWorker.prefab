@@ -3431,6 +3431,7 @@ MonoBehaviour:
   Description: A Primitive worker unit
   hasSpecificWindow: 0
   UIPanel: {fileID: 0}
+  isSelected: 0
 --- !u!114 &114918341632213198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3456,9 +3457,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db4dc02560072140aa4782889f7feb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WoodCost: 10
+  WoodCost: 0
   CrystalCost: 0
-  FoodCost: 20
+  FoodCost: 50
 --- !u!82 &82408111932787284
 AudioSource:
   m_ObjectHideFlags: 0

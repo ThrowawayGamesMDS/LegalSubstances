@@ -141,7 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: Seeds
   output: White
-  TimeToComplete: 30
+  TimeToComplete: 20
   timer: 0
   inputAmount: 0
   outputAmount: 0
@@ -318,6 +318,7 @@ MonoBehaviour:
   Description: A farm in which wongles can collect food from
   hasSpecificWindow: 0
   UIPanel: {fileID: 0}
+  isSelected: 0
 --- !u!1 &1781100764309494
 GameObject:
   m_ObjectHideFlags: 0

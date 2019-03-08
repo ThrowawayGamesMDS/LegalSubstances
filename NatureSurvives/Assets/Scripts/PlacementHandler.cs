@@ -427,8 +427,12 @@ public class PlacementHandler : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Destroy(m_goPlacementDefault);
-            m_ePlayerState = PlayerStates.DEFAULT;
+            if(m_ePlayerState != PlayerStates.DEFAULT)
+            {
+                Destroy(m_goPlacementDefault);
+                m_ePlayerState = PlayerStates.DEFAULT;
+            }
+            
         }
         
 

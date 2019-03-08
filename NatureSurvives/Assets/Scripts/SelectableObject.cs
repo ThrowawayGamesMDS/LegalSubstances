@@ -7,7 +7,7 @@ public class SelectableObject : MonoBehaviour {
     public string Description;
     public bool hasSpecificWindow;
     public GameObject UIPanel;
-    //public bool isSelected;
+    public bool isSelected;
     //public GameObject UIPanel;
 
 }

@@ -10,23 +10,6 @@ public class buttonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public GameObject refOBJ;
     public GameObject hoverui;
     public bool isResource;
-	void Start () {
-        if(hoverui != null)
-        {
-            hoverui.SetActive(false);
-        }
-        
-	}
-	void Update () {
-        if(hoverui != null)
-        {
-            if (hoverui.activeSelf == true)
-            {
-                hoverui.transform.position = Input.mousePosition;
-            }
-        }
-		
-	}
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
         if(!isResource)
@@ -43,6 +26,7 @@ public class buttonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         if(!isResource)
         {
+            hoverui.GetComponent<updatePriceUI>().UpdateFloats(0,0,0,"");
             hoverui.SetActive(false);
         }
         else

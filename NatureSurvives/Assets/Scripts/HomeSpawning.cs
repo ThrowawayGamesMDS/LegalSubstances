@@ -14,10 +14,12 @@ public class HomeSpawning : MonoBehaviour {
     public GameObject wizardUI;
     public GameObject knightUI;
     public Transform canvas;
+    public GameObject army;
     private void Start()
     {
         iCurrentWongleCount = 5;
-        iMaximumWongleCount = 10;
+        iMaximumWongleCount = 5;
+        army = GameObject.FindGameObjectWithTag("Army");
     }
 
     public void fQueueUnit(string unittype)
@@ -104,8 +106,9 @@ public class HomeSpawning : MonoBehaviour {
                 }
             case "Wizard":
                 {
-                    temp = Instantiate(Prefabs[1], transform.position, Prefabs[1].transform.rotation);
+                    temp = Instantiate(Prefabs[1], transform.position, Prefabs[1].transform.rotation, army.transform);
                     temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
+                    temp.GetComponent<WongleController>().Work = army;
                     temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(10, 0, -20));                                
                     GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>().m_goRangedUnits.Add(temp);                  
                     break;
@@ -113,8 +116,9 @@ public class HomeSpawning : MonoBehaviour {
             case "Knight":
                 {
                     
-                    temp = Instantiate(Prefabs[2], transform.position, Prefabs[2].transform.rotation);
+                    temp = Instantiate(Prefabs[2], transform.position, Prefabs[2].transform.rotation, army.transform);
                     temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
+                    temp.GetComponent<WongleController>().Work = army;
                     temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(0, 0, -20));                                
                     GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>().m_goMeleeUnits.Add(temp);                   
                     break;

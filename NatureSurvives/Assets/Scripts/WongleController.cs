@@ -307,7 +307,7 @@ public class WongleController : MonoBehaviour
                             }
 
                             Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
-                            outputAmount += ((Target.GetComponent<WoodScript>().yield * Time.deltaTime) / 5);
+                            outputAmount += (Time.deltaTime * 0.6f);
                             if (Target.GetComponent<WoodScript>().WoodHealth <= 0)
                             {
                                 placeholderPosition = Target.transform.position;
@@ -399,7 +399,7 @@ public class WongleController : MonoBehaviour
                             //Mining Animation animation
                             anim.Play("PickaxeSwing");
                             Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
-                            outputAmount += ((Target.GetComponent<WoodScript>().yield * Time.deltaTime) / 5);
+                            outputAmount += (Time.deltaTime * 0.55f);
                             if (Target.GetComponent<WoodScript>().WoodHealth <= 0)
                             {
                                 placeholderPosition = Target.transform.position;

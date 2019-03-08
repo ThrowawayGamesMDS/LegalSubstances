@@ -42,7 +42,10 @@ public class SelectableUnitComponent : MonoBehaviour {
                                     {
                                         controller.Work.GetComponent<BuildingController>().worker = null;
                                     }
-                                    controller.Work = null;
+                                    if (controller.Work.tag != "Army")
+                                    {
+                                        controller.Work = null;
+                                    }
                                 }
 
                                 if(controller.Target != null)
@@ -82,7 +85,10 @@ public class SelectableUnitComponent : MonoBehaviour {
                                         {
                                             controller.Work.GetComponent<BuildingController>().worker = null;
                                         }
-                                        controller.Work = null;
+                                        if (controller.Work.tag != "Army")
+                                        {
+                                            controller.Work = null;
+                                        }
                                     }
 
                                     if (controller.Target != null)
@@ -126,7 +132,10 @@ public class SelectableUnitComponent : MonoBehaviour {
                                         {
                                             controller.Work.GetComponent<BuildingController>().worker = null;
                                         }
-                                        controller.Work = null;
+                                        if (controller.Work.tag != "Army")
+                                        {
+                                            controller.Work = null;
+                                        }
                                     }
 
                                     if (controller.Target != null)
@@ -301,7 +310,11 @@ public class SelectableUnitComponent : MonoBehaviour {
                                         {
                                             controller.Work.GetComponent<BuildingController>().worker = null;
                                         }
-                                        controller.Work = null;
+                                        if(controller.Work.tag != "Army")
+                                        {
+                                            controller.Work = null;
+                                        }
+                                        
                                     }
 
                                     if (controller.Target != null)
@@ -328,7 +341,5 @@ public class SelectableUnitComponent : MonoBehaviour {
             }
         }
     }
-
-
 
 }

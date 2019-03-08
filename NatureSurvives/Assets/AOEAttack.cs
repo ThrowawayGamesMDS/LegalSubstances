@@ -11,7 +11,10 @@ public class AOEAttack : MonoBehaviour
         int i = 0;
         while (i < hitColliders.Length)
         {
-            hitColliders[i].SendMessage("TakeDamage", 15);
+            if(hitColliders[i].GetComponent<PlayerBuilding>() || hitColliders[i].GetComponent<WongleController>())
+            {
+                hitColliders[i].SendMessage("TakeDamage", 7);
+            }            
             i++;
         }
     }

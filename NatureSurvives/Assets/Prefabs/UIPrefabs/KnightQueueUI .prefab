@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -115, y: -160}
-  m_SizeDelta: {x: 32.11, y: 32.91}
+  m_SizeDelta: {x: 32.11, y: 32.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7130778701941793745
 CanvasRenderer:
@@ -67,7 +67,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 976edf1b2860fae469363c6f17bd37db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 89d79ec739573164b84f2072191219d8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
