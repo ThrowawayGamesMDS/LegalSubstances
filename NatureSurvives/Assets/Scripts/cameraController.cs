@@ -240,8 +240,8 @@ public class cameraController : MonoBehaviour {
             if (!m_rScreenRect.Contains(Input.mousePosition))
                 return;
 
-            if (!EditorWindow.mouseOverWindow)
-                return;
+            //if (!EditorWindow.mouseOverWindow)
+               // return;
 
             float panSpeed = scrollSpeed * myDeltaTime;
 
