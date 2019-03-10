@@ -51,7 +51,7 @@ public class pause : MonoBehaviour {
     public void reset()
     {
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(0);
     }
     public void quit()
     {

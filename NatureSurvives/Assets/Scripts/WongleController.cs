@@ -745,4 +745,12 @@ public class WongleController : MonoBehaviour
     {
         hide.isVisible = false;
     }
+
+    //public void FadeLifeBar()
+    //{
+    //    if(healthbar.value == maximum value)
+    //    {
+    //        healthbar.gameobject.setactive(false);
+    //    }
+    //}
 }

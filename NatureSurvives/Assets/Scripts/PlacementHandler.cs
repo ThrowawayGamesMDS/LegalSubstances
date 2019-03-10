@@ -156,8 +156,6 @@ public class PlacementHandler : MonoBehaviour
                     }
                     Destroy(m_goPlacementDefault);
 
-                    print("am I unfogging at PlaceHandle true?");
-
                     break;
                 }
             case false:
@@ -181,14 +179,17 @@ public class PlacementHandler : MonoBehaviour
 
                     Destroy(m_goPlacementDefault);
 
-                    GameObject m_fogOfWar = GameObject.FindGameObjectWithTag("Fog");
-                    if (m_fogOfWar)
+                    if (m_goPossibleObjects[m_iCurrentlyPlacing].tag != "Construction")
                     {
-                        FogGenerator fogComponent = m_fogOfWar.transform.GetComponent<FogGenerator>();
-                        float m_buildingRadius = fogComponent.m_buildingRadius;
-                        fogComponent.Unfog(_vec3Pos, m_buildingRadius * m_buildingRadius);
-                    }                   
-
+                        GameObject m_fogOfWar = GameObject.FindGameObjectWithTag("Fog");
+                        if (m_fogOfWar)
+                        {
+                            FogGenerator fogComponent = m_fogOfWar.transform.GetComponent<FogGenerator>();
+                            float m_buildingRadius = fogComponent.m_buildingRadius;
+                            fogComponent.Unfog(_vec3Pos, m_buildingRadius * m_buildingRadius);
+                        }
+                    }
+                    
                     break;
                 }
         }
