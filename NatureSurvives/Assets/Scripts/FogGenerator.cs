@@ -29,10 +29,10 @@ public class FogGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for(int x = 0; x < m_width / m_cubeSize; x++)
+        for (int x = 0; x < m_width / m_cubeSize; x++)
         {
-            for(int y = 0; y < m_height / m_cubeSize; y ++)
-            { 
+            for (int y = 0; y < m_height / m_cubeSize; y++)
+            {
                 GameObject go = Instantiate(m_fogCube, new Vector3(transform.position.x + x * m_cubeSize, transform.position.y, transform.position.z + y * m_cubeSize), Quaternion.identity);
 
                 go.name = "FogCube_" + x + "_" + y;
@@ -43,18 +43,19 @@ public class FogGenerator : MonoBehaviour
         //unfog the map based on all the wongles on the map
         GameObject[] m_wongleObjects;
         m_wongleObjects = GameObject.FindGameObjectsWithTag("Wongle");
-        for( int i = 0; i < m_wongleObjects.Length; i++)
+        for (int i = 0; i < m_wongleObjects.Length; i++)
         {
             Unfog(m_wongleObjects[i].transform.position, m_wongleRadiusSqrared);
         }
 
         GameObject m_treeHouse;
         m_treeHouse = GameObject.FindGameObjectWithTag("HomeBuilding");
-        if(m_treeHouse)
+        if (m_treeHouse)
         {
-           Unfog(m_treeHouse.transform.position, m_buildingRadiusSqrared);
+            Unfog(m_treeHouse.transform.position, m_buildingRadiusSqrared);
         }
-         
+
+        hideMiningUI();
 
         //children = new GameObject[transform.childCount];
         //int j = 0;
@@ -96,7 +97,7 @@ public class FogGenerator : MonoBehaviour
     }
 
     public void Unfog(Vector3 m_playerPosition, float m_radiusSqrared)
-    {       
+    {
         int countVisibleCubes = 0;
 
         //Vector3 m_playerPosition = m_player.position;
@@ -122,6 +123,8 @@ public class FogGenerator : MonoBehaviour
                     {
                         Destroy(child.gameObject);
                         //child.gameObject.SetActive(false);
+
+                        showMiningUI(child.position);
                     }
                     //if the child is active and we are scaling, turn off the scaling
                     else if (child.gameObject.activeInHierarchy && m_doScale)
@@ -130,7 +133,7 @@ public class FogGenerator : MonoBehaviour
                     }
                 }
             }
-        }       
+        }
 
         if (countVisibleCubes == 0)
         {
@@ -151,6 +154,63 @@ public class FogGenerator : MonoBehaviour
         return dist2;
     }
 
+
+    //for each crystal
+    //loop through each cube to see if there is a cube covering the crystal
+    //if found, hide the UI
+    void hideMiningUI()
+    {
+        //for all the mines disable UI inside fog of war
+        GameObject[] m_crystalObjects;
+        m_crystalObjects = GameObject.FindGameObjectsWithTag("Crystal");
+
+        for (int j = 0; j < m_crystalObjects.Length; j++)
+        {
+            //count the number of cubes
+            int childCount = transform.childCount;
+
+            for (int i = 0; i < childCount; ++i)
+            {
+                Transform child = transform.GetChild(i);
+                GameObject childObject = child.gameObject;
+
+                if (childObject.activeInHierarchy)
+                {
+                    float distanceSquared = (child.position - m_crystalObjects[j].transform.position).sqrMagnitude;
+
+                    if (distanceSquared < m_cubeSize * m_cubeSize)
+                    {
+                        m_crystalObjects[j].transform.GetChild(1).gameObject.SetActive(false);
+                    }
+                }
+            }
+        }
+    }
+
+    void showMiningUI(Vector3 m_fogPosition)
+    {
+        //add a boolean to the crystal, (maybe in the wood script) to check if it has been mined already
+        //when the wongle approaches a crystal
+        //actvate the UI again.
+        //for each of the fog cubes we need to activate the UI again, if unfogged
+
+        GameObject[] m_crystalObjects;
+        m_crystalObjects = GameObject.FindGameObjectsWithTag("Crystal");
+
+        for (int j = 0; j < m_crystalObjects.Length; j++)
+        {
+            if (!m_crystalObjects[j].GetComponent<WoodScript>().m_HasBeenMined)
+            {
+                float distanceSquared = (m_fogPosition - m_crystalObjects[j].transform.position).sqrMagnitude;
+
+                if (distanceSquared < m_cubeSize * m_cubeSize)
+                {
+                    m_crystalObjects[j].transform.GetChild(1).gameObject.SetActive(true);
+                    m_crystalObjects[j].GetComponent<WoodScript>().m_HasBeenMined = true;
+                }
+            }
+        }
+    }   
 }
 
 // Iterator

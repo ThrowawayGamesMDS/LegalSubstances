@@ -7,4 +7,5 @@ public class WoodScript : MonoBehaviour {
     public int yield;
     public GameObject worker;
     public GameObject trunk;
+    public bool m_HasBeenMined;
 }
