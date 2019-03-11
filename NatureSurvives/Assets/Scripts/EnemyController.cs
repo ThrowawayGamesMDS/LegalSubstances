@@ -157,4 +157,14 @@ public class EnemyController : MonoBehaviour {
         m_fEnemyHealth -= damage;
         //play enemy damage sound
     }
+
+    public void attackEnemy()
+    {
+        if (targetsInArea[0] != null)
+        {
+            targetsInArea[0].SendMessage("TakeDamage", 15);
+        }
+    }
+    
+
 }
