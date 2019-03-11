@@ -111,8 +111,8 @@ public class SelectionBox : MonoBehaviour {
 
     private void Start()
     {
-        m_goMeleeUnits = new List<GameObject>();
-        m_goRangedUnits = new List<GameObject>();
+        //m_goMeleeUnits = new List<GameObject>();
+        //m_goRangedUnits = new List<GameObject>();
         m_bUnitsSelected = new bool[2];
 
         // bool system cheaper on performance then rechecking through an auto loop...

@@ -280,8 +280,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72c2ed5334b143a47bbc0f79293dc218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AOEObj: {fileID: 6627749468078221555, guid: 7506f4a00a1d04d4f81ea03af9676e77, type: 3}
+  smash: {fileID: 6627749468078221555, guid: 7506f4a00a1d04d4f81ea03af9676e77, type: 3}
   handpos: {fileID: 1467401685724118428}
+  contr: {fileID: 114089809821141566}
 --- !u!1 &1425249724836866
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,8 +866,6 @@ MonoBehaviour:
   targetsInArea: []
   anim: {fileID: 95924506539732818}
   m_fEnemyHealth: 100
-  AOEobj: {fileID: 6627749468078221555, guid: 7506f4a00a1d04d4f81ea03af9676e77, type: 3}
-  handpos: {fileID: 1467401685724118428}
   wanderRadius: 30
   wanderTimer: 3
 --- !u!135 &135847557775760700
@@ -928,6 +927,7 @@ MonoBehaviour:
     blah blah
   hasSpecificWindow: 0
   UIPanel: {fileID: 0}
+  isSelected: 0
 --- !u!1 &1892898741005732
 GameObject:
   m_ObjectHideFlags: 0
