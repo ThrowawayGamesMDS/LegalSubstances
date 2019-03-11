@@ -264,7 +264,7 @@ public class ResourceSpawner : MonoBehaviour
                                     }
                                     _firstSpawn = true;
                                  }
-                            print("Position (X,Y,Z): " + _vec3FirstSpawnPos.x + ", " + _vec3FirstSpawnPos.y + ", " + _vec3FirstSpawnPos.z);
+                            //print("Position (X,Y,Z): " + _vec3FirstSpawnPos.x + ", " + _vec3FirstSpawnPos.y + ", " + _vec3FirstSpawnPos.z);
 
                         }
                     }
@@ -312,7 +312,6 @@ public class ResourceSpawner : MonoBehaviour
 
                 if (_bObjClear)
                 {
-                    //print("Object clear :: SPAWN ACCEPTED");
                     _goObjPosToAlter.transform.position = new Vector3(spawnPos.x, spawnPos.y, spawnPos.z);
                     return true;
                 }
