@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class attackScript : MonoBehaviour
 {
-    public GameObject smash;
+    public GameObject AOEObj;
     public Transform handpos;
-    public EnemyController contr;
     public void AttackAOE()
     {
-        contr.attackEnemy();
-        Instantiate(smash, handpos.position, smash.transform.rotation);
+        Instantiate(AOEObj, handpos.position, AOEObj.transform.rotation);
     }
 }

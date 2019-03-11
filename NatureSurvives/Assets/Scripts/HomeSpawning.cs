@@ -18,6 +18,7 @@ public class HomeSpawning : MonoBehaviour {
     private void Start()
     {
         iCurrentWongleCount = 5;
+        iMaximumWongleCount = 5;
         army = GameObject.FindGameObjectWithTag("Army");
     }
 

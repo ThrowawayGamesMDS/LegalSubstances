@@ -35,6 +35,13 @@ public class ResourceSpawner : MonoBehaviour
     private int m_iRegionalObjectCount;
     private List<GameObject> m_lRegionalObjs;
 
+    private void Awake()
+    {
+        m_goResourcesSpawned = new List<GameObject>();
+
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,7 +67,6 @@ public class ResourceSpawner : MonoBehaviour
         {
             m_goRegionalObjects[j] = _treePotential[j - GameObject.FindGameObjectsWithTag("Wood").Length];
         }
-        m_goResourcesSpawned = new List<GameObject>();
     }
 
     /// <summary>
@@ -258,7 +264,8 @@ public class ResourceSpawner : MonoBehaviour
                                     }
                                     _firstSpawn = true;
                                  }
-                                
+                            //print("Position (X,Y,Z): " + _vec3FirstSpawnPos.x + ", " + _vec3FirstSpawnPos.y + ", " + _vec3FirstSpawnPos.z);
+
                         }
                     }
                     break;
@@ -305,7 +312,6 @@ public class ResourceSpawner : MonoBehaviour
 
                 if (_bObjClear)
                 {
-                    //print("Object clear :: SPAWN ACCEPTED");
                     _goObjPosToAlter.transform.position = new Vector3(spawnPos.x, spawnPos.y, spawnPos.z);
                     return true;
                 }

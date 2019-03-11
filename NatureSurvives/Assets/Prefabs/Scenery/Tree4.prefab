@@ -61,11 +61,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd93ae54ae797e47ac7f6b2c4b257d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WoodHealth: 100
+  WoodHealth: 50
   yield: 10
   worker: {fileID: 0}
   trunk: {fileID: 0}
-  m_HasBeenMined: 0
 --- !u!54 &54707245917838866
 Rigidbody:
   m_ObjectHideFlags: 0

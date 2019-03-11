@@ -316,7 +316,7 @@ public class cameraController : MonoBehaviour {
         //    }
         //}
         RaycastHit hit = new RaycastHit();
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Z))
         {
             //if (bSetCameraLookat)
             //Ray r = new Ray(transform.position, transform.LookAt - transform.position);
@@ -339,7 +339,7 @@ public class cameraController : MonoBehaviour {
             }
 
         }
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.X))
         {
             Ray ray = m_pCamera.ScreenPointToRay(new Vector3(m_pCamera.pixelWidth / 2, m_pCamera.pixelHeight / 2, 0));
             if (Physics.Raycast(ray, out hit))
