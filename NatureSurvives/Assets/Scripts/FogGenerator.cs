@@ -22,6 +22,7 @@ public class FogGenerator : MonoBehaviour
 
     private bool m_bEntireMapReveal = false;
     public bool m_doScale = false;
+    private bool m_bAllCrystalsRevealed = false;
 
     //private GameObject[] children;
     //private List<GameObject> children;
@@ -124,7 +125,10 @@ public class FogGenerator : MonoBehaviour
                         Destroy(child.gameObject);
                         //child.gameObject.SetActive(false);
 
-                        showMiningUI(child.position);
+                        if (!m_bAllCrystalsRevealed)
+                        {
+                            showMiningUI(child.position);
+                        }                      
                     }
                     //if the child is active and we are scaling, turn off the scaling
                     else if (child.gameObject.activeInHierarchy && m_doScale)
@@ -189,6 +193,7 @@ public class FogGenerator : MonoBehaviour
 
     void showMiningUI(Vector3 m_fogPosition)
     {
+        int m_iCountHiddenCrystals = 0;
         //add a boolean to the crystal, (maybe in the wood script) to check if it has been mined already
         //when the wongle approaches a crystal
         //actvate the UI again.
@@ -201,6 +206,8 @@ public class FogGenerator : MonoBehaviour
         {
             if (!m_crystalObjects[j].GetComponent<WoodScript>().m_HasBeenMined)
             {
+                m_iCountHiddenCrystals++; 
+
                 float distanceSquared = (m_fogPosition - m_crystalObjects[j].transform.position).sqrMagnitude;
 
                 if (distanceSquared < m_cubeSize * m_cubeSize)
@@ -209,6 +216,11 @@ public class FogGenerator : MonoBehaviour
                     m_crystalObjects[j].GetComponent<WoodScript>().m_HasBeenMined = true;
                 }
             }
+        }
+
+        if (m_iCountHiddenCrystals == 0)
+        {
+            m_bAllCrystalsRevealed = true;
         }
     }   
 }

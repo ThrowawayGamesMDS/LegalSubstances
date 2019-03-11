@@ -185,7 +185,8 @@ public class PlacementHandler : MonoBehaviour
                         if (m_fogOfWar)
                         {
                             FogGenerator fogComponent = m_fogOfWar.transform.GetComponent<FogGenerator>();
-                            float m_buildingRadius = fogComponent.m_buildingRadius;
+                            float m_buildingRadius = m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().FogRadius;
+                            //float m_buildingRadius = fogComponent.m_buildingRadius;
                             fogComponent.Unfog(_vec3Pos, m_buildingRadius * m_buildingRadius);
                         }
                     }

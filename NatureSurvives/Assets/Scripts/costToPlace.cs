@@ -6,5 +6,5 @@ public class costToPlace : MonoBehaviour {
     public int WoodCost;
     public int CrystalCost;
     public int FoodCost;
-    
+    public float FogRadius;
 }
