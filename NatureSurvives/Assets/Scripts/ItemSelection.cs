@@ -57,13 +57,13 @@ public class ItemSelection : MonoBehaviour {
                      * Bundy handle for camera - de-selects currently set obj for rotation provided one is set
                      * 
                 ***/
-                if (hit.transform.GetComponent<SelectableUnitComponent>() == null && gameObject.GetComponent<cameraController>().m_bCamSelObjRotation == true)
+            /*    if (hit.transform.GetComponent<SelectableUnitComponent>() == null && gameObject.GetComponent<cameraController>().m_bCamSelObjRotation == true)
                 // obj selected isn't a unit that's selectable yet the camera is attempting to rotate around an object...
                 {
                     gameObject.GetComponent<cameraController>().m_bCamSelObjRotation = false;
                     gameObject.GetComponent<cameraController>().m_bCamReset = true;
                     print("Resteting the camera rotation obj");
-                }
+                }*/
             }
 
         }

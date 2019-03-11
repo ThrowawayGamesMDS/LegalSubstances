@@ -62,15 +62,25 @@ public class cameraController : MonoBehaviour {
         }
         return true;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    void Orbit()
+    {
+        if (m_goRotateAround != null)
+        {
+            // Keep us at orbitDistance from target
+            transform.position = m_goRotateAround.transform.position + (transform.position - m_goRotateAround.transform.position).normalized * 150.0f;
+            transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, 180.0f * Time.deltaTime);
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         //I'm using my own delta time calculation, so that the camera can't be paused when Time.timeScale = 0
         float myDeltaTime = Time.realtimeSinceStartup - lastFrameTime;
         lastFrameTime = Time.realtimeSinceStartup;
 
-        if (!m_bCamSelObjRotation && Camera.main.transform.rotation.y != gameObject.transform.rotation.y && m_bCamReset)
+      /*  if (!m_bCamSelObjRotation && Camera.main.transform.rotation.y != gameObject.transform.rotation.y && m_bCamReset)
         {
             Vector3 _playerRot = new Vector3(gameObject.transform.rotation.x, gameObject.transform.rotation.y, gameObject.transform.rotation.z);
             Vector3 _playerPos = gameObject.transform.position;
@@ -80,10 +90,7 @@ public class cameraController : MonoBehaviour {
             Camera.main.transform.rotation = Quaternion.Euler(45.0f, _playerRot.y, 0);
             Camera.main.transform.position = _playerPos;
             m_bCamReset = false;
-
-            //rotX = transform.rotation.eulerAngles.x;
-            //rotY = transform.rotation.eulerAngles.y;
-        }
+        }*/
 
         //scrolling on x axis
         
@@ -135,7 +142,7 @@ public class cameraController : MonoBehaviour {
             transform.rotation = localRotation;
 
         }
-
+        
       
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.RightControl))
         {
@@ -188,11 +195,35 @@ public class cameraController : MonoBehaviour {
             }
         }
 
-       /* if (Input.GetMouseButtonUp(0))
+       /* if (Input.anyKey)
         {
-            m_bCamSelObjRotation = RotateCameraAroundSelectedObject();
-        }*/
+            if (!Input.GetKey(KeyCode.E) && !Input.GetKey(KeyCode.Q))
+            {
+                if (gameObject.GetComponent<cameraController>().m_bCamSelObjRotation == true)
+                // obj selected isn't a unit that's selectable yet the camera is attempting to rotate around an object...
+                {
+                    gameObject.GetComponent<cameraController>().m_bCamSelObjRotation = false;
+                    gameObject.GetComponent<cameraController>().m_bCamReset = true;
+                    print("Resteting the camera rotation obj");
+                    GameObject _go = GameObject.FindGameObjectWithTag("Player");
+                    Vector3 _rot = new Vector3(45, _go.transform.rotation.y, _go.transform.rotation.z);
 
+                    //Camera.main.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(gameObject.transform.forward,gameObject.transform.up), 15);
+                    //Camera.main.transform.forward = gameObject.transform.forward;
+                    Camera.main.transform.rotation = _go.transform.rotation;
+                    Camera.main.transform.rotation = _go.transform.rotation;
+                    Camera.main.transform.position = _rot;
+                    //Camera.main.transform.rotation = Quaternion.Euler(45.0f, gameObject.transform.rotation.y, gameObject.transform.rotation.z);
+                }
+            }
+        }
+        */
+
+        /* if (Input.GetMouseButtonUp(0))
+         {
+             m_bCamSelObjRotation = RotateCameraAroundSelectedObject();
+         }*/
+         /*
         if (Input.GetKey(KeyCode.E))
         {
             if (!m_bCamSelObjRotation)
@@ -205,10 +236,12 @@ public class cameraController : MonoBehaviour {
             }
             else
             {
-                Camera.main.transform.LookAt(m_goRotateAround.transform);
-                //Camera.main.transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, 50 * Time.deltaTime);
+                /*Camera.main.transform.LookAt(m_goRotateAround.transform);
                 Camera.main.transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, 50 * myDeltaTime);
-                //transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, 50 * Time.deltaTime);
+                transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, 50 * Time.deltaTime);
+                *//*
+
+                Orbit();
             }
         }
 
@@ -227,11 +260,11 @@ public class cameraController : MonoBehaviour {
                 Camera.main.transform.LookAt(m_goRotateAround.transform);
                 //Camera.main.transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, -50 * Time.deltaTime);
                 Camera.main.transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, -50 * myDeltaTime);
-                //transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, -50 * Time.deltaTime);
+                transform.RotateAround(m_goRotateAround.transform.position, Vector3.up, -50 * Time.deltaTime);
             }
 
         }
-
+        */
 
         float screenMargin = 20f;
         //if(testPanning)
