@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class WongleController : MonoBehaviour
 {
@@ -40,6 +41,12 @@ public class WongleController : MonoBehaviour
     public bool animlock, animlock2 = false;
     public hidefishyboy hide;
 
+    [Header("Health Bar")]
+    private Image healthBarImage;
+    private float startHealth;
+    private Transform healthBarCanvasTransform;
+    private GameObject healthBarCanvasGameObject;
+
     // Use this for initialization
     void Start()
     {
@@ -48,6 +55,12 @@ public class WongleController : MonoBehaviour
         StorageBuilding = Home;
         isGoingHome = true;
         canAttack = true;
+        startHealth = WongleHealth;
+
+        healthBarCanvasTransform = transform.Find("Health Bar");
+        healthBarImage = healthBarCanvasTransform.GetChild(0).GetChild(0).GetComponent<Image>();
+        healthBarCanvasGameObject = healthBarCanvasTransform.gameObject;
+        healthBarCanvasGameObject.SetActive(false);
     }
 
 
@@ -86,12 +99,10 @@ public class WongleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.U))
         {
             anim.Play("RodCast");
         }
-
 
         //check level of resource gathering
         iWoodCutLevel = Mathf.FloorToInt(Mathf.Sqrt((iTreesCut / 3)));
@@ -667,7 +678,7 @@ public class WongleController : MonoBehaviour
     {
         yield return new WaitForSeconds(2.3f);
         print("anim");
-        anim.Play("BasicSwingAttack");
+        anim.Play("BasicSwingAttack");        
         yield return new WaitForSeconds(0.5f);
         if (attackinstance != null)
         {
@@ -685,6 +696,13 @@ public class WongleController : MonoBehaviour
     {
         WongleHealth -= damage;
         //play take damage sound
+
+        healthBarImage.fillAmount = WongleHealth / startHealth;
+
+        if (healthBarImage.fillAmount < 1.0f && !healthBarCanvasGameObject.activeSelf)
+        {
+            healthBarCanvasGameObject.SetActive(true);
+        }  
     }
 
     void FindNewTarget(string tag)
@@ -746,11 +764,4 @@ public class WongleController : MonoBehaviour
         hide.isVisible = false;
     }
 
-    //public void FadeLifeBar()
-    //{
-    //    if(healthbar.value == maximum value)
-    //    {
-    //        healthbar.gameobject.setactive(false);
-    //    }
-    //}
 }
