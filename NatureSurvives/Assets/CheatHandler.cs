@@ -7,31 +7,40 @@ public class CheatHandler : MonoBehaviour
 {
     private bool m_bPlayerIsEnteringCheat;
     public GameObject m_goEntryField;
+    private string[] m_sKnownCheats;
+    private int m_iCheatCount;
     // Start is called before the first frame update
     void Start()
     {
+        m_sKnownCheats = new string[2];
+        m_sKnownCheats[0] = "byebyeboxes";
+        m_sKnownCheats[1] = "givemedosh";
+        m_iCheatCount = 2;
         m_bPlayerIsEnteringCheat = false;
         gameObject.GetComponent<CanvasGroup>().alpha = 0;
         gameObject.GetComponent<InputField>().DeactivateInputField();
     }
 
-    /// <summary>
-    /// Basis is to have the same number characters per cheat so we can always determine whether they've entered a cheat 
-    /// </summary>
-    /// <param name="_sEnteredText"></param>
-
     public void HandleEnteredCheat(string _sEnteredText)
     {
-        switch(_sEnteredText)
+        _sEnteredText.ToLower();
+        switch (_sEnteredText)
         {
-            case "BYEBYEBOXES":
             case "byebyeboxes":
-            case "ByeByeBoxes":
-            case "Byebyeboxes":
                 {
                     if (GameObject.FindGameObjectWithTag("Fog").gameObject != null)
                         GameObject.FindGameObjectWithTag("Fog").gameObject.SetActive(false);
                     break;
+                }
+            case "givemedosh":
+                {
+                    if (GameObject.FindGameObjectWithTag("Player").gameObject != null)
+                    {
+                        HouseController.WhiteAmount += 1000;
+                        HouseController.CrystalAmount += 1000;
+                        HouseController.WoodAmount += 1000;
+                    }
+                        break;
                 }
 
         }
@@ -42,7 +51,8 @@ public class CheatHandler : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.KeypadEnter) || Input.GetKeyUp(KeyCode.Return))
         {
-            switch(m_bPlayerIsEnteringCheat)
+            gameObject.GetComponent<InputField>().text = "";
+            switch (m_bPlayerIsEnteringCheat)
             {
                 case false:
                     {
@@ -63,12 +73,16 @@ public class CheatHandler : MonoBehaviour
 
         if (m_bPlayerIsEnteringCheat)
         {
-            if (gameObject.GetComponent<InputField>().text.Length == 11)
+            //if (gameObject.GetComponent<InputField>().text.Length == 11)
+            for (int i = 0; i < m_iCheatCount; i++)
             {
-                HandleEnteredCheat(gameObject.GetComponent<InputField>().text);
-                m_bPlayerIsEnteringCheat = false;
-                gameObject.GetComponent<CanvasGroup>().alpha = 0;
-                gameObject.GetComponent<InputField>().DeactivateInputField();
+                if (gameObject.GetComponent<InputField>().text.ToLower() == m_sKnownCheats[i].ToLower())
+                {
+                    HandleEnteredCheat(gameObject.GetComponent<InputField>().text);
+                    m_bPlayerIsEnteringCheat = false;
+                    gameObject.GetComponent<CanvasGroup>().alpha = 0;
+                    gameObject.GetComponent<InputField>().DeactivateInputField();
+                }
             }
         }
     }
