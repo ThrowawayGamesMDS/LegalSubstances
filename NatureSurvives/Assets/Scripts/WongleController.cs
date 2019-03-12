@@ -503,6 +503,10 @@ public class WongleController : MonoBehaviour
                         Target.GetComponent<ConstructionScript>().m_fCurrentCompletion += 1 * Time.deltaTime;
                     }
                 }
+                else
+                {
+                    FindNewTarget("Construction");
+                }
             }
 
             if (Work.tag == "Fishermen")
