@@ -9,13 +9,16 @@ public class CheatHandler : MonoBehaviour
     public GameObject m_goEntryField;
     private string[] m_sKnownCheats;
     private int m_iCheatCount;
+    public bool m_bDisabledBuildTimer;
     // Start is called before the first frame update
     void Start()
     {
-        m_sKnownCheats = new string[2];
+        m_iCheatCount = 3;
+        m_sKnownCheats = new string[m_iCheatCount];
         m_sKnownCheats[0] = "byebyeboxes";
         m_sKnownCheats[1] = "givemedosh";
-        m_iCheatCount = 2;
+        m_sKnownCheats[2] = "builderpro";
+        m_bDisabledBuildTimer = false;
         m_bPlayerIsEnteringCheat = false;
         gameObject.GetComponent<CanvasGroup>().alpha = 0;
         gameObject.GetComponent<InputField>().DeactivateInputField();
@@ -41,6 +44,26 @@ public class CheatHandler : MonoBehaviour
                         HouseController.WoodAmount += 1000;
                     }
                         break;
+                }
+            case "builderpro":
+                {
+                    if (GameObject.FindGameObjectWithTag("Player").gameObject != null)
+                    {
+                        switch(m_bDisabledBuildTimer)
+                        {
+                            case true:
+                                {
+                                    m_bDisabledBuildTimer = false;
+                                    break;
+                                }
+                            case false:
+                                {
+                                    m_bDisabledBuildTimer = true;
+                                    break;
+                                }
+                        }
+                    }
+                    break;
                 }
 
         }

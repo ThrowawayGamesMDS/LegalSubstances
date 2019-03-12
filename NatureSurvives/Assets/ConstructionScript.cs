@@ -8,20 +8,42 @@ public class ConstructionScript : MonoBehaviour
     public float m_fCurrentCompletion;
     public GameObject worker;
     public GameObject m_Building;
+    
     private void Update()
     {
-        if(m_fCurrentCompletion >= m_fTimeToComplete)
+        switch(GameObject.FindGameObjectWithTag("CheatHandler").GetComponent<CheatHandler>().m_bDisabledBuildTimer)
         {
-            GameObject m_fogOfWar = GameObject.FindGameObjectWithTag("Fog");
-            if (m_fogOfWar)
-            {
-                FogGenerator fogComponent = m_fogOfWar.transform.GetComponent<FogGenerator>();
-                float m_buildingRadius = fogComponent.m_buildingRadius;
-                fogComponent.Unfog(transform.position, m_buildingRadius * m_buildingRadius);
-            }
+            case false:
+                {
+                    if (m_fCurrentCompletion >= m_fTimeToComplete)
+                    {
+                        GameObject m_fogOfWar = GameObject.FindGameObjectWithTag("Fog");
+                        if (m_fogOfWar)
+                        {
+                            FogGenerator fogComponent = m_fogOfWar.transform.GetComponent<FogGenerator>();
+                            float m_buildingRadius = fogComponent.m_buildingRadius;
+                            fogComponent.Unfog(transform.position, m_buildingRadius * m_buildingRadius);
+                        }
 
-            Instantiate(m_Building, transform.position, transform.rotation);
-            Destroy(gameObject);
+                        Instantiate(m_Building, transform.position, transform.rotation);
+                        Destroy(gameObject);
+                    }
+                    break;
+                }
+            case true:
+                {
+                    GameObject m_fogOfWar = GameObject.FindGameObjectWithTag("Fog");
+                    if (m_fogOfWar)
+                    {
+                        FogGenerator fogComponent = m_fogOfWar.transform.GetComponent<FogGenerator>();
+                        float m_buildingRadius = fogComponent.m_buildingRadius;
+                        fogComponent.Unfog(transform.position, m_buildingRadius * m_buildingRadius);
+                    }
+
+                    Instantiate(m_Building, transform.position, transform.rotation);
+                    Destroy(gameObject);
+                    break;
+                }
         }
     }
 }
