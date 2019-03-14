@@ -8,43 +8,61 @@ public class ConstructionScript : MonoBehaviour
     public float m_fCurrentCompletion;
     public GameObject worker;
     public GameObject m_Building;
-    
+
     private void Update()
     {
-        switch(GameObject.FindGameObjectWithTag("CheatHandler").GetComponent<CheatHandler>().m_bDisabledBuildTimer)
+        if (GameObject.FindGameObjectWithTag("CheatHandler").gameObject != null)
         {
-            case false:
-                {
-                    if (m_fCurrentCompletion >= m_fTimeToComplete)
+            switch (GameObject.FindGameObjectWithTag("CheatHandler").GetComponent<CheatHandler>().m_bDisabledBuildTimer)
+            {
+                case false:
+                    {
+                        if (m_fCurrentCompletion >= m_fTimeToComplete)
+                        {
+                            GameObject m_fogOfWar = GameObject.FindGameObjectWithTag("Fog");
+                            if (m_fogOfWar)
+                            {
+                                FogGenerator fogComponent = m_fogOfWar.transform.GetComponent<FogGenerator>();
+                                float m_buildingRadius = fogComponent.m_buildingRadius;
+                                fogComponent.Unfog(transform.position, m_buildingRadius * m_buildingRadius);
+                            }
+
+                            Instantiate(m_Building, transform.position, transform.rotation);
+                            Destroy(gameObject);
+                        }
+                        break;
+                    }
+                case true:
                     {
                         GameObject m_fogOfWar = GameObject.FindGameObjectWithTag("Fog");
                         if (m_fogOfWar)
                         {
                             FogGenerator fogComponent = m_fogOfWar.transform.GetComponent<FogGenerator>();
                             float m_buildingRadius = fogComponent.m_buildingRadius;
-                            fogComponent.Unfog(transform.position, m_buildingRadius, transform.gameObject.GetInstanceID());
+                            fogComponent.Unfog(transform.position, m_buildingRadius * m_buildingRadius);
                         }
 
                         Instantiate(m_Building, transform.position, transform.rotation);
                         Destroy(gameObject);
+                        break;
                     }
-                    break;
-                }
-            case true:
+            }
+        }
+        else
+        {
+            if (m_fCurrentCompletion >= m_fTimeToComplete)
+            {
+                GameObject m_fogOfWar = GameObject.FindGameObjectWithTag("Fog");
+                if (m_fogOfWar)
                 {
-                    GameObject m_fogOfWar = GameObject.FindGameObjectWithTag("Fog");
-                    if (m_fogOfWar)
-                    {
-                        FogGenerator fogComponent = m_fogOfWar.transform.GetComponent<FogGenerator>();
-                        float m_buildingRadius = fogComponent.m_buildingRadius;
-                        fogComponent.Unfog(transform.position, m_buildingRadius, transform.gameObject.GetInstanceID());
-                        // note we might need to change this instance ID to the instatiate's gameobject's intance ID below.
-                    }
-
-                    Instantiate(m_Building, transform.position, transform.rotation);
-                    Destroy(gameObject);
-                    break;
+                    FogGenerator fogComponent = m_fogOfWar.transform.GetComponent<FogGenerator>();
+                    float m_buildingRadius = fogComponent.m_buildingRadius;
+                    fogComponent.Unfog(transform.position, m_buildingRadius * m_buildingRadius);
                 }
+
+                Instantiate(m_Building, transform.position, transform.rotation);
+                Destroy(gameObject);
+            }
         }
     }
 }
