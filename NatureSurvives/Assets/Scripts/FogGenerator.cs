@@ -38,9 +38,7 @@ public class FogGenerator : MonoBehaviour
                 GameObject go = Instantiate(m_fogCube, new Vector3(transform.position.x + x * m_cubeSize, transform.position.y, transform.position.z + y * m_cubeSize), Quaternion.identity);
 
                 go.name = "FogCube_" + x + "_" + y;
-                go.transform.SetParent(transform);
-
-               
+                go.transform.SetParent(transform);               
             }
         }
 
@@ -62,7 +60,7 @@ public class FogGenerator : MonoBehaviour
             Unfog(m_treeHouse.transform.position, m_buildingRadius, m_treeHouse.GetInstanceID());
         }
 
-        hideMiningUI();
+        //hideMiningUI();
 
         //children = new GameObject[transform.childCount];
         //int j = 0;
@@ -156,7 +154,7 @@ public class FogGenerator : MonoBehaviour
                     //Destroy(child.gameObject);
                     
                     child.gameObject.SetActive(false);
-                  
+
                     if (!m_bAllCrystalsRevealed)
                     {
                         showMiningUI(child.position);
@@ -344,6 +342,7 @@ public class FogGenerator : MonoBehaviour
 
         GameObject[] m_crystalObjects;
         m_crystalObjects = GameObject.FindGameObjectsWithTag("Crystal");
+        print("m_crystalObjects.Length = " + m_crystalObjects.Length);
 
         for (int j = 0; j < m_crystalObjects.Length; j++)
         {
@@ -357,13 +356,15 @@ public class FogGenerator : MonoBehaviour
                 {
                     m_crystalObjects[j].transform.GetChild(1).gameObject.SetActive(true);
                     m_crystalObjects[j].GetComponent<WoodScript>().m_HasBeenMined = true;
+                    break;
                 }
             }
         }
 
         if (m_iCountHiddenCrystals == 0)
         {
-            m_bAllCrystalsRevealed = true;
+            //m_bAllCrystalsRevealed = true;
+            print("m_bAllCrystalsRevealed");
         }
     }   
 }
