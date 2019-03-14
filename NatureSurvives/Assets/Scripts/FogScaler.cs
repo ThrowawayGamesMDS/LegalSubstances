@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FogScaler : MonoBehaviour
 {
+    public List<int> m_instanceIDList;
+    
     public float m_scaleSpeed = 5;
     public float maxSize = 5;
     private bool m_desiredState;

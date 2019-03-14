@@ -46,7 +46,6 @@ public class EnemyController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
         timer += Time.deltaTime;
 
         //targetsInArea.Sort(SortByPriority);
@@ -54,22 +53,22 @@ public class EnemyController : MonoBehaviour {
         if (timer >= wanderTimer)
         {
             Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
-            if(targetsInArea.Count <= 0)
+            if (targetsInArea.Count <= 0)
             {
-                if(DayNight.isDay)
+                if (DayNight.isDay)
                 {
                     agent.SetDestination(newPos);
                     timer = 0;
+
                 }
                 else
                 {
                     agent.SetDestination(home.transform.position);
                 }
             }
-            
-            
-        }
 
+
+        }
 
         for (int i = 0; i < targetsInArea.Count; i++)
         {
@@ -78,9 +77,7 @@ public class EnemyController : MonoBehaviour {
                 targetsInArea.RemoveAt(0);
             }
         }
-        
 
-        
         if (targetsInArea.Count > 0)
         {
             agent.SetDestination(targetsInArea[0].transform.position);
@@ -89,10 +86,6 @@ public class EnemyController : MonoBehaviour {
         {
             //agent.SetDestination(home.transform.position);
         }
-            
-        
-        
-
 
         if (agent.velocity.magnitude > 0)
         {
@@ -107,13 +100,13 @@ public class EnemyController : MonoBehaviour {
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
                 if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-                {     
+                {
                     if (targetsInArea.Count != 0)
                     {
                         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AttackLoop"))
                         {
                             anim.Play("AttackLoop");
-                        }                        
+                        }
                     }
                     else
                     {
@@ -123,7 +116,7 @@ public class EnemyController : MonoBehaviour {
                         }
                     }
 
-                    
+
                 }
             }
         }
@@ -132,6 +125,45 @@ public class EnemyController : MonoBehaviour {
             Destroy(gameObject);
         }
 
+
+        GameObject m_fogOfWar;
+        m_fogOfWar = GameObject.FindGameObjectWithTag("Fog");
+        if (m_fogOfWar)
+        {
+            int countVisibleCubes = 0;
+
+            //Vector3 m_playerPosition = m_player.position;
+            int childCount = m_fogOfWar.transform.childCount;
+            float m_radius = 10.0f;
+            float m_radiusSqrared = m_radius * m_radius;
+
+            for (int i = 0; i < childCount; i++)
+            {
+                Transform child = m_fogOfWar.transform.GetChild(i);
+                GameObject childObject = child.gameObject;
+                float distanceSquared = (child.position - transform.position).sqrMagnitude;
+
+                //if (childObject.activeInHierarchy)
+                //{
+                countVisibleCubes++;
+
+                if (distanceSquared < m_radiusSqrared)
+                {
+
+                    if (child.gameObject.activeInHierarchy)
+                    {
+                        print("hide enemy");
+                        HideEnemy();
+                        break;
+                    }
+                    else
+                    {
+                        ShowEnemy();
+                    }
+                    break;
+                }
+            }
+        }
     }
     void OnTriggerEnter(Collider other)
     {
@@ -166,5 +198,16 @@ public class EnemyController : MonoBehaviour {
         }
     }
     
+    void HideEnemy()
+    {
+        transform.GetChild(1).GetChild(0).GetComponent<Renderer>().enabled = false;
+        transform.GetChild(3).gameObject.SetActive(false);
+    }
+
+    void ShowEnemy()
+    {
+        transform.GetChild(1).GetChild(0).GetComponent<Renderer>().enabled = true;
+        transform.GetChild(3).gameObject.SetActive(true);
+    }
 
 }

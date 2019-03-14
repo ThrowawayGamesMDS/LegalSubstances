@@ -14,7 +14,8 @@ public class FogGenerator : MonoBehaviour
     public int m_cubeSize = 10;
     public float m_wongleRadius = 20;
     public float m_buildingRadius = 40;
-    private float m_wongleRadiusSqrared { get { return m_wongleRadius * m_wongleRadius; } }
+    private float m_extraRadius = 10;
+    private float m_wongleRadiusSquared { get { return m_wongleRadius * m_wongleRadius; } }
     public float m_buildingRadiusSqrared { get { return m_buildingRadius * m_buildingRadius; } }
 
     //we need to put this inside the functions
@@ -38,6 +39,8 @@ public class FogGenerator : MonoBehaviour
 
                 go.name = "FogCube_" + x + "_" + y;
                 go.transform.SetParent(transform);
+
+               
             }
         }
 
@@ -46,14 +49,17 @@ public class FogGenerator : MonoBehaviour
         m_wongleObjects = GameObject.FindGameObjectsWithTag("Wongle");
         for (int i = 0; i < m_wongleObjects.Length; i++)
         {
-            Unfog(m_wongleObjects[i].transform.position, m_wongleRadiusSqrared);
+            GameObject m_wongle = m_wongleObjects[i];
+            Unfog(m_wongle.transform.position, m_wongleRadius, m_wongle.GetInstanceID());
+
+            //print("wongle  =  " + m_wongleObjects[i].GetInstanceID());
         }
 
         GameObject m_treeHouse;
         m_treeHouse = GameObject.FindGameObjectWithTag("HomeBuilding");
         if (m_treeHouse)
         {
-            Unfog(m_treeHouse.transform.position, m_buildingRadiusSqrared);
+            Unfog(m_treeHouse.transform.position, m_buildingRadius, m_treeHouse.GetInstanceID());
         }
 
         hideMiningUI();
@@ -68,12 +74,22 @@ public class FogGenerator : MonoBehaviour
 
     }
 
+    void lightenAlpha(GameObject fogCube)
+    {
+        //fogCube.GetComponent<Renderer>().material.color = Color.yellow;
+        Color fogColor = fogCube.GetComponent<Renderer>().material.color;
+        fogColor.a = 0.1f;
+        fogCube.GetComponent<Renderer>().material.color = fogColor;
+    }
+       
+
     //do we still need to do this?  update every 3 frames for optimization
     private int interval = 1;
 
     // Update is called once per frame
     void Update()
     {
+
         //we need don't need to do this method anymore when the entire map is revealed
         if (!m_bEntireMapReveal)
         {
@@ -83,59 +99,121 @@ public class FogGenerator : MonoBehaviour
             GameObject[] m_wongleObjects;
             m_wongleObjects = GameObject.FindGameObjectsWithTag("Wongle");
 
-            if (Time.frameCount % interval == 0)    //once every three frames
+            
+
+        if (Time.frameCount % interval == 0)    //once every three frames
             {
                 for (int i = 0; i < m_wongleObjects.Length; i++)
                 {
-                    NavMeshAgent agent = m_wongleObjects[i].GetComponent<NavMeshAgent>();
+                    //GameObject.Find("ShareButton").transform.localScale = new Vector3(0, 0, 0);
+                    GameObject m_wongle = m_wongleObjects[i];
+                    NavMeshAgent agent = m_wongle.GetComponent<NavMeshAgent>();
+
                     if (agent.velocity.sqrMagnitude > 0f)
                     {
-                        Unfog(m_wongleObjects[i].transform.position, m_wongleRadiusSqrared);
+                        Unfog(m_wongle.transform.position, m_wongleRadius, m_wongle.GetInstanceID());
                     }
+
                 }
             }
         }
     }
 
-    public void Unfog(Vector3 m_playerPosition, float m_radiusSqrared)
+   
+
+    public void Unfog(Vector3 m_playerPosition, float m_radius, int instanceID)
     {
         int countVisibleCubes = 0;
 
         //Vector3 m_playerPosition = m_player.position;
         int childCount = transform.childCount;
+        float m_radiusSqrared = m_radius * m_radius;
+        float maxRadiusSquared = (m_radius + m_extraRadius) * (m_radius + m_extraRadius);
+
 
         for (int i = 0; i < childCount; ++i)
         {
             Transform child = transform.GetChild(i);
             GameObject childObject = child.gameObject;
+            float distanceSquared = (child.position - m_playerPosition).sqrMagnitude;
 
-            if (childObject.activeInHierarchy)
+            //if (childObject.activeInHierarchy)
+            //{
+            countVisibleCubes++;
+
+            if (distanceSquared < m_radiusSqrared)
             {
-                countVisibleCubes++;
+                //Destroy(child.gameObject);
+                //child.gameObject.SetActive(false);
 
-                float distanceSquared = (child.position - m_playerPosition).sqrMagnitude;
-
-                if (distanceSquared < m_radiusSqrared)
+                if (!child.gameObject.GetComponent<FogScaler>().m_instanceIDList.Contains(instanceID))
+                {
+                    child.gameObject.GetComponent<FogScaler>().m_instanceIDList.Add(instanceID);
+                }
+             
+                if (child.gameObject.activeInHierarchy && !m_doScale)
                 {
                     //Destroy(child.gameObject);
-                    //child.gameObject.SetActive(false);
-
-                    if (child.gameObject.activeInHierarchy && !m_doScale)
+                    
+                    child.gameObject.SetActive(false);
+                  
+                    if (!m_bAllCrystalsRevealed)
                     {
-                        Destroy(child.gameObject);
-                        //child.gameObject.SetActive(false);
-
-                        if (!m_bAllCrystalsRevealed)
-                        {
-                            showMiningUI(child.position);
-                        }                      
-                    }
-                    //if the child is active and we are scaling, turn off the scaling
-                    else if (child.gameObject.activeInHierarchy && m_doScale)
-                    {
-                        child.GetComponent<FogScaler>().ToggleScale(false);
+                        showMiningUI(child.position);
                     }
                 }
+            }
+
+            //if the distance is greater than the desired distance
+            else
+            {
+                if (distanceSquared < maxRadiusSquared)
+                {
+                    //if (strTag == "Building")
+                    //{
+                    //    child.gameObject.GetComponent<Renderer>().material.color = Color.red;
+                    //}
+
+                    //else
+                    //{
+
+                    if (child.gameObject.activeInHierarchy)
+                    {
+                        lightenAlpha(child.gameObject);
+                    }
+                    else
+                    {
+                        if (child.gameObject.GetComponent<FogScaler>().m_instanceIDList.Count < 2)
+                        {
+                            if (child.gameObject.GetComponent<FogScaler>().m_instanceIDList[0] == instanceID)
+                            {
+                                //lightenAlpha(child.gameObject);
+                                child.gameObject.SetActive(true);
+                                child.gameObject.GetComponent<FogScaler>().m_instanceIDList.Remove(instanceID);
+                            }                           
+                        }                       
+                    
+                    }                          
+                   // }
+                }
+
+                //if we are within the max distance
+
+                //if (distanceSquared < maxRadiusSquared && child.tag != "Building")
+
+                //{
+                //    //lightenAlpha(child.gameObject);
+
+                //    //if the child is not active and we are not scaling, then show it
+
+                //    if (!child.gameObject.activeInHierarchy)
+                //    {
+                //        child.gameObject.SetActive(true);
+                //        child.tag = "";
+                //    }
+                //}
+
+
             }
         }
 
@@ -144,6 +222,71 @@ public class FogGenerator : MonoBehaviour
             m_bEntireMapReveal = true;
         }
     }
+
+    //public void Unfog(Vector3 m_playerPosition, float m_radius)
+    //{
+    //    int countVisibleCubes = 0;
+
+    //    //Vector3 m_playerPosition = m_player.position;
+    //    int childCount = transform.childCount;
+    //    float m_radiusSqrared = m_radius * m_radius;
+    //    float maxRadiusSquared = (m_radius + m_extraRadius) * (m_radius + m_extraRadius);
+
+
+    //    for (int i = 0; i < childCount; ++i)
+    //    {
+    //        Transform child = transform.GetChild(i);
+    //        GameObject childObject = child.gameObject;
+    //        float distanceSquared = (child.position - m_playerPosition).sqrMagnitude;
+
+    //        if (childObject.activeInHierarchy)
+    //        {
+    //            countVisibleCubes++;
+
+    //            if (distanceSquared < m_radiusSqrared)
+    //            {
+    //                //Destroy(child.gameObject);
+    //                //child.gameObject.SetActive(false);
+
+    //                if (child.gameObject.activeInHierarchy && !m_doScale)
+    //                {
+    //                    //Destroy(child.gameObject);
+    //                    child.gameObject.SetActive(false);
+
+    //                    if (!m_bAllCrystalsRevealed)
+    //                    {
+    //                        showMiningUI(child.position);
+    //                    }
+    //                }
+    //                //if the child is active and we are scaling, turn off the scaling
+    //                else if (child.gameObject.activeInHierarchy && m_doScale)
+    //                {
+    //                    child.GetComponent<FogScaler>().ToggleScale(false);
+    //                }
+    //            }
+
+    //            else if (distanceSquared < maxRadiusSquared)
+    //            {
+    //                lightenAlpha(child.gameObject);
+    //            }
+    //        }
+    //        else
+    //        {
+
+
+    //            if(distanceSquared < maxRadiusSquared)
+    //            {
+    //                //child.gameObject.SetActive(true);
+    //                //lightenAlpha(child.gameObject);
+    //            }
+    //        }           
+    //    }
+
+    //    if (countVisibleCubes == 0)
+    //    {
+    //        m_bEntireMapReveal = true;
+    //    }
+    //}
 
     public static float GetSqrDistXZ(Vector3 a, Vector3 b)
     {
