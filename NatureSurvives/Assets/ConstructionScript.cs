@@ -24,7 +24,7 @@ public class ConstructionScript : MonoBehaviour
                             {
                                 FogGenerator fogComponent = m_fogOfWar.transform.GetComponent<FogGenerator>();
                                 float m_buildingRadius = fogComponent.m_buildingRadius;
-                                fogComponent.Unfog(transform.position, m_buildingRadius * m_buildingRadius);
+                                fogComponent.Unfog(transform.position, m_buildingRadius, gameObject.GetInstanceID());
                             }
 
                             Instantiate(m_Building, transform.position, transform.rotation);
@@ -39,7 +39,7 @@ public class ConstructionScript : MonoBehaviour
                         {
                             FogGenerator fogComponent = m_fogOfWar.transform.GetComponent<FogGenerator>();
                             float m_buildingRadius = fogComponent.m_buildingRadius;
-                            fogComponent.Unfog(transform.position, m_buildingRadius * m_buildingRadius);
+                            fogComponent.Unfog(transform.position, m_buildingRadius, gameObject.GetInstanceID());
                         }
 
                         Instantiate(m_Building, transform.position, transform.rotation);
@@ -57,7 +57,7 @@ public class ConstructionScript : MonoBehaviour
                 {
                     FogGenerator fogComponent = m_fogOfWar.transform.GetComponent<FogGenerator>();
                     float m_buildingRadius = fogComponent.m_buildingRadius;
-                    fogComponent.Unfog(transform.position, m_buildingRadius * m_buildingRadius);
+                    fogComponent.Unfog(transform.position, m_buildingRadius, gameObject.GetInstanceID());
                 }
 
                 Instantiate(m_Building, transform.position, transform.rotation);

@@ -183,7 +183,7 @@ public class EnemyController : MonoBehaviour {
     }
     
 
-    void EnemyShot(float damage)
+    public void EnemyShot(float damage)
     {
         print("EnemyShot");
         m_fEnemyHealth -= damage;
@@ -194,7 +194,7 @@ public class EnemyController : MonoBehaviour {
     {
         if (targetsInArea[0] != null)
         {
-            targetsInArea[0].SendMessage("TakeDamage", 15);
+            targetsInArea[0].SendMessage("TakeDamage", 4);
         }
     }
     

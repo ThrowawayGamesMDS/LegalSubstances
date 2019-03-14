@@ -128,6 +128,7 @@ MonoBehaviour:
   Description: this is an unfinished building. Use a wongle to finish the construction
   hasSpecificWindow: 0
   UIPanel: {fileID: 0}
+  isSelected: 0
 --- !u!114 &6352745987041887489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,6 +160,7 @@ MonoBehaviour:
   WoodCost: 600
   CrystalCost: 600
   FoodCost: 600
+  FogRadius: 20
 --- !u!65 &1496450110450186598
 BoxCollider:
   m_ObjectHideFlags: 0

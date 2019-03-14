@@ -419,13 +419,7 @@ public class PlacementHandler : MonoBehaviour
                 m_goObjsPlaced.RemoveAt(i);
             }
         }
-
         
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Break();
-        }
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if(m_ePlayerState != PlayerStates.DEFAULT)

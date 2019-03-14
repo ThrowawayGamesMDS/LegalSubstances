@@ -12,4 +12,8 @@ public class attackScript : MonoBehaviour
         contr.attackEnemy();
         Instantiate(smash, handpos.position, smash.transform.rotation);
     }
+    void EnemyShot(float val)
+    {
+        contr.EnemyShot(val);
+    }
 }

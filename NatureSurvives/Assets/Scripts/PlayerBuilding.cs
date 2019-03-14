@@ -24,6 +24,6 @@ public class PlayerBuilding : MonoBehaviour {
 	}
     public void TakeDamage(int damage)
     {
-        BuildingHealth -= damage/10;
+        BuildingHealth -= damage;
     }
 }

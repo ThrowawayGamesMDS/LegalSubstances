@@ -23,7 +23,7 @@ public class HomeSpawning : MonoBehaviour {
 
     public void fQueueUnit(string unittype)
     {
-        if (iCurrentWongleCount < iMaximumWongleCount)
+        if (iCurrentWongleCount + UIObjQueue.Count < iMaximumWongleCount)
         {
             if (unittype == "Worker")
             {

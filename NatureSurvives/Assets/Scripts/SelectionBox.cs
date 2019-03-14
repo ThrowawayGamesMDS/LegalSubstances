@@ -402,29 +402,32 @@ public class SelectionBox : MonoBehaviour {
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             string _sOriginalHitResult = "";
+            Debug.DrawRay(camera.transform.position, ray.direction, Color.red);
             if (Physics.Raycast(ray, out hit, 1000))
             {
                 _sOriginalHitResult = hit.transform.gameObject.tag;
             }
-                Physics.Raycast(ray, out hit, 1000, layermask);
-                switch(_sOriginalHitResult)
-                {
-                    case "Wood":
-                        {
-                            Instantiate(m_goSelectOBJ[2], hit.point, camera.transform.rotation);
-                            break;
-                        }
-                    case "Enemy":
-                        {
-                            Instantiate(m_goSelectOBJ[1], hit.point, camera.transform.rotation);
-                            break;
-                        }
-                    default:
-                        {
-                            Instantiate(m_goSelectOBJ[0], hit.point, camera.transform.rotation);
-                            break;
-                        }
-                }
+            Physics.Raycast(ray, out hit, 1000, layermask);
+            switch(_sOriginalHitResult)
+            {
+                case "Wood":
+                    {
+                        Instantiate(m_goSelectOBJ[2], hit.point, camera.transform.rotation);
+                        break;
+                    }
+                case "Enemy":
+                    {
+                        Instantiate(m_goSelectOBJ[1], hit.point, camera.transform.rotation);
+                        break;
+                    }
+                default:
+                    {
+                        print("default");
+                        print(hit.point);
+                        Instantiate(m_goSelectOBJ[0], hit.point, camera.transform.rotation);
+                        break;
+                    }
+            }
         }
 
 
