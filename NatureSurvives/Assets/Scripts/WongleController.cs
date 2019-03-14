@@ -45,7 +45,7 @@ public class WongleController : MonoBehaviour
     private Image healthBarImage;
     private float startHealth;
     private Transform healthBarCanvasTransform;
-    private GameObject healthBarCanvasGameObject;
+    public GameObject healthBarCanvasGameObject;
 
     // Use this for initialization
     void Start()

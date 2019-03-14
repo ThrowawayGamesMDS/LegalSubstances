@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public static class Utils
 {
@@ -206,6 +207,11 @@ public class SelectionBox : MonoBehaviour {
                             _goUpdateList.Add(_npc);
                             m_lCtrlUnits.RemoveAt(_iBundyCount);
                             _iBundyCount++;
+
+                            GameObject healthBarCanvasGameObject;
+                            healthBarCanvasGameObject = unit.transform.Find("Health Bar").gameObject;
+                            healthBarCanvasGameObject.SetActive(false);
+
                             return hit;
                         }
                     }
@@ -216,6 +222,10 @@ public class SelectionBox : MonoBehaviour {
                     unit.selectionCircle = Instantiate(selectionCirclePrefab);
                     unit.selectionCircle.transform.SetParent(unit.transform, false);
                     unit.selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
+
+                    GameObject healthBarCanvasGameObject;
+                    healthBarCanvasGameObject = unit.transform.Find("Health Bar").gameObject;
+                    healthBarCanvasGameObject.SetActive(true);
                 }
 
                 unit.isSelected = true;
@@ -235,6 +245,10 @@ public class SelectionBox : MonoBehaviour {
             {
                 Destroy(selectableObject.selectionCircle.gameObject);
                 selectableObject.selectionCircle = null;
+
+                GameObject healthBarCanvasGameObject;
+                healthBarCanvasGameObject = selectableObject.transform.Find("Health Bar").gameObject;
+                healthBarCanvasGameObject.SetActive(false);
             }
         }
     }
@@ -259,6 +273,10 @@ public class SelectionBox : MonoBehaviour {
                             unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.SetParent(unit.transform, false);
                             unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
                             unit.GetComponent<SelectableUnitComponent>().isSelected = true;
+
+                            GameObject healthBarCanvasGameObject;
+                            healthBarCanvasGameObject = unit.transform.Find("Health Bar").gameObject;
+                            healthBarCanvasGameObject.SetActive(true);
                         }
                     }
                     foreach (var unit in m_goRangedUnits)
@@ -269,6 +287,10 @@ public class SelectionBox : MonoBehaviour {
                             unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.SetParent(unit.transform, false);
                             unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
                             unit.GetComponent<SelectableUnitComponent>().isSelected = true;
+
+                            GameObject healthBarCanvasGameObject;
+                            healthBarCanvasGameObject = unit.transform.Find("Health Bar").gameObject;
+                            healthBarCanvasGameObject.SetActive(true);
                         }
                     }
                     break;
@@ -287,6 +309,10 @@ public class SelectionBox : MonoBehaviour {
                                         unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.SetParent(unit.transform, false);
                                         unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
                                         unit.GetComponent<SelectableUnitComponent>().isSelected = true;
+
+                                        GameObject healthBarCanvasGameObject;
+                                        healthBarCanvasGameObject = unit.transform.Find("Health Bar").gameObject;
+                                        healthBarCanvasGameObject.SetActive(true);
                                     }
                                 }
                                 break;
@@ -301,6 +327,10 @@ public class SelectionBox : MonoBehaviour {
                                         unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.SetParent(unit.transform, false);
                                         unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
                                         unit.GetComponent<SelectableUnitComponent>().isSelected = true;
+
+                                        GameObject healthBarCanvasGameObject;
+                                        healthBarCanvasGameObject = unit.transform.Find("Health Bar").gameObject;
+                                        healthBarCanvasGameObject.SetActive(true);
                                     }
                                 }
                                 break;
@@ -449,6 +479,10 @@ public class SelectionBox : MonoBehaviour {
                                         {
                                             Destroy(unit.GetComponent<SelectableUnitComponent>().selectionCircle.gameObject);
                                             unit.GetComponent<SelectableUnitComponent>().selectionCircle = null;
+
+                                            GameObject healthBarCanvasGameObject;
+                                            healthBarCanvasGameObject = unit.transform.Find("Health Bar").gameObject;
+                                            healthBarCanvasGameObject.SetActive(false);
                                         }
                                     }
                                     m_lCtrlUnits.Clear();
@@ -462,6 +496,10 @@ public class SelectionBox : MonoBehaviour {
                                     {
                                         Destroy(selectableObject.selectionCircle.gameObject);
                                         selectableObject.selectionCircle = null;
+
+                                        GameObject healthBarCanvasGameObject;
+                                        healthBarCanvasGameObject = selectableObject.transform.Find("Health Bar").gameObject;
+                                        healthBarCanvasGameObject.SetActive(false);
                                     }
                                 }
                             }
@@ -479,6 +517,10 @@ public class SelectionBox : MonoBehaviour {
                                     {
                                         Destroy(selectableObject.selectionCircle.gameObject);
                                         selectableObject.selectionCircle = null;
+
+                                        GameObject healthBarCanvasGameObject;
+                                        healthBarCanvasGameObject = selectableObject.transform.Find("Health Bar").gameObject;
+                                        healthBarCanvasGameObject.SetActive(false);
                                     }
                                 }
                             }
@@ -546,6 +588,10 @@ public class SelectionBox : MonoBehaviour {
                                     unit.GetComponent<SelectableUnitComponent>().selectionCircle = Instantiate(selectionCirclePrefab);
                                     unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.SetParent(unit.transform, false);
                                     unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
+
+                                    GameObject healthBarCanvasGameObject;
+                                    healthBarCanvasGameObject = unit.transform.Find("Health Bar").gameObject;
+                                    healthBarCanvasGameObject.SetActive(true);
                                 }
                             }
                         }
@@ -557,6 +603,10 @@ public class SelectionBox : MonoBehaviour {
                                 {
                                     Destroy(hit.transform.GetComponent<SelectableUnitComponent>().selectionCircle);
                                     hit.transform.GetComponent<SelectableUnitComponent>().selectionCircle = null;
+
+                                    GameObject healthBarCanvasGameObject;
+                                    healthBarCanvasGameObject = hit.transform.Find("Health Bar").gameObject;
+                                    healthBarCanvasGameObject.SetActive(false);
                                 }
                             }
                             print("maybe do deslection here");
@@ -579,6 +629,10 @@ public class SelectionBox : MonoBehaviour {
                     unit.GetComponent<SelectableUnitComponent>().selectionCircle = Instantiate(selectionCirclePrefab);
                     unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.SetParent(unit.transform, false);
                     unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
+
+                    GameObject healthBarCanvasGameObject;
+                    healthBarCanvasGameObject = unit.transform.Find("Health Bar").gameObject;
+                    healthBarCanvasGameObject.SetActive(true);
                 }
             }
         }
@@ -596,6 +650,10 @@ public class SelectionBox : MonoBehaviour {
                         selectableObject.selectionCircle = Instantiate(selectionCirclePrefab);
                         selectableObject.selectionCircle.transform.SetParent(selectableObject.transform, false);
                         selectableObject.selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
+
+                        GameObject healthBarCanvasGameObject;
+                        healthBarCanvasGameObject = selectableObject.transform.Find("Health Bar").gameObject;
+                        healthBarCanvasGameObject.SetActive(true);
                     }
 
                     selectableObject.isSelected = true;
@@ -608,6 +666,10 @@ public class SelectionBox : MonoBehaviour {
                     {
                         Destroy(selectableObject.selectionCircle.gameObject);
                         selectableObject.selectionCircle = null;
+
+                        GameObject healthBarCanvasGameObject;
+                        healthBarCanvasGameObject = selectableObject.transform.Find("Health Bar").gameObject;
+                        healthBarCanvasGameObject.SetActive(false);
                     }
                 }
             }
