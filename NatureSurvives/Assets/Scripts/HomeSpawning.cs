@@ -148,7 +148,7 @@ public class HomeSpawning : MonoBehaviour {
                 {
                     SpawnUnit(UnitQueue[0]);
                     hasTimer = false;
-                    
+                    timerVal = 0;
                     UnitQueue.RemoveAt(0);
                     Destroy(UIObjQueue[0]);
                     UIObjQueue.RemoveAt(0);

@@ -157,7 +157,10 @@ public class WongleController : MonoBehaviour
                                         {
                                             if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FishingEnd"))
                                             {
-                                                anim.Play("Idle");
+                                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FarmingLoop"))
+                                                {
+                                                    anim.Play("Idle");
+                                                }
                                             }
                                         }
                                     }
@@ -208,6 +211,7 @@ public class WongleController : MonoBehaviour
                             {
                                 Work.GetComponent<BuildingController>().inputAmount += inputAmount;
                                 inputAmount = 0;
+                                anim.Play("FarmingLoop");
                                 Work.GetComponent<BuildingController>().isOccupied = true;
                                 if (Work.GetComponent<BuildingController>().outputAmount > 0)
                                 {
