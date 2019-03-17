@@ -342,4 +342,42 @@ public class SelectableUnitComponent : MonoBehaviour {
         }
     }
 
+
+    public void minimapRightClick(float x, float z)
+    {
+        if (isSelected)
+        {
+            int layermask = LayerMask.GetMask("Ground");
+            RaycastHit hit;
+            Ray ray = new Ray(new Vector3(x, 50, z), Vector3.down);
+            if (Physics.Raycast(ray, out hit, 100, layermask))
+            {
+                if (controller.Work != null)
+                {
+                    if (controller.Work.tag == "Building")
+                    {
+                        controller.Work.GetComponent<BuildingController>().worker = null;
+                    }
+                    if (controller.Work.tag != "Army")
+                    {
+                        controller.Work = null;
+                    }
+                }
+
+                if (controller.Target != null)
+                {
+                    controller.Target = null;
+                    if (controller.attackinstance != null)
+                    {
+                        Destroy(controller.attackinstance);
+                    }
+
+                }
+                controller.agent.isStopped = false;
+                controller.agent.stoppingDistance = 7;
+                controller.agent.SetDestination(hit.point);
+            }
+        }
+    }
+    
 }
