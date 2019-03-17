@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour {
     public GameObject home;
@@ -15,6 +16,12 @@ public class EnemyController : MonoBehaviour {
 
     private Transform target;
     private float timer;
+
+    [Header("Health Bar")]
+    private Image healthBarImage;
+    private float startHealth;
+    private Transform healthBarCanvasTransform;
+    private GameObject healthBarCanvasGameObject;
 
     // Use this for initialization
     void OnEnable()
@@ -41,7 +48,13 @@ public class EnemyController : MonoBehaviour {
     void Start () {
         home = GameObject.FindGameObjectWithTag("HomeBuilding");
         //agent.SetDestination(home.transform.position);
-	}
+
+        startHealth = m_fEnemyHealth;
+        healthBarCanvasTransform = transform.Find("Health Bar");
+        healthBarImage = healthBarCanvasTransform.GetChild(0).GetChild(0).GetComponent<Image>();
+        healthBarCanvasGameObject = healthBarCanvasTransform.gameObject;
+        healthBarCanvasGameObject.SetActive(false);
+    }
 
     // Update is called once per frame
     void Update()
@@ -188,6 +201,13 @@ public class EnemyController : MonoBehaviour {
         print("EnemyShot");
         m_fEnemyHealth -= damage;
         //play enemy damage sound
+
+        healthBarImage.fillAmount = m_fEnemyHealth / startHealth;
+
+        if (healthBarImage.fillAmount < 1.0f && !healthBarCanvasGameObject.activeSelf)
+        {
+            healthBarCanvasGameObject.SetActive(true);
+        }
     }
 
     public void attackEnemy()

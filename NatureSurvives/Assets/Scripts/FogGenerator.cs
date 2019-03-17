@@ -82,7 +82,7 @@ public class FogGenerator : MonoBehaviour
        
 
     //do we still need to do this?  update every 3 frames for optimization
-    private int interval = 1;
+    private int interval = 3;
 
     // Update is called once per frame
     void Update()
@@ -106,12 +106,13 @@ public class FogGenerator : MonoBehaviour
                     //GameObject.Find("ShareButton").transform.localScale = new Vector3(0, 0, 0);
                     GameObject m_wongle = m_wongleObjects[i];
                     NavMeshAgent agent = m_wongle.GetComponent<NavMeshAgent>();
-
-                    if (agent.velocity.sqrMagnitude > 0f)
+                    if (agent)
                     {
-                        Unfog(m_wongle.transform.position, m_wongleRadius, m_wongle.GetInstanceID());
+                        if (agent.velocity.sqrMagnitude > 0f)
+                        {
+                            Unfog(m_wongle.transform.position, m_wongleRadius, m_wongle.GetInstanceID());
+                        }
                     }
-
                 }
             }
         }
@@ -342,7 +343,6 @@ public class FogGenerator : MonoBehaviour
 
         GameObject[] m_crystalObjects;
         m_crystalObjects = GameObject.FindGameObjectsWithTag("Crystal");
-        print("m_crystalObjects.Length = " + m_crystalObjects.Length);
 
         for (int j = 0; j < m_crystalObjects.Length; j++)
         {
@@ -361,11 +361,10 @@ public class FogGenerator : MonoBehaviour
             }
         }
 
-        if (m_iCountHiddenCrystals == 0)
-        {
-            //m_bAllCrystalsRevealed = true;
-            print("m_bAllCrystalsRevealed");
-        }
+        //if (m_iCountHiddenCrystals == 0)
+        //{
+        //    //m_bAllCrystalsRevealed = true;
+        //}
     }   
 }
 

@@ -28,7 +28,9 @@ public class WinBuilding : MonoBehaviour {
         }
 	}
 
-
+    // this method is unused? But uses take damage on player building script instead?  
+    // player building health = 50
+    // win building health = 200
     void buildingDamaged(float damage)
     {
         buildingHealth -= damage;

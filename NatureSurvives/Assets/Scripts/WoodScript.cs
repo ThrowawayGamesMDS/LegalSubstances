@@ -35,28 +35,31 @@ public class WoodScript : MonoBehaviour {
         //for all the mines disable UI inside fog of war
         GameObject m_fowGameObject;
         m_fowGameObject = GameObject.FindGameObjectWithTag("Fog");
-        Transform m_fowTransform = m_fowGameObject.transform;
-
-        int m_cubeSize = 0;
-        m_cubeSize = m_fowGameObject.GetComponent<FogGenerator>().m_cubeSize;
-        //count the number of cubes
-        int childCount = m_fowTransform.childCount;
-
-        for (int i = 0; i < childCount; i++)
+        if (m_fowGameObject)
         {
-            Transform child = m_fowTransform.GetChild(i);
-            GameObject childObject = child.gameObject;
+            Transform m_fowTransform = m_fowGameObject.transform;
 
-            if (childObject.activeInHierarchy)
+            int m_cubeSize = 0;
+            m_cubeSize = m_fowGameObject.GetComponent<FogGenerator>().m_cubeSize;
+            //count the number of cubes
+            int childCount = m_fowTransform.childCount;
+
+            for (int i = 0; i < childCount; i++)
             {
-                float distanceSquared = (child.position - transform.position).sqrMagnitude;
+                Transform child = m_fowTransform.GetChild(i);
+                GameObject childObject = child.gameObject;
 
-                if (distanceSquared < m_cubeSize * m_cubeSize)
+                if (childObject.activeInHierarchy)
                 {
-                    transform.GetChild(1).gameObject.SetActive(false);
+                    float distanceSquared = (child.position - transform.position).sqrMagnitude;
+
+                    if (distanceSquared < m_cubeSize * m_cubeSize)
+                    {
+                        transform.GetChild(1).gameObject.SetActive(false);
+                    }
                 }
             }
-        }
+        }       
     }
 
     //void showMiningUI(Vector3 m_fogPosition)
