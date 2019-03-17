@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-//using UnityEngine.EventSystems;
+using UnityEngine.EventSystems;
 
-public class checkposofclick : MonoBehaviour
+public class checkposofclick : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public Transform player;
+    public bool isHovered;
     public Camera cam;
     public RawImage minimapRawImage;
     private void Start()
     {
+        isHovered = false;
         minimapRawImage = GetComponent<RawImage>();
     }
     void Update()
@@ -30,7 +33,31 @@ public class checkposofclick : MonoBehaviour
         //The value "170" is the raw image size currently
         float xPositionCameraCoordinates = (xPositionDeltaPoint);
         float yPositionCameraCoordinates = (yPositionDeltaPoint);
-        Debug.Log((xPositionCameraCoordinates - 130) + ", " + (yPositionCameraCoordinates - 130));
+        //Debug.Log((xPositionCameraCoordinates - 130) + ", " + (yPositionCameraCoordinates - 130));
+        
+
+
+        if(isHovered)
+        {
+            //print("yes");
+            //print("teleporting to " + (xPositionCameraCoordinates - 60) + ", " + (yPositionCameraCoordinates - 60));
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                player.position = new Vector3((((xPositionCameraCoordinates - 60)/60) * 250), player.position.y, (((yPositionCameraCoordinates - 60)/60)*250));
+
+            }
+        }
+    }
+
+
+    public void OnPointerEnter(PointerEventData pointerEventData)
+    {
+        isHovered = true;
+    }
+
+    public void OnPointerExit(PointerEventData pointerEventData)
+    {
+        isHovered = false;
     }
 }
 

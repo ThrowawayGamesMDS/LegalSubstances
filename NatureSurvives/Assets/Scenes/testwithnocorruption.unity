@@ -17737,6 +17737,16 @@ PrefabInstance:
       propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7409461439839069352, guid: a7804a4200115c3448df8e3b1a6453d7,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7409461439839069352, guid: a7804a4200115c3448df8e3b1a6453d7,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7804a4200115c3448df8e3b1a6453d7, type: 3}
 --- !u!1001 &928928017
@@ -17803,6 +17813,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb9f1076f36d97a448f5085eccf92afb, type: 3}
+--- !u!224 &932371292 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7868119282809492095, guid: 948bc0424816ed24c8f65b159a082210,
+    type: 3}
+  m_PrefabInstance: {fileID: 1183322544}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &933465861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21969,7 +21985,7 @@ PrefabInstance:
     - target: {fileID: 7868119282809492095, guid: 948bc0424816ed24c8f65b159a082210,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -157.6
+      value: -161
       objectReference: {fileID: 0}
     - target: {fileID: 7868119282809492095, guid: 948bc0424816ed24c8f65b159a082210,
         type: 3}
@@ -22014,12 +22030,12 @@ PrefabInstance:
     - target: {fileID: 7868119282809492095, guid: 948bc0424816ed24c8f65b159a082210,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 103.4
+      value: 103
       objectReference: {fileID: 0}
     - target: {fileID: 7868119282809492095, guid: 948bc0424816ed24c8f65b159a082210,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 49.001953
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7868119282809492095, guid: 948bc0424816ed24c8f65b159a082210,
         type: 3}
@@ -26909,6 +26925,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c930e67a312cb1a4c8cac054d0d45ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 932371292}
+  isHovered: 0
   cam: {fileID: 584582747}
   minimapRawImage: {fileID: 0}
 --- !u!1001 &1444864768
