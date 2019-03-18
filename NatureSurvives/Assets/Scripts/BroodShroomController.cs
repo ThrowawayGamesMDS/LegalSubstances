@@ -2,60 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
-public class BroodShroomController : MonoBehaviour {
+public class BroodShroomController : MonoBehaviour
+{
     public GameObject Fiend;
     public Animator anim;
     public float m_fEnemyHealth;
     private bool triggered;
+    public List<WongleController> targets;
     private bool lockout;
+    private bool cooldown;
     // Use this for initialization
-
-    [Header("Health Bar")]
-    private Image healthBarImage;
-    private float startHealth;
-    private Transform healthBarCanvasTransform;
-    private GameObject healthBarCanvasGameObject;
-
-    void Start () {
-        InvokeRepeating("repeat", 5, 20);
+    void Start()
+    {
         triggered = false;
         lockout = false;
-
-        startHealth = m_fEnemyHealth;
-        healthBarCanvasTransform = transform.Find("Health Bar");
-        healthBarImage = healthBarCanvasTransform.GetChild(0).GetChild(0).GetComponent<Image>();
-        healthBarCanvasGameObject = healthBarCanvasTransform.gameObject;
-        healthBarCanvasGameObject.SetActive(false);
     }
-	
-    void repeat()
-    {
-        StartCoroutine(Spawn());
-    }
-
-    IEnumerator Spawn()
-    {
-        if(triggered)
-        {
-            anim.Play("spawning");
-            yield return new WaitForSeconds(2);
-            Instantiate(Fiend, transform.position, transform.rotation);
-        }
-        
-    }
-
 
     void Update()
     {
-        if (m_fEnemyHealth <= 0)
+        for (int i = 0; i < targets.Count; i++)
         {
-            Destroy(gameObject);
+            if (targets[i] == null)
+            {
+                targets.RemoveAt(i);
+            }
         }
-        if(DayNight.isDay)
+        if (targets.Count > 0)
         {
-            if(!lockout)
+            lockout = true;
+            triggered = true;
+        }
+        else
+        {
+            lockout = false;
+            triggered = false;
+        }
+
+
+        if (DayNight.isDay)
+        {
+            if (!lockout)
             {
                 triggered = false;
             }
@@ -66,27 +53,38 @@ public class BroodShroomController : MonoBehaviour {
         }
 
 
+        if (targets.Count > 0)
+        {
+            if (!cooldown)
+            {
+                anim.Play("spawning");
+                cooldown = true;
+                Invoke("fCooldown", 7);
+            }
+        }
+
+
+
+
+
+
+
+        if (m_fEnemyHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void EnemyShot(float damage)
     {
         print("EnemyShot");
         m_fEnemyHealth -= damage;
-
-        healthBarImage.fillAmount = m_fEnemyHealth / startHealth;
-
-        if (healthBarImage.fillAmount < 1.0f && !healthBarCanvasGameObject.activeSelf)
-        {
-            healthBarCanvasGameObject.SetActive(true);
-        }
     }
-
     void OnTriggerEnter(Collider other)
     {
-        if(other.transform.tag == "Wongle")
+        if (other.transform.tag == "Wongle")
         {
-            triggered = true;
-            lockout = true;
+            targets.Insert(targets.Count, other.gameObject.GetComponent<WongleController>());
         }
 
     }
@@ -94,9 +92,19 @@ public class BroodShroomController : MonoBehaviour {
     {
         if (other.transform.tag == "Wongle")
         {
-            triggered = false;
-            lockout = false;
+            targets.Remove(other.gameObject.GetComponent<WongleController>());
         }
+
+    }
+
+    public void fSpawnFiend()
+    {
+        Instantiate(Fiend, transform.position, transform.rotation);
+    }
+
+    public void fCooldown()
+    {
+        cooldown = false;
 
     }
 
