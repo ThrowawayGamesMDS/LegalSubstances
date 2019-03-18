@@ -67,13 +67,18 @@ public class BroodShroomController : MonoBehaviour
         }
 
 
-        if (targets.Count > 0)
+        if (triggered)
         {
             if (!cooldown)
             {
                 anim.Play("spawning");
                 cooldown = true;
-                Invoke("fCooldown", 7);
+                int cooldownint = 30 -  Mathf.FloorToInt(1.5f * DayNight.DaysPlayed);
+                if(cooldownint <= 0)
+                {
+                    cooldownint = 5;
+                }
+                Invoke("fCooldown", cooldownint);
             }
         }
 
