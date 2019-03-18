@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class BroodShroomController : MonoBehaviour
 {
@@ -12,11 +13,24 @@ public class BroodShroomController : MonoBehaviour
     public List<WongleController> targets;
     private bool lockout;
     private bool cooldown;
+
+    [Header("Health Bar")]
+    private Image healthBarImage;
+    private float startHealth;
+    private Transform healthBarCanvasTransform;
+    private GameObject healthBarCanvasGameObject;
+
     // Use this for initialization
     void Start()
     {
         triggered = false;
         lockout = false;
+
+        startHealth = m_fEnemyHealth;
+        healthBarCanvasTransform = transform.Find("Health Bar");
+        healthBarImage = healthBarCanvasTransform.GetChild(0).GetChild(0).GetComponent<Image>();
+        healthBarCanvasGameObject = healthBarCanvasTransform.gameObject;
+        healthBarCanvasGameObject.SetActive(false);
     }
 
     void Update()
@@ -74,6 +88,13 @@ public class BroodShroomController : MonoBehaviour
     {
         print("EnemyShot");
         m_fEnemyHealth -= damage;
+
+        healthBarImage.fillAmount = m_fEnemyHealth / startHealth;
+
+        if (healthBarImage.fillAmount < 1.0f && !healthBarCanvasGameObject.activeSelf)
+        {
+            healthBarCanvasGameObject.SetActive(true);
+        }
     }
     void OnTriggerEnter(Collider other)
     {

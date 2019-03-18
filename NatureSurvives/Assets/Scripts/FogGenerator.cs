@@ -122,7 +122,7 @@ public class FogGenerator : MonoBehaviour
 
     public void Unfog(Vector3 m_playerPosition, float m_radius, int instanceID)
     {
-        int countVisibleCubes = 0;
+        //int countVisibleCubes = 0;
 
         //Vector3 m_playerPosition = m_player.position;
         int childCount = transform.childCount;
@@ -138,23 +138,23 @@ public class FogGenerator : MonoBehaviour
 
             //if (childObject.activeInHierarchy)
             //{
-            countVisibleCubes++;
+            //countVisibleCubes++;
 
             if (distanceSquared < m_radiusSqrared)
             {
                 //Destroy(child.gameObject);
                 //child.gameObject.SetActive(false);
 
-                if (!child.gameObject.GetComponent<FogScaler>().m_instanceIDList.Contains(instanceID))
+                if (!childObject.GetComponent<FogScaler>().m_instanceIDList.Contains(instanceID))
                 {
-                    child.gameObject.GetComponent<FogScaler>().m_instanceIDList.Add(instanceID);
+                    childObject.GetComponent<FogScaler>().m_instanceIDList.Add(instanceID);
                 }
-             
-                if (child.gameObject.activeInHierarchy && !m_doScale)
+
+                if (childObject.activeInHierarchy && !m_doScale)
                 {
                     //Destroy(child.gameObject);
-                    
-                    child.gameObject.SetActive(false);
+
+                    childObject.SetActive(false);
 
                     if (!m_bAllCrystalsRevealed)
                     {
@@ -168,58 +168,36 @@ public class FogGenerator : MonoBehaviour
             {
                 if (distanceSquared < maxRadiusSquared)
                 {
-                    //if (strTag == "Building")
-                    //{
-                    //    child.gameObject.GetComponent<Renderer>().material.color = Color.red;
-                    //}
-
-                    //else
-                    //{
-
-                    if (child.gameObject.activeInHierarchy)
+                    //this just lightens the surrounding radius
+                    if (childObject.activeInHierarchy)
                     {
                         lightenAlpha(child.gameObject);
                     }
                     else
                     {
-                        if (child.gameObject.GetComponent<FogScaler>().m_instanceIDList.Count < 2)
+                        if (childObject.GetComponent<FogScaler>().m_instanceIDList.Count < 2)
                         {
-                            if (child.gameObject.GetComponent<FogScaler>().m_instanceIDList[0] == instanceID)
+                            if (childObject.GetComponent<FogScaler>().m_instanceIDList[0] == instanceID)
                             {
-                                //lightenAlpha(child.gameObject);
+                                if (childObject.GetComponent<Renderer>().material.color.a == 1.0f)
+                                {
+                                    lightenAlpha(child.gameObject);
+                                }
+                                //this actually turns on the 2nd layer of fow
                                 child.gameObject.SetActive(true);
-                                child.gameObject.GetComponent<FogScaler>().m_instanceIDList.Remove(instanceID);
-                            }                           
-                        }                       
-                    
-                    }                          
-                   // }
+                                //child.gameObject.GetComponent<FogScaler>().m_instanceIDList.Remove(instanceID);
+                            }
+                        }
+                        child.gameObject.GetComponent<FogScaler>().m_instanceIDList.Remove(instanceID);
+                    }
                 }
-
-                //if we are within the max distance
-
-                //if (distanceSquared < maxRadiusSquared && child.tag != "Building")
-
-                //{
-                //    //lightenAlpha(child.gameObject);
-
-                //    //if the child is not active and we are not scaling, then show it
-
-                //    if (!child.gameObject.activeInHierarchy)
-                //    {
-                //        child.gameObject.SetActive(true);
-                //        child.tag = "";
-                //    }
-                //}
-
-
             }
         }
 
-        if (countVisibleCubes == 0)
-        {
-            m_bEntireMapReveal = true;
-        }
+        //if (countVisibleCubes == 0)
+        //{
+        //    m_bEntireMapReveal = true;
+        //}
     }
 
     //public void Unfog(Vector3 m_playerPosition, float m_radius)
