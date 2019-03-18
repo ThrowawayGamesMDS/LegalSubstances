@@ -19,7 +19,7 @@ public class playbutton : MonoBehaviour {
 		
 	}
 	public void play(){
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
     public void help()
     {

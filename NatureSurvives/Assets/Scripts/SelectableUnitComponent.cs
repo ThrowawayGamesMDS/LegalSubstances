@@ -35,7 +35,6 @@ public class SelectableUnitComponent : MonoBehaviour {
                     {
                         case "Ground":
                             {
-
                                 if (controller.Work != null)
                                 {
                                     if (controller.Work.tag == "Building")

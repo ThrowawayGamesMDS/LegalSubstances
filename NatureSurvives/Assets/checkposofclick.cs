@@ -31,8 +31,8 @@ public class checkposofclick : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
 
         //The value "170" is the raw image size currently
-        float xPositionCameraCoordinates = (xPositionDeltaPoint-140);
-        float yPositionCameraCoordinates = (yPositionDeltaPoint-140);
+        float xPositionCameraCoordinates = (xPositionDeltaPoint-165);
+        float yPositionCameraCoordinates = (yPositionDeltaPoint-165);
         //Debug.Log((xPositionCameraCoordinates - 130) + ", " + (yPositionCameraCoordinates - 130));
         
 
@@ -41,9 +41,9 @@ public class checkposofclick : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             //print("yes");
             print((xPositionCameraCoordinates) + ", " + (yPositionCameraCoordinates));
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                player.position = new Vector3((((xPositionCameraCoordinates)/140) * 250), player.position.y, (((yPositionCameraCoordinates)/140)*250));
+                player.position = new Vector3((((xPositionCameraCoordinates)/165) * 250), player.position.y, (((yPositionCameraCoordinates)/ 165) *250));
 
             }
             if(Input.GetKeyDown(KeyCode.Mouse1))
@@ -53,7 +53,7 @@ public class checkposofclick : MonoBehaviour, IPointerEnterHandler, IPointerExit
                 _goUnits = GameObject.FindGameObjectsWithTag("Wongle");
                 for (int i = 0; i < _iTotalWongles; i++)
                 {
-                    _goUnits[i].GetComponent<SelectableUnitComponent>().minimapRightClick((((xPositionCameraCoordinates) / 140) * 250), (((yPositionCameraCoordinates) / 140) * 250));
+                    _goUnits[i].GetComponent<SelectableUnitComponent>().minimapRightClick((((xPositionCameraCoordinates) / 165) * 250), (((yPositionCameraCoordinates) / 165) * 250));
                 }
             }
         }

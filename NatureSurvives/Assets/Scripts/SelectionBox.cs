@@ -87,7 +87,7 @@ public class SelectionBox : MonoBehaviour {
     public GameObject[] m_goSelectOBJ; // 0 = DEFAULT, 1 = NPC, 2 = RESOURCE
     public GameObject selectionCirclePrefab;
 
-    private int m_iUserID = -1;
+    //private int m_iUserID = -1;
     private bool m_bUserLClicked;
     // whats up with the fucking coroutine system these days?????
     private float m_fUserClickedTime;
@@ -106,7 +106,7 @@ public class SelectionBox : MonoBehaviour {
     private void Awake()
     {
         #if !UNITY_EDITOR
-            m_iUserID = 0;
+            //m_iUserID = 0;
         #endif
     }
 
@@ -469,7 +469,7 @@ public class SelectionBox : MonoBehaviour {
                 {
                     case false:
                         {
-                            if (EventSystem.current.IsPointerOverGameObject(m_iUserID) == false)
+                            //if (EventSystem.current.IsPointerOverGameObject(m_iUserID) == false)
                             {
                                 if (m_lCtrlUnits.Count > 0)
                                 {
@@ -494,6 +494,8 @@ public class SelectionBox : MonoBehaviour {
                                 {
                                     if (selectableObject.selectionCircle != null)
                                     {
+                                        print(selectableObject.name);
+                                        print(selectableObject.transform.position);
                                         Destroy(selectableObject.selectionCircle.gameObject);
                                         selectableObject.selectionCircle = null;
 
@@ -507,7 +509,7 @@ public class SelectionBox : MonoBehaviour {
                         }
                     case true:
                         {
-                            if (EventSystem.current.IsPointerOverGameObject(m_iUserID) == false)
+                            //if (EventSystem.current.IsPointerOverGameObject(m_iUserID) == false)
                             {
                                 mousePosition1 = Input.mousePosition;
 
@@ -597,7 +599,7 @@ public class SelectionBox : MonoBehaviour {
                         }
                         else // deselection bug fix?
                         {
-                            if (EventSystem.current.IsPointerOverGameObject(m_iUserID) == false)
+                            //if (EventSystem.current.IsPointerOverGameObject(m_iUserID) == false)
                             {
                                 if (hit.transform.GetComponent<SelectableUnitComponent>().selectionCircle != null)
                                 {
