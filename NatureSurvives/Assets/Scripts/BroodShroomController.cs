@@ -63,12 +63,7 @@ public class BroodShroomController : MonoBehaviour
             }
         }
 
-
-
-
-
-
-
+        
         if (m_fEnemyHealth <= 0)
         {
             Destroy(gameObject);

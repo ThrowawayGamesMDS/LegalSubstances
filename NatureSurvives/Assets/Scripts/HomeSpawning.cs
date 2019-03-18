@@ -175,4 +175,26 @@ public class HomeSpawning : MonoBehaviour {
             UIObjQueue[i].GetComponent<queueUIScript>().placeInQueue = i;
         }
     }
+
+    public void Refund(string x)
+    {
+        if(x == "Worker")
+        {
+            HouseController.WoodAmount += Prefabs[0].GetComponent<costToPlace>().WoodCost;
+            HouseController.WhiteAmount += Prefabs[0].GetComponent<costToPlace>().FoodCost;
+            HouseController.CrystalAmount += Prefabs[0].GetComponent<costToPlace>().CrystalCost;
+        }
+        if (x == "Wizard")
+        {
+            HouseController.WoodAmount += Prefabs[1].GetComponent<costToPlace>().WoodCost;
+            HouseController.WhiteAmount += Prefabs[1].GetComponent<costToPlace>().FoodCost;
+            HouseController.CrystalAmount += Prefabs[1].GetComponent<costToPlace>().CrystalCost;
+        }
+        if (x == "Knight")
+        {
+            HouseController.WoodAmount += Prefabs[2].GetComponent<costToPlace>().WoodCost;
+            HouseController.WhiteAmount += Prefabs[2].GetComponent<costToPlace>().FoodCost;
+            HouseController.CrystalAmount += Prefabs[2].GetComponent<costToPlace>().CrystalCost;
+        }
+    }
 }

@@ -14,8 +14,10 @@ public class queueUIScript : MonoBehaviour
             home.GetComponent<HomeSpawning>().hasTimer = false;
             
         }
+        home.GetComponent<HomeSpawning>().Refund(home.GetComponent<HomeSpawning>().UnitQueue[placeInQueue]);
         home.GetComponent<HomeSpawning>().UnitQueue.RemoveAt(placeInQueue);
         home.GetComponent<HomeSpawning>().UIObjQueue.RemoveAt(placeInQueue);
+        
         Destroy(gameObject);
     }
 }

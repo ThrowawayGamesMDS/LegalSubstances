@@ -130,7 +130,15 @@ public class WongleController : MonoBehaviour
                 {
                     if (!anim.GetCurrentAnimatorStateInfo(0).IsName("PickaxeSwing"))
                     {
-                        anim.Play("WalkCycle");
+                        if(type == SelectableUnitComponent.workerType.Melee)
+                        {
+                            anim.Play("RunCycle");
+                        }
+                        else
+                        {
+                            anim.Play("WalkCycle");
+                        }
+                        
                     }
                 }
 
@@ -159,7 +167,23 @@ public class WongleController : MonoBehaviour
                                             {
                                                 if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FarmingLoop"))
                                                 {
-                                                    anim.Play("Idle");
+                                                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1"))
+                                                    {
+                                                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2"))
+                                                        {
+                                                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
+                                                            {
+                                                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("DamageTaken"))
+                                                                {
+                                                                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
+                                                                    {
+                                                                        anim.Play("Idle");
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                           
                                                 }
                                             }
                                         }
@@ -284,9 +308,9 @@ public class WongleController : MonoBehaviour
                             agent.isStopped = true;
                             if (canAttack)
                             {
-                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("BasicSwingAttack"))
+                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
                                 {
-                                    anim.Play("BasicSwingAttack");
+                                    anim.Play("Attack1");
                                 }
                             }
                         }
