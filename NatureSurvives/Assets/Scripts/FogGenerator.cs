@@ -38,7 +38,7 @@ public class FogGenerator : MonoBehaviour
                 GameObject go = Instantiate(m_fogCube, new Vector3(transform.position.x + x * m_cubeSize, transform.position.y, transform.position.z + y * m_cubeSize), Quaternion.identity);
 
                 go.name = "FogCube_" + x + "_" + y;
-                go.transform.SetParent(transform);               
+                go.transform.SetParent(transform);
             }
         }
 
@@ -76,8 +76,11 @@ public class FogGenerator : MonoBehaviour
     {
         //fogCube.GetComponent<Renderer>().material.color = Color.yellow;
         Color fogColor = fogCube.GetComponent<Renderer>().material.color;
-        fogColor.a = 0.1f;
+        fogColor.a = 0.3f;
         fogCube.GetComponent<Renderer>().material.color = fogColor;
+
+        fogCube.transform.position = new Vector3(fogCube.transform.position.x, 0.0f, fogCube.transform.position.z);
+        fogCube.transform.localScale = new Vector3(m_fogCube.transform.localScale.x, 0.001f, m_fogCube.transform.localScale.z);
     }
        
 
@@ -97,9 +100,9 @@ public class FogGenerator : MonoBehaviour
             GameObject[] m_wongleObjects;
             m_wongleObjects = GameObject.FindGameObjectsWithTag("Wongle");
 
-            
 
-        if (Time.frameCount % interval == 0)    //once every three frames
+
+            if (Time.frameCount % interval == 0)    //once every three frames
             {
                 for (int i = 0; i < m_wongleObjects.Length; i++)
                 {
@@ -168,21 +171,19 @@ public class FogGenerator : MonoBehaviour
             {
                 if (distanceSquared < maxRadiusSquared)
                 {
-                    //this just lightens the surrounding radius
-                    if (childObject.activeInHierarchy)
-                    {
-                        lightenAlpha(child.gameObject);
-                    }
-                    else
+
+
+                    
+                    if (!childObject.activeInHierarchy)
                     {
                         if (childObject.GetComponent<FogScaler>().m_instanceIDList.Count < 2)
                         {
                             if (childObject.GetComponent<FogScaler>().m_instanceIDList[0] == instanceID)
                             {
-                                if (childObject.GetComponent<Renderer>().material.color.a == 1.0f)
-                                {
-                                    lightenAlpha(child.gameObject);
-                                }
+                                //if (childObject.GetComponent<Renderer>().material.color.a == 1.0f)
+                                //{
+                                //    lightenAlpha(child.gameObject);
+                                //}
                                 //this actually turns on the 2nd layer of fow
                                 child.gameObject.SetActive(true);
                                 //child.gameObject.GetComponent<FogScaler>().m_instanceIDList.Remove(instanceID);
@@ -190,6 +191,39 @@ public class FogGenerator : MonoBehaviour
                         }
                         child.gameObject.GetComponent<FogScaler>().m_instanceIDList.Remove(instanceID);
                     }
+
+                    //this just lightens the surrounding radius
+                    if (childObject.activeInHierarchy)
+                    {
+                        lightenAlpha(childObject);
+                    }
+
+
+
+
+
+                    ////this just lightens the surrounding radius
+                    //if (childObject.activeInHierarchy)
+                    //{
+                    //    lightenAlpha(child.gameObject);
+                    //}
+                    //else
+                    //{
+                    //    if (childObject.GetComponent<FogScaler>().m_instanceIDList.Count < 2)
+                    //    {
+                    //        if (childObject.GetComponent<FogScaler>().m_instanceIDList[0] == instanceID)
+                    //        {
+                    //            if (childObject.GetComponent<Renderer>().material.color.a == 1.0f)
+                    //            {
+                    //                lightenAlpha(child.gameObject);
+                    //            }
+                    //            //this actually turns on the 2nd layer of fow
+                    //            child.gameObject.SetActive(true);
+                    //            //child.gameObject.GetComponent<FogScaler>().m_instanceIDList.Remove(instanceID);
+                    //        }
+                    //    }
+                    //    child.gameObject.GetComponent<FogScaler>().m_instanceIDList.Remove(instanceID);
+                    //}
                 }
             }
         }
@@ -199,71 +233,6 @@ public class FogGenerator : MonoBehaviour
         //    m_bEntireMapReveal = true;
         //}
     }
-
-    //public void Unfog(Vector3 m_playerPosition, float m_radius)
-    //{
-    //    int countVisibleCubes = 0;
-
-    //    //Vector3 m_playerPosition = m_player.position;
-    //    int childCount = transform.childCount;
-    //    float m_radiusSqrared = m_radius * m_radius;
-    //    float maxRadiusSquared = (m_radius + m_extraRadius) * (m_radius + m_extraRadius);
-
-
-    //    for (int i = 0; i < childCount; ++i)
-    //    {
-    //        Transform child = transform.GetChild(i);
-    //        GameObject childObject = child.gameObject;
-    //        float distanceSquared = (child.position - m_playerPosition).sqrMagnitude;
-
-    //        if (childObject.activeInHierarchy)
-    //        {
-    //            countVisibleCubes++;
-
-    //            if (distanceSquared < m_radiusSqrared)
-    //            {
-    //                //Destroy(child.gameObject);
-    //                //child.gameObject.SetActive(false);
-
-    //                if (child.gameObject.activeInHierarchy && !m_doScale)
-    //                {
-    //                    //Destroy(child.gameObject);
-    //                    child.gameObject.SetActive(false);
-
-    //                    if (!m_bAllCrystalsRevealed)
-    //                    {
-    //                        showMiningUI(child.position);
-    //                    }
-    //                }
-    //                //if the child is active and we are scaling, turn off the scaling
-    //                else if (child.gameObject.activeInHierarchy && m_doScale)
-    //                {
-    //                    child.GetComponent<FogScaler>().ToggleScale(false);
-    //                }
-    //            }
-
-    //            else if (distanceSquared < maxRadiusSquared)
-    //            {
-    //                lightenAlpha(child.gameObject);
-    //            }
-    //        }
-    //        else
-    //        {
-
-
-    //            if(distanceSquared < maxRadiusSquared)
-    //            {
-    //                //child.gameObject.SetActive(true);
-    //                //lightenAlpha(child.gameObject);
-    //            }
-    //        }           
-    //    }
-
-    //    if (countVisibleCubes == 0)
-    //    {
-    //        m_bEntireMapReveal = true;
-    //    }
-    //}
 
     public static float GetSqrDistXZ(Vector3 a, Vector3 b)
     {
