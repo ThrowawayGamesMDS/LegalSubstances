@@ -537,6 +537,7 @@ public class WongleController : MonoBehaviour
                 }
                 else
                 {
+                    placeholderPosition = transform.position;
                     FindNewTarget("Construction");
                 }
             }

@@ -106,7 +106,7 @@ public class HomeSpawning : MonoBehaviour {
                     temp = Instantiate(Prefabs[1], transform.position, Prefabs[1].transform.rotation, army.transform);
                     temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
                     temp.GetComponent<WongleController>().Work = army;
-                    temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(105, 0, -20));                                
+                    temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(105, 0, -100));                                
                     GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>().m_goRangedUnits.Add(temp);                  
                     break;
                 }
@@ -116,7 +116,7 @@ public class HomeSpawning : MonoBehaviour {
                     temp = Instantiate(Prefabs[2], transform.position, Prefabs[2].transform.rotation, army.transform);
                     temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
                     temp.GetComponent<WongleController>().Work = army;
-                    temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(85, 0, -20));                                
+                    temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(85, 0, -100));                                
                     GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>().m_goMeleeUnits.Add(temp);                   
                     break;
                 }

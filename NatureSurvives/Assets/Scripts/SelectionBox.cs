@@ -582,9 +582,12 @@ public class SelectionBox : MonoBehaviour {
                                     }
                                     else
                                     {
-                                        if (gameObject.GetComponent<DisplayHandler>().m_bDisplayingBuildings == false)
+                                        if (!EventSystem.current.IsPointerOverGameObject())
                                         {
-                                            gameObject.GetComponent<DisplayHandler>().UpdateState(true); // is worker
+                                            if (gameObject.GetComponent<DisplayHandler>().m_bDisplayingBuildings == false)
+                                            {
+                                                gameObject.GetComponent<DisplayHandler>().UpdateState(true); // is worker
+                                            }
                                         }
                                     }
                                     UpdateCameraVariables(ray, layermask);
@@ -642,12 +645,13 @@ public class SelectionBox : MonoBehaviour {
             * Handle for UI Display clicking shit
             * 
             ***/
-
-            if (gameObject.GetComponent<DisplayHandler>().m_bDisplayingBuildings == true && m_goSelected == null)
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
-                gameObject.GetComponent<DisplayHandler>().UpdateState(true); // is worker
+                if (gameObject.GetComponent<DisplayHandler>().m_bDisplayingBuildings == true && m_goSelected == null)
+                {
+                    gameObject.GetComponent<DisplayHandler>().UpdateState(true); // is worker
+                }
             }
-
         }
 
         if (m_bCtrlSelectUnits)
