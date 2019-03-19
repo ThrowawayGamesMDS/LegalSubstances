@@ -103,6 +103,9 @@ public class SelectionBox : MonoBehaviour {
     public bool[] m_bUnitsSelected;
     private GameObject m_goUnitDoubleClicked;
 
+    // For displayUI shit
+    private GameObject m_goSelected;
+
     private void Awake()
     {
         #if !UNITY_EDITOR
@@ -363,16 +366,23 @@ public class SelectionBox : MonoBehaviour {
         {
             if (hit.transform.gameObject.GetComponent<SelectableUnitComponent>().Type.ToString() == "Worker")
             {
+                m_goSelected = hit.transform.gameObject;
                 return true;
             }
             else
             {
+                if (m_goSelected != null)
+                {
+                    m_goSelected = null;
+                }
                 m_goUnitDoubleClicked = hit.transform.gameObject;
+                m_goSelected = null;
                 return false;
             }
         }
         else
         {
+            m_goSelected = null;
             return true;
         }
 
@@ -570,6 +580,13 @@ public class SelectionBox : MonoBehaviour {
                                         m_bUserLClicked = true;
                                         m_fUserClickedTime = Time.time + 0.3f;
                                     }
+                                    else
+                                    {
+                                        if (gameObject.GetComponent<DisplayHandler>().m_bDisplayingBuildings == false)
+                                        {
+                                            gameObject.GetComponent<DisplayHandler>().UpdateState(true); // is worker
+                                        }
+                                    }
                                     UpdateCameraVariables(ray, layermask);
                                     break;
                                 }
@@ -618,6 +635,17 @@ public class SelectionBox : MonoBehaviour {
                         print("Controlled units size: " + m_lCtrlUnits.Count);
                             break;
                     }
+            }
+
+            /***
+            * 
+            * Handle for UI Display clicking shit
+            * 
+            ***/
+
+            if (gameObject.GetComponent<DisplayHandler>().m_bDisplayingBuildings == true && m_goSelected == null)
+            {
+                gameObject.GetComponent<DisplayHandler>().UpdateState(true); // is worker
             }
 
         }
