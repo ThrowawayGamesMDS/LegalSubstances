@@ -85,9 +85,9 @@ public class EnemyController : MonoBehaviour {
 
         for (int i = 0; i < targetsInArea.Count; i++)
         {
-            if (targetsInArea[0] == null)
+            if (targetsInArea[i] == null)
             {
-                targetsInArea.RemoveAt(0);
+                targetsInArea.RemoveAt(i);
             }
         }
 

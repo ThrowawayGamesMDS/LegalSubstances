@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 /***
  * 
@@ -21,9 +22,9 @@ public class DisplayHandler : MonoBehaviour
     {
         for (int i = 0; i < m_iTotalNumber; i++)
         {
-            if (m_goUiOBJ[i].GetComponent<CanvasGroup>() != null)
+            if (m_goUiOBJ[i] != null)
             {
-                m_goUiOBJ[i].GetComponent<CanvasGroup>().alpha = 0.0f;
+                m_goUiOBJ[i].SetActive(false);
             }
         }
         m_bDisplayingUnit = false;
@@ -39,12 +40,19 @@ public class DisplayHandler : MonoBehaviour
             if (hit.transform.gameObject.tag == "HomeBuilding" && !m_bDisplayingUnit)
             {
                 print("set build options");
-                UpdateState(false);
+                if(!EventSystem.current.IsPointerOverGameObject())
+                {
+                    UpdateState(false);
+                }
+                
             }
-            else if(hit.transform.gameObject.tag != "HomeBuilding" && m_bDisplayingUnit)
+            else if (hit.transform.gameObject.tag != "HomeBuilding" && m_bDisplayingUnit)
             {
                 print("reset build options");
-                UpdateState(false);
+                if (!EventSystem.current.IsPointerOverGameObject())
+                {
+                    UpdateState(false);
+                }
             }
         }
         return hit;
@@ -63,13 +71,13 @@ public class DisplayHandler : MonoBehaviour
                         case true:
                             {
                                 m_bDisplayingBuildings = false;
-                                m_goUiOBJ[1].GetComponent<CanvasGroup>().alpha = 0.0f; // m_goUiOBJ[1] = BuildOptions 
+                                m_goUiOBJ[1].SetActive(false); // m_goUiOBJ[1] = BuildOptions 
                                 break;
                             }
                         case false:
                             {
                                 m_bDisplayingBuildings = true;
-                                m_goUiOBJ[1].GetComponent<CanvasGroup>().alpha = 1.0f; // m_goUiOBJ[1] = BuildOptions 
+                                m_goUiOBJ[1].SetActive(true); // m_goUiOBJ[1] = BuildOptions 
                                 break;
                             }
                     }
@@ -82,14 +90,14 @@ public class DisplayHandler : MonoBehaviour
                         case true:
                             {
                                 m_bDisplayingUnit = false;
-                                m_goUiOBJ[0].GetComponent<CanvasGroup>().alpha = 0.0f; // m_goUiOBJ[1] = BuildOptions 
+                                m_goUiOBJ[0].SetActive(false); // m_goUiOBJ[1] = BuildOptions 
                                 print("reset unit display");
                                 break;
                             }
                         case false:
                             {
                                 m_bDisplayingUnit = true;
-                                m_goUiOBJ[0].GetComponent<CanvasGroup>().alpha = 1.0f; // m_goUiOBJ[1] = BuildOptions 
+                                m_goUiOBJ[0].SetActive(true); // m_goUiOBJ[1] = BuildOptions 
                                 print("set unit display");
                                 break;
                             }

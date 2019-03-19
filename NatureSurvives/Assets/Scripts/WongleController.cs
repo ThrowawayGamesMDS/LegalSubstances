@@ -124,66 +124,71 @@ public class WongleController : MonoBehaviour
 
         if (agent.velocity.magnitude > 0)
         {
-            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("BasicSwingAttack"))
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("StartMagic"))
             {
-                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AxeChop"))
+                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("magicattack"))
                 {
-                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("PickaxeSwing"))
+                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AxeChop"))
                     {
-                        if(type == SelectableUnitComponent.workerType.Melee)
+                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("PickaxeSwing"))
                         {
-                            anim.Play("RunCycle");
+                            if (type == SelectableUnitComponent.workerType.Melee)
+                            {
+                                anim.Play("RunCycle");
+                            }
+                            else
+                            {
+                                anim.Play("WalkCycle");
+                            }
+
                         }
-                        else
-                        {
-                            anim.Play("WalkCycle");
-                        }
-                        
                     }
                 }
-
             }
 
         }
         else
         {
-            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("BasicSwingAttack"))
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("StartMagic"))
             {
-                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AxeChop"))
+                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("magicattack"))
                 {
-                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("PickaxeSwing"))
+                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AxeChop"))
                     {
-                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FlossDance"))
+                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("PickaxeSwing"))
                         {
-                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("RodCast"))
+                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FlossDance"))
                             {
-                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FishingIdle"))
+                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("RodCast"))
                                 {
-                                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("CatchReel"))
+                                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FishingIdle"))
                                     {
-                                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("CatchAdmireIdle"))
+                                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("CatchReel"))
                                         {
-                                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FishingEnd"))
+                                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("CatchAdmireIdle"))
                                             {
-                                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FarmingLoop"))
+                                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FishingEnd"))
                                                 {
-                                                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1"))
+                                                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FarmingLoop"))
                                                     {
-                                                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2"))
+                                                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1"))
                                                         {
-                                                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
+                                                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2"))
                                                             {
-                                                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("DamageTaken"))
+                                                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
                                                                 {
-                                                                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
+                                                                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("DamageTaken"))
                                                                     {
-                                                                        anim.Play("Idle");
+                                                                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
+                                                                        {
+                                                                            anim.Play("Idle");
+                                                                        }
                                                                     }
                                                                 }
                                                             }
                                                         }
+
                                                     }
-                                           
                                                 }
                                             }
                                         }
@@ -193,7 +198,6 @@ public class WongleController : MonoBehaviour
                         }
                     }
                 }
-
             }
         }
 
@@ -571,7 +575,7 @@ public class WongleController : MonoBehaviour
                                 if (!animlock)
                                 {
                                     anim.Play("CatchReel");
-                                    //hide.isVisible = true;
+                                    hide.isVisible = true;
                                     animlock = true;
                                 }
                             }
@@ -708,9 +712,9 @@ public class WongleController : MonoBehaviour
 
     IEnumerator PlayAnim()
     {
-        yield return new WaitForSeconds(2.3f);
+        yield return new WaitForSeconds(1.2f);
         print("anim");
-        anim.Play("BasicSwingAttack");        
+        anim.Play("StartMagic");        
         yield return new WaitForSeconds(0.5f);
         if (attackinstance != null)
         {

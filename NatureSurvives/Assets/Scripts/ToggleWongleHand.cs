@@ -121,7 +121,7 @@ public class ToggleWongleHand : MonoBehaviour {
                             }
                             if (WongleMain.GetComponent<WongleController>().isGoingHome)
                             {
-                                //items[1].SetActive(true);
+                                items[5].SetActive(true);
                             }
                         }
                         break;
