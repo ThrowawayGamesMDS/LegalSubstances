@@ -30692,9 +30692,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f8edc1e4fe2e849b64c43bc19e0f43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_goUiOBJ:
-  - {fileID: 1910978950}
-  - {fileID: 1404353862}
   m_iTotalNumber: 2
   select: {fileID: 0}
   m_bDisplayingUnit: 0
@@ -35124,11 +35121,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1971081872}
     m_Modifications:
-    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
-        type: 3}
-      propertyPath: m_Name
-      value: Health Bar
-      objectReference: {fileID: 0}
     - target: {fileID: 5745946300523346767, guid: eead958fb4f21ee44a41791f7161561b,
         type: 3}
       propertyPath: m_RootOrder
@@ -35163,6 +35155,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.5000092
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
+        type: 3}
+      propertyPath: m_Name
+      value: Health Bar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eead958fb4f21ee44a41791f7161561b, type: 3}
