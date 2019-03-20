@@ -12,26 +12,30 @@ using UnityEngine.EventSystems;
 
 public class DisplayHandler : MonoBehaviour
 {
-    public GameObject[] m_goUiOBJ;
     public int m_iTotalNumber;
     public SelectableObject select;
     public bool m_bDisplayingUnit;
     public bool m_bDisplayingBuildings;
 
+    private List<GameObject> m_goUIObj;
+
     private void Awake()
     {
-        for (int i = 0; i < m_iTotalNumber; i++)
+        m_goUIObj = new List<GameObject>();
+        m_goUIObj.Add(GameObject.FindGameObjectWithTag("UnitButtonPanel"));
+        m_goUIObj.Add(GameObject.FindGameObjectWithTag("BuildButtonPanel"));
+        for (int i = 0; i < m_goUIObj.Count; i++)
         {
-            if (m_goUiOBJ[i] != null)
+            if (m_goUIObj[i] != null)
             {
-                m_goUiOBJ[i].SetActive(false);
+                m_goUIObj[i].SetActive(false);
             }
         }
         m_bDisplayingUnit = false;
         m_bDisplayingBuildings = false;
     }
 
-    private RaycastHit GenerateRayCast(Ray ray)
+    private bool GenerateRayCast(Ray ray)
     {
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 1000))
@@ -43,6 +47,7 @@ public class DisplayHandler : MonoBehaviour
                 if(!EventSystem.current.IsPointerOverGameObject())
                 {
                     UpdateState(false);
+                    return true;
                 }
                 
             }
@@ -52,10 +57,11 @@ public class DisplayHandler : MonoBehaviour
                 if (!EventSystem.current.IsPointerOverGameObject())
                 {
                     UpdateState(false);
+                    return true;
                 }
             }
         }
-        return hit;
+        return false;
     }
 
     public void UpdateState(bool _bWorker)
@@ -71,7 +77,7 @@ public class DisplayHandler : MonoBehaviour
                         case true:
                             {
                                 m_bDisplayingBuildings = false;
-                                m_goUiOBJ[1].SetActive(false); // m_goUiOBJ[1] = BuildOptions 
+                                m_goUIObj[1].SetActive(false); // m_goUiOBJ[1] = BuildOptions 
                                 break;
                             }
                         case false:
@@ -79,10 +85,10 @@ public class DisplayHandler : MonoBehaviour
                                 if (m_bDisplayingUnit)
                                 {
                                     m_bDisplayingUnit = false;
-                                    m_goUiOBJ[0].SetActive(false); 
+                                    m_goUIObj[0].SetActive(false); 
                                 }
                                 m_bDisplayingBuildings = true;
-                                m_goUiOBJ[1].SetActive(true); // m_goUiOBJ[1] = BuildOptions 
+                                m_goUIObj[1].SetActive(true); // m_goUiOBJ[1] = BuildOptions 
                                 break;
                             }
                     }
@@ -95,7 +101,7 @@ public class DisplayHandler : MonoBehaviour
                         case true:
                             {
                                 m_bDisplayingUnit = false;
-                                m_goUiOBJ[0].SetActive(false); // m_goUiOBJ[1] = BuildOptions 
+                                m_goUIObj[0].SetActive(false); // m_goUiOBJ[1] = BuildOptions 
                                 print("reset unit display");
                                 break;
                             }
@@ -104,10 +110,10 @@ public class DisplayHandler : MonoBehaviour
                                 if (m_bDisplayingBuildings)
                                 {
                                     m_bDisplayingBuildings = false;
-                                    m_goUiOBJ[1].SetActive(false); // m_goUiOBJ[1] = BuildOptions 
+                                    m_goUIObj[1].SetActive(false); // m_goUiOBJ[1] = BuildOptions 
                                 }
                                 m_bDisplayingUnit = true;
-                                m_goUiOBJ[0].SetActive(true); // m_goUiOBJ[1] = BuildOptions 
+                                m_goUIObj[0].SetActive(true); // m_goUiOBJ[1] = BuildOptions 
                                 print("set unit display");
                                 break;
                             }
@@ -125,7 +131,19 @@ public class DisplayHandler : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             //  int layermask = LayerMask.NameToLayer("");
             GenerateRayCast(ray);
-           
+            /*if ( !GenerateRayCast(ray))
+            {
+                if (gameObject.GetComponent<SelectionBox>().m_goSelectOBJ != null && !m_bDisplayingBuildings)
+                {
+                    if (m_bDisplayingUnit)
+                    {
+                        m_bDisplayingUnit = false;
+                        m_goUIObj[0].SetActive(false);
+                    }
+                    UpdateState(true);
+                }
+            }*/
+
         }
     }
 }
