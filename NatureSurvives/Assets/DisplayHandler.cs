@@ -76,6 +76,11 @@ public class DisplayHandler : MonoBehaviour
                             }
                         case false:
                             {
+                                if (m_bDisplayingUnit)
+                                {
+                                    m_bDisplayingUnit = false;
+                                    m_goUiOBJ[0].SetActive(false); 
+                                }
                                 m_bDisplayingBuildings = true;
                                 m_goUiOBJ[1].SetActive(true); // m_goUiOBJ[1] = BuildOptions 
                                 break;
@@ -96,6 +101,11 @@ public class DisplayHandler : MonoBehaviour
                             }
                         case false:
                             {
+                                if (m_bDisplayingBuildings)
+                                {
+                                    m_bDisplayingBuildings = false;
+                                    m_goUiOBJ[1].SetActive(false); // m_goUiOBJ[1] = BuildOptions 
+                                }
                                 m_bDisplayingUnit = true;
                                 m_goUiOBJ[0].SetActive(true); // m_goUiOBJ[1] = BuildOptions 
                                 print("set unit display");
