@@ -1,0 +1,24 @@
+2019-03-04T03:14:15.972Z - info: [ui] [AppStore] loading 1 repositories from store
+2019-03-04T03:14:15.973Z - info: [ui] [AppStore] found account: charmaine-lim (charmaine-lim)
+2019-03-04T03:14:16.269Z - info: [ui] launching: 1.6.2 (Windows 10.0.17134)
+2019-03-04T03:14:16.270Z - info: [ui] execPath: 'D:\Users\charmaine.lim6440\AppData\Local\GitHubDesktop\app-1.6.2\GitHubDesktop.exe'
+2019-03-04T03:14:18.035Z - info: [ui] Executing getStatus: git --no-optional-locks status --untracked-files=all --branch --porcelain=2 -z (took 1.888s)
+2019-03-04T03:14:18.036Z - info: [ui] Executing getStatus: git --no-optional-locks status --untracked-files=all --branch --porcelain=2 -z (took 1.972s)
+2019-03-04T03:14:20.150Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-04T03:14:25.990Z - info: [ui] Executing fetch: git -c credential.helper= fetch --progress --prune origin (took 5.797s)
+2019-03-04T03:14:28.107Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-04T03:14:30.569Z - info: [ui] Executing pull: git -c credential.helper= pull --no-rebase --progress origin (took 2.387s)
+2019-03-04T20:37:16.142Z - info: [ui] [AppStore] loading 1 repositories from store
+2019-03-04T20:37:16.143Z - info: [ui] [AppStore] found account: charmaine-lim (charmaine-lim)
+2019-03-04T20:37:16.330Z - info: [ui] launching: 1.6.2 (Windows 10.0.17134)
+2019-03-04T20:37:16.330Z - info: [ui] execPath: 'D:\Users\charmaine.lim6440\AppData\Local\GitHubDesktop\app-1.6.2\GitHubDesktop.exe'
+2019-03-04T20:37:18.488Z - info: [ui] Executing getStatus: git --no-optional-locks status --untracked-files=all --branch --porcelain=2 -z (took 2.186s)
+2019-03-04T20:37:18.489Z - info: [ui] Executing getStatus: git --no-optional-locks status --untracked-files=all --branch --porcelain=2 -z (took 2.258s)
+2019-03-04T20:37:21.848Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-04T20:37:27.392Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-04T21:54:19.255Z - warn: [ui] fetchRepository: an error occurred for 'throwawaygamesmds/LegalSubstances'
+Error: Server Error
+    at Object.t.parsedResponse (D:\Users\charmaine.lim6440\AppData\Local\GitHubDesktop\app-1.6.2\webpack:\app\src\lib\http.ts:161:4)
+    at <anonymous>
+2019-03-04T22:38:47.710Z - info: [ui] Executing fetch: git -c credential.helper= fetch --progress --prune origin (took 1.075s)
+2019-03-04T23:09:12.743Z - info: [ui] Executing fetch: git -c credential.helper= fetch --progress --prune origin (took 1.130s)

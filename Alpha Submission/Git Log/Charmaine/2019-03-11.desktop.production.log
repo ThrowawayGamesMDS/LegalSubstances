@@ -1,0 +1,154 @@
+2019-03-11T00:01:53.573Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 25.404s)
+2019-03-11T00:05:02.419Z - info: [main] Received possible protocol arguments: 1
+2019-03-11T00:05:04.124Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-11T00:05:11.762Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 7.529s)
+2019-03-11T00:39:06.663Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 1.629s)
+2019-03-11T00:41:48.696Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-11T00:41:50.375Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 1.620s)
+2019-03-11T00:42:57.930Z - info: [ui] Executing updateIndex: git update-index --add --remove --replace -z --stdin (took 1.071s)
+2019-03-11T00:42:59.013Z - info: [ui] Executing createCommit: git commit -F - (took 1.083s)
+2019-03-11T00:43:02.255Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-11T00:43:08.656Z - info: [ui] Executing push: git -c credential.helper= -c protocol.version=2 push origin master:master --progress (took 6.353s)
+2019-03-11T00:43:10.188Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 1.486s)
+2019-03-11T00:43:17.782Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-11T00:43:19.317Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 1.481s)
+2019-03-11T01:16:20.028Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 2.207s)
+2019-03-11T01:27:21.458Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-11T01:27:47.764Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 26.146s)
+2019-03-11T01:54:48.153Z - info: [ui] Executing getStatus: git --no-optional-locks status --untracked-files=all --branch --porcelain=2 -z (took 1.018s)
+2019-03-11T01:58:54.963Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 4.880s)
+2019-03-11T02:05:54.379Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-11T02:05:56.861Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 2.363s)
+2019-03-11T02:36:18.397Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 11.233s)
+2019-03-11T02:36:18.398Z - error: [ui] `git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin` exited with an unexpected code: 128.
+fatal: unable to access 'https://github.com/ThrowawayGamesMDS/LegalSubstances.git/': Could not resolve host: github.com
+
+2019-03-11T02:41:39.600Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 1.567s)
+2019-03-11T02:53:31.563Z - info: [ui] Executing getStatus: git --no-optional-locks status --untracked-files=all --branch --porcelain=2 -z (took 2.387s)
+2019-03-11T03:11:37.513Z - info: [ui] [AppStore] loading 1 repositories from store
+2019-03-11T03:11:37.513Z - info: [ui] [AppStore] found account: charmaine-lim (charmaine-lim)
+2019-03-11T03:11:37.679Z - info: [ui] launching: 1.6.3 (Windows 10.0.17134)
+2019-03-11T03:11:37.679Z - info: [ui] execPath: 'D:\Users\charmaine.lim6440\AppData\Local\GitHubDesktop\app-1.6.3\GitHubDesktop.exe'
+2019-03-11T03:11:42.561Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-11T03:11:44.096Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 1.478s)
+2019-03-11T20:15:50.395Z - info: [ui] [AppStore] loading 1 repositories from store
+2019-03-11T20:15:50.395Z - info: [ui] [AppStore] found account: charmaine-lim (charmaine-lim)
+2019-03-11T20:15:50.562Z - info: [ui] launching: 1.6.3 (Windows 10.0.17134)
+2019-03-11T20:15:50.562Z - info: [ui] execPath: 'D:\Users\charmaine.lim6440\AppData\Local\GitHubDesktop\app-1.6.3\GitHubDesktop.exe'
+2019-03-11T20:15:51.503Z - info: [ui] Stats reported.
+2019-03-11T20:15:53.132Z - info: [ui] Executing getStatus: git --no-optional-locks status --untracked-files=all --branch --porcelain=2 -z (took 2.653s)
+2019-03-11T20:15:53.133Z - info: [ui] Executing getStatus: git --no-optional-locks status --untracked-files=all --branch --porcelain=2 -z (took 2.558s)
+2019-03-11T20:15:54.874Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-11T20:15:58.866Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 3.931s)
+2019-03-11T20:16:04.570Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-11T20:16:06.936Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 2.260s)
+2019-03-11T20:16:06.938Z - error: [ui] `git -c credential.helper= -c protocol.version=2 pull --progress origin` exited with an unexpected code: 1.
+Updating 92785871..3cff53ac
+
+error: The following untracked working tree files would be overwritten by merge:
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree01.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree02.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree03.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree04.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree04_Blue.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree04_Pink.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees.meta
+	NatureSurvives/Assets/Art/Textures/Floating_Isl_Diff.png.meta
+Please move or remove them before you merge.
+Aborting
+
+2019-03-11T20:16:31.980Z - info: [ui] No submodules found. Skipping "git submodule status"
+2019-03-11T20:16:33.507Z - info: [ui] Executing checkoutIndex: git checkout-index -f -u -q --stdin -z (took 1.055s)
+2019-03-11T20:16:48.924Z - info: [ui] No submodules found. Skipping "git submodule status"
+2019-03-11T20:16:52.652Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-11T20:16:54.363Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 1.613s)
+2019-03-11T20:16:54.364Z - error: [ui] `git -c credential.helper= -c protocol.version=2 pull --progress origin` exited with an unexpected code: 1.
+Updating 92785871..3cff53ac
+
+error: The following untracked working tree files would be overwritten by merge:
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree01.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree02.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree03.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree04.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree04_Blue.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree04_Pink.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees.meta
+	NatureSurvives/Assets/Art/Textures/Floating_Isl_Diff.png.meta
+Please move or remove them before you merge.
+Aborting
+
+2019-03-11T20:17:03.805Z - info: [ui] No submodules found. Skipping "git submodule status"
+2019-03-11T20:17:10.948Z - info: [ui] No submodules found. Skipping "git submodule status"
+2019-03-11T20:17:31.141Z - info: [ui] No submodules found. Skipping "git submodule status"
+2019-03-11T20:17:34.420Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-11T20:17:36.125Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 1.609s)
+2019-03-11T20:17:36.125Z - error: [ui] `git -c credential.helper= -c protocol.version=2 pull --progress origin` exited with an unexpected code: 1.
+Updating 92785871..3cff53ac
+
+error: The following untracked working tree files would be overwritten by merge:
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree01.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree02.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree03.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree04.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree04_Blue.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree04_Pink.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees.meta
+	NatureSurvives/Assets/Art/Textures/Floating_Isl_Diff.png.meta
+Please move or remove them before you merge.
+Aborting
+
+2019-03-11T20:22:39.850Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-11T20:22:41.607Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 1.656s)
+2019-03-11T20:22:41.608Z - error: [ui] `git -c credential.helper= -c protocol.version=2 pull --progress origin` exited with an unexpected code: 1.
+Updating 92785871..3cff53ac
+
+error: The following untracked working tree files would be overwritten by merge:
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree01.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree02.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree03.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree04.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree04_Blue.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees/Leaf_Tree04_Pink.unitypackage.meta
+	NatureSurvives/Assets/Art/Models/Nell/Leaf_Trees.meta
+	NatureSurvives/Assets/Art/Textures/Floating_Isl_Diff.png.meta
+Please move or remove them before you merge.
+Aborting
+
+2019-03-11T20:23:36.706Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-11T20:23:38.513Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 1.684s)
+2019-03-11T20:23:38.513Z - error: [ui] `git -c credential.helper= -c protocol.version=2 pull --progress origin` exited with an unexpected code: 1.
+Updating 92785871..3cff53ac
+
+error: The following untracked working tree files would be overwritten by merge:
+	NatureSurvives/Assets/Art/Textures/Floating_Isl_Diff.png.meta
+Please move or remove them before you merge.
+Aborting
+
+2019-03-11T20:23:47.169Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-11T20:23:48.993Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 1.712s)
+2019-03-11T20:23:48.993Z - error: [ui] `git -c credential.helper= -c protocol.version=2 pull --progress origin` exited with an unexpected code: 1.
+Updating 92785871..3cff53ac
+
+error: The following untracked working tree files would be overwritten by merge:
+	NatureSurvives/Assets/Art/Textures/Floating_Isl_Diff.png.meta
+Please move or remove them before you merge.
+Aborting
+
+2019-03-11T20:24:18.641Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-11T20:24:21.915Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 3.122s)
+2019-03-11T20:55:12.757Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 34.315s)
+2019-03-11T21:14:27.218Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-11T21:14:27.651Z - info: [ui] Executing getChangedFiles: git log c3a93e87e724d0b2a42d77704d77e14ce956d03e -C -M -m -1 --no-show-signature --first-parent --name-status --format=format: -z -- (took 3.080s)
+2019-03-11T21:14:32.968Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 5.625s)
+2019-03-11T21:44:45.994Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 15.458s)
+2019-03-11T22:17:40.199Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 1.602s)
+2019-03-11T22:43:37.011Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-11T22:43:41.610Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 4.424s)
+2019-03-11T22:43:53.788Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-11T22:43:55.331Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 1.493s)
+2019-03-11T22:48:40.119Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-11T22:48:41.800Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 1.622s)
+2019-03-11T22:49:27.593Z - info: [ui] Executing createCommit: git commit -F - (took 1.131s)
+2019-03-11T22:49:30.616Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-11T22:49:36.690Z - info: [ui] Executing push: git -c credential.helper= -c protocol.version=2 push origin master:master --progress (took 6.024s)
+2019-03-11T22:49:38.267Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 1.527s)

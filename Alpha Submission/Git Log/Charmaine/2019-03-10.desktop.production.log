@@ -1,0 +1,57 @@
+2019-03-10T20:06:28.595Z - info: [ui] [AppStore] loading 1 repositories from store
+2019-03-10T20:06:28.596Z - info: [ui] [AppStore] found account: charmaine-lim (charmaine-lim)
+2019-03-10T20:06:28.774Z - info: [ui] launching: 1.6.3 (Windows 10.0.17134)
+2019-03-10T20:06:28.774Z - info: [ui] execPath: 'D:\Users\charmaine.lim6440\AppData\Local\GitHubDesktop\app-1.6.3\GitHubDesktop.exe'
+2019-03-10T20:06:29.781Z - info: [ui] Stats reported.
+2019-03-10T20:06:30.253Z - info: [ui] Executing getStatus: git --no-optional-locks status --untracked-files=all --branch --porcelain=2 -z (took 1.544s)
+2019-03-10T20:06:32.204Z - info: [ui] Executing getCommits: git log HEAD --date=raw --max-count=100 --pretty=%H%x1F%h%x1F%s%x1F%b%x1F%an <%ae> %ad%x1F%cn <%ce> %cd%x1F%P%x1F%(trailers:unfold,only) -z --no-show-signature --no-color -- (took 1.001s)
+2019-03-10T20:06:33.586Z - info: [ui] Executing getChangedFiles: git log d01b3d2de9a6020cb9cefd11df2bc0af3bd688cf -C -M -m -1 --no-show-signature --first-parent --name-status --format=format: -z -- (took 1.339s)
+2019-03-10T20:06:34.032Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-10T20:08:02.460Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 88.367s)
+2019-03-10T20:08:17.270Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-10T20:08:19.265Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 1.887s)
+2019-03-10T20:08:19.267Z - error: [ui] `git -c credential.helper= -c protocol.version=2 pull --progress origin` exited with an unexpected code: 1.
+Updating d01b3d2d..3ad29104
+
+error: Your local changes to the following files would be overwritten by merge:
+	NatureSurvives/Assets/Scripts/WongleController.cs
+	NatureSurvives/Assets/Scripts/pause.cs
+Please commit your changes or stash them before you merge.
+Aborting
+
+2019-03-10T20:11:33.297Z - info: [ui] No submodules found. Skipping "git submodule status"
+2019-03-10T20:12:18.856Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-10T20:12:20.832Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 1.876s)
+2019-03-10T20:12:20.832Z - error: [ui] `git -c credential.helper= -c protocol.version=2 pull --progress origin` exited with an unexpected code: 1.
+Updating d01b3d2d..3ad29104
+
+error: Your local changes to the following files would be overwritten by merge:
+	NatureSurvives/Assets/Scripts/WongleController.cs
+	NatureSurvives/Assets/Scripts/pause.cs
+Please commit your changes or stash them before you merge.
+Aborting
+
+2019-03-10T20:12:41.993Z - info: [ui] No submodules found. Skipping "git submodule status"
+2019-03-10T20:12:44.071Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-10T20:12:52.203Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 8.034s)
+2019-03-10T20:29:14.983Z - info: [ui] Executing getChangedFiles: git log 6da0856829690095673592372b67805307517d8b -C -M -m -1 --no-show-signature --first-parent --name-status --format=format: -z -- (took 1.010s)
+2019-03-10T20:43:59.848Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 1.533s)
+2019-03-10T21:03:35.465Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-10T21:03:42.474Z - info: [ui] Executing push: git -c credential.helper= -c protocol.version=2 push origin master:master --progress (took 6.961s)
+2019-03-10T21:03:44.026Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 1.507s)
+2019-03-10T21:37:39.360Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 29.064s)
+2019-03-10T22:01:42.905Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-10T22:01:46.750Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 3.743s)
+2019-03-10T22:36:24.516Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 15.271s)
+2019-03-10T22:57:49.733Z - info: [main] Received possible protocol arguments: 1
+2019-03-10T22:57:52.342Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-10T22:57:54.683Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 2.242s)
+2019-03-10T22:58:20.824Z - info: [ui] No submodules found. Skipping "git submodule status"
+2019-03-10T22:59:51.637Z - info: [main] Received possible protocol arguments: 1
+2019-03-10T23:00:26.728Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-10T23:00:33.477Z - info: [ui] Executing push: git -c credential.helper= -c protocol.version=2 push origin master:master --progress (took 6.697s)
+2019-03-10T23:00:35.010Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 1.489s)
+2019-03-10T23:29:07.480Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-10T23:29:09.930Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 2.390s)
+2019-03-10T23:29:11.504Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-10T23:29:13.326Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 1.724s)

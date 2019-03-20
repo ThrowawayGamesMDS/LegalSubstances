@@ -1,0 +1,46 @@
+2019-03-05T00:37:17.194Z - info: [ui] Stats reported.
+2019-03-05T00:47:47.065Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-05T02:51:52.601Z - info: [ui] Executing fetch: git -c credential.helper= fetch --progress --prune origin (took 8.322s)
+2019-03-05T03:22:14.492Z - info: [ui] Executing fetch: git -c credential.helper= fetch --progress --prune origin (took 2.571s)
+2019-03-05T03:38:13.849Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-05T03:38:16.148Z - info: [ui] Executing pull: git -c credential.helper= pull --no-rebase --progress origin (took 2.245s)
+2019-03-05T03:39:52.608Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-05T03:39:59.171Z - info: [ui] Executing push: git -c credential.helper= push origin master:master --progress (took 6.552s)
+2019-03-05T20:46:09.491Z - info: [ui] [AppStore] loading 1 repositories from store
+2019-03-05T20:46:09.492Z - info: [ui] [AppStore] found account: charmaine-lim (charmaine-lim)
+2019-03-05T20:46:09.693Z - info: [ui] launching: 1.6.2 (Windows 10.0.17134)
+2019-03-05T20:46:09.694Z - info: [ui] execPath: 'D:\Users\charmaine.lim6440\AppData\Local\GitHubDesktop\app-1.6.2\GitHubDesktop.exe'
+2019-03-05T20:46:11.242Z - info: [ui] Executing getStatus: git --no-optional-locks status --untracked-files=all --branch --porcelain=2 -z (took 1.668s)
+2019-03-05T20:46:12.848Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-05T20:48:10.883Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-05T20:48:11.594Z - info: [ui] Executing fetch: git -c credential.helper= fetch --progress --prune origin (took 118.738s)
+2019-03-05T20:51:16.470Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-05T20:51:18.173Z - info: [ui] Executing pull: git -c credential.helper= pull --no-rebase --progress origin (took 1.638s)
+2019-03-05T20:51:18.175Z - error: [ui] `git -c credential.helper= pull --no-rebase --progress origin` exited with an unexpected code: 1.
+Updating 32ff99bc..83e4a1ab
+
+error: The following untracked working tree files would be overwritten by merge:
+	NatureSurvives/Assets/Art/Models/Nell/floating-island-01.unitypackage.meta
+Please move or remove them before you merge.
+Aborting
+
+2019-03-05T20:51:39.079Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-05T20:51:40.431Z - info: [ui] Executing pull: git -c credential.helper= pull --no-rebase --progress origin (took 1.288s)
+2019-03-05T20:51:40.432Z - error: [ui] `git -c credential.helper= pull --no-rebase --progress origin` exited with an unexpected code: 1.
+Updating 32ff99bc..83e4a1ab
+
+error: The following untracked working tree files would be overwritten by merge:
+	NatureSurvives/Assets/Art/Models/Nell/floating-island-01.unitypackage.meta
+Please move or remove them before you merge.
+Aborting
+
+2019-03-05T20:54:56.827Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-05T20:55:00.061Z - info: [ui] Executing pull: git -c credential.helper= pull --no-rebase --progress origin (took 3.125s)
+2019-03-05T21:06:16.820Z - info: [main] Received possible protocol arguments: 1
+2019-03-05T22:20:10.157Z - info: [main] Received possible protocol arguments: 1
+2019-03-05T22:20:32.171Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-05T22:21:31.593Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-05T22:21:38.270Z - info: [ui] Executing push: git -c credential.helper= push origin master:master --progress (took 6.670s)
+2019-03-05T22:55:53.309Z - info: [ui] Executing fetch: git -c credential.helper= fetch --progress --prune origin (took 1.069s)
+2019-03-05T23:58:02.745Z - info: [ui] Executing fetch: git -c credential.helper= fetch --progress --prune origin (took 1.179s)
+2019-03-05T23:58:04.002Z - info: [ui] Executing getStatus: git --no-optional-locks status --untracked-files=all --branch --porcelain=2 -z (took 1.199s)

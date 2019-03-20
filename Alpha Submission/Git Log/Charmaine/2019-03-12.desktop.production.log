@@ -1,0 +1,38 @@
+2019-03-12T21:36:57.724Z - info: [ui] [AppStore] loading 1 repositories from store
+2019-03-12T21:36:57.725Z - info: [ui] [AppStore] found account: charmaine-lim (charmaine-lim)
+2019-03-12T21:36:57.914Z - info: [ui] launching: 1.6.3 (Windows 10.0.17134)
+2019-03-12T21:36:57.914Z - info: [ui] execPath: 'D:\Users\charmaine.lim6440\AppData\Local\GitHubDesktop\app-1.6.3\GitHubDesktop.exe'
+2019-03-12T21:36:58.716Z - info: [ui] Stats reported.
+2019-03-12T21:37:00.439Z - info: [ui] Executing getStatus: git --no-optional-locks status --untracked-files=all --branch --porcelain=2 -z (took 2.627s)
+2019-03-12T21:37:00.440Z - info: [ui] Executing getStatus: git --no-optional-locks status --untracked-files=all --branch --porcelain=2 -z (took 2.581s)
+2019-03-12T21:37:03.100Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-12T21:37:08.516Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 5.359s)
+2019-03-12T21:37:28.724Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-12T21:37:40.027Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 10.874s)
+2019-03-12T22:09:38.698Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 1.594s)
+2019-03-12T22:42:00.601Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 3.507s)
+2019-03-12T23:14:21.076Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 2.016s)
+2019-03-12T23:25:46.168Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-12T23:25:48.056Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 1.719s)
+2019-03-12T23:25:48.058Z - error: [ui] `git -c credential.helper= -c protocol.version=2 pull --progress origin` exited with an unexpected code: 1.
+Updating 26d722fc..279335c8
+
+error: Your local changes to the following files would be overwritten by merge:
+	NatureSurvives/Assets/ConstructionScript.cs
+Please commit your changes or stash them before you merge.
+Aborting
+
+2019-03-12T23:26:28.072Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-12T23:26:29.814Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 1.630s)
+2019-03-12T23:26:29.815Z - error: [ui] `git -c credential.helper= -c protocol.version=2 pull --progress origin` exited with an unexpected code: 1.
+Updating 26d722fc..279335c8
+
+error: Your local changes to the following files would be overwritten by merge:
+	NatureSurvives/Assets/ConstructionScript.cs
+Please commit your changes or stash them before you merge.
+Aborting
+
+2019-03-12T23:26:34.194Z - info: [ui] No submodules found. Skipping "git submodule status"
+2019-03-12T23:26:35.792Z - info: [ui] [AppStore.withAuthenticatingUser] account found for repository: LegalSubstances - charmaine-lim (has token)
+2019-03-12T23:26:37.742Z - info: [ui] Executing pull: git -c credential.helper= -c protocol.version=2 pull --progress origin (took 1.850s)
+2019-03-12T23:57:25.903Z - info: [ui] Executing fetch: git -c credential.helper= -c protocol.version=2 fetch --progress --prune origin (took 1.809s)
