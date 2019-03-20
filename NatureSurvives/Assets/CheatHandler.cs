@@ -26,7 +26,6 @@ public class CheatHandler : MonoBehaviour
 
     public void HandleEnteredCheat(string _sEnteredText)
     {
-        _sEnteredText.ToLower();
         switch (_sEnteredText)
         {
             case "byebyeboxes":
@@ -101,7 +100,7 @@ public class CheatHandler : MonoBehaviour
             {
                 if (gameObject.GetComponent<InputField>().text.ToLower() == m_sKnownCheats[i].ToLower())
                 {
-                    HandleEnteredCheat(gameObject.GetComponent<InputField>().text);
+                    HandleEnteredCheat(gameObject.GetComponent<InputField>().text.ToLower());
                     m_bPlayerIsEnteringCheat = false;
                     gameObject.GetComponent<CanvasGroup>().alpha = 0;
                     gameObject.GetComponent<InputField>().DeactivateInputField();
