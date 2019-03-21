@@ -95,24 +95,24 @@ public class cameraController : MonoBehaviour {
         //scrolling on x axis
         
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             //gameObject.transform.Translate(-scrollSpeed * Time.deltaTime, 0, 0);
             gameObject.transform.Translate(-scrollSpeed * myDeltaTime, 0, 0);
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             gameObject.transform.Translate(Vector3.right * scrollSpeed * myDeltaTime);
             //gameObject.transform.Translate( Vector3.right * scrollSpeed * Time.deltaTime);
             //gameObject.transform.Translate(Vector3.right * scrollSpeed * Time.deltaTime, 0, 0);
         }
         //scrolling on y axis
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             //gameObject.transform.Translate(0, 0, -scrollSpeed * Time.deltaTime);
             gameObject.transform.Translate(0, 0, -scrollSpeed * myDeltaTime);
         }
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             //gameObject.transform.Translate(0, 0, scrollSpeed * Time.deltaTime);
             gameObject.transform.Translate(0, 0, scrollSpeed * myDeltaTime);
