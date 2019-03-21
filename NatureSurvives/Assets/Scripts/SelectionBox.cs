@@ -106,6 +106,8 @@ public class SelectionBox : MonoBehaviour {
     // For displayUI shit
     private GameObject m_goSelected;
 
+    public bool m_bPlayerSelected;
+
     private void Awake()
     {
         #if !UNITY_EDITOR
@@ -118,6 +120,7 @@ public class SelectionBox : MonoBehaviour {
         //m_goMeleeUnits = new List<GameObject>();
         //m_goRangedUnits = new List<GameObject>();
         m_bUnitsSelected = new bool[2];
+        m_bPlayerSelected = false;
 
         // bool system cheaper on performance then rechecking through an auto loop...
         m_bUnitsSelected[0] = false; // Melee units
@@ -645,12 +648,16 @@ public class SelectionBox : MonoBehaviour {
             * Handle for UI Display clicking shit
             * 
             ***/
-            if (!EventSystem.current.IsPointerOverGameObject())
+            if (!EventSystem.current.IsPointerOverGameObject() && !m_bPlayerSelected)
             {
                 if (gameObject.GetComponent<DisplayHandler>().m_bDisplayingBuildings == true && m_goSelected == null)
                 {
                     gameObject.GetComponent<DisplayHandler>().UpdateState(true); // is worker
                 }
+            }
+            else if (m_bPlayerSelected)
+            {
+                m_bPlayerSelected = false;
             }
         }
 
@@ -688,6 +695,15 @@ public class SelectionBox : MonoBehaviour {
                         GameObject healthBarCanvasGameObject;
                         healthBarCanvasGameObject = selectableObject.transform.Find("Health Bar").gameObject;
                         healthBarCanvasGameObject.SetActive(true);
+
+                        if (selectableObject.Type == SelectableUnitComponent.workerType.Worker)
+                        {
+                            if (gameObject.GetComponent<DisplayHandler>().m_bDisplayingBuildings == false)
+                            {
+                                gameObject.GetComponent<DisplayHandler>().UpdateState(true); // is worker
+                                m_bPlayerSelected = true;
+                            }
+                        }
                     }
 
                     selectableObject.isSelected = true;
