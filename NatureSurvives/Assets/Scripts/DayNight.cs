@@ -11,8 +11,9 @@ public class DayNight : MonoBehaviour {
     public static int DaysPlayed;
     public int playeddays;
     private bool counted;
-    private int daytimer;
-    private int nighttimer;
+
+    public int daytimer;
+    public int nighttimer;
 	// Use this for initialization
 	void Start () {
         DaysPlayed = 0;
