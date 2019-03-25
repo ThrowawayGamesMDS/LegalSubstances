@@ -200,7 +200,10 @@ public class PlacementHandler : MonoBehaviour
     {
         RaycastHit _rhCheck = GenerateRayCast(Camera.main.transform.position.y * 2, true);
         Vector3 pos = _rhCheck.point;
-        pos = new Vector3(Mathf.Round(pos.x/10)*10, pos.y, Mathf.Round(pos.z / 10) * 10);
+        if(!m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().isFlag)
+        {
+            pos = new Vector3(Mathf.Round(pos.x / 10) * 10, pos.y, Mathf.Round(pos.z / 10) * 10);
+        }
         if (!PlacementUnacceptable(pos))
         {
             if (m_ePlayerIsBuilding != m_ePlayerBuilding.DEFAULT)
@@ -311,8 +314,10 @@ public class PlacementHandler : MonoBehaviour
         _rhCheck = GenerateRayCast(Camera.main.transform.position.y * 2, true);
         Vector3 pos = _rhCheck.point;
         pos.y = 0;
-        pos = new Vector3(Mathf.Round(pos.x / 10) * 10, pos.y, Mathf.Round(pos.z / 10) * 10);
-
+        if (!m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().isFlag)
+        {
+            pos = new Vector3(Mathf.Round(pos.x / 10) * 10, pos.y, Mathf.Round(pos.z / 10) * 10);
+        }
         if (m_ePlayerState == PlayerStates.DEFAULT)
         {
             if (_rhCheck.transform.tag != "CorruptedGrid")

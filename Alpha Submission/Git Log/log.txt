@@ -1,0 +1,2772 @@
+commit 5ed8aef3a4a05f2a97e8923478c3d2755f67872c
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Thu Mar 21 13:42:59 2019 +1300
+
+    Implemented Drag-UI Control to Wongles
+    
+    drag and selecting wongle workers will display build options
+
+commit 6bdca7ea69eab6ec0a0865a76c0272ade8a3253a
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Thu Mar 21 12:32:34 2019 +1300
+
+    created a alpha submission folder
+    
+    dunno if those git logs are correct
+
+commit afb64c04b163f9164af1778337b955b2963dcb59
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Thu Mar 21 12:02:26 2019 +1300
+
+    99% complete GDD for Alpha
+    
+    Has a new folder of the same name. Check the ** marked sections, these may need to be expanded, then export to .pdf for submission!
+
+commit 2d37b1ab001826e4d71659cc373cd6129ab66218
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Thu Mar 21 12:01:26 2019 +1300
+
+    playtest feedback results
+
+commit c104169b561d31fb3515dd9abebabcd19a78ff24
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Thu Mar 21 11:26:42 2019 +1300
+
+    Creative Design Document
+
+commit 1cf647cc0fc97d462687d04b9613b2d51fe31350
+Author: benjpointer <benpointer@hotmail.com>
+Date:   Thu Mar 21 02:40:59 2019 +1300
+
+    Implemented transparent UI/Optimized Display Handler
+    
+    The main UI now has a canvas group, allowing us to alter transparency through alpha level. looks so much better.
+    
+    Semi-optimized DisplayHandler to find the game objects at runtime by tag opposed to preloading through an array. This means that you can drag and drop the new canvas into your scene and boom it will work, although the build button functionality and possibly the unit functionality aren't assigned at runtime meaning it breaks functionality lol and ultimately means this is useless but nevertheless
+
+commit 1d6745e1409eab405e5c890c8ddda7313dfa9736
+Author: benjpointer <benpointer@hotmail.com>
+Date:   Thu Mar 21 01:04:43 2019 +1300
+
+    CheatHandler
+    
+    Entry bug, wasn't switching on the .toLower... as _sEnteredText.ToLower() was above the switch case, and in theory would need to be _sEnteredText = _sEnteredText.ToLower()...
+
+commit a72896d3e0f4444dce873bb79e2b701d42567629
+Merge: a1182f87 b19b4976
+Author: benjpointer <benpointer@hotmail.com>
+Date:   Wed Mar 20 23:20:03 2019 +1300
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit a1182f877c5b65d9c20eb75375a04e7dc20aac2f
+Author: benjpointer <benpointer@hotmail.com>
+Date:   Wed Mar 20 23:20:01 2019 +1300
+
+    Multi-UI display bug fix
+    
+    It is no longer possible to display two boxes at once, the hitbox on the house may need to be adjusted as it seems to be quite off, should just use a layer mask and put it on all of the house objects.
+
+commit b19b4976b1e78b3c2a7152928a23bd6b7dcb2b64
+Author: Nells9721 <31061581+Nells9721@users.noreply.github.com>
+Date:   Wed Mar 20 22:57:25 2019 +1300
+
+    New island with space for river
+
+commit 03a6140c5cc7fa1a800f27c134618bed5ba43aac
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Wed Mar 20 12:30:50 2019 +1300
+
+    scene duplicate that ben wants
+
+commit fcfc5d00d1937fd2c071470f174fb868827b80fe
+Merge: 9430a2a1 aa44d7f1
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Wed Mar 20 12:23:43 2019 +1300
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit 9430a2a119d0a852a56cd8e362f2321867e958a5
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Wed Mar 20 12:23:28 2019 +1300
+
+    stopped building ui from clearing when clicking in GUI
+    
+    still need to stop it from hiding when placing building
+
+commit aa44d7f12ab26bf77c9dc1ad3f7e9e5718bb226c
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Wed Mar 20 12:08:32 2019 +1300
+
+    environment changes
+
+commit 3f14449fbc3260daa7447ba03af1516b0c59bcf9
+Merge: e967e411 2279cc5c
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Wed Mar 20 11:32:33 2019 +1300
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit 2279cc5c89bf0e742c7dea9007cd82e27344af50
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Wed Mar 20 11:31:07 2019 +1300
+
+    Adjusted Unit Icons to 80x80 per request
+    
+    All of these icons are now located in a folder called UnitIcons
+
+commit e967e411db200a66e74d8c7ec051e2f9c49aa0c1
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Wed Mar 20 11:19:54 2019 +1300
+
+    fixed spawning of new units
+
+commit 2823afb9926360cc868f8f6997eb4f92dc6c1214
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Mar 19 15:04:14 2019 +1300
+
+    added wizard model and played with enemy ai
+
+commit f539702c19e30f1c9e59d6f28047134adc241566
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Tue Mar 19 14:09:47 2019 +1300
+
+    forgot to update the fow prefab
+
+commit 10c7537c742eac7f81bc263d9463a01825a3d8dc
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Tue Mar 19 14:06:25 2019 +1300
+
+    doubled the fog cube size to improve frame rate
+
+commit ecb47e0b1f2d53f312e70819a421ef80d6a6a0bc
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Tue Mar 19 13:49:30 2019 +1300
+
+    Building/Unit UI Display
+    
+    Displays possible build options whilst selecting a wongle, clicking the house will probide potential unit options.
+    
+    still need to add on drag functionality to the wongle workers, and the UI overlay for when they are clicking units to not hide the unit display...
+
+commit c5461e7a2a01f12a92ef0a283fe73c7b904b6b1a
+Merge: c27233b2 958de79f
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Mar 19 12:27:31 2019 +1300
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit c27233b2db224a0e42c69e8a32f416774963b336
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Mar 19 12:26:11 2019 +1300
+
+    added system to be able to change length of day and night respectively. added sursor
+
+commit 958de79fd7925dba0d836c4bb473178cb154149c
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Tue Mar 19 12:08:42 2019 +1300
+
+    environment changes
+
+commit 5057c959b43405ea1df031d821c988f07adc5fb1
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Tue Mar 19 12:01:58 2019 +1300
+
+    FOW v2, removed the big transparent cubes to lower ones.
+
+commit 630d3da94061735e381e0444156edbf0c92c35c3
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Tue Mar 19 10:37:59 2019 +1300
+
+    Deep One UI Elements
+    
+    Icons for creating a Deep One.
+
+commit aea9a0915d49838bf1b43e920b4f94cc1739038e
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Tue Mar 19 10:27:41 2019 +1300
+
+    Added material for Deep One
+    
+    Also updated BenLScene with reference for Deep One.
+
+commit caa27061c6338ef116e31226a28f0873bda7ab9f
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Tue Mar 19 10:21:44 2019 +1300
+
+    Deep One (Wizard) Model + Textures + Animations
+    
+    Contains the new Wizard, along with various animations and textures. More uploads to come featuring the correct material and GUI elements.
+
+commit 2d417b66b8f425b53d995b098d24e3b7ffa53bfa
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Mar 19 09:49:34 2019 +1300
+
+    fixed broken build.
+    
+    now have a bug where only the knight can use minimap clicking
+
+commit bdce67f36ec80e77b412b2264f71f90a6cfc8bc7
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Mon Mar 18 15:47:12 2019 +1300
+
+    environment changes
+
+commit e990f4cd50b2ef955de62d0a6268ddcbae4d35eb
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Mon Mar 18 14:57:02 2019 +1300
+
+    fix fog - flashing black fog, fix fog with group movement, add broodshroom health bar
+
+commit 1cb5520066f3825a14d8e3037d69c37d76d5c773
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Mar 18 14:49:02 2019 +1300
+
+    added Scrungus with full? functionality
+
+commit 9390db8440fb2143d3908773ab4a09b37784a567
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Mon Mar 18 13:37:15 2019 +1300
+
+    Added War Scrungus Materials
+    
+    Updated BenLScene to include War Scrungus w/ correct materials and appropriate scale.
+
+commit e3a105735e3905e3025a47657016a98731e1a1f6
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Mon Mar 18 13:33:18 2019 +1300
+
+    Animation Master Fix
+    
+    Nobody saw that.
+
+commit 006346842ad027a37d551e967c5b1912d4b52333
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Mon Mar 18 13:30:59 2019 +1300
+
+    War Scrungus Model + Textures + Animations + UI Assets
+    
+    Contains the War Scrungus, replacement for the Wongle Warrior Unit. Features numerous animations including three separate attacks to be cycled through at random.
+    
+    Also includes a model and numerous texture maps, along with appropriate icons within the interface.
+
+commit 85acd03d3faee4c178f5909736059c04baa41a3d
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Mar 18 13:23:09 2019 +1300
+
+    broodshroom changes
+
+commit ec773da8cb45a0124622ac1406eda26886705065
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Mon Mar 18 12:34:27 2019 +1300
+
+    added health bars on all buildings and all enemies.
+
+commit 6764ab0cd78d6c1117327974b601fa929817adc8
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Mar 18 10:36:10 2019 +1300
+
+    minimapoptimization
+
+commit 44d6db637fcc6a8d7e61d9fae5556c7e18cec4b5
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Mar 18 09:54:25 2019 +1300
+
+    added rightclick movement of wongles with minimap
+
+commit 865bfa273c00d9add9f3c9a476aa41cfc9a3ef39
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Mar 18 09:06:59 2019 +1300
+
+    added camera movement with minimap
+
+commit ac742486fc5e5357e25eede9bac356e4853aad5d
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Fri Mar 15 14:15:44 2019 +1300
+
+    added local coordinates of minimap. just need to add click and move camera
+
+commit 1bc8fbc1c3bd2eccd252fa156bf3832dac7fb771
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Fri Mar 15 13:56:34 2019 +1300
+
+    added farming animation and a progress bar for the unit queue
+
+commit 7114715e07dcbb7666de2a59c2a86b308fff6eac
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Fri Mar 15 12:16:44 2019 +1300
+
+    added healthbars to Selection Box
+
+commit 8411da083753f58db5bec0283b6f420c09361bae
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Fri Mar 15 11:23:10 2019 +1300
+
+    hide Mining UI from resource spawner
+
+commit 23dc0c060f9a27057315cb1485a5b14f58bc108e
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Mar 14 17:43:17 2019 +1300
+
+    made scene with no spreading corruption. changed enemy combat ai
+
+commit 58a3f30230ec66f5abf5258e5fc22e4d5b7ca659
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Thu Mar 14 15:39:15 2019 +1300
+
+    Bug catch
+    
+    If for some reason cheat handler is bugged, the game will still function lol
+
+commit 072995ec891942864951b85991483a656e865e4d
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Thu Mar 14 15:14:44 2019 +1300
+
+    fog of war- semi transparent and hide enemies
+
+commit f861922f988584d3029b556cde3318ef4fca0270
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Thu Mar 14 12:02:35 2019 +1300
+
+    Update stephanie environment.unity
+
+commit 2c54324d9dfe6c66c2f45b6c7736e1d31cf2a2f9
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Wed Mar 13 13:35:49 2019 +1300
+
+    environment changes
+
+commit 279335c8207dc35c542231ab645765a97736df98
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Wed Mar 13 11:54:08 2019 +1300
+
+    Builder timer cheat
+    
+    Cheat 'builderpro' removes the timer placed whilst building
+
+commit ccda8c1e4b331e56c3ee67de007489204157708f
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Wed Mar 13 11:21:43 2019 +1300
+
+    Implemented More Cheats
+    
+    Optimized cheat system
+
+commit 26d722fcd6ae7e55ef1e2378becc17cc668fbc58
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Mar 12 15:31:25 2019 +1300
+
+    construction automated
+
+commit a35aaa58a7b8651fd992a543b0ffcc2db443f764
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Tue Mar 12 15:29:40 2019 +1300
+
+    Cheating System Implemented
+    
+    BYEBYEBOXES turns off fog of war for now, have a base for 11 char string entry as a cheat.
+
+commit 13da14945e44c0b88e0ed51e13f5b21183f5c53a
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Mar 12 14:35:06 2019 +1300
+
+    played with environment
+
+commit 588c345e383896b7490636a7fda0b9655cb3b4aa
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Tue Mar 12 13:28:04 2019 +1300
+
+    Updated UI Rev3
+    
+    Added the "Paused" icon as an individual asset
+
+commit 9df1702cb977ba8238b2c52677f7fe839fe19608
+Merge: 13ea4568 351249ce
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Tue Mar 12 12:10:57 2019 +1300
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit 13ea4568869cf2cd5bbdc5479cd60126617a2c93
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Tue Mar 12 12:10:50 2019 +1300
+
+    environment changes
+
+commit 351249ce0f7abe334c4c16753d32282d0ec18a68
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Tue Mar 12 11:56:10 2019 +1300
+
+    UI Revision 3
+    
+    Updated the Pause menu + Buttons with clearer backgrounds, the latest font and various hover states. Also touched up the How to Play menu with the same changes and exported the Logo as an independent asset.
+
+commit 0237309135d5397ae9937d112356dff13111e213
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Tue Mar 12 11:49:27 2019 +1300
+
+    health bar on wongles
+
+commit a5ca01cadf0b2f84013ef8b542aecfef861a2fca
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Tue Mar 12 10:37:18 2019 +1300
+
+    Texture changes
+
+commit 9e997b4659ee9436cdb738c406da7e58e8a1ee0c
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Tue Mar 12 10:30:54 2019 +1300
+
+    Add environment scene
+
+commit ad067e4de6097af3c6f53150ebd224055819d6f3
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Mar 12 09:37:15 2019 +1300
+
+    fix
+    
+    I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB I HATE GITHUB
+
+commit e2adf3430465577fe99f4f186d1debcc761f6253
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Mar 12 09:29:07 2019 +1300
+
+    Revert "blair changes"
+    
+    This reverts commit dd17b675a437a46598a56e229a8b50034342e3b0.
+
+commit dd17b675a437a46598a56e229a8b50034342e3b0
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Mar 12 09:28:55 2019 +1300
+
+    blair changes
+
+commit 3cff53ac401ebe484cf983004cf6ec194782dd0a
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Mar 11 16:50:44 2019 +1300
+
+    Small fix
+    
+    Object accepted optimized, removed pointless prints
+
+commit 0f306a0b176e88691f11bf8ff582773942d3f2b4
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Mar 11 16:48:01 2019 +1300
+
+    Resource Spawner fix
+    
+    The new ResourceSpawnRegion plane is scaled to less than say the radius of the map so that they always spawn within accurately.
+
+commit 9278587177ce8e772caae2e02e8d40bf3d51bd14
+Author: Nells9721 <31061581+Nells9721@users.noreply.github.com>
+Date:   Mon Mar 11 14:58:56 2019 +1300
+
+    Floating Island Basic Texture
+
+commit bbc18ac08e3844f521926cff9a5803b9c72fe1bc
+Merge: a530d37b ad63133f
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Mar 11 14:23:56 2019 +1300
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit a530d37b86ca4f532b1f8234f604c1a239272e5f
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Mar 11 14:22:47 2019 +1300
+
+    tfghjk
+
+commit ad63133f29b78d6a52246a32645a38fcfb30eac9
+Author: Nells9721 <31061581+Nells9721@users.noreply.github.com>
+Date:   Mon Mar 11 14:21:08 2019 +1300
+
+    New Leaf Trees
+
+commit c3a93e87e724d0b2a42d77704d77e14ce956d03e
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Mar 11 13:47:26 2019 +1300
+
+    Revert "Assets"
+    
+    This reverts commit 63eac0571098fc244f43ebeeacde595100135b56.
+
+commit 9f4e0d047b67715e4ba3efece42c43b2c0871c27
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Mon Mar 11 13:42:58 2019 +1300
+
+    different radius for each building
+    
+    added it in the cost to place script
+    counted number of crystals where the UI has been revealed
+
+commit 63eac0571098fc244f43ebeeacde595100135b56
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Mon Mar 11 12:55:20 2019 +1300
+
+    Assets
+
+commit f6760dc1047b59358dff28d627a5db90e54362cb
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Mon Mar 11 12:15:47 2019 +1300
+
+    Improved UI Backgrounds
+    
+    Per request, the UI backgrounds for the upper/lower bars have been updated.
+
+commit 2bba7eedbed6ca85c0adbf658fbd5664095de884
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Mon Mar 11 12:00:24 2019 +1300
+
+    make fog of war hide mining UI elements from resources
+
+commit b166b4a9e6945f1c625fac6cae03a30c7e4243ea
+Author: Nells9721 <31061581+Nells9721@users.noreply.github.com>
+Date:   Mon Mar 11 11:07:00 2019 +1300
+
+    Tree Stump
+
+commit 362db1f1e969b806229f3816ea3fe4e1bbff94b1
+Author: Nells9721 <31061581+Nells9721@users.noreply.github.com>
+Date:   Mon Mar 11 10:25:44 2019 +1300
+
+    New Trees
+
+commit 7b42949d86867a8b1354ef022b068398ab9005b2
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Mon Mar 11 10:03:33 2019 +1300
+
+    building remove fog of war only when they are built.
+
+commit 3ad2910417226650bb4cc741671746e0cce7d952
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Fri Mar 8 14:14:58 2019 +1300
+
+    playtest in root folder
+
+commit 1cd9e2b079efcc88168e49efbfa766f4c0195490
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Fri Mar 8 13:55:13 2019 +1300
+
+    did work on combat, UI, added autoattack
+
+commit d01b3d2de9a6020cb9cefd11df2bc0af3bd688cf
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Thu Mar 7 15:26:54 2019 +1300
+
+    pause prefab, camera enabled
+
+commit 95d5354e0eda81c17f612c9acc2d237aaef5c679
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Mar 7 14:31:48 2019 +1300
+
+    played with the melee system of the enemies and wongles
+
+commit 0b0510ea4e899435909469ac761f12b1c60bf61e
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Thu Mar 7 14:01:30 2019 +1300
+
+    Camera Rotation Bug Fix
+    
+    Thought I had fixed the bug earlier, this shall do the trick
+
+commit 03c130b4d8b73f788fe4128f2291a5a431d4ba56
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Thu Mar 7 13:17:22 2019 +1300
+
+    Rotate camera around selected Obj
+    
+    Did a bit of bug hunting and seemed to fix most the bugs, have to double rotate because the camera is a separate obj, could reset after but it's best to keep linear to prevent flashing screen effect as camera resets to new pos after follow.
+
+commit 0008e247dff449ba7ace79c6f77da3ea9f5cdae7
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Thu Mar 7 13:09:05 2019 +1300
+
+    New assets
+
+commit 8fe8b1ff59673db71dc82889174037e27ace8d99
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Thu Mar 7 12:46:21 2019 +1300
+
+    Increased resolution of new cursors + modified colors/angle
+
+commit ab08b84196e213343985e0025bc0f1e488de1e5f
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Thu Mar 7 12:29:41 2019 +1300
+
+    Updated cursor cropping/outline
+
+commit 6d6bd4346ef30908bf87b7dbd03b6ad3d3db54ca
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Thu Mar 7 12:20:28 2019 +1300
+
+    Added a Base Cursor w/ClickState
+    
+    Added a Base Cursor w/ClickState
+
+commit 5c7b5d01a754b5124c1d14f7b6285ad7b78e0238
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Wed Mar 6 16:56:03 2019 +1300
+
+    done some ui stuff
+
+commit 6ac9f73b531625b7bd91443d5af0a2f9aa0d1830
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Wed Mar 6 16:06:35 2019 +1300
+
+    Bundy fixes for spawning on new map
+    
+    Spherical/circular styled map bugs out the bundy respawner. Had to create a shit plane to minic th region then put a class on the objs spawning which then raycast down to check whether the ground is there. Could use a distance from house, if house is at centerpoint and check within the radius of map.
+
+commit 8e3c70652672dbdaf678b7b3ca85d2c9dfc77be4
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Wed Mar 6 16:01:25 2019 +1300
+
+    New Font (Glitch Slap) + UI Revision Update 1
+    
+    This update contains a series of UI changes complete with a mockup. It includes new/reworked UI assets that improve readability and screen space, built of the back of Stephanie's prior work.
+
+commit 371e54b5f047f895cac5fadbda0e00fd85056c6a
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Wed Mar 6 15:30:10 2019 +1300
+
+    Update cameraController.cs
+    
+    made the margins of the panning smaller
+
+commit 8547d91abf2b6e65af28b4debf408031a117e138
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Wed Mar 6 11:21:28 2019 +1300
+
+    Cameral rotate fix, added unfogging when placing objects in the land
+
+commit 83e4a1ab4cf0be12fc93a2c5f31aa4c388f81c21
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Mar 5 17:20:13 2019 +1300
+
+    added scene for floating island
+    
+    testing still but kinda works. have to play with corruption still
+
+commit 85898df3a61672a674376d71e68cf2b179785c45
+Merge: 9a5b67ac 32ff99bc
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Tue Mar 5 16:42:09 2019 +1300
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit 9a5b67accd0879f9316df45fcb06701c33af62da
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Tue Mar 5 16:41:42 2019 +1300
+
+    Implemented Density Spread Control
+    
+    Can control the spread per density group per say...
+    
+    Home prefab
+
+commit 32ff99bc45c9c9630afb905d4d569740b45ba525
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Tue Mar 5 16:39:49 2019 +1300
+
+    camera controls
+    
+    middle mouse button titls camera
+    Z and X does rotate around
+    still not perfect though.
+    Added Treehouse to Fog of War
+
+commit 8536f0c4b9c50faace1207aafdaa7ea8941f692a
+Merge: 2e2cddb0 7138164d
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Tue Mar 5 15:58:54 2019 +1300
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit 2e2cddb06e5a4e82d2b07327f43414a26735b2d1
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Tue Mar 5 15:58:50 2019 +1300
+
+    Resource Spawned Fixes
+    
+    You can increase density spawning variables to 15+ without any significant frame loss... although not recommended
+
+commit 7138164d4a2cf5f833bb07bdde39f4f4e71d351b
+Author: Nells9721 <31061581+Nells9721@users.noreply.github.com>
+Date:   Tue Mar 5 15:28:29 2019 +1300
+
+    low poly floating island with normal texture
+
+commit 821fb2fad2f1379cd66827268198c9b99721f026
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Mon Mar 4 15:53:19 2019 +1300
+
+    Updated BenL Scene
+    
+    Includes the Log for showcase.
+
+commit 645782c4fa8d762711ba85158a96a9bfe1b68bff
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Mon Mar 4 15:50:55 2019 +1300
+
+    Log Material Update
+    
+    Fixed some minor rendering issues with the log, as well as updated the material to include the height map.
+
+commit 797dc32bf9ee5980cc6baa541da4cb5e9967502a
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Mon Mar 4 15:40:11 2019 +1300
+
+    Rigged Log (For Carrying) + Textures
+    
+    This push contains a Log resource to be carried by the Wongles, representing lumbered wood to be deposited into the players harvested resource storage.
+
+commit 4cfa4dbfbd46cfc67b5e36ce9b1963711871425b
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Mar 4 15:01:49 2019 +1300
+
+    Resource Spawning by Density
+    
+    Basic spawning by density implemented, bit buggy and complex but it works well enough.
+
+commit aa560fffdee62401f5f7f814a0d310c1192fcc4b
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Mar 4 13:51:12 2019 +1300
+
+    Semi-Optimized CreateNewPosition
+    
+    Does a separate check for house opposed to making a more intelligent CheckForNearbyObjects that alters distance by objects checking - Could do this in feature-free
+
+commit cc6597d2619171b17db3c5f3899a396e126449a1
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Mar 4 13:38:41 2019 +1300
+
+    Resource Spawner Fix
+    
+    Optimized stuff, the functionality is accurate but certain functions haven't been implemented like density. But it is accurately spawning to map, idk what i was upto before lol..
+
+commit 30af90994ab3c812fc807b36f74a1e17cab99a4f
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Mar 4 10:40:40 2019 +1300
+
+    Bug fix
+    
+    Select checking -> checks if obj is one previously selected
+
+commit cb99119b9e16b22d6e7bb5b9055dc9067f1aebb2
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Fri Mar 1 21:26:58 2019 +1300
+
+    Update cameraController.cs
+
+commit dc556d0ef647f63cbc745e27099cf93d6953bb49
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Fri Mar 1 17:13:21 2019 +1300
+
+    Slight Optimization
+
+commit 53dd2e70f673828f53fdcd6c285610f44828af4a
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Fri Mar 1 17:07:24 2019 +1300
+
+    Overall Selection Optimization + Double Click Select All
+    
+    Removed a bunch of retarded shit, and optimized left click functionality.
+    
+    Double click will select either all melee, or ranged units. I'm just working on sorting bugs etc then I'll look at getting a randomsphere and selecting gameobjects within that, provided they are they same type as desired.
+
+commit 60501063f5bbc5a40f55f79d834071d6b6a184a5
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Fri Mar 1 15:28:39 2019 +1300
+
+    Updated UI Display Functionality
+    
+    Optimized Click Ui somewhat, it display on the ground but the Click object is still somewhat obscured by whatever it's clicked especially trees.
+    Added game-screen-bound checking to the screen panning test.
+
+commit 642cfbb0513e5bd43a8866587428af041909aca0
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Fri Mar 1 12:56:14 2019 +1300
+
+    Started Mouse Panning...
+
+commit f5d11c49f897eb40e3b999662f37751b48017801
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Fri Mar 1 11:40:17 2019 +1300
+
+    fog of war cleanup, added the scaling.  added prefab into playtest 2.
+
+commit 71762eca11196b5af49dab9e7f4fc805e1562206
+Merge: 131affb9 f75f135a
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Thu Feb 28 13:30:24 2019 +1300
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit 131affb9a292a027da3825d900767e8b46401b95
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Thu Feb 28 13:29:54 2019 +1300
+
+    fog - framerate improvement
+    
+    created fog of war prefab so users can drag it in their scene
+
+commit f75f135afcf5df65a9cc5b761464cbd5e97f44d4
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Thu Feb 28 13:12:25 2019 +1300
+
+    Resource Spawner Fixes + Playtest Build
+    
+    Playtest zipped
+    
+    Resource spawner is disabled whilst i finish it off..
+
+commit 941288c184b12d15334a50067538de09113cdf80
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Thu Feb 28 12:47:33 2019 +1300
+
+    fog of war, lag reduced
+
+commit c4c04b33d282dbfcff1eacfdd7979f82591e129c
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Thu Feb 28 10:36:29 2019 +1300
+
+    Updated BenLScene + Fishing Hat Materials
+    
+    Materials for the Fishing Hat are all set up and ready for implementation.
+
+commit 98759790a19108c31bb33a359726f5e92ac555f9
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Thu Feb 28 10:28:34 2019 +1300
+
+    Added Wongle Fishing Hat + Textures
+    
+    Includes a hat for Wongle fishing + Various textures all rigged to the Wongle.
+
+commit d275110717f6f2385dcbfa4c4ae38df927866dd2
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Wed Feb 27 15:34:20 2019 +1300
+
+    fog of war works on all units
+    
+    fog of war has some optimizations, but still laggy.  will fix the update function some more.
+
+commit 78fea4df28b9227bf2d2a4985e2fd2bb2f66b4c0
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Wed Feb 27 14:55:22 2019 +1300
+
+    Wongle Worker Death + Damaged Animations
+    
+    Contains a Death animation and an animation for when the Wongle receives damage.
+
+commit 35d1b73f244504fb8b2700d3c6d5102339ff386e
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Wed Feb 27 12:39:18 2019 +1300
+
+    blair questionaire edit
+
+commit bdf39b9ad30414253a0bc8e61fa6e300b6728f5f
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Wed Feb 27 11:46:25 2019 +1300
+
+    added queuing of units. including UI functionality
+
+commit 081c247e8e43aa5622ed0bfd81c3effef9fb1ca2
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Wed Feb 27 10:26:43 2019 +1300
+
+    New folder for Feedback Session 2 + First Questionnaire Draft
+    
+    Contains organization for feedback session 2, along with the first draft of questions to be asked for the purpose of consultation with the rest of the team.
+
+commit a5811e372d5a227e67c437b498ae9d1ad88ead2f
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Tue Feb 26 15:48:15 2019 +1300
+
+    Placement & Selection updates
+    
+    Placement:
+    - Players can no longer place building prefabs in the corrupted zones
+    - Press the escape key to exit build mode at any time
+    Selection:
+    - Press 1 to select all combat units
+    - Press 2 to select all melee units
+    - Press 3 to select all ranged units
+
+commit 1c8d5b556bcc16169a5c54c1579c97d25d497f77
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Feb 26 15:46:16 2019 +1300
+
+    fixed minimapicons
+
+commit 61cb58b3faaeabe22b0431ce9839c1ce54137373
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Feb 26 15:21:53 2019 +1300
+
+    fishing is working Pog
+
+commit 351a24925af3cf3e94c7f8eb08b2c92c1b340927
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Tue Feb 26 15:05:30 2019 +1300
+
+    fog of war attempt 2. using cubes
+    
+    this only works for 1 wongle worker (1) for now.
+
+commit 603485d4ad889dd38efb8ef0ebdb7b1c666d504e
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Tue Feb 26 11:53:01 2019 +1300
+
+    Updated Wongle Fishing Rod Weights
+    
+    Line actually connects to the caught creature.
+
+commit f5cc6db5d053df9303a2b270ad04a0181cc4cfde
+Merge: bb1a8a39 212686c0
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Feb 26 11:51:32 2019 +1300
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit bb1a8a3916e8db130a21491741e011bfb1096e59
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Feb 26 11:51:27 2019 +1300
+
+    added fishing
+
+commit 212686c04948a20d53158b988244d0dbf8fa39ce
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Tue Feb 26 11:36:50 2019 +1300
+
+    Sea Creature Texture Variations
+    
+    Includes four color variations for the Sea Creature to allow for greater fish variety.
+
+commit 4a7878a9c98873c5f2f06debcbbd3d2642ec2e7a
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Tue Feb 26 11:21:47 2019 +1300
+
+    Fixed deselection bug
+    
+    Would deselect selected units when spawning more
+
+commit fc11f660ca470d6f197e964f6bd8c24ffce433c4
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Tue Feb 26 10:56:24 2019 +1300
+
+    Sea Creature Models + Textures + Updated Animations + Bigger Hammer
+    
+    Contains two models, one for carrying, one for catching on the end of the fishing rod. Updated animations with fixes to the fishing line. a larger building hammer has been added (prefix: larger) per Blair's request as a new model.
+
+commit 1bfe86d1e56eb639d3408f8a8b3b689a6e07a266
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Tue Feb 26 09:55:59 2019 +1300
+
+    Wizard/Warrior Minimap Icons
+    
+    Minimap Icons for the Wizard/Warrior units
+
+commit 62c6e0f541bfe91e3e0f0f79e85f2feaef3e7704
+Merge: d714908a 6da08568
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Feb 25 16:15:43 2019 +1300
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit d714908aee063a4817414a2893f4756968d7bfa2
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Feb 25 16:15:40 2019 +1300
+
+    Implemented Unit Controll
+    
+    F1 Controls Melee Units
+    F2 Controls Ranged Units
+    Nooby for loop that just uses an integer for the starting amount of wongles, it kept bugging out will fix later.
+
+commit 6da0856829690095673592372b67805307517d8b
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Feb 25 15:25:45 2019 +1300
+
+    added construction
+    
+    fixed some layermask stuff
+
+commit 8e1bf544348e3b4a6c535e7e436450b2e353ab53
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Mon Feb 25 13:30:30 2019 +1300
+
+    Saved Scene BenLScene
+    
+    Forgot to do this last push.
+
+commit 034605cc837313411e3367edde3d1606f611f970
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Mon Feb 25 13:29:08 2019 +1300
+
+    Updated Animation Master File + Added Hammer/Animations to BenLScene
+    
+    The animation master file will now be called wongleworkeranimationsmater.fbx, and it will be included in the "Models" folder.
+
+commit 6e552d231deebe938d82b2279667efd27d6c810b
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Mon Feb 25 13:22:53 2019 +1300
+
+    Wongle Building Animations + Hammer
+    
+    Contains various animations for Wongles constructing buildings, along with a textured/rigged building hammer tool.
+
+commit 3be750b2f0d9892c305275aea6ab17887702a907
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Mon Feb 25 12:48:00 2019 +1300
+
+    fog, added other wongles.  still a prototype
+
+commit 9db964278d34650854ee98a302a146743c1eddff
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Mon Feb 25 10:18:14 2019 +1300
+
+    Broodshroom Warning Icon
+    
+    For the Minimap
+
+commit 1961c9f596cd6abfd0cfa471cf369caba43e4807
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Mon Feb 25 09:38:30 2019 +1300
+
+    Minimap Icons
+    
+    Some more appropriate icons for enemies, wongles, and minerals on the minimap.
+
+commit 8f729dc15dca99d04584df757ec4f130909726ff
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Mon Feb 25 09:13:57 2019 +1300
+
+    Last roughness fix failed to work
+    
+    Using an alternate method without the maps as Unity cannot be trusted to use them correctly..
+
+commit 0093e0aacf8a3d7270684ddef050046f3c4c67be
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Mon Feb 25 09:08:20 2019 +1300
+
+    Alternate Roughness Map
+    
+    I've heard that the weird oily skin issue might be caused in by a conflict with how Unity handles roughness. While the maps appear fine in Maya and Substance, Unity seems to confuse itself when handling roughness maps. Apparently this is because Unity reads this information in inverse. To test this I have inverted a single roughness map to see if it resolves the issue.
+
+commit 5f21268d09fad574baaf3c4ce1ce44213b708105
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Sun Feb 24 16:05:32 2019 +1300
+
+    Wongle Warrior/Wizard Textures + Scene Update
+    
+    Includes improved and additional texture variants to the BenL Test Scene. Old Wizard Texture removed and replaced. Heights of Wongles adjusted appropriately.
+    
+    This brings the total Wongle texture variations to four.
+
+commit 9a850bae498fd8dc74e462ab2760fc09b9b506e9
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Fri Feb 22 11:40:46 2019 +1300
+
+    starting preliminary fog of war
+    
+    added mathf.infinity to raycast in selecting objects.
+    rough fog of war.  works only for wongle 1 for now.
+
+commit 18545bbabec7e294b6a68bc07ca1429e23ef47bb
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Fri Feb 22 10:00:33 2019 +1300
+
+    Update Alpha Milestone Document.docx
+
+commit 9990655dae2e9d785e508fc00a044aac8dc96485
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Fri Feb 22 09:32:37 2019 +1300
+
+    Update Alpha Milestone Document.docx
+    
+    added time estimates and bug fixes line.
+
+commit 2e8c1fc8564d61164e1b00e811be9fade9e74e11
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Fri Feb 22 07:42:47 2019 +1300
+
+    Update BenL Scene
+    
+    Added Two Wongle Variant Textures/Materials to the BenL Scene.
+
+commit 7096f9e76d9bd2078e2121e05a191b0385b61210
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Fri Feb 22 07:34:43 2019 +1300
+
+    Wongle Worker Texture Variants
+    
+    Contains Corrupted and Wizard Textures, expect one more in the future.
+
+commit 6a5f24963e427d128cfbe42cf643484d58e8d23d
+Author: Tumuch <31061553+Tumuch@users.noreply.github.com>
+Date:   Fri Feb 22 03:30:05 2019 +1300
+
+    Added art stuff
+
+commit 98812bac06d9bdb7a889761806f844c4a8a99902
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Fri Feb 22 03:14:55 2019 +1300
+
+    Ben L Updates to Alpha Milestone Document
+    
+    Updated document to include Shannel's milestones along with my own and others across the team to the best of my knowledge.
+
+commit 78a7b3348e41a48fdedc000cd5140addd0e8c3da
+Author: Nells9721 <31061581+Nells9721@users.noreply.github.com>
+Date:   Thu Feb 21 21:49:41 2019 +1300
+
+    Shannells tasks for alpha milestone
+
+commit 0bb3bf3877669defc82a3f684c92cdeeef9ad5e2
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Feb 21 15:16:49 2019 +1300
+
+    update resource count for testing
+
+commit d0ab4eb52f8c93bb9a6f41b02373edd5ad7df03c
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Feb 21 15:07:33 2019 +1300
+
+    added house spawning and documentation stuff
+    
+    house increases max unit cap
+
+commit 1437e029bcd6a1d6fa14d4c8967bbb405520b6e7
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Thu Feb 21 11:52:06 2019 +1300
+
+    Enemy Attack Direction fix
+    
+    Bundy fix for directional attacks, the  house is bugged because of it's pivot?
+    
+    LookAt disregards the Rigid Body contsraints, so it will rotate a frozen body.
+
+commit 66fdbc35f3a04560143bd27241625f6d133bb132
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Thu Feb 21 11:37:44 2019 +1300
+
+    Enemy AI Attack fix
+    
+    Simple fix for directional attacks - Mushroom dude now looks at whom hes attacking
+
+commit e32ed3875fe7734f60d50dcd75e582a2d455e52c
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Wed Feb 20 15:34:21 2019 +1300
+
+    Added summative folder + latest summative for milestones
+    
+    Tomorrow as a group we should look at this in the morning, discuss all features and bugs, and format them appropriately in a google doc for submission on Friday.
+    
+    I (Ben L) Will be off to another class in the afternoon and away from Friday so let's tackle this early.
+
+commit a2f5a5eacf701be9a3f1344ed9cb0a81f9b8a063
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Wed Feb 20 15:23:12 2019 +1300
+
+    Update FishingRodMats.mat
+    
+    Slight change to fishing rod emission (can be edited via emission colour)
+
+commit 08b31d4772fe33494d25ca19d65f5fc3bb340d0f
+Author: Nells9721 <31061581+Nells9721@users.noreply.github.com>
+Date:   Wed Feb 20 14:58:30 2019 +1300
+
+    AlphaBetaBuildSummative
+
+commit 8f742bc90c32b0c346a94b6ccb6918041d1b1830
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Wed Feb 20 14:47:26 2019 +1300
+
+    Ben L Scene Implementation: MasterAnim Wongle + Fishing Rod
+    
+    In my personal scene I have uploaded a wongle with a master file featuring all that characters animations at once. These are marked with times and names for each clip, and implementing them might require an overhaul of the current approach to implementing animations.
+    
+    This Wongle is also holding the fishing rod, all other held items that were on his person have been hidden from view.
+
+commit 4c8fe12149599aa53b7ba357869f467085551b02
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Wed Feb 20 14:37:46 2019 +1300
+
+    Fishing Rod Model + Textures
+    
+    Features a Fishing Rod + Various Texture Maps
+
+commit 4d88e2cec9d0d9f933b32a340ddcd670f5a4e964
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Wed Feb 20 14:33:57 2019 +1300
+
+    Animation Master File Update + Fishing Animations
+    
+    Contains a single master file with all animations + fishing animations. Experimental, allows for animations to be handled differently and for retroactive changes.
+
+commit 3a8935506545dbd564a1be62579e47d26c92b6c9
+Author: charmaine-lim <beurre_noisette@hotmail.com>
+Date:   Wed Feb 20 13:05:37 2019 +1300
+
+    feedback playtest 1 charmaine
+
+commit 8e158c3b93d0f1c6c51b74b0a969d02b9cfa180a
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Wed Feb 20 12:55:28 2019 +1300
+
+    Feedback Recording from Ben L's PC
+    
+    Two playtesters, unformatted raw feedback recorded in real time.
+    
+    Contains views and suggestions of two players, bug feedback, and some personal observations based on gameplay issues that occured.
+    
+    (This list is long and unformatted)
+
+commit 6315a6886085a3b0a427559d38d10f4f0d372f87
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Wed Feb 20 11:29:07 2019 +1300
+
+    playtest scene
+
+commit 05aa90df5f7b6d982c1763540951bb06d3773750
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Tue Feb 19 17:07:01 2019 +1300
+
+    Merged updates into blairs scene
+    
+    ^
+
+commit c6618ae128d2577ac4226ff7395065c8f5c73244
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Tue Feb 19 17:03:27 2019 +1300
+
+    Randomized Spawning System
+    
+    Resources will now spawn randomly around the map
+    Included checking for overlap of most items whilst spawning
+    Still some slight touch ups to complete
+    Added a tag - for misc objs like bushes
+
+commit c80b133b91b4505a2b7ca0f210325312f987a1f6
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Feb 19 17:00:37 2019 +1300
+
+    fixed wonder prefabs
+
+commit 50076f6c77957953235f1a73a4ce48262cc4aef7
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Feb 19 11:07:25 2019 +1300
+
+    storage building working
+    
+    need to get art for building and make it carve from navmesh
+
+commit e8d9470945dfdb512140021b58ff352bde3bf04c
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Tue Feb 19 11:06:12 2019 +1300
+
+    Player prefab for blair
+    
+    Updated prefab
+
+commit 00e76af1545159e07f854043b6931482c4b0e3bb
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Tue Feb 19 11:00:11 2019 +1300
+
+    Click UI Update
+    
+    Implemented multiple click responses
+     - red = NPC
+     - gre = Resource
+     - whi = N/A - general feedback
+    
+    optimized placement functionality again
+
+commit 9c2021f7095b70affc477d2716e8ccde14374fd5
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Tue Feb 19 10:21:19 2019 +1300
+
+    Update rodendexp.obj
+
+commit c74550b31a02e8be41ef03e30f9b4e886ef84ab2
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Feb 19 10:16:46 2019 +1300
+
+    started working on storage building
+    
+    fixed prefabs for dead tree and farm placement
+
+commit eee206c2184c1957f950833bc6bb7d2eacfbab14
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Tue Feb 19 10:14:16 2019 +1300
+
+    Experimental end of rod
+    
+    Per request of Blair
+
+commit aba85c615059eb03258123c6bef88e69fa749c32
+Merge: 4edf06ad 72025104
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Feb 18 16:30:26 2019 +1300
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit 4edf06ad3195d764191267fd9aafacc47eb3bfb5
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Feb 18 16:30:15 2019 +1300
+
+    added goals.txt
+
+commit 72025104419664909152804c0de5800fe88d591f
+Merge: 94d9dd2d d8375160
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Feb 18 16:17:51 2019 +1300
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit 94d9dd2dda61996c282be1dd52d32cf8cab04525
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Feb 18 16:17:45 2019 +1300
+
+    Updated Placement Handler
+    
+    Optimized placement function - created single function to handle all types of placement
+    Increased starting resources to help testing
+
+commit d8375160724b8588a38013860e4b807d92713cb2
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Feb 18 16:16:54 2019 +1300
+
+    organised folders and deleted some unused items
+
+commit 6cba96140395206e0ff14ac081f34627aaced9f7
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Feb 18 15:55:26 2019 +1300
+
+    prefab fix for missing meshs
+
+commit 2e1a8a9abbf2d57e378c7d39e3401b1f25602df2
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Feb 18 15:54:07 2019 +1300
+
+    Base Wall Placement
+    
+    Base system for wall placement after last one was lost..
+    Fixed null bug for original placement system
+
+commit d55989116823748d57dc93d8d238522f96b99a74
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Mon Feb 18 13:19:35 2019 +1300
+
+    General Geiger + Other Mat Fixes
+
+commit 8ae63a1edeaca9020e0e1922f783d08115033206
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Mon Feb 18 13:15:33 2019 +1300
+
+    Geiger final fix (ideally)
+
+commit e48ec03a51d0f83d889bacd77cb5f280138fa25e
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Mon Feb 18 13:06:37 2019 +1300
+
+    Geiger Strain Fix (??)
+    
+    Hopefully fixes geiger strain visual issues
+
+commit 98ec4033c92dc52c170c7094d282dcd647b40f32
+Author: Nells9721 <31061581+Nells9721@users.noreply.github.com>
+Date:   Mon Feb 18 11:01:57 2019 +1300
+
+    dead tree01
+
+commit 5b45325a464b4991b5471bc8200096664e4183e4
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Mon Feb 18 10:47:34 2019 +1300
+
+    Mushroom Wand Model + Textures
+
+commit 41877a8787e728829fdadc410b21cda99c9dd0e7
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Feb 18 10:45:43 2019 +1300
+
+    New Unity version and added BenL testing scene
+
+commit 92311be3f6b5a6d1a94d3682e0c593332c8a90e1
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Mon Feb 18 10:20:38 2019 +1300
+
+    added meth
+
+commit 9346ee02add1bb242a163b3b96b217ad295d92db
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Nov 15 17:50:32 2018 +1300
+
+    final build?
+
+commit fea823d1637f7e0801377677fabfda9a2c8b2f29
+Author: MDS\nicholas.gre6280 <nik.green@xtra.co.nz>
+Date:   Thu Nov 15 17:35:40 2018 +1300
+
+    nik docs
+
+commit 8cdf985de2c816a1b4c3b638a3f5576b2b4bba67
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Thu Nov 15 16:15:43 2018 +1300
+
+    individual doc&CDD
+
+commit 8f79e6c5f51afd883ef51e6ad18a9f5e4aedd563
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Nov 15 16:12:28 2018 +1300
+
+    bvgnvbn
+
+commit fd5c86d2b17a70e2c0a005fa381ae58e47d0fc33
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Nov 15 16:10:32 2018 +1300
+
+    some shit
+
+commit 7d99ffc20056bc61e2888e06bd4cfc6e70ac8d48
+Author: Tumuch <31061553+Tumuch@users.noreply.github.com>
+Date:   Thu Nov 15 13:34:57 2018 +1300
+
+    Tower
+
+commit a2d587e284c3817413e74fc2cace9e94a0a9a242
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Thu Nov 15 13:01:32 2018 +1300
+
+    update ui
+
+commit 8deab5acb1e7962dabba6e72077536bd4953a810
+Author: MDS\nicholas.gre6280 <nik.green@xtra.co.nz>
+Date:   Thu Nov 15 12:44:40 2018 +1300
+
+    pasue added to blair copy. key(|\)
+    changes save light
+
+commit 58dc04b3dfa0f7a1f60d3ebc5505ded979a24f41
+Author: MDS\nicholas.gre6280 <nik.green@xtra.co.nz>
+Date:   Thu Nov 15 12:08:58 2018 +1300
+
+    miner changes to lighting
+
+commit e1324e796c4fef611dbcd0af1df2258d4dcfa9b5
+Author: MDS\nicholas.gre6280 <nik.green@xtra.co.nz>
+Date:   Thu Nov 15 11:39:20 2018 +1300
+
+    new lighting in a copy of blair sence
+
+commit 961bfd363c904f0945d7661bf9d261324c56123b
+Author: MDS\nicholas.gre6280 <nik.green@xtra.co.nz>
+Date:   Thu Nov 15 11:19:34 2018 +1300
+
+    new logo added to menu
+
+commit 15d400e1baad94cee61f64644886542a94b472a6
+Author: MDS\nicholas.gre6280 <nik.green@xtra.co.nz>
+Date:   Thu Nov 15 11:13:39 2018 +1300
+
+    lighting changes with postprocessing
+
+commit 69a127fbce2f00fbfe937a224cb50ecb571615b4
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Nov 15 11:03:50 2018 +1300
+
+    bit of level design and ui
+
+commit 32f2b27a729bbcf963a1194c8cff921bd0924a3f
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Thu Nov 15 01:35:24 2018 +1300
+
+    logo
+
+commit a28e6725af368a2e8c22f447c1084f456077e757
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Wed Nov 14 18:43:22 2018 +1300
+
+    icon
+
+commit ed627ff4d88857387822bb1cbc6910d02016c6d1
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Wed Nov 14 16:30:17 2018 +1300
+
+    update in game UI
+
+commit 3ece3aeb06601feb20dccdd7ea742c2fbd8ab48c
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Wed Nov 14 16:26:05 2018 +1300
+
+    split the door
+
+commit 3e9e164b90f57837e38de450b731e0b1334e536c
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Tue Nov 13 20:22:23 2018 +1300
+
+    wall
+
+commit dbd5f94dd7d6761d0d96ddb6c304058323394b6b
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Mon Nov 12 15:34:41 2018 +1300
+
+    wall+door
+
+commit 4badadb9c3caed5e03ec4addbe382679523959ba
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Nov 12 13:34:41 2018 +1300
+
+    added losing - home building 0 health load menu
+
+commit 027f41ca43c39fcdc337a93071507aec05430c35
+Author: MDS\nicholas.gre6280 <nik.green@xtra.co.nz>
+Date:   Mon Nov 12 12:47:34 2018 +1300
+
+    menu change
+
+commit 425faf51231af622318bb2da6b3c05dca8081394
+Author: Nells9721 <31061581+Nells9721@users.noreply.github.com>
+Date:   Mon Nov 12 01:03:20 2018 +1300
+
+    rock03
+
+commit 585c2535159270967ede98141d86d2cc63080087
+Author: Nells9721 <31061581+Nells9721@users.noreply.github.com>
+Date:   Mon Nov 12 01:02:43 2018 +1300
+
+    rock02
+
+commit 6fcd704228ab2a63f2db4d27a58e3d33682f84ce
+Author: Nells9721 <31061581+Nells9721@users.noreply.github.com>
+Date:   Mon Nov 12 01:01:57 2018 +1300
+
+    rock01
+
+commit a6d1476d4a869fb12a4c150d0e445331a6896070
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Sun Nov 11 00:25:48 2018 +1300
+
+    tech tree UI
+
+commit 5a1fd0584b187e9297f9a7cfd75887963efb9808
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Sat Nov 10 23:22:20 2018 +1300
+
+    door+wall
+
+commit 188bd1f1dcd7e9be938c9d513ef69a0545dfb121
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Sat Nov 10 23:19:14 2018 +1300
+
+    dust particle
+
+commit 74cf2d4f871ead1470c1635d220da8f72e1a76af
+Author: Tumuch <31061553+Tumuch@users.noreply.github.com>
+Date:   Fri Nov 9 16:30:15 2018 +1300
+
+    Wooden Spike for Barrack wall
+
+commit 299859bf4d0fe2625201ce8f7b60c4ee29249a4a
+Author: Tumuch <31061553+Tumuch@users.noreply.github.com>
+Date:   Fri Nov 9 16:24:04 2018 +1300
+
+    Main Building w Textures
+
+commit 3f47c922e9869d03ff06583a56161b8593df80bc
+Merge: 95007e23 a2c1828f
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Thu Nov 8 17:07:38 2018 +1300
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit 95007e23340bc3cf65faba16dfe12321f9e456b5
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Thu Nov 8 17:07:35 2018 +1300
+
+    Implemented mid button cam rotation + CTRL mousescroll to alter FOV
+    
+    Can now alter FOV from a range of 60-115 by holding either the left/right control keys and scrolling with the mouse wheel.
+
+commit a2c1828f73b3f5b12d18b87ff7d8ee7adce7c191
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Nov 8 16:35:18 2018 +1300
+
+    tree
+
+commit 92a895e0c7f0551aae01ce44ba8c50c2061f40ea
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Thu Nov 8 15:58:35 2018 +1300
+
+    AudioHandler implemented + other stuff
+    
+    Hold shift to double movement speed across plane.
+
+commit 15dfcec813f1a46f7fe374fdcbac11950e60db1c
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Nov 8 15:57:13 2018 +1300
+
+    red fog
+
+commit 64bc622f2812ab0d186b3113bb584d92114cbd01
+Author: Tumuch <31061553+Tumuch@users.noreply.github.com>
+Date:   Wed Nov 7 18:04:20 2018 +1300
+
+    Barracks
+
+commit d2eb6a3531d570cab3837197343beb721673c4d1
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Nov 6 13:17:10 2018 +1300
+
+    changes to corruption. changes trees to dead and adds fog particle to corrupted grid spaces.
+
+commit b4c097acdfd77db02c534149a3ad83d71d7b8d34
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Nov 5 13:44:42 2018 +1300
+
+    cum
+
+commit 5f0ad2ecb2e8cf220f9eaa7f3dd408674e16d412
+Author: MDS\nicholas.gre6280 <nik.green@xtra.co.nz>
+Date:   Mon Nov 5 12:41:15 2018 +1300
+
+    lighting and pause screen changes
+
+commit d0acafc885da07fb7a929a117d1b29fbceb91c37
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Nov 5 12:21:38 2018 +1300
+
+    added right click object, fixed niks push error. added new trees blah blah blah
+
+commit de2e92476a6b6379c93bb553d614f983377fc702
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Mon Nov 5 11:48:59 2018 +1300
+
+    text box&font
+
+commit 92133adfef795e60e1688e71be3fa42b75c0ac6a
+Author: MDS\nicholas.gre6280 <nik.green@xtra.co.nz>
+Date:   Mon Nov 5 11:08:58 2018 +1300
+
+    unpdate menu loctation
+
+commit af6bdca5425ceb41867e13771066899bee42e5c6
+Author: MDS\nicholas.gre6280 <nik.green@xtra.co.nz>
+Date:   Mon Nov 5 10:35:52 2018 +1300
+
+    nik stuff
+
+commit a3dfcb7670387ad12ffa7ca75625139e36153e10
+Author: Nells9721 <31061581+Nells9721@users.noreply.github.com>
+Date:   Mon Nov 5 02:00:02 2018 +1300
+
+    pine treee
+
+commit 616a81c9bd3cc17bb39404af7403c7ca0d57a930
+Author: Nells9721 <31061581+Nells9721@users.noreply.github.com>
+Date:   Mon Nov 5 01:45:34 2018 +1300
+
+    weird generic tree
+
+commit 407d48a3a88da115901c6b5ba3e8c43d22d847bd
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Sun Nov 4 18:54:16 2018 +1300
+
+    particles
+
+commit 5b51a9c4e743dbfdb91d6617ac4fecb455c28308
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Fri Nov 2 15:39:31 2018 +1300
+
+    Wongle Worker Ushanka
+    
+    Contains a rigged wood-cutting Ushanka hat for the Wongle Worker w/ various texture maps.
+
+commit dd80c862c99858e87fda9dc766d96fa484ba3798
+Merge: 7be31d86 e33b06a8
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Thu Nov 1 13:29:43 2018 +1300
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit 7be31d867295047def8af469b30332260daa51a7
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Thu Nov 1 13:24:05 2018 +1300
+
+    Basic Rock
+    
+    A Sample Rock with some textures to be used as a stand in for late scenic assets.
+
+commit e33b06a8f5f6e083f1682910780640875419322a
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Oct 30 16:30:46 2018 +1300
+
+    your mum is a lovely woman
+
+commit 322e5a96141e160845c996f50eddf6c44de6ccc7
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Oct 30 12:10:58 2018 +1300
+
+    did some stuff with the wongles hands and hats - also added floss dance
+
+commit 1de1d247a890e0c7de1da3912d246bcc1074275d
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Tue Oct 30 01:31:24 2018 +1300
+
+    Wongle Hard Hat
+    
+    Contains the miner hat for the Wongle Workers, rigged, textured and modeled.
+
+commit a1ace04c2dd2a3d7d3b456689c0d8bfa40ccea84
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Mon Oct 29 19:22:35 2018 +1300
+
+    Update FarmingLegalSupplements/Assets/Art/Models/wongleworkeranims_FlossDance.fbx
+    
+    Contains the floss dance animation. (for some reason)
+
+commit f4069461cb5748c1ec085aeabf4c3602fedf3425
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Oct 29 16:54:56 2018 +1300
+
+    fixed ui symbols
+
+commit 8ba61997e93a98d274664952c918703da5aa0e6c
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Oct 29 16:50:08 2018 +1300
+
+    changed hover ui - looks fuckn sick
+
+commit 88777e30f4ca6b2592b23c12865093730fc1a1f2
+Merge: 0626c11c 11cfdabe
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Oct 29 16:00:07 2018 +1300
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit 0626c11c0958518dc6a4ee3ec48b6b204d77383a
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Oct 29 16:00:05 2018 +1300
+
+    added tower, cost of building and unit ui, updated some of stephs ui
+
+commit 11cfdabef2af93ae6d2ea5e2e45e723e0a37527d
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Mon Oct 29 14:42:57 2018 +1300
+
+    setting
+
+commit 266817039736b65a37ca6eba538ed577ba897aed
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Mon Oct 29 12:26:26 2018 +1300
+
+    new text box
+
+commit 3abe8f8224a64f66473ab92bc215ce57796a0c55
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Mon Oct 29 11:29:42 2018 +1300
+
+    ui
+
+commit 10f9d5d0190192a3bf126e94e5da1f9225f13d20
+Author: Tumuch <31061553+Tumuch@users.noreply.github.com>
+Date:   Fri Oct 26 17:34:09 2018 +1300
+
+    Repellant
+
+commit d9312ff85859c4cc7217da6f0f0753290961e1ab
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Oct 23 15:16:45 2018 +1300
+
+    added placement sort of, need to add all the other buttons and shit
+
+commit d470fbf123151d0c1cb9c076664044635eaef2f3
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Oct 23 14:15:00 2018 +1300
+
+    oops, forgot to save scene
+
+commit 8d16df1147690cbbd027eff1ca494a8741d81bb9
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Oct 23 13:34:57 2018 +1300
+
+    added spawning and some other shit idk idc
+
+commit 712ff3a782c790900edd6e12d78d664bae829e30
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Tue Oct 23 12:48:26 2018 +1300
+
+    WilderBrain Mesh
+    
+    Contains the mesh for the Wilder Brain scenic object.
+
+commit 16d1a9f8098f524d5695ec2e106e496f4ce7278f
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Tue Oct 23 12:47:39 2018 +1300
+
+    WilderBrain Textures
+    
+    Contains the textures for the infectious scenic Wilder Brain.
+
+commit 0df7ab281e27abbec9a4f68c0b169dd3bcbae3a6
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Mon Oct 22 11:47:24 2018 +1300
+
+    Resource
+
+commit 4fed0f681c2c8f028ab5130db02b9fded7503ca9
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Oct 18 16:55:27 2018 +1300
+
+    added enemy priority so they change their target depending on the biggest danger
+
+commit 5ec8eec5a7ba8057824ff8b85fb57eca11683d73
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Thu Oct 18 07:32:51 2018 +1300
+
+    Wongle Pickaxe + Swing Animations
+    
+    Contains the Wongle Pickaxe mesh + textures + a swing animation for mining various minerals.
+
+commit a10cbf5b2e2e6975f24648caf46ca0a9d99f9c98
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Wed Oct 17 13:28:40 2018 +1300
+
+    Some tag stuff
+
+commit 5156ef59724d1d6f1e53cc17199737ee63f978ce
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Oct 15 12:26:58 2018 +1300
+
+    did more with enemies
+    
+    theyre functioning they just need to be refined, need to fix an issue where they push wongles arround when running towards them
+
+commit dd12f771ef5e926f20726de83e9cde33311194f1
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Oct 15 09:05:04 2018 +1300
+
+    start of broodshroom
+
+commit 47cd1acf61a162fa4cb30096887ef807a04ab20b
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Fri Oct 12 22:33:43 2018 +1300
+
+    Wongle Default Hat + Geiger Strain/Rock
+    
+    Big update. Contains the default hat + textures for the Wongle Worker.
+    
+    Also contains the Geiger Rock mesh + textures where Wongles will mine the Crystal Resource.
+    
+    The Crystal Resource "Geiger Strain" has it's own model + textures, and can be carried by Wongles who have farmed the resource in their off-hand.
+
+commit 5f3ebdf484312731453efd8787489276bf2c246c
+Author: Nells9721 <31061581+Nells9721@users.noreply.github.com>
+Date:   Mon Oct 8 17:17:23 2018 +1300
+
+    basic ground textures
+
+commit 1076ecb770c727ed1b60b7e56a0efba50e959c9d
+Author: Nells9721 <31061581+Nells9721@users.noreply.github.com>
+Date:   Mon Oct 8 17:11:58 2018 +1300
+
+    Add files via upload
+
+commit 97e9dd37540d1daa9c2646febcd80c0d78a1a44c
+Author: Tumuch <31061553+Tumuch@users.noreply.github.com>
+Date:   Mon Oct 8 17:06:00 2018 +1300
+
+    Still Needs finished texture
+
+commit 75740be68f6943ea0f0fe1b776fdd0842b4f64b0
+Author: Tumuch <31061553+Tumuch@users.noreply.github.com>
+Date:   Mon Oct 8 16:55:17 2018 +1300
+
+    Add files via upload
+
+commit d4d752ba6e8e2a0bff161cd9456949e82817738f
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Oct 8 15:38:42 2018 +1300
+
+    corruption spreading is working, need rto play with numbers
+
+commit 49fdb9293fa68e78ff96dd181925b5add9f8a3aa
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Oct 8 15:12:33 2018 +1300
+
+    OnClickExit from tech-tree
+
+commit 0b8acae5e5f9b6aeef80027b3ea2603fd557aa9d
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Oct 8 15:07:04 2018 +1300
+
+    Click -> Select -> Description
+    
+    quite a bit of stuff implemented
+
+commit cae41f63446676fe2186762e54795b7b79557c5b
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Mon Oct 8 14:10:51 2018 +1300
+
+    ui
+
+commit c9b6f5cd7d41e6b61757d95bc2d7cfb17ef1384c
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Mon Oct 8 12:59:38 2018 +1300
+
+    new ui
+
+commit 5bc842b2cf02897b24809d5554a8785965360c65
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Oct 4 13:46:54 2018 +1300
+
+    began working on corruption.
+
+commit fe487c1dbd116c7e96e46b69485e6b52ae77e800
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Thu Oct 4 12:49:04 2018 +1300
+
+    Broodshroom Textures
+    
+    Contains the various texture maps for the Mushroom Spawner.
+
+commit cd608ede75424b5c822c677665ea12a4027700c7
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Thu Oct 4 12:47:54 2018 +1300
+
+    Broodshroom Model + Animations
+    
+    Contains the mushroom spawners model + various animation states.
+
+commit 7d08c11322d154ad76ad4869df598fe60eadead5
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Oct 2 14:55:00 2018 +1300
+
+    fixed main menu and commented item selection
+
+commit 53a57afe339b580a4fb73e7bdaea1ebcd53e9f89
+Author: MDS\nicholas.gre6280 <nik.green@xtra.co.nz>
+Date:   Tue Oct 2 14:07:34 2018 +1300
+
+    sound menu A2
+
+commit 8dec8d1940ab668891b4bb9425a266d5da9f8b5c
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Oct 2 12:29:32 2018 +1300
+
+    added primitive clicking object to get information and display in UI
+
+commit ee9567920a075c84f9d1733b0e1664b05e9b7e96
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Oct 1 15:24:03 2018 +1300
+
+    de-cluttered wongle code
+
+commit f6896513040f15dca266bc73fee9ea02fbe0e828
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Oct 1 12:35:04 2018 +1300
+
+    Some bug fixes with wood cutting, added mining, added some animations and a script that changes which hat and tool the wongle holds depending on which job its doing
+
+commit bd344389ddd7c229d8e1d87e00214fce5dd77550
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Mon Oct 1 05:15:32 2018 +1300
+
+    Wongle Axe Additions + Animations
+    
+    Contains two axes; one for the purpose of cutting wood, the other is a direct weapon upgrade based on the infection and is not designed for cutting wood.
+    
+    Included are two weighted models, various texture maps (including emissives that will need to be applied separately) and a wood cutting animation for the Wongle Worker.
+
+commit 40554804bab9cd0cbfbfe1272090c37343d22c53
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Fri Sep 28 10:31:33 2018 +1200
+
+    Added wonder building, added tree cutting(minus animation)
+
+commit d355aa9ffadf67a1c5ce8317bfe926577d7f7060
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Thu Sep 27 15:14:25 2018 +1200
+
+    Documents due for Week 9
+    
+    Contains the Art Milestone Document and the updated Vision Document for submission this Friday.
+
+commit 485fb80bcd859b9f4de3ec23c4628af67f6d7fce
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Wed Sep 26 11:43:19 2018 +1200
+
+    bug fix with wand
+
+commit a93fd9546236e7db71ebee828f83c1ac9768ee97
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Sep 25 17:12:21 2018 +1200
+
+    done some shit with the attack, added animation for spell and parented the attack particle to the end of the wand
+
+commit 857609c3ca26cfd1efcc95da5e2906fa47022b13
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Tue Sep 25 13:19:59 2018 +1200
+
+    Controlled ctrl selection deselection
+    
+    You can now deselect ctrl controlled workers... just re-click them whilst holding control
+
+commit 46a1733cf062643f072891233237cc63dfd6b64d
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Tue Sep 25 12:32:00 2018 +1200
+
+    Single Selection bug
+    
+    When singularly selecting a worker it wouldn't highlight them, then when pressing control after left clicking it would show a highlight..
+
+commit 8fd3e283aded87937f718c056e48f42c182213b9
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Sep 24 15:24:16 2018 +1200
+
+    Ctrl Selection duplication bug
+    
+    fixed being able to select the same npc repeatedly.
+
+commit 121e1084418aeafe9c7f7e460d645c5706cd1569
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Sep 24 15:18:13 2018 +1200
+
+    L/R CTRL Select unit
+    
+    Implemented left/right control click to select.. bundy bug fixes, and still some shit to do.. can keep re-adding already selected npcs
+
+commit b2a3d8b4557fbfee20f83bf971a2813cb48b9381
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Sep 24 14:40:39 2018 +1200
+
+    my godly code
+
+commit 7bd301032fe96aa992ee04d430cc5a1d5253679b
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Sep 24 10:39:19 2018 +1200
+
+    updated to unity version 2018.2.9f1
+
+commit 39a4aee3277d764e8914ff78864cf0ece23d558f
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Fri Sep 21 01:17:14 2018 +1200
+
+    New Animations, Wand + Textures
+    
+    Contains a new ranged weapon; the wand + various maps. Wand has an idle animation provided that should run at all times.
+    
+    Wongle worker now has an idle animation for inspecting left hand object + a basic attack swing animation.
+
+commit e430f8860bd334cd73db6dedcde921a48e40dcee
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Sep 20 20:26:51 2018 +1200
+
+    attacking works?
+
+commit 4394f00dc203b7abfd3a8808266de145f87f3c76
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Sep 20 07:42:03 2018 +1200
+
+    began work on attacking, does no damage but is semi functioning
+
+commit 21f9bb0526a976285661ad1298ca21cdfb7777c3
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Wed Sep 19 18:21:04 2018 +1200
+
+    Wongle Worker Battle Helmet
+    
+    Contains a model + various texture maps for the wongle worker battle helm
+
+commit 45685f99c2ad25f832d868c6ac092efeb7ece79a
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Tue Sep 18 22:24:16 2018 +1200
+
+    Wongle Worker Farmer Hat
+    
+    Wongle Workers now have a farming hat, contains .fbx + various texture maps.
+
+commit 135681980957f3b545ff0b6db3a6ff8d931e0c0f
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Sep 18 10:36:38 2018 +1200
+
+    added functioning heart farms and updated prefabs and added left click selection
+
+commit 31c9e73876d08a8e78e9135dceac811be897c0f1
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Sep 13 18:19:47 2018 +1200
+
+    began working on worker controlling
+
+commit 9b8b15d2a7b7b9e852db96866abd250c7f9bd6e7
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Sep 13 13:54:42 2018 +1200
+
+    updated to newest unity version and added sound repository
+
+commit 7bceb4ab48dadb32bb552f79e2e8409f93544b47
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Wed Sep 5 14:53:18 2018 +1200
+
+    Added some tags
+    
+    For click inspection
+
+commit 5e3ad1860c6b085032bb3b9ac6993012fec750a6
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Wed Sep 5 14:45:33 2018 +1200
+
+    Click projection
+    
+    For future implementation
+    Click on the home to purhcase workers etc... in future, on click update the UI by whatever the user clicked on
+
+commit d095e9e7f3b18ba2ca5b516f6508b0526580a94f
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Wed Sep 5 13:32:52 2018 +1200
+
+    updated project
+
+commit fd47ac62690918ac496c31dfb43a955a7f097fa3
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Wed Sep 5 11:42:05 2018 +1200
+
+    final build that was handed in i believe
+
+commit 6c5f75088f8dcd74a4aa3828d513f79c25e4e18b
+Author: Tumuch <31061553+Tumuch@users.noreply.github.com>
+Date:   Thu Aug 30 18:21:35 2018 +1200
+
+    Task log thing
+
+commit d4ea40900f46d9bdbeecd9f728a39adca5ce2744
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Aug 30 17:53:27 2018 +1200
+
+    small ui changes
+
+commit 9e58beeade9d8dfc1316fbc0b4e142013970af39
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Aug 30 17:31:54 2018 +1200
+
+    scene file
+
+commit 104c1a8da35e0b4d4cf7223f7dc0728793228548
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Aug 30 17:31:38 2018 +1200
+
+    added main menu and fixed turrets sort of maybe
+
+commit 386f386ca4eb78d5e93869d19e55d270d20e10c4
+Author: Nells9721 <31061581+Nells9721@users.noreply.github.com>
+Date:   Thu Aug 30 16:17:33 2018 +1200
+
+    Individual Submission Shannell Ulunga
+
+commit aabec31a9032a78b24181805720cfc2d080455e6
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Thu Aug 30 15:25:47 2018 +1200
+
+    Building particle effect implemented
+    
+    Personal Submission too
+
+commit 858b08c4c6a5e5897a198173d5bce4f6a0394519
+Merge: d445f9a4 eeb807e6
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Thu Aug 30 14:27:50 2018 +1200
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit d445f9a4aff174baeaf58bd346423ae603bfafd1
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Thu Aug 30 14:26:36 2018 +1200
+
+    3D Sounds & Purchase Optimization
+
+commit eeb807e6c3059c3ed2c49aca14ad851fe2bdf15d
+Author: ZETA\Nik <nik.green@xtra.co.nz>
+Date:   Thu Aug 30 14:10:03 2018 +1200
+
+    some sound
+
+commit d17d3e7d5e04a86e5f0dbc8533421efbef0722c5
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Thu Aug 30 14:02:53 2018 +1200
+
+    UI
+
+commit b64aa7af94992a3fefc8804ba157ff090fecf0d6
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Aug 30 13:40:10 2018 +1200
+
+    updated prefabs
+
+commit cf8843bdda33b3b6dd78d5b0446a2d5a4db0d065
+Author: Nells9721 <31061581+Nells9721@users.noreply.github.com>
+Date:   Thu Aug 30 13:27:19 2018 +1200
+
+    scenery stuff
+    
+    includes a slightly high poly plane which can be used for vertex painting (polybrush)
+
+commit a1d45da51e1347f0bfebc5882ba9fc843bea95a2
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Thu Aug 30 13:26:59 2018 +1200
+
+    UI
+
+commit 4c04612c8db703b32aaaa7ac9de492355d8fbc1e
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Thu Aug 30 13:25:04 2018 +1200
+
+    Failed purchase sound
+    
+    Optimized purchasing, no bugs should occur
+
+commit 86a25f97f3c6ac29fbd89a9652481a62187f7151
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Thu Aug 30 13:08:46 2018 +1200
+
+    Bug fixes
+    
+    optimizations
+
+commit d0dfff5d3f2a33cc0f813c23b11d6b6fbdfc3c58
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Aug 30 13:05:27 2018 +1200
+
+    updated turret
+
+commit c60d7ed7f7e500a941903c7318d66bcf50400ad7
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Thu Aug 30 13:00:12 2018 +1200
+
+    Created and implemented AudioHandler
+    
+    Handles different audio for certain tasks
+
+commit be7b1be61368dfa01e7167160e6c0330a1781d6a
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Thu Aug 30 12:43:29 2018 +1200
+
+    Final placement update
+    
+    Placement by UI, purchase then place a piece :D
+    Needs optimization, and one bug fix with purchasing..
+
+commit 0cab810354a23f07385bd3dbc4ae4fbea93415c2
+Merge: 0214d0e8 5909841f
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Aug 30 12:13:09 2018 +1200
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit 0214d0e86621b23313b5527d9f98a9ece8ec3b55
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Aug 30 12:13:01 2018 +1200
+
+    attempt at buttons, updated white farm mesh
+
+commit 5909841f7c0be85ee9ef85907d4e71d191659fa2
+Author: Tumuch <31061553+Tumuch@users.noreply.github.com>
+Date:   Thu Aug 30 11:59:36 2018 +1200
+
+    Sandbags finit
+
+commit c7846be67b3824a3fddd3e20a1eb4a8de3b7b58d
+Author: Tumuch <31061553+Tumuch@users.noreply.github.com>
+Date:   Thu Aug 30 11:44:25 2018 +1200
+
+    Pushed Heart
+
+commit a1de9b0d7a22f5a4bf9f6ca39234e79e6d57aeb3
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Aug 30 11:43:08 2018 +1200
+
+    updated some prefabs
+
+commit d525dc52b9b61c07a369ebfa684b43015bff90b4
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Thu Aug 30 11:36:20 2018 +1200
+
+    Individual doc-Stephanie
+
+commit f4bfcd28e45a71a49f7f3c8066429616d0b42d1e
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Thu Aug 30 11:26:21 2018 +1200
+
+    Right click drag -> Camera rotation
+    
+    as per title, implemented..
+
+commit 818481aea03ba6ba623e359e0eec9e429f018c8a
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Thu Aug 30 11:11:19 2018 +1200
+
+    Placement Optimization
+    
+    Updates on switching now plus some other shit
+
+commit 9221c4fa6e1aaa77c83d11d96df31eb3b9316ce5
+Merge: 2ccf5e34 c1f18ab6
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Aug 30 10:50:44 2018 +1200
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit 2ccf5e34585e33ffe491b472375304daf313fbac
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Aug 30 10:50:16 2018 +1200
+
+    fixed smoke
+
+commit c1f18ab6e329f91e576471d83524a8e98d77f816
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Thu Aug 30 10:46:16 2018 +1200
+
+    Ben Llewellyn Tasklog/Journal
+
+commit b0670dab549467cf4fc7d81c9eae4fb7dda337c6
+Merge: f7b4f188 202c413e
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Aug 30 10:44:57 2018 +1200
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit f7b4f188938ee786a1457852514b56f991a9df01
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Thu Aug 30 10:44:29 2018 +1200
+
+    implemented processing plant
+
+commit 202c413e7efe470ea6e1e9b5d597f2a08f196a06
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Thu Aug 30 10:35:56 2018 +1200
+
+    UI
+
+commit 926f23947f66d37bc11c1ddbd4cc6ff458d24cea
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Thu Aug 30 09:31:18 2018 +1200
+
+    Vision Document
+    
+    Open to review and changes as always.
+
+commit 9991328192d4c08f32774e85594ed505e93a0f4f
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Thu Aug 30 00:21:47 2018 +1200
+
+    Hero Cap Color Variations
+    
+    Some simple color variations that can be swapped out to generate different colored hero caps.
+    
+    This will be useful in the future when experimenting with code to generate Wongles with random appearances.
+
+commit 302a277c7dddebe77074fbba302c1242590a53b1
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Wed Aug 29 23:49:12 2018 +1200
+
+    Wongle Trumpet + Textures
+    
+    Experimental trumpet that due to it's design will need to be parented to the left hand bone manually. A novelty tool for the left hand that has no declared function yet.
+
+commit 6b1995868841204bae585ee68ff9ffadfe4e8866
+Author: Tumuch <31061553+Tumuch@users.noreply.github.com>
+Date:   Wed Aug 29 21:22:27 2018 +1200
+
+    Textured and altered house, Finished shop
+
+commit fb6442bfe6849d538f09867b8b69a2b8e5227248
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Wed Aug 29 14:26:48 2018 +1200
+
+    UI+font
+
+commit bc36d91ebc09830d478e47389acc3a4c43d66880
+Merge: 4870da90 387762ce
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Wed Aug 29 14:03:21 2018 +1200
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit 4870da90bf55cb1a8a6b95325faf286df6dd5e1d
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Wed Aug 29 13:56:29 2018 +1200
+
+    Wongle Bucket + Textures
+    
+    Weighted bucket + various texture maps including a height map.
+    
+    Due to issues on my end I have not been able to assign these textures to a material. Something is playing up and I am not sure why at this stage, so a new material will need to be made for the bucket manually containing the included maps.
+
+commit 387762ce94234e8bc75fee963715962783f8fa55
+Author: Tumuch <31061553+Tumuch@users.noreply.github.com>
+Date:   Wed Aug 29 13:49:14 2018 +1200
+
+    Procesing Plant
+
+commit c804eaea5119f8211e913649437134711935fcde
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Wed Aug 29 13:31:31 2018 +1200
+
+    Random shite
+
+commit 1c10846cf374e85ce8f4c4db52c5f0fd9a641e3f
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Wed Aug 29 13:30:11 2018 +1200
+
+    Wongle Suitcase + Textures
+    
+    Contains an FBX and various textures weighted to the right hand of the Wongle. Experimented with height maps for the first time which (like the emissive) will have to be assigned manually.
+
+commit 06433fedf2ff5274b01ceb1c2f5d6d570c0b6e33
+Merge: c1baff60 78fc11c2
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Wed Aug 29 12:29:41 2018 +1200
+
+    Merge branch 'master' of https://github.com/ThrowawayGamesMDS/LegalSubstances
+
+commit c1baff60c7454229ce103860a8a55454032845c7
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Wed Aug 29 12:29:37 2018 +1200
+
+    Wongle Sword + Textures
+    
+    Includes the first tool for Wongles: A right handed sword. Model is weighted to the right hand bone, and includes a series of textures.
+
+commit 78fc11c29443e94b86bdeef80d6bb0f45a16ce56
+Author: Tumuch <31061553+Tumuch@users.noreply.github.com>
+Date:   Wed Aug 29 11:37:54 2018 +1200
+
+    Darker Green
+
+commit 0631f1618f64d40365ceaf0af390cdccf8ca68b9
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Wed Aug 29 10:50:44 2018 +1200
+
+    repush
+
+commit f0afa0e2c94af7526b933111fd86bf6a6301cb10
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Wed Aug 29 10:43:22 2018 +1200
+
+    added worker mesh with hat and updating farm model with plant
+
+commit 769fdc4bd13e0110ac503de44d3b272a0013c32c
+Author: Ben Llewellyn <benjllewellynmobile@gmail.com>
+Date:   Wed Aug 29 09:13:05 2018 +1200
+
+    Wongle Worker Hat Update + Hero Cap
+    
+    Updated the Wongle Worker rig and slightly tweaked animations to make the Wongle naturally compatible with hats.
+    
+    Also includes a "Hero Cap" along with it's textures.
+
+commit 90b4f4a7d66394230129fba6cb58ebea4462be33
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Aug 28 16:05:52 2018 +1200
+
+    wongle working on green farm
+
+commit e04742e02fc7ea5d48e089e30684f43cef063bee
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Aug 28 14:52:48 2018 +1200
+
+    Revert "pause to the blair sence"
+    
+    This reverts commit 54fbbb8872f87ec3ebfa68488f05bc502e5214cb.
+
+commit 724f9ada3c1648d62b39dfeaadd268a714bbbd92
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Aug 28 14:52:42 2018 +1200
+
+    Revert "added the game ends when house is destoryed."
+    
+    This reverts commit 596724bd596108f9393251df3f7133db7f5db495.
+
+commit 29595ffe34c1695222a15ce36526d9b22f5963ea
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Tue Aug 28 13:17:06 2018 +1200
+
+    Wongle Worker + Animations
+    
+    Contains the model for the Wongle Worker along with a series of animations for idling, farming, walking, and their appropriate transitions.
+    
+    Also contains a separate walk cycle for when the Wongle is carrying resources around the map. (Represented with a basic box weighted to the Wongle's hand.)
+
+commit 5f8908ff307cf0d9ed03ab3ac0852aeec26bde1b
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Tue Aug 28 13:13:49 2018 +1200
+
+    Wongle Worker Textures
+    
+    Various texture maps for the Wongle Worker
+
+commit 596724bd596108f9393251df3f7133db7f5db495
+Author: MDS\nicholas.gre6280 <nik.green@xtra.co.nz>
+Date:   Tue Aug 28 12:09:21 2018 +1200
+
+    added the game ends when house is destoryed.
+
+commit 54fbbb8872f87ec3ebfa68488f05bc502e5214cb
+Author: MDS\nicholas.gre6280 <nik.green@xtra.co.nz>
+Date:   Tue Aug 28 11:56:12 2018 +1200
+
+    pause to the blair sence
+    added balir sence to menus older
+
+commit ce7f4ba0a031aec0addd62b1a025fff9b33c79da
+Author: Tumuch <31061553+Tumuch@users.noreply.github.com>
+Date:   Mon Aug 27 17:49:09 2018 +1200
+
+    Heart Plant and Textures for both farms
+
+commit 801d85ccffc2e90081f2ecd8d727427bd9ba6daf
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Aug 27 14:54:04 2018 +1200
+
+    added stationary turret guy thing and some other shit
+
+commit 1d73e22268cf06f21b2a114cc9562de9a3894873
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Aug 27 14:40:27 2018 +1200
+
+    prefabs
+
+commit c6f0e5d572bab52932e8952a3cf96cc501fc0b82
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Aug 27 14:39:29 2018 +1200
+
+    Placement Optimization
+    
+    Plus some descriptor shit
+
+commit b4818b0908b79b8316ab54af6214e047be2397ef
+Merge: b9d6dc83 10556e27
+Author: MDS\nicholas.gre6280 <nik.green@xtra.co.nz>
+Date:   Mon Aug 27 14:08:05 2018 +1200
+
+    Merge remote-tracking branch 'origin/master'
+
+commit b9d6dc834c493edc8696e26b695da10cf0491493
+Author: MDS\nicholas.gre6280 <nik.green@xtra.co.nz>
+Date:   Mon Aug 27 14:07:48 2018 +1200
+
+    added basic pause in the sample scene (esc key)
+
+commit 10556e27bd895dcdf9d07fab385fd0ea214fb471
+Author: Tumuch <31061553+Tumuch@users.noreply.github.com>
+Date:   Mon Aug 27 14:04:52 2018 +1200
+
+    Growing Hemp
+
+commit d1fdf6e2b6b94e14555f322e40d841605f09796a
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Aug 27 12:31:11 2018 +1200
+
+    Basic descriptors
+    
+    For on hover to update a pop-up tooltip
+
+commit f35861a5bd9e5c24b44451e686b69fd8d821ebbe
+Author: MDS\nicholas.gre6280 <nik.green@xtra.co.nz>
+Date:   Mon Aug 27 12:04:47 2018 +1200
+
+    menu added (basic version)
+
+commit 71986b3e75e1e35cc5adac1ff2265d2dd97ca8c3
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Sun Aug 26 13:40:29 2018 +1200
+
+    Enemy Obscuring
+
+commit 00d3df1021ee25e1b8883db854262a8f79e9fb10
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Sat Aug 25 22:52:17 2018 +1200
+
+    Courier Textures
+    
+    Contains texture maps for the base courier and it's rudders.
+
+commit 6ced0f6b3671e1326db1ae74ccff5a4cfb4665ed
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Sat Aug 25 22:50:21 2018 +1200
+
+    Courier Model Files
+    
+    Contains the base model + two rudders that can be tilted as the vehicle accelerates and decelerates. Diagram included to indicate where the rudders are placed.
+
+commit 3395bd61e6d8c5950ef46e9a887198763ff4df94
+Author: Santiaoer <32313411+Santiaoer@users.noreply.github.com>
+Date:   Thu Aug 23 16:06:18 2018 +1200
+
+    building effects
+
+commit c3eab7b0fe020946b0f7302581af613412c7930b
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Wed Aug 22 20:25:08 2018 +1200
+
+    Mushroom Prop Model
+    
+    A detailed mushroom asset. (Mesh)
+
+commit 647fefb4608c0b9c42d573a5929ff7de0535c2a0
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Wed Aug 22 20:24:06 2018 +1200
+
+    Mushroom Prop Textures
+    
+    A detailed mushroom asset with a number of maps.
+
+commit ee894e94ca5709d320895520413119640874940e
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Wed Aug 22 15:45:24 2018 +1200
+
+    i dont rememebrr what i changed
+
+commit 4a05da42c2256183a51ec0089c4cd88cbb89f5af
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Aug 21 23:21:30 2018 +1200
+
+    daynight cycle and enemy working with spawning system
+
+commit 85b45fb474107c9899a42d4d08b180462be435a0
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Aug 21 17:20:09 2018 +1200
+
+    Revert "Fungus Friend Animations Take Two"
+    
+    This reverts commit 22264dc5ec10c7ddbbf7a69201dc53cef4e2e2af.
+
+commit 22264dc5ec10c7ddbbf7a69201dc53cef4e2e2af
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Tue Aug 21 17:04:47 2018 +1200
+
+    Fungus Friend Animations Take Two
+    
+    Animations re-exported without a mesh selected in the exportation process to hopefully resolve some issues.
+
+commit 78a0b3e54d1f51d91ca9ec156809bf6839907841
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Tue Aug 21 16:43:48 2018 +1200
+
+    Fungus Friend Textures
+    
+    Contains five different texture maps to be applied to the enemy unit in Unity via a material. (Albedo, Emissive, Ambient Occlusion, Normal, Roughness)
+
+commit 72b0641326f6d39c4d6f8603ebc20962be38cae0
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Tue Aug 21 16:42:10 2018 +1200
+
+    Fungus Friend (Enemy Unit) + Animations
+    
+    Contains a model, and a number of animations with transition states for the games first enemy unit.
+
+commit faa910fa425d6663e1403f31b5fa0699b7d60609
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Tue Aug 21 16:39:08 2018 +1200
+
+    test
+    
+    test
+
+commit ea9d61cd6e2b280448d0a38779c97f8ec979a53f
+Author: Rimanah <benjllewellynmobile@gmail.com>
+Date:   Tue Aug 21 16:38:36 2018 +1200
+
+    test
+    
+    test
+
+commit 692271066519f7e7ef587f0ee038c831c84b3e13
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Aug 21 15:41:02 2018 +1200
+
+    sort of functioning processing plant
+
+commit 26087b93dcf662d5b0fe38354d3703f2fac63e01
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Tue Aug 21 12:21:47 2018 +1200
+
+    Placement optimizations
+    
+    Using lists instead of arrays lol
+
+commit b7676cf30a1d3a21901eb285a7ea1a2a78b36842
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Tue Aug 21 11:34:37 2018 +1200
+
+    placement switching
+    
+    4 bleer
+
+commit 332eafd7763459661eb52a23cd8722efc642b91f
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Tue Aug 21 11:13:05 2018 +1200
+
+    moved files
+
+commit ae4a2e7472f8a56528bd70d56578f6cf87aebff0
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Aug 20 19:58:09 2018 +1200
+
+    wtf
+
+commit c7c59005e5bf4201ea8538e27d32bda477249386
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Aug 20 19:51:21 2018 +1200
+
+    fixed mesh
+
+commit 1c30442b7d8c583d5d244209453337cd75731929
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Aug 20 19:45:25 2018 +1200
+
+    gitignore
+
+commit 4e7fa4d6a06e561135a2f86683e30f6e3a109a3d
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Aug 20 19:43:06 2018 +1200
+
+    workers working partially <3
+
+commit 54df8482dbfb99bc48572219f84f4cc5ff5cc973
+Author: Tumuch <31061553+Tumuch@users.noreply.github.com>
+Date:   Mon Aug 20 19:33:03 2018 +1200
+
+    Green Plant
+
+commit adac44d9664d73f6e52bda6a29429510211c739d
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Aug 20 19:33:15 2018 +1200
+
+    Added tooltips for nobheads
+    
+    jk just for memory
+
+commit 34fcc45dcd9cd401a50d0d21421c9939062ab23c
+Author: MDS\benjamin.poi6329 <the343guy@hotmail.com>
+Date:   Mon Aug 20 19:26:25 2018 +1200
+
+    Basic Placement Script
+    
+    Yoza you fuckin read it g
+
+commit 03761f63d40213206915914bfc8aba8195888350
+Author: Tumuch <31061553+Tumuch@users.noreply.github.com>
+Date:   Mon Aug 20 18:12:40 2018 +1200
+
+    House
+
+commit fe9821d392cbd47940c7422cda936f03ebccba8e
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Aug 20 17:31:31 2018 +1200
+
+    cum
+
+commit 31555fb8bd3f53966383d5a752ceb16a156003f5
+Author: BlairCorban <blaircorban@hotmail.com>
+Date:   Mon Aug 20 17:23:52 2018 +1200
+
+    Initial commit

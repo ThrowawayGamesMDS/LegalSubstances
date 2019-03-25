@@ -15,10 +15,16 @@ public class HomeSpawning : MonoBehaviour {
     public GameObject knightUI;
     public Transform canvas;
     public GameObject army;
+    public Vector3 g_v3WizardRally;
+    public Vector3 g_v3KnightRally;
+    public Vector3 g_v3WorkerRally;
     private void Start()
     {
         iCurrentWongleCount = 5;
         army = GameObject.FindGameObjectWithTag("Army");
+        g_v3WorkerRally = new Vector3(120,0,-110);
+        g_v3WorkerRally = new Vector3(100,0,-110);
+        g_v3WorkerRally = new Vector3(80,0,-110);
     }
 
     public void fQueueUnit(string unittype)
@@ -98,15 +104,17 @@ public class HomeSpawning : MonoBehaviour {
                     
                     temp = Instantiate(Prefabs[0], transform.position, Prefabs[0].transform.rotation);
                     temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
-                    temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(120, 0, -100));   
+                    temp.GetComponent<WongleController>().agent.avoidancePriority = Random.Range(0,99);
+                    temp.GetComponent<WongleController>().agent.SetDestination(g_v3WorkerRally);   
                     break;
                 }
             case "Wizard":
                 {
                     temp = Instantiate(Prefabs[1], transform.position, Prefabs[1].transform.rotation, army.transform);
                     temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
+                    temp.GetComponent<WongleController>().agent.avoidancePriority = Random.Range(0, 99);
                     temp.GetComponent<WongleController>().Work = army;
-                    temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(105, 0, -100));                                
+                    temp.GetComponent<WongleController>().agent.SetDestination(g_v3WizardRally);                                
                     GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>().m_goRangedUnits.Add(temp);                  
                     break;
                 }
@@ -115,8 +123,9 @@ public class HomeSpawning : MonoBehaviour {
                     
                     temp = Instantiate(Prefabs[2], transform.position, Prefabs[2].transform.rotation, army.transform);
                     temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
+                    temp.GetComponent<WongleController>().agent.avoidancePriority = Random.Range(0, 99);
                     temp.GetComponent<WongleController>().Work = army;
-                    temp.GetComponent<WongleController>().agent.SetDestination(new Vector3(85, 0, -100));                                
+                    temp.GetComponent<WongleController>().agent.SetDestination(g_v3KnightRally);                                
                     GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>().m_goMeleeUnits.Add(temp);                   
                     break;
                 }

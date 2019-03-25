@@ -19,7 +19,6 @@ public class EnemySpawnerWithnoGrid : MonoBehaviour
 
         if (!DayNight.isDay)
         {
-            print("isnight");
             if (!isinvoked)
             {
                 print("isntinvoked");

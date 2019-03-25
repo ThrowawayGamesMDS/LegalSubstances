@@ -165,7 +165,7 @@ public class EnemyController : MonoBehaviour {
 
                     if (child.gameObject.activeInHierarchy)
                     {
-                        print("hide enemy");
+                        //print("hide enemy");
                         HideEnemy();
                         break;
                     }

@@ -17,13 +17,10 @@ public class DisplayHandler : MonoBehaviour
     public bool m_bDisplayingUnit;
     public bool m_bDisplayingBuildings;
 
-    private List<GameObject> m_goUIObj;
+    public List<GameObject> m_goUIObj;
 
     private void Awake()
     {
-        m_goUIObj = new List<GameObject>();
-        m_goUIObj.Add(GameObject.FindGameObjectWithTag("UnitButtonPanel"));
-        m_goUIObj.Add(GameObject.FindGameObjectWithTag("BuildButtonPanel"));
         for (int i = 0; i < m_goUIObj.Count; i++)
         {
             if (m_goUIObj[i] != null)

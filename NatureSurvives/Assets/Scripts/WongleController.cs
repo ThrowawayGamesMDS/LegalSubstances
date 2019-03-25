@@ -99,10 +99,6 @@ public class WongleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            anim.Play("RodCast");
-        }
 
         //check level of resource gathering
         iWoodCutLevel = Mathf.FloorToInt(Mathf.Sqrt((iTreesCut / 3)));
@@ -333,7 +329,7 @@ public class WongleController : MonoBehaviour
                         if (!isGoingHome)
                         {
                             agent.isStopped = false;
-                            agent.stoppingDistance = 2;
+                            agent.stoppingDistance = 4;
                             agent.SetDestination(Target.transform.position);
                             anim.Play("WalkCycle");
                         }

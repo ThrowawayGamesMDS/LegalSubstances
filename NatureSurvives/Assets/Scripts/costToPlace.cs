@@ -7,4 +7,5 @@ public class costToPlace : MonoBehaviour {
     public int CrystalCost;
     public int FoodCost;
     public float FogRadius;
+    public bool isFlag;
 }
