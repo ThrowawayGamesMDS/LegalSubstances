@@ -587,7 +587,7 @@ public class SelectionBox : MonoBehaviour {
                                     {
                                         if (!EventSystem.current.IsPointerOverGameObject())
                                         {
-                                            if (gameObject.GetComponent<DisplayHandler>().m_bDisplayingBuildings == false)
+                                            if (gameObject.GetComponent<DisplayHandler>().m_bDisplayingBuildings == false && m_goSelected != null)
                                             {
                                                 gameObject.GetComponent<DisplayHandler>().UpdateState(true); // is worker
                                             }
