@@ -48,23 +48,29 @@ public class DisplayHandler : MonoBehaviour
                 }
             }
 
-            m_liTextMemory = new List<int>();
-
-
-            m_tWongleWorkerText = new List<Text>();
-            m_lsBaseText = new List<string>();
-
-            m_ttCurrentTag = ReturnNewTag(0);
-            for (int i = 0; i < 9; i++)
-            {
-                m_tWongleWorkerText.Add(GameObject.FindGameObjectWithTag(m_ttCurrentTag.ToString()).GetComponent<Text>());
-                m_ttCurrentTag = ReturnNewTag(i + 1);
-            }
             m_goTextGroup = GameObject.FindGameObjectWithTag("WorkerInfoTextGroup");
-            m_goTextGroup.GetComponent<CanvasGroup>().alpha = 0;
-            m_bDisplayingText = false;
-            m_bDisplayingUnit = false;
-            m_bDisplayingBuildings = false;
+            if (m_goTextGroup != null)
+            {
+                m_goTextGroup.GetComponent<CanvasGroup>().alpha = 0;
+
+                m_liTextMemory = new List<int>();
+
+
+                m_tWongleWorkerText = new List<Text>();
+                m_lsBaseText = new List<string>();
+
+                m_ttCurrentTag = ReturnNewTag(0);
+                for (int i = 0; i < 9; i++)
+                {
+                    m_tWongleWorkerText.Add(GameObject.FindGameObjectWithTag(m_ttCurrentTag.ToString()).GetComponent<Text>());
+                    m_ttCurrentTag = ReturnNewTag(i + 1);
+                }
+                m_goTextGroup = GameObject.FindGameObjectWithTag("WorkerInfoTextGroup");
+                m_goTextGroup.GetComponent<CanvasGroup>().alpha = 0;
+                m_bDisplayingText = false;
+                m_bDisplayingUnit = false;
+                m_bDisplayingBuildings = false;
+            }
         }
     }
 
@@ -126,6 +132,8 @@ public class DisplayHandler : MonoBehaviour
 
     public void UpdateAndDisplayWongleWorkerText(GameObject _selectedWongle)
     {
+        if (m_goTextGroup == null)
+            return;
         if (m_goTextGroup.GetComponent<CanvasGroup>().alpha != 1)
             m_goTextGroup.GetComponent<CanvasGroup>().alpha = 1;
 
