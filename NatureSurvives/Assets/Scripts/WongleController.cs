@@ -25,6 +25,7 @@ public class WongleController : MonoBehaviour
     public float WongleHealth;
     public SelectableUnitComponent.workerType type;
     private Vector3 placeholderPosition;
+    public int priority;
 
     [Header("XP Stuff")]
     public int iOverallLevel;
@@ -99,7 +100,14 @@ public class WongleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(agent.velocity.magnitude <= 0)
+        {
+            agent.avoidancePriority = 99;
+        }
+        else
+        {
+            agent.avoidancePriority = priority;
+        }
         //check level of resource gathering
         iWoodCutLevel = Mathf.FloorToInt(Mathf.Sqrt((iTreesCut / 3)));
         iFarmLevel = Mathf.FloorToInt(Mathf.Sqrt((iFarmsHarvested / 3)));

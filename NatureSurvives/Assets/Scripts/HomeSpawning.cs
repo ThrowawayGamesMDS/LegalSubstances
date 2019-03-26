@@ -105,6 +105,7 @@ public class HomeSpawning : MonoBehaviour {
                     temp = Instantiate(Prefabs[0], transform.position, Prefabs[0].transform.rotation);
                     temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
                     temp.GetComponent<WongleController>().agent.avoidancePriority = Random.Range(0,99);
+                    temp.GetComponent<WongleController>().priority = temp.GetComponent<WongleController>().agent.avoidancePriority;
                     temp.GetComponent<WongleController>().agent.SetDestination(g_v3WorkerRally);   
                     break;
                 }
@@ -113,6 +114,7 @@ public class HomeSpawning : MonoBehaviour {
                     temp = Instantiate(Prefabs[1], transform.position, Prefabs[1].transform.rotation, army.transform);
                     temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
                     temp.GetComponent<WongleController>().agent.avoidancePriority = Random.Range(0, 99);
+                    temp.GetComponent<WongleController>().priority = temp.GetComponent<WongleController>().agent.avoidancePriority;
                     temp.GetComponent<WongleController>().Work = army;
                     temp.GetComponent<WongleController>().agent.SetDestination(g_v3WizardRally);                                
                     GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>().m_goRangedUnits.Add(temp);                  
@@ -124,6 +126,7 @@ public class HomeSpawning : MonoBehaviour {
                     temp = Instantiate(Prefabs[2], transform.position, Prefabs[2].transform.rotation, army.transform);
                     temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
                     temp.GetComponent<WongleController>().agent.avoidancePriority = Random.Range(0, 99);
+                    temp.GetComponent<WongleController>().priority = temp.GetComponent<WongleController>().agent.avoidancePriority;
                     temp.GetComponent<WongleController>().Work = army;
                     temp.GetComponent<WongleController>().agent.SetDestination(g_v3KnightRally);                                
                     GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>().m_goMeleeUnits.Add(temp);                   
