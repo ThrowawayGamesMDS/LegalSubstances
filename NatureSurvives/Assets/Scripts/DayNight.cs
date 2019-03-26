@@ -34,6 +34,7 @@ public class DayNight : MonoBehaviour {
             if (counted)
             {                
                 counted = !counted;
+                NotificationManager.Instance.SetNewNotification("Test Notification: Night time, enemy is coming");
             }
         }
         else
@@ -75,5 +76,4 @@ public class DayNight : MonoBehaviour {
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<EnemySpawner>().isinvoked = false;
     }
-
 }

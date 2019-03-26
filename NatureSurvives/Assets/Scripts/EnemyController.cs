@@ -119,6 +119,7 @@ public class EnemyController : MonoBehaviour {
                         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AttackLoop"))
                         {
                             anim.Play("AttackLoop");
+                            NotificationManager.Instance.SetNewNotification("Test Notification: Enemy is attacking " + targetsInArea[0].name);
                         }
                     }
                     else
@@ -135,6 +136,7 @@ public class EnemyController : MonoBehaviour {
         }
         if (m_fEnemyHealth <= 0)
         {
+            NotificationManager.Instance.SetNewNotification("Test Notification: Enemy is dead");
             Destroy(gameObject);
         }
 
@@ -165,7 +167,6 @@ public class EnemyController : MonoBehaviour {
 
                     if (child.gameObject.activeInHierarchy)
                     {
-                        //print("hide enemy");
                         HideEnemy();
                         break;
                     }

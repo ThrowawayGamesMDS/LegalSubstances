@@ -33,6 +33,8 @@ public class PlayerBuilding : MonoBehaviour {
             {
                 SceneManager.LoadScene(0);
             }
+            NotificationManager.Instance.SetNewNotification(gameObject.name + " destroyed");
+
             Destroy(gameObject);
         }
     }

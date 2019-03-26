@@ -27,6 +27,8 @@ public class EnemySpawner : MonoBehaviour {
                         Instantiate(obj, corruptedGrids.transform.GetChild(temp).position, Quaternion.Euler(new Vector3(0, 45, 0)));
                         isinvoked = true;
                         print("spawned " + i);
+
+                        NotificationManager.Instance.SetNewNotification("Enemy is coming");
                     }
                 }
             }

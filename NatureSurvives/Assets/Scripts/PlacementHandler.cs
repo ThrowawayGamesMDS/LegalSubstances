@@ -268,10 +268,23 @@ public class PlacementHandler : MonoBehaviour
                             }
                             else
                             {
-                               // gameObject.GetComponent<AudioHandler>().PlaySound(AudioHandler.m_soundTypes.FAILURE);
+                                // gameObject.GetComponent<AudioHandler>().PlaySound(AudioHandler.m_soundTypes.FAILURE);
+                                NotificationManager.Instance.SetNewNotification("Test notification: corrupted grid");
                             }
                         }
+                        else
+                        {
+                            NotificationManager.Instance.SetNewNotification("Test notification: Can't place, not enough crystal");
+                        }
                     }
+                    else
+                    {
+                        NotificationManager.Instance.SetNewNotification("Test notification: Can't place, not enough wood");
+                    }
+                }
+                else
+                {
+                    NotificationManager.Instance.SetNewNotification("Test notification: Can't place, not enough food");
                 }
             }
 
@@ -408,7 +421,8 @@ public class PlacementHandler : MonoBehaviour
         }
         else
         {
-           // gameObject.GetComponent<AudioHandler>().PlaySound("PurchaseBad");
+            // gameObject.GetComponent<AudioHandler>().PlaySound("PurchaseBad");
+            NotificationManager.Instance.SetNewNotification("Test notification: You cannot purchase. Check your resources");
         }
     }
 

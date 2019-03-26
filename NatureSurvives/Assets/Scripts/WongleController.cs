@@ -114,6 +114,7 @@ public class WongleController : MonoBehaviour
         ChangePriority();
         if (WongleHealth <= 0)
         {
+            NotificationManager.Instance.SetNewNotification("Wongle Died");
             Destroy(gameObject);
         }
 

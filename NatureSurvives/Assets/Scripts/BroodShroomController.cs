@@ -85,6 +85,7 @@ public class BroodShroomController : MonoBehaviour
         
         if (m_fEnemyHealth <= 0)
         {
+            NotificationManager.Instance.SetNewNotification("Test Notification: BroodShrom is dead");
             Destroy(gameObject);
         }
     }
