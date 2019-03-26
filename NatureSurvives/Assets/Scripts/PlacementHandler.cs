@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlacementHandler : MonoBehaviour
 {
+    public static PlacementHandler m_sPHControl;
     [Tooltip("Add all possible objects to this array - add them linearly to the following to arrays as well")]
     public GameObject[] m_goPossibleObjects;
     [Tooltip("Possible objs displaying a transparent green mesh")]
@@ -45,16 +46,20 @@ public class PlacementHandler : MonoBehaviour
 
     void Start()
     {
-        m_vec2MouseCoords = Input.mousePosition;
-        m_iCurrentlyPlacing = 0;
-        m_goCurrentlyPlacing = m_goPossibleObjects[0];
-        m_ePlayerState = PlayerStates.DEFAULT;
-        m_iMaxObjsPlaceable = 50;
-        m_goPlacementDefault = m_goObjPlacementOk[m_iCurrentlyPlacing];
-        m_bBadPlacement = false;
-        m_eDisplayUi = m_ePlayerSelected.DEFAULT;
-        m_ePlayerIsBuilding = m_ePlayerBuilding.DEFAULT;
-        m_bRefreshBuild = false;
+        if (m_sPHControl == null)
+        {
+            m_sPHControl = this;
+            m_vec2MouseCoords = Input.mousePosition;
+            m_iCurrentlyPlacing = 0;
+            m_goCurrentlyPlacing = m_goPossibleObjects[0];
+            m_ePlayerState = PlayerStates.DEFAULT;
+            m_iMaxObjsPlaceable = 50;
+            m_goPlacementDefault = m_goObjPlacementOk[m_iCurrentlyPlacing];
+            m_bBadPlacement = false;
+            m_eDisplayUi = m_ePlayerSelected.DEFAULT;
+            m_ePlayerIsBuilding = m_ePlayerBuilding.DEFAULT;
+            m_bRefreshBuild = false;
+        }
     }
 
 

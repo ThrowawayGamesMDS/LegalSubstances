@@ -474,7 +474,8 @@ public class SelectionBox : MonoBehaviour {
         }
 
 
-        if (Input.GetMouseButtonDown(0))
+        //if (Input.GetMouseButtonDown(0) && PlacementHandler.m_sPHControl.m_ePlayerState != PlacementHandler.PlayerStates.PLACING)
+        if (Input.GetMouseButtonDown(0) )
         {
             if (!m_bUserLClicked)
             {
@@ -545,6 +546,7 @@ public class SelectionBox : MonoBehaviour {
             }
         }
         // If we let go of the left mouse button, end selection
+        //if (Input.GetMouseButtonUp(0) && PlacementHandler.m_sPHControl.m_ePlayerState != PlacementHandler.PlayerStates.PLACING)
         if (Input.GetMouseButtonUp(0))
         {
             int layermask = LayerMask.GetMask("Wongle");
@@ -665,6 +667,10 @@ public class SelectionBox : MonoBehaviour {
             }
         }
 
+        if (PlacementHandler.m_sPHControl.m_ePlayerState == PlacementHandler.PlayerStates.PLACING && isSelecting)
+            isSelecting = false;
+
+
         if (m_bCtrlSelectUnits)
         {
             foreach (var unit in m_lCtrlUnits)
@@ -685,7 +691,7 @@ public class SelectionBox : MonoBehaviour {
 
         // Highlight all objects within the selection box
         if (isSelecting)
-        {
+         {
             foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
             {
                 if (IsWithinSelectionBounds(selectableObject.gameObject))
@@ -702,11 +708,17 @@ public class SelectionBox : MonoBehaviour {
 
                         if (selectableObject.Type == SelectableUnitComponent.workerType.Worker)
                         {
-                            if (gameObject.GetComponent<DisplayHandler>().m_bDisplayingBuildings == false)
+                            if (gameObject.GetComponent<DisplayHandler>().m_bDisplayingBuildings == false && !m_bPlayerSelected)
                             {
                                 gameObject.GetComponent<DisplayHandler>().UpdateState(true); // is worker
                                 m_bPlayerSelected = true;
+                                DisplayHandler.m_sDHControl.UpdateAndDisplayWongleWorkerText(selectableObject.gameObject); // remove this if we create a total/average function as per below
                             }
+                            /*else // player already selected
+                            {
+                                //DisplayHandler.m_sDHControl // create a control to gather total number of resources gathered and/or the average level of the wongles selected
+                                //need to create a function to utilize the selected list from this class in displayhandler to create this stuff
+                            }*/
                         }
                     }
 
@@ -732,7 +744,7 @@ public class SelectionBox : MonoBehaviour {
 
     public bool IsWithinSelectionBounds(GameObject gameObject)
     {
-        if (!isSelecting)
+        if (!isSelecting && PlacementHandler.m_sPHControl.m_ePlayerState != PlacementHandler.PlayerStates.PLACING)
             return false;
 
         var camera = Camera.main;

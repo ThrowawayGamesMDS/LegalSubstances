@@ -133,8 +133,7 @@ public class DisplayHandler : MonoBehaviour
             m_bDisplayingText = true;
 
         m_goSelected = _selectedWongle;
-
-        print("WongleWorkerText Count: " + m_tWongleWorkerText.Count + ", BaseText Count: " + m_lsBaseText.Count);
+        
         for (int i = 0; i < m_tWongleWorkerText.Count; i++)
         {
             m_tWongleWorkerText[i].text = m_lsBaseText[i];
@@ -286,7 +285,6 @@ public class DisplayHandler : MonoBehaviour
             print(hit.transform.name);
             if (hit.transform.gameObject.tag == "HomeBuilding" && !m_bDisplayingUnit)
             {
-                print("set build options");
                 if(!EventSystem.current.IsPointerOverGameObject())
                 {
                     UpdateState(false);
@@ -296,7 +294,6 @@ public class DisplayHandler : MonoBehaviour
             }
             else if (hit.transform.gameObject.tag != "HomeBuilding" && m_bDisplayingUnit)
             {
-                print("reset build options");
                 if (!EventSystem.current.IsPointerOverGameObject())
                 {
                     UpdateState(false);
