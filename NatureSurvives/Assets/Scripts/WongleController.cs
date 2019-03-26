@@ -325,7 +325,7 @@ public class WongleController : MonoBehaviour
 
                 if (Target != null)
                 {
-                    if (Vector3.Distance(transform.position, Target.transform.position) > 3)
+                    if (Vector3.Distance(transform.position, Target.transform.position) > 5)
                     {
                         if (!isGoingHome)
                         {
