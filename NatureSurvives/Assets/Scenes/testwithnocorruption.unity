@@ -22587,7 +22587,7 @@ PrefabInstance:
     - target: {fileID: 7868119282809492095, guid: 948bc0424816ed24c8f65b159a082210,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -52.4
+      value: -167.9
       objectReference: {fileID: 0}
     - target: {fileID: 7868119282809492095, guid: 948bc0424816ed24c8f65b159a082210,
         type: 3}
@@ -22632,7 +22632,7 @@ PrefabInstance:
     - target: {fileID: 7868119282809492095, guid: 948bc0424816ed24c8f65b159a082210,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -38.6
+      value: 95.3
       objectReference: {fileID: 0}
     - target: {fileID: 7868119282809492095, guid: 948bc0424816ed24c8f65b159a082210,
         type: 3}
@@ -29458,6 +29458,27 @@ MonoBehaviour:
   m_goUIObj:
   - {fileID: 1910978950}
   - {fileID: 1404353862}
+--- !u!114 &1582033482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582033480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29421d4cb4888764bbf31c8228a6f57a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CursorTags:
+  - placeholder
+  - Wood
+  - Crystal
+  AvailableCursors:
+  - {fileID: 2800000, guid: 3b64cb220b8f39a40b8959c198c640dd, type: 3}
+  - {fileID: 2800000, guid: 2f89965b94876c54d900d5b3133997f6, type: 3}
+  - {fileID: 2800000, guid: bab62dbbfe0fa8141b97e40a71749a43, type: 3}
+  cursorMode: 0
 --- !u!1001 &1582867522
 PrefabInstance:
   m_ObjectHideFlags: 0
