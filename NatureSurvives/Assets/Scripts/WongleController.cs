@@ -17,6 +17,7 @@ public class WongleController : MonoBehaviour
     public GameObject attackinstance;
     public GameObject WandEnd;
     public GameObject UnitSelect;
+    public GameObject DeadWongle;
     public List<GameObject> Enemies;
     public bool isGoingHome;
     public int inputAmount;
@@ -26,6 +27,7 @@ public class WongleController : MonoBehaviour
     public SelectableUnitComponent.workerType type;
     private Vector3 placeholderPosition;
     public int priority;
+    private bool isDead;
 
     [Header("XP Stuff")]
     public int iOverallLevel;
@@ -51,6 +53,7 @@ public class WongleController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        isDead = false;
         type = gameObject.GetComponent<SelectableUnitComponent>().Type;
         Home = GameObject.FindGameObjectWithTag("HomeBuilding");
         StorageBuilding = Home;
@@ -123,7 +126,12 @@ public class WongleController : MonoBehaviour
         if (WongleHealth <= 0)
         {
             NotificationManager.Instance.SetNewNotification("Wongle Died");
-            Destroy(gameObject);
+            if(isDead == false)
+            {
+                isDead = true;
+                Death();
+            }
+            
         }
 
 
@@ -186,13 +194,18 @@ public class WongleController : MonoBehaviour
                                                                     {
                                                                         if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
                                                                         {
-                                                                            anim.Play("Idle");
+                                                                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("DeathAnimation"))
+                                                                            {
+                                                                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("DeathLoop"))
+                                                                                {
+                                                                                    anim.Play("Idle");
+                                                                                }
+                                                                            }
                                                                         }
                                                                     }
                                                                 }
                                                             }
                                                         }
-
                                                     }
                                                 }
                                             }
@@ -805,5 +818,20 @@ public class WongleController : MonoBehaviour
     {
         hide.isVisible = false;
     }
+
+
+    
+    public void Death()
+    {
+        //instead should instantiate a fake wongle but in the dead animation so that we dont have to remove the dead wongle from every list
+        Instantiate(DeadWongle, transform.position, transform.rotation);
+        
+        Destroy(gameObject);
+    }
+
+    
+
+
+    
 
 }

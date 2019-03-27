@@ -10,7 +10,8 @@ public class EnemyController : MonoBehaviour {
     public List<GameObject> targetsInArea;
     public Animator anim;
     public float m_fEnemyHealth;
-    
+    public GameObject deadFiend;
+
     public float wanderRadius;
     public float wanderTimer;
 
@@ -137,6 +138,7 @@ public class EnemyController : MonoBehaviour {
         if (m_fEnemyHealth <= 0)
         {
             NotificationManager.Instance.SetNewNotification("Test Notification: Enemy is dead");
+            Instantiate(deadFiend, transform.position, transform.rotation);
             Destroy(gameObject);
         }
 
@@ -213,10 +215,14 @@ public class EnemyController : MonoBehaviour {
 
     public void attackEnemy()
     {
-        if (targetsInArea[0] != null)
+        if(targetsInArea.Count > 0)
         {
-            targetsInArea[0].SendMessage("TakeDamage", 4);
+            if (targetsInArea[0] != null)
+            {
+                targetsInArea[0].SendMessage("TakeDamage", 4);
+            }
         }
+        
     }
     
     void HideEnemy()

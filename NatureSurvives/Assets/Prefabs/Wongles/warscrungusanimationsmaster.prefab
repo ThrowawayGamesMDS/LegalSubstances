@@ -287,6 +287,7 @@ MonoBehaviour:
   CrystalCost: 20
   FoodCost: 60
   FogRadius: 0
+  isFlag: 0
 --- !u!114 &1206098110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,6 +358,8 @@ MonoBehaviour:
   attackinstance: {fileID: 0}
   WandEnd: {fileID: 0}
   UnitSelect: {fileID: 0}
+  DeadWongle: {fileID: 6884458685243422984, guid: 6cec8017bcff95441b6f3b74f0ea95b8,
+    type: 3}
   Enemies: []
   isGoingHome: 0
   inputAmount: 0
@@ -364,6 +367,7 @@ MonoBehaviour:
   canAttack: 0
   WongleHealth: 100
   type: 2
+  priority: 0
   iOverallLevel: 0
   iWoodCutLevel: 0
   iFishingLevel: 0
@@ -845,11 +849,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1206098108}
     m_Modifications:
-    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
-        type: 3}
-      propertyPath: m_Name
-      value: Health Bar
-      objectReference: {fileID: 0}
     - target: {fileID: 5745946300523346767, guid: eead958fb4f21ee44a41791f7161561b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -954,6 +953,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
+        type: 3}
+      propertyPath: m_Name
+      value: Health Bar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eead958fb4f21ee44a41791f7161561b, type: 3}

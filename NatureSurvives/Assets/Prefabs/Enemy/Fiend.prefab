@@ -867,6 +867,8 @@ MonoBehaviour:
   targetsInArea: []
   anim: {fileID: 95924506539732818}
   m_fEnemyHealth: 100
+  deadFiend: {fileID: 1389796123583651978, guid: d352570cbf113414b9b4335397938be5,
+    type: 3}
   wanderRadius: 30
   wanderTimer: 3
 --- !u!135 &135847557775760700
@@ -1090,19 +1092,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4919071539283833263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8471191115225879458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32cfa3466b550e14b9097bc2d5bce812, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 0}
 --- !u!1 &6162348109193974541
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,6 +1196,19 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &4919071539283833263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8471191115225879458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32cfa3466b550e14b9097bc2d5bce812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
 --- !u!1001 &4193419530175916268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1214,11 +1216,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4636077249463338}
     m_Modifications:
-    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
-        type: 3}
-      propertyPath: m_Name
-      value: Health Bar
-      objectReference: {fileID: 0}
     - target: {fileID: 5745946300523346767, guid: eead958fb4f21ee44a41791f7161561b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1333,6 +1330,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
+        type: 3}
+      propertyPath: m_Name
+      value: Health Bar
       objectReference: {fileID: 0}
     - target: {fileID: 5745946300395319952, guid: eead958fb4f21ee44a41791f7161561b,
         type: 3}

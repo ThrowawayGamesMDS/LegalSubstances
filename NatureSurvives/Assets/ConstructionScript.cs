@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ConstructionScript : MonoBehaviour
 {
@@ -9,8 +10,14 @@ public class ConstructionScript : MonoBehaviour
     public GameObject worker;
     public GameObject m_Building;
 
+    [Header("Progress Bar")]
+    public Transform ProgressBarImage;
+    
     private void Update()
     {
+        ProgressBarImage.transform.localScale = new Vector3(m_fCurrentCompletion / m_fTimeToComplete, 1, 1);
+
+
         if (GameObject.FindGameObjectWithTag("CheatHandler").gameObject != null)
         {
             switch (GameObject.FindGameObjectWithTag("CheatHandler").GetComponent<CheatHandler>().m_bDisabledBuildTimer)
