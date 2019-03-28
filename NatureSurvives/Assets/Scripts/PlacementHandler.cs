@@ -186,6 +186,7 @@ public class PlacementHandler : MonoBehaviour
 
                     if (m_goPossibleObjects[m_iCurrentlyPlacing].tag != "Construction")
                     {
+                        NotificationManager.Instance.SetNewNotification("Test Notification: Building is built.");
                         GameObject m_fogOfWar = GameObject.FindGameObjectWithTag("Fog");
                         if (m_fogOfWar)
                         {

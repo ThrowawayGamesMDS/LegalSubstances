@@ -19,10 +19,11 @@ public class DayNight : MonoBehaviour {
     [Header("UI")]
     [SerializeField]
     public GameObject timerUI;
+    public GameObject roundUI;
 
-    private Image healthBarImage;
-    private float startHealth;
-    private Transform healthBarCanvasTransform;   
+    private Image roundImage;
+    //private float startHealth;
+    //private Transform healthBarCanvasTransform;   
 
     public float sunAngleDay;
     public float sunAngleNight;
@@ -50,7 +51,15 @@ public class DayNight : MonoBehaviour {
         maxSunTransformPositionY = sunTransformPositionY;
 
         timerUI = FindObjectOfType<Slider>().gameObject;
-        //GameObject.find
+        roundUI = GameObject.Find("RoundUI");
+        
+
+
+        //healthBarCanvasTransform = transform.Find("Health Bar");
+
+        roundImage = roundUI.transform.GetChild(0).GetComponent<Image>();
+        //healthBarCanvasGameObject = healthBarCanvasTransform.gameObject;
+        //healthBarCanvasGameObject.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -92,6 +101,8 @@ public class DayNight : MonoBehaviour {
 
         timerUI.GetComponent<Slider>().value = -1 * euler.x;
 
+        roundImage.fillAmount = (-1 * euler.x + 85 )/ 170;
+
         if (sun.transform.position.y < 0)
         {
             
@@ -103,12 +114,12 @@ public class DayNight : MonoBehaviour {
                 counted = !counted;
                 NotificationManager.Instance.SetNewNotification("Test Notification: Night time, enemy is coming");
 
-                print("NIGHT TIME");
-                print("Transform Rotation X = " + transform.rotation.x);
+                //print("NIGHT TIME");
+                //print("Transform Rotation X = " + transform.rotation.x);
 
-                print("Transform Rotation X = " + angle);
-                print("Transform Rotation Euler X = " + euler.x);
-                print("Transform Rotation localEuler X = " + LocalEuler.x);
+                //print("Transform Rotation X = " + angle);
+                //print("Transform Rotation Euler X = " + euler.x);
+                //print("Transform Rotation localEuler X = " + LocalEuler.x);
 
             }
         }
@@ -120,12 +131,12 @@ public class DayNight : MonoBehaviour {
                 playeddays++;
                 counted = !counted;
 
-                print("DAY TIME");
-                print("Transform Rotation X = " + transform.rotation.x);
+                //print("DAY TIME");
+                //print("Transform Rotation X = " + transform.rotation.x);
 
-                print("Transform Rotation X = " + angle);
-                print("Transform Rotation Euler X = " + euler.x);
-                print("Transform Rotation localEuler X = " + LocalEuler.x);
+                //print("Transform Rotation X = " + angle);
+                //print("Transform Rotation Euler X = " + euler.x);
+                //print("Transform Rotation localEuler X = " + LocalEuler.x);
 
             }
             isDay = true;
