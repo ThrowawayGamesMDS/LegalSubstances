@@ -103,6 +103,10 @@ public class WongleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Target == null)
+        {
+            Target = null;
+        }
         if(agent.velocity.magnitude <= 0)
         {
             agent.avoidancePriority = 99;
