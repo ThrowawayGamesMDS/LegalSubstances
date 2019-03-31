@@ -20,107 +20,37 @@ public class DayNight : MonoBehaviour {
     [SerializeField]
     public GameObject timerUI;
     public GameObject roundUI;
-
     private Image roundImage;
-    //private float startHealth;
-    //private Transform healthBarCanvasTransform;   
-
-    public float sunAngleDay;
-    public float sunAngleNight;
-    public float sunTransformPositionY;
-    public float maxSunTransformPositionY;
-
-    public float angle = 0.0f;
-    public Vector3 axis;
     public Vector3 euler;
-    public Vector3 LocalEuler;
-
-    //daytime = 10
-    //night time  = 5
-
 
     // Use this for initialization
     void Start () {
+
         DaysPlayed = 0;
         counted = false;
         daytimer = Mathf.RoundToInt(m_fDayTime * 60);
         nighttimer = Mathf.RoundToInt(m_fNightTime * 60);
 
-        sunTransformPositionY = sun.transform.position.y;
-        //print("sunTransformPositionY = " + sunTransformPositionY);
-        maxSunTransformPositionY = sunTransformPositionY;
-
         timerUI = FindObjectOfType<Slider>().gameObject;
-        roundUI = GameObject.Find("RoundUI");
-        
+        timerUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load("sunindicator", typeof(Sprite)) as Sprite;
 
-
-        //healthBarCanvasTransform = transform.Find("Health Bar");
-
+        roundUI = GameObject.Find("RoundUI");      
         roundImage = roundUI.transform.GetChild(0).GetComponent<Image>();
-        //healthBarCanvasGameObject = healthBarCanvasTransform.gameObject;
-        //healthBarCanvasGameObject.SetActive(false);
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        transform.rotation.ToAngleAxis(out angle, out axis);
-        euler = transform.eulerAngles;
-        LocalEuler = transform.localEulerAngles;
-
-        sunTransformPositionY = sun.transform.position.y;
-
-        
-
-        if (maxSunTransformPositionY < sun.transform.position.y)
-        {
-            maxSunTransformPositionY = sunTransformPositionY;
-            
-        }
-        else
-        {
-            //print("maxSunTransformPositionY = " + maxSunTransformPositionY);
-            //print("maxSunTransformPositionX = " + sun.transform.position.x);
-            //print("maxSunTransformPositionZ = " + sun.transform.position.z);
-            //print("maxSunTransformRotationx = " + sun.transform.rotation.x);
-
-            if (maxSunTransformPositionY > 0)
-            {
-                sunTransformPositionY = 2 * maxSunTransformPositionY - sun.transform.position.y;
-            }
-            
-        }
-
-        float sliderValue = -1 * euler.x;
-
-        if (euler.x > 90)
-        {
-            euler.x = euler.x - 360;
-        }
-
-        timerUI.GetComponent<Slider>().value = -1 * euler.x;
-
-        roundImage.fillAmount = (-1 * euler.x + 85 )/ 170;
+        UserInterface();
 
         if (sun.transform.position.y < 0)
         {
-            
-
             isDay = false;
-            //sun.SetActive(false);
+
             if (counted)
             {                
                 counted = !counted;
                 NotificationManager.Instance.SetNewNotification("Test Notification: Night time, enemy is coming");
-
-                //print("NIGHT TIME");
-                //print("Transform Rotation X = " + transform.rotation.x);
-
-                //print("Transform Rotation X = " + angle);
-                //print("Transform Rotation Euler X = " + euler.x);
-                //print("Transform Rotation localEuler X = " + LocalEuler.x);
-
             }
         }
         else
@@ -130,32 +60,17 @@ public class DayNight : MonoBehaviour {
             {
                 playeddays++;
                 counted = !counted;
-
-                //print("DAY TIME");
-                //print("Transform Rotation X = " + transform.rotation.x);
-
-                //print("Transform Rotation X = " + angle);
-                //print("Transform Rotation Euler X = " + euler.x);
-                //print("Transform Rotation localEuler X = " + LocalEuler.x);
-
             }
             isDay = true;
-            //sun.SetActive(true);
-
-            
         }
         
         if(isDay)
         {
-            //transform.Rotate(((Time.deltaTime) / daytimer), 0, 0);
             transform.Rotate(((180 * Time.deltaTime) / daytimer), 0, 0);
-            sunAngleDay = (180 * Time.deltaTime) / daytimer;
         }
         if(!isDay)
         {
-            //transform.Rotate(((Time.deltaTime) / nighttimer), 0, 0);
             transform.Rotate(((180 * Time.deltaTime) / nighttimer), 0, 0);
-            sunAngleDay = (180 * Time.deltaTime) / nighttimer;
         }
         
         b_day = isDay;
@@ -171,9 +86,46 @@ public class DayNight : MonoBehaviour {
         //InvokeRepeating("invokeroony", 0.1f, 40.0f);
     }
 
-
     void invokeroony()
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<EnemySpawner>().isinvoked = false;
     }
+
+    void UserInterface()
+    {
+        euler = transform.eulerAngles;
+
+        float sliderValue = -1 * euler.x;
+
+        if (euler.x > 90)
+        {
+            euler.x = euler.x - 360;
+        }
+
+        timerUI.GetComponent<Slider>().value = -1 * euler.x;
+
+        roundImage.fillAmount = (-1 * euler.x + 85) / 170;
+
+
+        if ((-1 * euler.x) >= 85)
+        {
+            timerUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load("moonindicator", typeof(Sprite)) as Sprite;
+
+        }
+        if ((-1 * euler.x) <= -85)
+        {
+            timerUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load("sunindicator", typeof(Sprite)) as Sprite;
+
+        }
+
+        //if ((-1 * euler.x) >= 75)
+        //{
+        //    NotificationManager.Instance.SetNewNotification("Test Notification: Night time is near");
+        //}
+        //if ((-1 * euler.x) <= -75)
+        //{
+        //    NotificationManager.Instance.SetNewNotification("Test Notification: Day time is near");
+        //}
+    }
+
 }
