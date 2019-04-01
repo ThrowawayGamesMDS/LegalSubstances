@@ -64,7 +64,7 @@ MonoBehaviour:
   WoodHealth: 100
   yield: 10
   worker: {fileID: 0}
-  trunk: {fileID: 0}
+  trunk: {fileID: 100000, guid: a72042e15c4ada241bcfae9494f84662, type: 3}
   m_HasBeenMined: 0
 --- !u!54 &125511019051662835
 Rigidbody:

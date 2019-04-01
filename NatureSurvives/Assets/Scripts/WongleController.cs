@@ -433,7 +433,7 @@ public class WongleController : MonoBehaviour
                                 }
                                 HouseController.WoodAmount += Mathf.RoundToInt(outputAmount);
                                 outputAmount = 0;
-                                iWoodCutLevel++;
+                                iTreesCut++;
                                 isGoingHome = !isGoingHome;
                             }
                         }
