@@ -150,14 +150,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5595193795687349963}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 20, y: 0, z: 20}
   m_LocalScale: {x: 9, y: 9, z: 9}
   m_Children:
   - {fileID: 5595193795096912267}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &5595193795687349960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,11 +194,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5595193795096912267}
     m_Modifications:
-    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
-        type: 3}
-      propertyPath: m_Name
-      value: Health Bar
-      objectReference: {fileID: 0}
     - target: {fileID: 5745946300523346767, guid: eead958fb4f21ee44a41791f7161561b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -318,6 +313,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.007524268
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
+        type: 3}
+      propertyPath: m_Name
+      value: Health Bar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eead958fb4f21ee44a41791f7161561b, type: 3}
