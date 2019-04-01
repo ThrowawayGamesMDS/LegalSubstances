@@ -31,7 +31,7 @@ public class DisplayHandler : MonoBehaviour
     private List<string> m_lsBaseText;
     private Text_Tags m_ttCurrentTag;
     private GameObject m_goTextGroup;
-    private bool m_bDisplayingText;
+    public bool m_bDisplayingText;
     private List<int> m_liTextMemory; //for update if certain stats have changed when a user is say watching a wongle worker
     private GameObject m_goSelected; // this will be replaced by the controlhandler's selectd obj.
 
@@ -312,6 +312,31 @@ public class DisplayHandler : MonoBehaviour
         return false;
     }
 
+    public void ResetState(bool _bWorker)
+    {
+        switch (_bWorker)
+        {
+            case true:
+                {
+                    if (m_bDisplayingText)
+                    {
+                        if (m_goTextGroup.GetComponent<CanvasGroup>().alpha != 0)
+                            m_goTextGroup.GetComponent<CanvasGroup>().alpha = 0;
+
+                        m_bDisplayingText = false;
+                    }
+                    if (m_bDisplayingBuildings)
+                    {
+                        m_bDisplayingBuildings = false;
+                        m_goUIObj[1].SetActive(false); // m_goUiOBJ[1] = BuildOptions 
+                    }
+                    break;
+                }
+            default:
+                break;
+        }
+    }
+
     public void UpdateState(bool _bWorker)
     {
         if (m_bDisplayingText)
@@ -380,6 +405,11 @@ public class DisplayHandler : MonoBehaviour
     {
         if (m_bDisplayingText)
             TextUpdateHandle();
+        else 
+        {
+            if (m_goTextGroup.GetComponent<CanvasGroup>().alpha != 0)
+                m_goTextGroup.GetComponent<CanvasGroup>().alpha = 0;
+        }
 
         if (Input.GetMouseButtonUp(0))
         {

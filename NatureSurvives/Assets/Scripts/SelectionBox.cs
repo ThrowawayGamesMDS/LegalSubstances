@@ -209,7 +209,6 @@ public class SelectionBox : MonoBehaviour {
                             Destroy(unit.GetComponent<SelectableUnitComponent>().selectionCircle.gameObject);
                             unit.GetComponent<SelectableUnitComponent>().selectionCircle = null;
                             unit.isSelected = false;
-                            print("deselect");
                             _goUpdateList.Add(_npc);
                             m_lCtrlUnits.RemoveAt(_iBundyCount);
                             _iBundyCount++;
@@ -217,6 +216,10 @@ public class SelectionBox : MonoBehaviour {
                             GameObject healthBarCanvasGameObject;
                             healthBarCanvasGameObject = unit.transform.Find("Health Bar").gameObject;
                             healthBarCanvasGameObject.SetActive(false);
+
+
+                            //if (DisplayHandler.m_sDHControl.m_bDisplayingText)
+                            DisplayHandler.m_sDHControl.ResetState(true);
 
                             return hit;
                         }
@@ -244,6 +247,7 @@ public class SelectionBox : MonoBehaviour {
 
     private void RemoveSelectionCircleFromObjects()
     {
+        bool _bResetState = false;
         foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
         {
             selectableObject.isSelected = false;
@@ -255,6 +259,12 @@ public class SelectionBox : MonoBehaviour {
                 GameObject healthBarCanvasGameObject;
                 healthBarCanvasGameObject = selectableObject.transform.Find("Health Bar").gameObject;
                 healthBarCanvasGameObject.SetActive(false);
+                if (!_bResetState && selectableObject.GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Worker)
+                {
+                    //if (DisplayHandler.m_sDHControl.m_bDisplayingText)
+                        DisplayHandler.m_sDHControl.ResetState(true);
+                    _bResetState = true;
+                }
             }
         }
     }
@@ -477,6 +487,7 @@ public class SelectionBox : MonoBehaviour {
         //if (Input.GetMouseButtonDown(0) && PlacementHandler.m_sPHControl.m_ePlayerState != PlacementHandler.PlayerStates.PLACING)
         if (Input.GetMouseButtonDown(0) )
         {
+            bool _bResetState = false;
             if (!m_bUserLClicked)
             {
                 switch (m_bCtrlSelectUnits)
@@ -497,13 +508,19 @@ public class SelectionBox : MonoBehaviour {
                                             GameObject healthBarCanvasGameObject;
                                             healthBarCanvasGameObject = unit.transform.Find("Health Bar").gameObject;
                                             healthBarCanvasGameObject.SetActive(false);
+
+                                            if (!_bResetState && unit.GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Worker)
+                                            {
+                                                //if (DisplayHandler.m_sDHControl.m_bDisplayingText)
+                                                DisplayHandler.m_sDHControl.ResetState(true);
+                                                _bResetState = true;
+                                            }
                                         }
                                     }
                                     m_lCtrlUnits.Clear();
                                 }
                                 isSelecting = true;
                                 mousePosition1 = Input.mousePosition;
-
                                 foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
                                 {
                                     if (selectableObject.selectionCircle != null)
@@ -516,6 +533,13 @@ public class SelectionBox : MonoBehaviour {
                                         GameObject healthBarCanvasGameObject;
                                         healthBarCanvasGameObject = selectableObject.transform.Find("Health Bar").gameObject;
                                         healthBarCanvasGameObject.SetActive(false);
+                                       /* if (!_bResetState && selectableObject.GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Worker)
+                                        {
+                                            //if (DisplayHandler.m_sDHControl.m_bDisplayingText)
+                                            DisplayHandler.m_sDHControl.ResetState(true);
+                                            print("resetting state4");
+                                            _bResetState = true;
+                                        }*/
                                     }
                                 }
                             }
@@ -537,6 +561,12 @@ public class SelectionBox : MonoBehaviour {
                                         GameObject healthBarCanvasGameObject;
                                         healthBarCanvasGameObject = selectableObject.transform.Find("Health Bar").gameObject;
                                         healthBarCanvasGameObject.SetActive(false);
+                                        if (!_bResetState && selectableObject.GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Worker)
+                                        {
+                                            //if (DisplayHandler.m_sDHControl.m_bDisplayingText)
+                                            DisplayHandler.m_sDHControl.ResetState(true);
+                                            _bResetState = true;
+                                        }
                                     }
                                 }
                             }
@@ -638,6 +668,12 @@ public class SelectionBox : MonoBehaviour {
                                     GameObject healthBarCanvasGameObject;
                                     healthBarCanvasGameObject = hit.transform.Find("Health Bar").gameObject;
                                     healthBarCanvasGameObject.SetActive(false);
+
+                                    if ( hit.transform.gameObject.GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Worker)
+                                    {
+                                        //if (DisplayHandler.m_sDHControl.m_bDisplayingText)
+                                        DisplayHandler.m_sDHControl.ResetState(true);
+                                    }
                                 }
                             }
                             print("maybe do deslection here");
@@ -692,6 +728,7 @@ public class SelectionBox : MonoBehaviour {
         // Highlight all objects within the selection box
         if (isSelecting)
          {
+            bool _bResetState = false;
             foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
             {
                 if (IsWithinSelectionBounds(selectableObject.gameObject))
@@ -714,6 +751,8 @@ public class SelectionBox : MonoBehaviour {
                                 m_bPlayerSelected = true;
                                 DisplayHandler.m_sDHControl.UpdateAndDisplayWongleWorkerText(selectableObject.gameObject); // remove this if we create a total/average function as per below
                             }
+
+
                             /*else // player already selected
                             {
                                 //DisplayHandler.m_sDHControl // create a control to gather total number of resources gathered and/or the average level of the wongles selected
@@ -736,6 +775,15 @@ public class SelectionBox : MonoBehaviour {
                         GameObject healthBarCanvasGameObject;
                         healthBarCanvasGameObject = selectableObject.transform.Find("Health Bar").gameObject;
                         healthBarCanvasGameObject.SetActive(false);
+                        DisplayHandler.m_sDHControl.ResetState(true);
+                        m_bPlayerSelected = false;
+                       /* if (!_bResetState)
+                        {
+                            //if (DisplayHandler.m_sDHControl.m_bDisplayingText)
+                            DisplayHandler.m_sDHControl.ResetState(true);
+                            print("resetting state");
+                            _bResetState = true;
+                        }*/
                     }
                 }
             }
