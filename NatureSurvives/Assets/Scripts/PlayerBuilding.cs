@@ -47,7 +47,21 @@ public class PlayerBuilding : MonoBehaviour {
 
         if (healthBarImage.fillAmount < 1.0f && !healthBarCanvasGameObject.activeSelf)
         {
+            healthBarImage.GetComponent<Image>().color = Color.green;
             healthBarCanvasGameObject.SetActive(true);
+        }
+
+        if (healthBarImage.fillAmount < 0.5)
+        {
+            if (healthBarImage.GetComponent<Image>().color == Color.green)
+            {
+                healthBarImage.GetComponent<Image>().color = Color.red;
+            }
+            else
+            {
+                healthBarImage.GetComponent<Image>().color = Color.green;
+            }
+
         }
     }
 }

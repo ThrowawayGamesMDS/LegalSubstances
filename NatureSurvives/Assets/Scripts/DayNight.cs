@@ -31,11 +31,14 @@ public class DayNight : MonoBehaviour {
         daytimer = Mathf.RoundToInt(m_fDayTime * 60);
         nighttimer = Mathf.RoundToInt(m_fNightTime * 60);
 
-        timerUI = FindObjectOfType<Slider>().gameObject;
-        timerUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load("sunindicator", typeof(Sprite)) as Sprite;
+        roundUI = GameObject.Find("RoundUI");
+        //roundImage = roundUI.transform.GetChild(0).GetComponent<Image>();
+        roundImage = roundUI.GetComponent<Image>();
 
-        roundUI = GameObject.Find("RoundUI");      
-        roundImage = roundUI.transform.GetChild(0).GetComponent<Image>();
+        roundUI.transform.SetSiblingIndex(1);
+
+        //timerUI = FindObjectOfType<Slider>().gameObject;
+        //timerUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load("sunindicator", typeof(Sprite)) as Sprite;
     }
 	
 	// Update is called once per frame
@@ -54,8 +57,7 @@ public class DayNight : MonoBehaviour {
             }
         }
         else
-        {
-            
+        {            
             if (!counted)
             {
                 playeddays++;
@@ -102,20 +104,32 @@ public class DayNight : MonoBehaviour {
             euler.x = euler.x - 360;
         }
 
-        timerUI.GetComponent<Slider>().value = -1 * euler.x;
+        //timerUI.GetComponent<Slider>().value = -1 * euler.x;
 
-        roundImage.fillAmount = (-1 * euler.x + 85) / 170;
+        if (isDay)
+        {
+
+            roundImage.fillAmount = (-1 * euler.x + 85) / 170;
+        }
+        else
+        {
+
+            roundImage.fillAmount =  1 - ((-1 * euler.x + 85) / 170);
+        }    
 
 
         if ((-1 * euler.x) >= 85)
         {
-            timerUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load("moonindicator", typeof(Sprite)) as Sprite;
+            //timerUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load("moonindicator", typeof(Sprite)) as Sprite;
+            roundUI.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load("moonindicator", typeof(Sprite)) as Sprite;
+            roundUI.GetComponent<Image>().color = Color.blue;
 
         }
         if ((-1 * euler.x) <= -85)
         {
-            timerUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load("sunindicator", typeof(Sprite)) as Sprite;
-
+            //timerUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load("sunindicator", typeof(Sprite)) as Sprite;
+            roundUI.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load("sunindicator", typeof(Sprite)) as Sprite;
+            roundUI.GetComponent<Image>().color = Color.yellow;
         }
 
         //if ((-1 * euler.x) >= 75)

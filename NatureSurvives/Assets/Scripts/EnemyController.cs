@@ -209,8 +209,22 @@ public class EnemyController : MonoBehaviour {
 
         if (healthBarImage.fillAmount < 1.0f && !healthBarCanvasGameObject.activeSelf)
         {
+            healthBarImage.GetComponent<Image>().color = Color.red;
             healthBarCanvasGameObject.SetActive(true);
         }
+
+        //if (healthBarImage.fillAmount < 0.5)
+        //{
+        //    if (healthBarImage.GetComponent<Image>().color == Color.red)
+        //    {
+        //        healthBarImage.GetComponent<Image>().color = Color.black;
+        //    }
+        //    else
+        //    {
+        //        healthBarImage.GetComponent<Image>().color = Color.red;
+        //    }
+
+        //}
     }
 
     public void attackEnemy()
