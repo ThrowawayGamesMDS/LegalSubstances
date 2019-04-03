@@ -7,6 +7,6 @@ public class WongleHouse : MonoBehaviour
     void Start()
     {
         HomeSpawning home = GameObject.FindGameObjectWithTag("HomeBuilding").GetComponent<HomeSpawning>();
-        home.iMaximumWongleCount += 6;
+        home.iMaximumWongleCount += 5;
     }
 }

@@ -13,6 +13,7 @@ public class PlayerBuilding : MonoBehaviour {
     private float startHealth;
     private Transform healthBarCanvasTransform;
     public GameObject healthBarCanvasGameObject;
+    public bool isHouse;
 
     // Use this for initialization
     void Start ()
@@ -34,7 +35,11 @@ public class PlayerBuilding : MonoBehaviour {
                 SceneManager.LoadScene(0);
             }
             NotificationManager.Instance.SetNewNotification(gameObject.name + " destroyed");
-
+            if (isHouse)
+            {
+                HomeSpawning home = GameObject.FindGameObjectWithTag("HomeBuilding").GetComponent<HomeSpawning>();
+                home.iMaximumWongleCount -= 5;
+            }
             Destroy(gameObject);
         }
     }
