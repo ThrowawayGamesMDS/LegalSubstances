@@ -186,7 +186,7 @@ public class PlacementHandler : MonoBehaviour
 
                     if (m_goPossibleObjects[m_iCurrentlyPlacing].tag != "Construction")
                     {
-                        NotificationManager.Instance.SetNewNotification("Test Notification: Building is built.");
+                        NotificationManager.Instance.SetNewNotification("Building is built.");
                         GameObject m_fogOfWar = GameObject.FindGameObjectWithTag("Fog");
                         if (m_fogOfWar)
                         {
@@ -275,22 +275,22 @@ public class PlacementHandler : MonoBehaviour
                             else
                             {
                                 // gameObject.GetComponent<AudioHandler>().PlaySound(AudioHandler.m_soundTypes.FAILURE);
-                                NotificationManager.Instance.SetNewNotification("Test notification: corrupted grid");
+                                NotificationManager.Instance.SetNewNotification("corrupted grid");
                             }
                         }
                         else
                         {
-                            NotificationManager.Instance.SetNewNotification("Test notification: Can't place, not enough crystal");
+                            NotificationManager.Instance.SetNewNotification("Can't place, not enough crystal");
                         }
                     }
                     else
                     {
-                        NotificationManager.Instance.SetNewNotification("Test notification: Can't place, not enough wood");
+                        NotificationManager.Instance.SetNewNotification("Can't place, not enough wood");
                     }
                 }
                 else
                 {
-                    NotificationManager.Instance.SetNewNotification("Test notification: Can't place, not enough food");
+                    NotificationManager.Instance.SetNewNotification("Can't place, not enough food");
                 }
             }
 
@@ -428,7 +428,7 @@ public class PlacementHandler : MonoBehaviour
         else
         {
             // gameObject.GetComponent<AudioHandler>().PlaySound("PurchaseBad");
-            NotificationManager.Instance.SetNewNotification("Test notification: You cannot purchase. Check your resources");
+            NotificationManager.Instance.SetNewNotification("You cannot purchase. Check your resources");
         }
     }
 

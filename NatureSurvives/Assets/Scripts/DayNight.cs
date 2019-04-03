@@ -53,7 +53,7 @@ public class DayNight : MonoBehaviour {
             if (counted)
             {                
                 counted = !counted;
-                NotificationManager.Instance.SetNewNotification("Test Notification: Night time, enemy is coming");
+                NotificationManager.Instance.SetNewNotification("Night time, enemy is coming");
             }
         }
         else
@@ -134,11 +134,11 @@ public class DayNight : MonoBehaviour {
 
         //if ((-1 * euler.x) >= 75)
         //{
-        //    NotificationManager.Instance.SetNewNotification("Test Notification: Night time is near");
+        //    NotificationManager.Instance.SetNewNotification("Night time is near");
         //}
         //if ((-1 * euler.x) <= -75)
         //{
-        //    NotificationManager.Instance.SetNewNotification("Test Notification: Day time is near");
+        //    NotificationManager.Instance.SetNewNotification("Day time is near");
         //}
     }
 
