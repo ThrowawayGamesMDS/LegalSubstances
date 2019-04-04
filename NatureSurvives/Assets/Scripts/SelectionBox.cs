@@ -417,6 +417,7 @@ public class SelectionBox : MonoBehaviour {
 
     void Update()
     {
+
         // Wee c++ style timer handle for double click select - coroutine was fucking out mega
         if (m_fUserClickedTime < Time.time && m_bUserLClicked == true)
         {
@@ -432,6 +433,48 @@ public class SelectionBox : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.RightControl))
         {
             m_bCtrlSelectUnits = false;
+        }
+
+        if (Input.GetKeyUp(KeyCode.I)) // iter through idle workers
+        {
+            /***
+             * 
+             * 
+             * Will only select the first one always, need to add a bool to the wonglecontroller to say that this one has been selected, or we could alternatively check the 
+             * selectionCircle to see whether or not it is null.. 
+             * 
+             * Added that ^ but theres a weird bug on third select from start which will double select. need to fix later
+             * 
+             * 
+             ***/
+            bool _bIsDisplaying = false;
+            GameObject[] _iWorkerGroup = new GameObject[HomeSpawning.m_sHomeSpawningControl.iCurrentWongleCount];
+            _iWorkerGroup = GameObject.FindGameObjectsWithTag("Wongle");
+                //= GameObject.FindGameObjectsWithTag
+            foreach (var unit in _iWorkerGroup)
+            {
+                if (unit.GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Worker)
+                {
+                    if (unit.GetComponent<WongleController>().agent.velocity.magnitude == 0)
+                    {
+                        if (unit.GetComponent<WongleController>().anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") && !_bIsDisplaying && unit.GetComponent<SelectableUnitComponent>().selectionCircle == null) //becuz there isn't a state handle for wongles... so have to check by anim
+                        {
+                            Vector3 _newPos = new Vector3(unit.transform.position.x, Camera.main.transform.position.y, unit.transform.position.z - (Camera.main.transform.forward.magnitude * 50));
+                            gameObject.transform.position = _newPos;
+                            unit.GetComponent<SelectableUnitComponent>().selectionCircle = Instantiate(selectionCirclePrefab);
+                            unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.SetParent(unit.transform, false);
+                            unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
+                            _bIsDisplaying = true;
+                        }
+                        else if (unit.GetComponent<SelectableUnitComponent>().selectionCircle != null )
+                        {
+                            Destroy(unit.GetComponent<SelectableUnitComponent>().selectionCircle.gameObject);
+                            unit.GetComponent<SelectableUnitComponent>().selectionCircle = null;
+                            _bIsDisplaying = false;
+                        }
+                    }
+                }
+            }
         }
 
         if (Input.GetKeyUp(KeyCode.Alpha1))
