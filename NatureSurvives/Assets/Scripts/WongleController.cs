@@ -50,6 +50,8 @@ public class WongleController : MonoBehaviour
     private Transform healthBarCanvasTransform;
     public GameObject healthBarCanvasGameObject;
 
+    [Header("Idle Selection Bool")]
+    public bool m_bIdleSelected;
     // Use this for initialization
     void Start()
     {
@@ -59,6 +61,7 @@ public class WongleController : MonoBehaviour
         StorageBuilding = Home;
         isGoingHome = true;
         canAttack = true;
+        m_bIdleSelected = false;
         startHealth = WongleHealth;
 
         healthBarCanvasTransform = transform.Find("Health Bar");
