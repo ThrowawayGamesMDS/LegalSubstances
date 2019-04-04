@@ -41,11 +41,14 @@ public class checkposofclick : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             //print("yes");
             print((xPositionCameraCoordinates) + ", " + (yPositionCameraCoordinates));
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if(!GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>().isSelecting)
             {
-                player.position = new Vector3((((xPositionCameraCoordinates)/165) * 250), player.position.y, (((yPositionCameraCoordinates)/ 165) *250));
-
+                if (Input.GetKey(KeyCode.Mouse0))
+                {
+                    player.position = new Vector3((((xPositionCameraCoordinates) / 165) * 250), player.position.y, (((yPositionCameraCoordinates) / 165) * 250));
+                }
             }
+
             if(Input.GetKeyDown(KeyCode.Mouse1))
             {
                 int _iTotalWongles = GameObject.FindGameObjectWithTag("HomeBuilding").GetComponent<HomeSpawning>().iCurrentWongleCount;

@@ -79,11 +79,12 @@ public static class Utils
 
 public class SelectionBox : MonoBehaviour {
 
-    bool isSelecting = false;
+    public bool isSelecting = false;
     public bool m_bCtrlSelectUnits = false;
     public List <GameObject> m_lCtrlUnits;
     Vector3 mousePosition1;
     public Camera camera;
+    public checkposofclick hover;
     public GameObject[] m_goSelectOBJ; // 0 = DEFAULT, 1 = NPC, 2 = RESOURCE
     public GameObject selectionCirclePrefab;
 
@@ -487,29 +488,83 @@ public class SelectionBox : MonoBehaviour {
         //if (Input.GetMouseButtonDown(0) && PlacementHandler.m_sPHControl.m_ePlayerState != PlacementHandler.PlayerStates.PLACING)
         if (Input.GetMouseButtonDown(0) )
         {
-            bool _bResetState = false;
-            if (!m_bUserLClicked)
+            if(!hover.isHovered)
             {
-                switch (m_bCtrlSelectUnits)
+                bool _bResetState = false;
+                if (!m_bUserLClicked)
                 {
-                    case false:
-                        {
-                            //if (EventSystem.current.IsPointerOverGameObject(m_iUserID) == false)
+                    switch (m_bCtrlSelectUnits)
+                    {
+                        case false:
                             {
-                                if (m_lCtrlUnits.Count > 0)
+                                //if (EventSystem.current.IsPointerOverGameObject(m_iUserID) == false)
                                 {
-                                    foreach (var unit in m_lCtrlUnits)
+                                    if (m_lCtrlUnits.Count > 0)
                                     {
-                                        if (unit.GetComponent<SelectableUnitComponent>().selectionCircle != null)
+                                        foreach (var unit in m_lCtrlUnits)
                                         {
-                                            Destroy(unit.GetComponent<SelectableUnitComponent>().selectionCircle.gameObject);
-                                            unit.GetComponent<SelectableUnitComponent>().selectionCircle = null;
+                                            if (unit.GetComponent<SelectableUnitComponent>().selectionCircle != null)
+                                            {
+                                                Destroy(unit.GetComponent<SelectableUnitComponent>().selectionCircle.gameObject);
+                                                unit.GetComponent<SelectableUnitComponent>().selectionCircle = null;
+
+                                                GameObject healthBarCanvasGameObject;
+                                                healthBarCanvasGameObject = unit.transform.Find("Health Bar").gameObject;
+                                                healthBarCanvasGameObject.SetActive(false);
+
+                                                if (!_bResetState && unit.GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Worker)
+                                                {
+                                                    //if (DisplayHandler.m_sDHControl.m_bDisplayingText)
+                                                    DisplayHandler.m_sDHControl.ResetState(true);
+                                                    _bResetState = true;
+                                                }
+                                            }
+                                        }
+                                        m_lCtrlUnits.Clear();
+                                    }
+                                    isSelecting = true;
+                                    mousePosition1 = Input.mousePosition;
+                                    foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
+                                    {
+                                        if (selectableObject.selectionCircle != null)
+                                        {
+                                            print(selectableObject.name);
+                                            print(selectableObject.transform.position);
+                                            Destroy(selectableObject.selectionCircle.gameObject);
+                                            selectableObject.selectionCircle = null;
 
                                             GameObject healthBarCanvasGameObject;
-                                            healthBarCanvasGameObject = unit.transform.Find("Health Bar").gameObject;
+                                            healthBarCanvasGameObject = selectableObject.transform.Find("Health Bar").gameObject;
                                             healthBarCanvasGameObject.SetActive(false);
+                                            /* if (!_bResetState && selectableObject.GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Worker)
+                                             {
+                                                 //if (DisplayHandler.m_sDHControl.m_bDisplayingText)
+                                                 DisplayHandler.m_sDHControl.ResetState(true);
+                                                 print("resetting state4");
+                                                 _bResetState = true;
+                                             }*/
+                                        }
+                                    }
+                                }
+                                break;
+                            }
+                        case true:
+                            {
+                                //if (EventSystem.current.IsPointerOverGameObject(m_iUserID) == false)
+                                {
+                                    mousePosition1 = Input.mousePosition;
 
-                                            if (!_bResetState && unit.GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Worker)
+                                    foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
+                                    {
+                                        if (selectableObject.selectionCircle != null && !m_bCtrlSelectUnits)
+                                        {
+                                            Destroy(selectableObject.selectionCircle.gameObject);
+                                            selectableObject.selectionCircle = null;
+
+                                            GameObject healthBarCanvasGameObject;
+                                            healthBarCanvasGameObject = selectableObject.transform.Find("Health Bar").gameObject;
+                                            healthBarCanvasGameObject.SetActive(false);
+                                            if (!_bResetState && selectableObject.GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Worker)
                                             {
                                                 //if (DisplayHandler.m_sDHControl.m_bDisplayingText)
                                                 DisplayHandler.m_sDHControl.ResetState(true);
@@ -517,63 +572,13 @@ public class SelectionBox : MonoBehaviour {
                                             }
                                         }
                                     }
-                                    m_lCtrlUnits.Clear();
                                 }
-                                isSelecting = true;
-                                mousePosition1 = Input.mousePosition;
-                                foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
-                                {
-                                    if (selectableObject.selectionCircle != null)
-                                    {
-                                        print(selectableObject.name);
-                                        print(selectableObject.transform.position);
-                                        Destroy(selectableObject.selectionCircle.gameObject);
-                                        selectableObject.selectionCircle = null;
-
-                                        GameObject healthBarCanvasGameObject;
-                                        healthBarCanvasGameObject = selectableObject.transform.Find("Health Bar").gameObject;
-                                        healthBarCanvasGameObject.SetActive(false);
-                                       /* if (!_bResetState && selectableObject.GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Worker)
-                                        {
-                                            //if (DisplayHandler.m_sDHControl.m_bDisplayingText)
-                                            DisplayHandler.m_sDHControl.ResetState(true);
-                                            print("resetting state4");
-                                            _bResetState = true;
-                                        }*/
-                                    }
-                                }
+                                break;
                             }
-                            break;
-                        }
-                    case true:
-                        {
-                            //if (EventSystem.current.IsPointerOverGameObject(m_iUserID) == false)
-                            {
-                                mousePosition1 = Input.mousePosition;
-
-                                foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
-                                {
-                                    if (selectableObject.selectionCircle != null && !m_bCtrlSelectUnits)
-                                    {
-                                        Destroy(selectableObject.selectionCircle.gameObject);
-                                        selectableObject.selectionCircle = null;
-
-                                        GameObject healthBarCanvasGameObject;
-                                        healthBarCanvasGameObject = selectableObject.transform.Find("Health Bar").gameObject;
-                                        healthBarCanvasGameObject.SetActive(false);
-                                        if (!_bResetState && selectableObject.GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Worker)
-                                        {
-                                            //if (DisplayHandler.m_sDHControl.m_bDisplayingText)
-                                            DisplayHandler.m_sDHControl.ResetState(true);
-                                            _bResetState = true;
-                                        }
-                                    }
-                                }
-                            }
-                            break;
-                        }
+                    }
                 }
             }
+            
         }
         // If we let go of the left mouse button, end selection
         //if (Input.GetMouseButtonUp(0) && PlacementHandler.m_sPHControl.m_ePlayerState != PlacementHandler.PlayerStates.PLACING)
