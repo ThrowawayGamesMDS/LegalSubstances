@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HomeSpawning : MonoBehaviour {
+    public static HomeSpawning m_sHomeSpawningControl;
     public List<GameObject> Prefabs;
     public int iCurrentWongleCount;
     public int iMaximumWongleCount;
@@ -20,11 +21,15 @@ public class HomeSpawning : MonoBehaviour {
     public Vector3 g_v3WorkerRally;
     private void Start()
     {
-        iCurrentWongleCount = 5;
-        army = GameObject.FindGameObjectWithTag("Army");
-        g_v3WorkerRally = new Vector3(120,0,-110);
-        g_v3WorkerRally = new Vector3(100,0,-110);
-        g_v3WorkerRally = new Vector3(80,0,-110);
+        if (m_sHomeSpawningControl == null)
+        {
+            m_sHomeSpawningControl = this;
+            iCurrentWongleCount = 5;
+            army = GameObject.FindGameObjectWithTag("Army");
+            g_v3WorkerRally = new Vector3(120, 0, -110);
+            g_v3WorkerRally = new Vector3(100, 0, -110);
+            g_v3WorkerRally = new Vector3(80, 0, -110);
+        }
     }
 
     public void fQueueUnit(string unittype)
