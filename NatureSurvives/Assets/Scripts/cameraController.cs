@@ -32,6 +32,7 @@ public class cameraController : MonoBehaviour {
     private Vector3 m_vec3LerpPos;
     private float m_fTransitionTime;
     private Vector3 m_vec3OrigPos;
+    [SerializeField]
     private bool m_bLerpTarget;
    // [Range()]
 
@@ -333,12 +334,17 @@ public class cameraController : MonoBehaviour {
        if (m_bLerpTarget)
         {
             m_fTransitionTime += Time.deltaTime;
-            print("DT: " + Time.deltaTime);
+            if (gameObject.transform.position != m_vec3LerpPos)
+            {
+                gameObject.transform.position = Vector3.Lerp(m_vec3OrigPos, m_vec3LerpPos, m_fTransitionTime);
+            }
+            else
+                m_bLerpTarget = false;
         }
 
     }
 
-    private void LateUpdate()
+    /*private void LateUpdate()
     {
         if (m_bLerpTarget) // lerp functionality
         {
@@ -349,5 +355,5 @@ public class cameraController : MonoBehaviour {
             else
                 m_bLerpTarget = false;
         }
-    }
+    }*/
 }
