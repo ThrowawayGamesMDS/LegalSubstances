@@ -457,7 +457,13 @@ public class SelectionBox : MonoBehaviour {
 
     private int ResetWongleIdleIterFunctionality()
     {
-        //this might need to be reworked to use a new array of gameobjects opposed to one already loaded, because there could be active workers with idleSelected == true
+        /***
+         * 
+         * 
+         * Resetting of the bool is also handled in WongleController -> in the if statement 'agent.velocity.magnitude > 0'
+         * 
+         * 
+         ***/
         foreach (var unit in m_goActiveWorkers)
         {
             unit.GetComponent<WongleController>().m_bIdleSelected = false;

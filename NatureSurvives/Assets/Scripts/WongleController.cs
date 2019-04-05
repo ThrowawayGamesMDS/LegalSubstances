@@ -144,6 +144,12 @@ public class WongleController : MonoBehaviour
 
         if (agent.velocity.magnitude > 0)
         {
+            if (m_bIdleSelected)
+            {
+                m_bIdleSelected = false;
+                Debug.Log("Reset WongleController bool 'm_bIdleSelected' of OBJ (" + gameObject + ")");
+            }
+
             if (!anim.GetCurrentAnimatorStateInfo(0).IsName("StartMagic"))
             {
                 if (!anim.GetCurrentAnimatorStateInfo(0).IsName("magicattack"))
