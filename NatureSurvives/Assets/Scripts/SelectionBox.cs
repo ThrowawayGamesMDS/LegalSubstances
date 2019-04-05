@@ -174,9 +174,10 @@ public class SelectionBox : MonoBehaviour {
         foreach (var wongle in _goUnits)
         {
             //inactive wongle
-            if (wongle.GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Worker 
-                && wongle.GetComponent<WongleController>().agent.velocity.magnitude == 0
-                && wongle.GetComponent<WongleController>().anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+            if (wongle.GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Worker
+                /*&& wongle.GetComponent<WongleController>().agent.velocity.magnitude == 0
+                && wongle.GetComponent<WongleController>().anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")*/
+                && wongle.GetComponent<WongleController>().Target == null)
             {
                 m_goActiveWorkers.Add(wongle);
                 m_iWongleWorkerCount++;
@@ -521,7 +522,8 @@ public class SelectionBox : MonoBehaviour {
                         && unit.GetComponent<SelectableUnitComponent>().selectionCircle == null) //becuz there isn't a state handle for wongles... so have to check by anim
                     {
                         Vector3 _newPos = new Vector3(unit.transform.position.x, Camera.main.transform.position.y, unit.transform.position.z - (Camera.main.transform.forward.magnitude * 50));
-                        gameObject.transform.position = _newPos;
+                        cameraController.m_sCameraControl.UpdateCameraTargetForLerping(_newPos);
+                       // gameObject.transform.position = _newPos;
                         unit.GetComponent<SelectableUnitComponent>().selectionCircle = Instantiate(selectionCirclePrefab);
                         unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.SetParent(unit.transform, false);
                         unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);

@@ -144,7 +144,7 @@ public class WongleController : MonoBehaviour
 
         if (agent.velocity.magnitude > 0)
         {
-            if (m_bIdleSelected)
+            if (m_bIdleSelected && Target != null)
             {
                 m_bIdleSelected = false;
                 Debug.Log("Reset WongleController bool 'm_bIdleSelected' of OBJ (" + gameObject + ")");
