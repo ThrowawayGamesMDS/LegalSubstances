@@ -34,7 +34,8 @@ public class cameraController : MonoBehaviour {
     private Vector3 m_vec3OrigPos;
     [SerializeField]
     private bool m_bLerpTarget;
-   // [Range()]
+    [Range(0.1f, 1.0f)]
+    public float m_fTransitionSpeed;
 
     // Use this for initialization
     void Start () {
@@ -56,6 +57,7 @@ public class cameraController : MonoBehaviour {
             m_vec3OrigPos = new Vector3();
             m_bLerpTarget = false;
             m_fTransitionTime = 0.0f;
+            m_fTransitionSpeed = 0.2f;
 
             lastFrameTime = Time.realtimeSinceStartup;
         }
@@ -333,7 +335,8 @@ public class cameraController : MonoBehaviour {
        // else
        if (m_bLerpTarget)
         {
-            m_fTransitionTime += Time.deltaTime;
+            //m_fTransitionTime += Time.deltaTime;
+            m_fTransitionTime += m_fTransitionSpeed;
             if (gameObject.transform.position != m_vec3LerpPos)
             {
                 gameObject.transform.position = Vector3.Lerp(m_vec3OrigPos, m_vec3LerpPos, m_fTransitionTime);

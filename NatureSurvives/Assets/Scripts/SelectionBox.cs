@@ -472,6 +472,30 @@ public class SelectionBox : MonoBehaviour {
 
         return 0;
     }
+
+    /// <summary>
+    /// Semi recursive for CTRL/Selection state. Takes gameobject being selected as parameter and yeah...
+    /// </summary>
+    private void AssignUIObjectsToSelected(GameObject unit)
+    {
+        unit.GetComponent<SelectableUnitComponent>().selectionCircle = Instantiate(selectionCirclePrefab);
+        unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.SetParent(unit.transform, false);
+        unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
+
+        GameObject healthBarCanvasGameObject;
+        healthBarCanvasGameObject = unit.transform.Find("Health Bar").gameObject;
+        healthBarCanvasGameObject.SetActive(true);
+
+        if (unit.GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Worker
+            && gameObject.GetComponent<DisplayHandler>().m_bDisplayingBuildings == false)
+        {
+
+            gameObject.GetComponent<DisplayHandler>().UpdateState(true); // is worker
+            DisplayHandler.m_sDHControl.UpdateAndDisplayWongleWorkerText(unit.gameObject); // remove this if we create a total/average function as per below
+        }
+
+        unit.GetComponent<SelectableUnitComponent>().isSelected = true;
+    }
     
     void Update()
     {
@@ -523,22 +547,9 @@ public class SelectionBox : MonoBehaviour {
                     {
                         Vector3 _newPos = new Vector3(unit.transform.position.x, Camera.main.transform.position.y, unit.transform.position.z - (Camera.main.transform.forward.magnitude * 50));
                         cameraController.m_sCameraControl.UpdateCameraTargetForLerping(_newPos);
-                       // gameObject.transform.position = _newPos;
-                        unit.GetComponent<SelectableUnitComponent>().selectionCircle = Instantiate(selectionCirclePrefab);
-                        unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.SetParent(unit.transform, false);
-                        unit.GetComponent<SelectableUnitComponent>().selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
+                        // gameObject.transform.position = _newPos;
 
-                        GameObject healthBarCanvasGameObject;
-                        healthBarCanvasGameObject = unit.transform.Find("Health Bar").gameObject;
-                        healthBarCanvasGameObject.SetActive(true);
-
-                        if (gameObject.GetComponent<DisplayHandler>().m_bDisplayingBuildings == false)
-                        {
-                            gameObject.GetComponent<DisplayHandler>().UpdateState(true); // is worker
-                            DisplayHandler.m_sDHControl.UpdateAndDisplayWongleWorkerText(unit.gameObject); // remove this if we create a total/average function as per below
-                        }
-
-                        unit.GetComponent<SelectableUnitComponent>().isSelected = true;
+                        AssignUIObjectsToSelected(unit);
 
                         _bIsDisplaying = true;
                         unit.GetComponent<WongleController>().m_bIdleSelected = true;
