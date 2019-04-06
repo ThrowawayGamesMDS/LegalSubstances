@@ -175,8 +175,8 @@ public class SelectionBox : MonoBehaviour {
         {
             //inactive wongle
             if (wongle.GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Worker
-                /*&& wongle.GetComponent<WongleController>().agent.velocity.magnitude == 0
-                && wongle.GetComponent<WongleController>().anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")*/
+                /*&& wongle.GetComponent<WongleController>().agent.velocity.magnitude == 0*/
+                && wongle.GetComponent<WongleController>().anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")
                 && wongle.GetComponent<WongleController>().Target == null)
             {
                 m_goActiveWorkers.Add(wongle);
@@ -492,6 +492,12 @@ public class SelectionBox : MonoBehaviour {
 
             gameObject.GetComponent<DisplayHandler>().UpdateState(true); // is worker
             DisplayHandler.m_sDHControl.UpdateAndDisplayWongleWorkerText(unit.gameObject); // remove this if we create a total/average function as per below
+
+            if ( isSelecting && !m_bPlayerSelected)
+            {
+                m_bPlayerSelected = true;
+                DisplayHandler.m_sDHControl.UpdateAndDisplayWongleWorkerText(unit); // remove this if we create a total/average function as per below
+            }
         }
 
         unit.GetComponent<SelectableUnitComponent>().isSelected = true;
@@ -874,14 +880,14 @@ public class SelectionBox : MonoBehaviour {
         // Highlight all objects within the selection box
         if (isSelecting)
          {
-            bool _bResetState = false;
+            //bool _bResetState = false;
             foreach (var selectableObject in FindObjectsOfType<SelectableUnitComponent>())
             {
                 if (IsWithinSelectionBounds(selectableObject.gameObject))
                 {
                     if (selectableObject.selectionCircle == null)
                     {
-                        selectableObject.selectionCircle = Instantiate(selectionCirclePrefab);
+                        /*selectableObject.selectionCircle = Instantiate(selectionCirclePrefab);
                         selectableObject.selectionCircle.transform.SetParent(selectableObject.transform, false);
                         selectableObject.selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
 
@@ -899,15 +905,12 @@ public class SelectionBox : MonoBehaviour {
                             }
 
 
-                            /*else // player already selected
-                            {
-                                //DisplayHandler.m_sDHControl // create a control to gather total number of resources gathered and/or the average level of the wongles selected
-                                //need to create a function to utilize the selected list from this class in displayhandler to create this stuff
-                            }*/
-                        }
+                          
+                        }*/
+                        AssignUIObjectsToSelected(selectableObject.gameObject);
                     }
 
-                    selectableObject.isSelected = true;
+                   // selectableObject.isSelected = true;
 
                 }
                 else
