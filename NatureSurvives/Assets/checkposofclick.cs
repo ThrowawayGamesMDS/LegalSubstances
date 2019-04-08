@@ -48,7 +48,7 @@ public class checkposofclick : MonoBehaviour, IPointerEnterHandler, IPointerExit
                     player.position = new Vector3((((xPositionCameraCoordinates) / 165) * 250), player.position.y, (((yPositionCameraCoordinates) / 165) * 250));
                 }
             }
-
+            
             if(Input.GetKeyDown(KeyCode.Mouse1))
             {
                 int _iTotalWongles = GameObject.FindGameObjectWithTag("HomeBuilding").GetComponent<HomeSpawning>().iCurrentWongleCount;

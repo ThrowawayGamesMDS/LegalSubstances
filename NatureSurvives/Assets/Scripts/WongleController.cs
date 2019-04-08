@@ -28,6 +28,7 @@ public class WongleController : MonoBehaviour
     private Vector3 placeholderPosition;
     public int priority;
     private bool isDead;
+    private float startingSpeed;
 
     [Header("XP Stuff")]
     public int iOverallLevel;
@@ -55,6 +56,7 @@ public class WongleController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        startingSpeed = agent.speed;
         isDead = false;
         type = gameObject.GetComponent<SelectableUnitComponent>().Type;
         Home = GameObject.FindGameObjectWithTag("HomeBuilding");
@@ -125,7 +127,7 @@ public class WongleController : MonoBehaviour
         iFishingLevel = Mathf.FloorToInt(Mathf.Sqrt((iFishCaught / 3)));
         iOverallLevel = iWoodCutLevel + iMineLevel + iFarmLevel;
 
-        agent.speed = 17 + iOverallLevel;
+        agent.speed = startingSpeed + iOverallLevel;
 
 
 

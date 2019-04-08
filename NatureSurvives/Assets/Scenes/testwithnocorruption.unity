@@ -18424,7 +18424,7 @@ PrefabInstance:
     - target: {fileID: 6784023559387294115, guid: a7804a4200115c3448df8e3b1a6453d7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 25
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 2205377095063749973, guid: a7804a4200115c3448df8e3b1a6453d7,
         type: 3}
@@ -18444,7 +18444,7 @@ PrefabInstance:
     - target: {fileID: 8521262988780943696, guid: a7804a4200115c3448df8e3b1a6453d7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7804a4200115c3448df8e3b1a6453d7, type: 3}
@@ -22805,6 +22805,11 @@ PrefabInstance:
     - target: {fileID: 7868119282809492085, guid: 948bc0424816ed24c8f65b159a082210,
         type: 3}
       propertyPath: hover
+      value: 
+      objectReference: {fileID: 1441988765}
+    - target: {fileID: 7868119282809492085, guid: 948bc0424816ed24c8f65b159a082210,
+        type: 3}
+      propertyPath: Checkposofclick
       value: 
       objectReference: {fileID: 1441988765}
     - target: {fileID: 7868119282378628515, guid: 948bc0424816ed24c8f65b159a082210,
