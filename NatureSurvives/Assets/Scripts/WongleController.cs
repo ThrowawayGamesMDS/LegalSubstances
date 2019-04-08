@@ -125,7 +125,7 @@ public class WongleController : MonoBehaviour
         iFishingLevel = Mathf.FloorToInt(Mathf.Sqrt((iFishCaught / 3)));
         iOverallLevel = iWoodCutLevel + iMineLevel + iFarmLevel;
 
-        agent.speed = 10 + iOverallLevel;
+        agent.speed = 7 + iOverallLevel;
 
 
 
