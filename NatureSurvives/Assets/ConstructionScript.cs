@@ -9,6 +9,7 @@ public class ConstructionScript : MonoBehaviour
     public float m_fCurrentCompletion;
     public GameObject worker;
     public GameObject m_Building;
+    public Renderer constructionRenderer;
 
     [Header("Progress Bar")]
     public Transform ProgressBarImage;
@@ -16,6 +17,7 @@ public class ConstructionScript : MonoBehaviour
     private void Update()
     {
         ProgressBarImage.transform.localScale = new Vector3(m_fCurrentCompletion / m_fTimeToComplete, 1, 1);
+        constructionRenderer.material.SetFloat("_ConstructY", (m_fCurrentCompletion / m_fTimeToComplete) * 10);
 
 
         if (GameObject.FindGameObjectWithTag("CheatHandler").gameObject != null)
