@@ -97,6 +97,13 @@ public class cameraController : MonoBehaviour
     public void UpdateCameraTargetForLerping(Vector3 _vec3TargetPos)
     {
         m_vec3LerpPos = _vec3TargetPos;
+
+        // Bundy handle to reset camera zoom on idle select
+        if (m_vec3LerpPos.y != 50)
+        {
+            m_vec3LerpPos.y = 50;
+        }
+
         m_vec3OrigPos = transform.position;
         m_fTransitionTime = 0.0f;
         m_bLerpTarget = true;
@@ -360,6 +367,7 @@ public class cameraController : MonoBehaviour
                 }
                 else
                     m_bLerpTarget = false;
+                
             }
 
            /* if (m_bCameraRotLerp)
