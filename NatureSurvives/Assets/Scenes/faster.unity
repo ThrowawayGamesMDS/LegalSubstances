@@ -1805,8 +1805,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f229b11e967dbaf4bab0f3f3264fe361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_fDayTime: 5
-  m_fNightTime: 2
+  m_fDayTime: 2.5
+  m_fNightTime: 1
   sun: {fileID: 306421740}
   playeddays: 0
   daytimer: 0
@@ -8679,7 +8679,7 @@ PrefabInstance:
     - target: {fileID: 5690009330045996499, guid: 44af6ee979fb97e428d8cfd41c963559,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5690009330045996497, guid: 44af6ee979fb97e428d8cfd41c963559,
         type: 3}
