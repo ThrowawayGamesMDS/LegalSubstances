@@ -11,6 +11,18 @@ using UnityEngine.UI;
  * 
  ***/
 
+public class Buttons
+{
+    public GameObject m_goButton;
+    public string m_sButtonID;
+
+    public Buttons(GameObject _goButton, string _sName)
+    {
+        m_goButton = _goButton;
+        m_sButtonID = _sName;
+    }
+}
+
 public class DisplayHandler : MonoBehaviour
 {
     public static DisplayHandler m_sDHControl;
@@ -22,6 +34,9 @@ public class DisplayHandler : MonoBehaviour
 
     public List<GameObject> m_goUIObj;
 
+    private Dictionary<string, Buttons> m_dButtons;
+    private List<Buttons> m_goButtons;
+    public bool m_bButtonsLoaded;
 
     /// <summary>
     /// ASSIGNING TEXT AT RUNTIME SO CANVAS CAN BE IMPLEMENTD EASILY...
@@ -71,7 +86,88 @@ public class DisplayHandler : MonoBehaviour
                 m_bDisplayingUnit = false;
                 m_bDisplayingBuildings = false;
             }
+
+           Dictionary<string,Buttons> m_dButtons = new Dictionary<string, Buttons>();
+            /*Buttons _cKnightButton = new Buttons(GameObject.Find("Knight"), "KnightButton");
+            m_dButtons.Add("Knight", _cKnightButton);
+            Buttons _cWizardButton = new Buttons(GameObject.FindGameObjectWithTag("Wizard"), "WizardButton");
+            m_dButtons.Add("Wizard", _cWizardButton);*/
+            m_goButtons = new List<Buttons>();
+            GameObject _goTemp = GameObject.FindGameObjectWithTag("WorkerButton");
+             Buttons _cWongleButton = new Buttons(_goTemp, "WongleButton");
+            m_goButtons.Add(_cWongleButton);
+           /* GameObject _goButton = GameObject.Find("WorkerButton");
+            print("_goButton name : "  + _goButton.name);
+            Buttons _cWongleButton = new Buttons(_goButton, "WongleButton");*/
+            m_dButtons.Add("Worker", m_goButtons[0]);
+
+            Buttons temp = null;
+            if (m_dButtons.TryGetValue("Worker", out temp))
+            {
+                // print("Buttons loaded : Name:" + temp.m_sButtonID + ", " + temp.m_goButton.tag);
+                print("Buttons loaded : Name:" + temp.m_sButtonID);
+ 
+                 m_bButtonsLoaded = true;
+            }
+            else
+            {
+                print("Couldn't load buttons");
+                m_bButtonsLoaded = false;
+            }
         }
+    }
+
+    /// <summary>
+    /// Return's true if the alpha is set to 1.0, thus they are supposedly being displayed...
+    /// </summary>
+    /// <param name="_sUnitName"></param>
+    /// <returns></returns>
+    public bool CheckAlphaOfUI(string _sUnitName)
+    {
+        Buttons temp = null;
+        if (m_dButtons.TryGetValue(_sUnitName, out temp))
+        {
+            if (temp.m_goButton.gameObject.GetComponent<CanvasGroup>().alpha == 1.0f)
+                return true;
+            else
+                return false;
+        }
+        else
+            return false;
+    }
+
+    public void AlterUIAlpha(bool _bFade,string _sUnitName)
+    {
+        Buttons temp = null;
+        if (m_dButtons.TryGetValue(_sUnitName, out temp))
+        {
+            // only do if displayed?
+            switch (_bFade)
+            {
+                case true:
+                    {
+                        temp.m_goButton.gameObject.GetComponent<CanvasGroup>().alpha = 0.5f;
+                        break;
+                    }
+                case false:
+                    {
+                        temp.m_goButton.gameObject.GetComponent<CanvasGroup>().alpha = 1.0f;
+                        break;
+                    }
+            }
+        }
+        else
+        {
+            print("Couldn't update the alpha because we weren't able to access the Dictionary");
+        }
+     /*   switch (_sUnitName) // might rename to buttons
+        {
+            case "Knight":
+                {
+                    m_dButtons["Knight"].m_goButton
+                    break;
+                }
+        }*/
     }
 
     private Text_Tags ReturnNewTag(int _tagVal)
