@@ -39,6 +39,7 @@ public class DayNight : MonoBehaviour {
 
         //timerUI = FindObjectOfType<Slider>().gameObject;
         //timerUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load("sunindicator", typeof(Sprite)) as Sprite;
+        //gameObject.GetComponent<AudioSource>().Play();
     }
 	
 	// Update is called once per frame
@@ -55,7 +56,10 @@ public class DayNight : MonoBehaviour {
                 counted = !counted;
                 NotificationManager.Instance.SetNewNotification("Night time, enemy is coming");
             }
+            //gameObject.GetComponent<AudioSource>().Play();
+            //gameObject.GetComponent<AudioSource>().UnPause();
         }
+    
         else
         {            
             if (!counted)
@@ -64,6 +68,9 @@ public class DayNight : MonoBehaviour {
                 counted = !counted;
             }
             isDay = true;
+
+            //gameObject.GetComponent<AudioSource>().Pause();
+            //gameObject.GetComponent<AudioSource>().Stop();           
         }
         
         if(isDay)
@@ -86,6 +93,8 @@ public class DayNight : MonoBehaviour {
         m_fDayTime = 9999999;
         isDay = false;
         //InvokeRepeating("invokeroony", 0.1f, 40.0f);
+        daytimer = 1;
+        nighttimer = 9999999;
     }
 
     void invokeroony()

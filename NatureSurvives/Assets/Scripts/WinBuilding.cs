@@ -2,15 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class WinBuilding : MonoBehaviour {
+
     public float endtimer;
     public float buildingHealth;
+    public Text winlosetext;
+
 	// Use this for initialization
 	void Start () {
         GameObject.FindGameObjectWithTag("WonderUI2").transform.GetChild(0).gameObject.SetActive(true);
         GameObject temp = GameObject.FindGameObjectWithTag("WonderUi").GetComponent<UpdateWonderUi>().wonder = gameObject;
         GameObject.FindGameObjectWithTag("DAYNIGHT").GetComponent<DayNight>().WonderMode();
+        print("wonder mode start");
+
+        winlosetext = GameObject.Find("WinLoseText").GetComponent<Text>();
     }
 	
 	// Update is called once per frame
@@ -18,12 +25,20 @@ public class WinBuilding : MonoBehaviour {
         endtimer -= Time.deltaTime;
         if(endtimer <= 0)
         {
-            SceneManager.LoadScene(0);
+            winlosetext.text = "You Win";
+
+            if (endtimer <= -2)
+            {
+                SceneManager.LoadScene(0);
+            }
+            
             //win game
             print("win game");
         }
 		if(buildingHealth <= 0)
         {
+            winlosetext.text = "You Lose";
+            new WaitForSeconds(5);
             //lose game
         }
 	}
