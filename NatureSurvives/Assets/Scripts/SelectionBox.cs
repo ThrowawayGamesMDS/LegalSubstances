@@ -503,7 +503,20 @@ public class SelectionBox : MonoBehaviour {
 
         unit.GetComponent<SelectableUnitComponent>().isSelected = true;
     }
-    
+
+    private bool CheckForSelectedCircle()
+    {
+        foreach (var _unit in FindObjectsOfType<SelectableUnitComponent>())
+        {
+            if (_unit.selectionCircle != null)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     void Update()
     {
 
@@ -838,8 +851,10 @@ public class SelectionBox : MonoBehaviour {
                     gameObject.GetComponent<DisplayHandler>().UpdateState(true); // is worker
                 }
             }
-            else if (m_bPlayerSelected && !isSelecting)
+         //   if (m_bPlayerSelected && !isSelecting)
+            if (!CheckForSelectedCircle() && m_bPlayerSelected)
             {
+                gameObject.GetComponent<DisplayHandler>().UpdateState(true); // is worker
                 m_bPlayerSelected = false;
             }
         }
@@ -892,7 +907,7 @@ public class SelectionBox : MonoBehaviour {
                 {
                     if (selectableObject.selectionCircle == null)
                     {
-                        /*selectableObject.selectionCircle = Instantiate(selectionCirclePrefab);
+                        selectableObject.selectionCircle = Instantiate(selectionCirclePrefab);
                         selectableObject.selectionCircle.transform.SetParent(selectableObject.transform, false);
                         selectableObject.selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
 
@@ -911,8 +926,8 @@ public class SelectionBox : MonoBehaviour {
 
 
                           
-                        }*/
-                        AssignUIObjectsToSelected(selectableObject.gameObject);
+                        }
+                        //AssignUIObjectsToSelected(selectableObject.gameObject);
                     }
 
                    // selectableObject.isSelected = true;
@@ -929,8 +944,11 @@ public class SelectionBox : MonoBehaviour {
                         GameObject healthBarCanvasGameObject;
                         healthBarCanvasGameObject = selectableObject.transform.Find("Health Bar").gameObject;
                         healthBarCanvasGameObject.SetActive(false);
-                        DisplayHandler.m_sDHControl.ResetState(true);
-                        m_bPlayerSelected = false;
+                        if (!CheckForSelectedCircle() && m_bPlayerSelected)
+                        {
+                            DisplayHandler.m_sDHControl.ResetState(true);
+                            m_bPlayerSelected = false;
+                        }
                        /* if (!_bResetState)
                         {
                             //if (DisplayHandler.m_sDHControl.m_bDisplayingText)
