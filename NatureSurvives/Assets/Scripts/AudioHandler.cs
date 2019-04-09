@@ -1,11 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 [RequireComponent(typeof(AudioSource))]
 
+
+public class Audio
+{
+    public List<AudioClip> m_acClips;
+    public bool m_bAlterPitch;
+    public float m_fNewPitch;
+}
 public class AudioHandler : MonoBehaviour
 {
+    private GameObject[] m_asSoundFiles;
+
     public List<AudioClip> m_lDamageSounds;
     public List<AudioClip> m_lWoodCut;
     public List<AudioClip> m_lMine;
@@ -63,9 +73,57 @@ public class AudioHandler : MonoBehaviour
             m_asHandle.Play();
         }
     }
+
+   /* private void AssignAndLoadSounds(string _sName)
+    {
+        Dictionary<string, Buttons> m_dButtons = new Dictionary<string, Buttons>();
+        GameObject _goTemp = GameObject.FindGameObjectWithTag(_sName + "Button");
+        //GameObject _goTemp = m_lgoUIButtons[0].gameObject;
+        Buttons _cWongleButton = null;
+
+        if (_goTemp != null)
+        {
+            _cWongleButton = new Buttons(_goTemp, _sName + "Button");
+        }
+        else
+        {
+            print("The button you were trying to add to the dictionary is null!");
+        }
+        if (_cWongleButton != null)
+        {
+
+            m_dButtons.Add(_sName, _cWongleButton);
+
+            Buttons temp = null;
+            if (m_dButtons.TryGetValue(_sName, out temp))
+            {
+                // print("Buttons loaded : Name:" + temp.m_sButtonID + ", " + temp.m_goButton.tag);
+                print("Buttons loaded : Name:" + temp.m_goButton.tag);
+
+                m_bButtonsLoaded = true;
+            }
+            else
+            {
+                print("Couldn't load buttons");
+                m_bButtonsLoaded = false;
+            }
+        }
+    }*/
+
     // Use this for initialization
     void Start()
     {
+
+        print("we here");
+        Object[] data;
+        data = AssetDatabase.LoadAllAssetsAtPath("Assets\\Sound\\Audio");
+
+        foreach (Object o in data)
+        {
+            Debug.Log(o);
+            print(o.name);
+        }
+        
         /*
           for (int i = 0; i < m_lDamageSounds.Count; i++)
           {

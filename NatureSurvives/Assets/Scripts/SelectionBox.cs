@@ -838,7 +838,7 @@ public class SelectionBox : MonoBehaviour {
                     gameObject.GetComponent<DisplayHandler>().UpdateState(true); // is worker
                 }
             }
-            else if (m_bPlayerSelected)
+            else if (m_bPlayerSelected && !isSelecting)
             {
                 m_bPlayerSelected = false;
             }
