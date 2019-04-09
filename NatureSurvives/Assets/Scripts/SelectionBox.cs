@@ -503,7 +503,20 @@ public class SelectionBox : MonoBehaviour {
 
         unit.GetComponent<SelectableUnitComponent>().isSelected = true;
     }
-    
+
+    private bool CheckForSelectedCircle()
+    {
+        foreach (var _unit in FindObjectsOfType<SelectableUnitComponent>())
+        {
+            if (_unit.selectionCircle != null)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     void Update()
     {
 
@@ -724,7 +737,7 @@ public class SelectionBox : MonoBehaviour {
 
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
-
+            bool _bWorkerCheck = false ;
 
             switch (m_bCtrlSelectUnits)
             {
@@ -750,7 +763,7 @@ public class SelectionBox : MonoBehaviour {
                                 }
                             case false:
                                 {
-                                    bool _bWorkerCheck = SelectRegular(ray, layermask, true);
+                                    _bWorkerCheck = SelectRegular(ray, layermask, true);
                                     if (!_bWorkerCheck)
                                     {
                                         m_bUserLClicked = true;
@@ -838,8 +851,12 @@ public class SelectionBox : MonoBehaviour {
                     gameObject.GetComponent<DisplayHandler>().UpdateState(true); // is worker
                 }
             }
-            else if (m_bPlayerSelected && !isSelecting)
+            //   if (m_bPlayerSelected && !isSelecting)
+            if (!CheckForSelectedCircle() && m_bPlayerSelected
+                           && _bWorkerCheck) // worker check will equal true if worker
             {
+
+                DisplayHandler.m_sDHControl.ResetState(true);
                 m_bPlayerSelected = false;
             }
         }
@@ -892,7 +909,7 @@ public class SelectionBox : MonoBehaviour {
                 {
                     if (selectableObject.selectionCircle == null)
                     {
-                        /*selectableObject.selectionCircle = Instantiate(selectionCirclePrefab);
+                        selectableObject.selectionCircle = Instantiate(selectionCirclePrefab);
                         selectableObject.selectionCircle.transform.SetParent(selectableObject.transform, false);
                         selectableObject.selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
 
@@ -911,8 +928,8 @@ public class SelectionBox : MonoBehaviour {
 
 
                           
-                        }*/
-                        AssignUIObjectsToSelected(selectableObject.gameObject);
+                        }
+                        //AssignUIObjectsToSelected(selectableObject.gameObject);
                     }
 
                    // selectableObject.isSelected = true;
@@ -929,8 +946,13 @@ public class SelectionBox : MonoBehaviour {
                         GameObject healthBarCanvasGameObject;
                         healthBarCanvasGameObject = selectableObject.transform.Find("Health Bar").gameObject;
                         healthBarCanvasGameObject.SetActive(false);
-                        DisplayHandler.m_sDHControl.ResetState(true);
-                        m_bPlayerSelected = false;
+                        if (!CheckForSelectedCircle() && m_bPlayerSelected
+                            && selectableObject.GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Worker)
+                        {
+                          
+                            DisplayHandler.m_sDHControl.ResetState(true);
+                            m_bPlayerSelected = false;
+                        }
                        /* if (!_bResetState)
                         {
                             //if (DisplayHandler.m_sDHControl.m_bDisplayingText)
