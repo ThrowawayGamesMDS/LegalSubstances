@@ -178,6 +178,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: huthouse
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d4ddd51e5fc3f8d42bae0e7618361090, type: 2}
+    - target: {fileID: 2300000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -234,10 +246,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.5415624
       objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: d4ddd51e5fc3f8d42bae0e7618361090, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
 --- !u!4 &5090401302562516660 stripped
