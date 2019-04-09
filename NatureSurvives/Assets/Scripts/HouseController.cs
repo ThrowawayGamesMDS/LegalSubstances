@@ -15,10 +15,10 @@ public class HouseController : MonoBehaviour {
 	}
 
     public void Update()
-    {
-        /*if (DisplayHandler.m_sDHControl.m_bButtonsLoaded)
+    {/*
+        if (DisplayHandler.m_sDHControl.m_bButtonsLoaded && DisplayHandler.m_sDHControl.m_bDisplayingUnit)
         {
-            if (HomeSpawning.m_sHomeSpawningControl.iCurrentWongleCount >= HomeSpawning.m_sHomeSpawningControl.iMaximumWongleCount && DisplayHandler.m_sDHControl.m_bDisplayingUnit)
+            if (HomeSpawning.m_sHomeSpawningControl.iCurrentWongleCount >= HomeSpawning.m_sHomeSpawningControl.iMaximumWongleCount)
             {
                 if (DisplayHandler.m_sDHControl.CheckAlphaOfUI("Worker"))
                     DisplayHandler.m_sDHControl.AlterUIAlpha(true, "Worker");

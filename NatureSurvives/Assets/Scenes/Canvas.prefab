@@ -1511,9 +1511,10 @@ GameObject:
   - component: {fileID: 6136651012081733690}
   - component: {fileID: 6136651012081733689}
   - component: {fileID: 6136651012081733688}
+  - component: {fileID: 7475363964111257944}
   m_Layer: 5
   m_Name: Worker
-  m_TagString: Untagged
+  m_TagString: WorkerButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1658,6 +1659,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.8039216}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!225 &7475363964111257944
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6136651012081733686}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6136651012147604583
 GameObject:
   m_ObjectHideFlags: 0
@@ -3165,9 +3178,10 @@ GameObject:
   - component: {fileID: 6136651012919650398}
   - component: {fileID: 6136651012919650397}
   - component: {fileID: 6136651012919650396}
+  - component: {fileID: 4829463077663805472}
   m_Layer: 5
   m_Name: Knight
-  m_TagString: Untagged
+  m_TagString: KnightButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3312,6 +3326,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.8039216}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!225 &4829463077663805472
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6136651012919650394}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6136651012935396527
 GameObject:
   m_ObjectHideFlags: 0
@@ -3869,9 +3895,10 @@ GameObject:
   - component: {fileID: 6136651013366916891}
   - component: {fileID: 6136651013366916890}
   - component: {fileID: 6136651013366916889}
+  - component: {fileID: 3714412196395777598}
   m_Layer: 5
   m_Name: Wizard
-  m_TagString: Untagged
+  m_TagString: WizardButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4016,6 +4043,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.8039216}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!225 &3714412196395777598
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6136651013366916887}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6136651013421478399
 GameObject:
   m_ObjectHideFlags: 0
@@ -5534,7 +5573,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 35.200012, y: -17.59999}
+  m_AnchoredPosition: {x: 308.4, y: -17.59999}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &5760497763774660188

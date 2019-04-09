@@ -33,6 +33,7 @@ public class DisplayHandler : MonoBehaviour
     public bool m_bDisplayingBuildings;
 
     public List<GameObject> m_goUIObj;
+    public List<GameObject> m_lgoUIButtons;
 
     private Dictionary<string, Buttons> m_dButtons;
     private List<Buttons> m_goButtons;
@@ -55,6 +56,11 @@ public class DisplayHandler : MonoBehaviour
         if (DisplayHandler.m_sDHControl == null)
         {
             DisplayHandler.m_sDHControl = this;
+
+            AssignAndLoadButton("Worker");
+            AssignAndLoadButton("Knight");
+            AssignAndLoadButton("Wizard");
+
             for (int i = 0; i < m_goUIObj.Count; i++)
             {
                 if (m_goUIObj[i] != null)
@@ -86,28 +92,37 @@ public class DisplayHandler : MonoBehaviour
                 m_bDisplayingUnit = false;
                 m_bDisplayingBuildings = false;
             }
+        }
+    }
 
-           Dictionary<string,Buttons> m_dButtons = new Dictionary<string, Buttons>();
-            /*Buttons _cKnightButton = new Buttons(GameObject.Find("Knight"), "KnightButton");
-            m_dButtons.Add("Knight", _cKnightButton);
-            Buttons _cWizardButton = new Buttons(GameObject.FindGameObjectWithTag("Wizard"), "WizardButton");
-            m_dButtons.Add("Wizard", _cWizardButton);*/
-            m_goButtons = new List<Buttons>();
-            GameObject _goTemp = GameObject.FindGameObjectWithTag("WorkerButton");
-             Buttons _cWongleButton = new Buttons(_goTemp, "WongleButton");
-            m_goButtons.Add(_cWongleButton);
-           /* GameObject _goButton = GameObject.Find("WorkerButton");
-            print("_goButton name : "  + _goButton.name);
-            Buttons _cWongleButton = new Buttons(_goButton, "WongleButton");*/
-            m_dButtons.Add("Worker", m_goButtons[0]);
+
+    private void AssignAndLoadButton(string _sName)
+    {
+        Dictionary<string, Buttons> m_dButtons = new Dictionary<string, Buttons>();
+        GameObject _goTemp = GameObject.FindGameObjectWithTag(_sName + "Button");
+        //GameObject _goTemp = m_lgoUIButtons[0].gameObject;
+        Buttons _cWongleButton = null;
+
+        if (_goTemp != null)
+        {
+            _cWongleButton = new Buttons(_goTemp, _sName + "Button");
+        }
+        else
+        {
+            print("The button you were trying to add to the dictionary is null!");
+        }
+        if (_cWongleButton != null)
+        {
+
+            m_dButtons.Add(_sName, _cWongleButton);
 
             Buttons temp = null;
-            if (m_dButtons.TryGetValue("Worker", out temp))
+            if (m_dButtons.TryGetValue(_sName, out temp))
             {
                 // print("Buttons loaded : Name:" + temp.m_sButtonID + ", " + temp.m_goButton.tag);
-                print("Buttons loaded : Name:" + temp.m_sButtonID);
- 
-                 m_bButtonsLoaded = true;
+                print("Buttons loaded : Name:" + temp.m_goButton.tag);
+
+                m_bButtonsLoaded = true;
             }
             else
             {
@@ -125,15 +140,21 @@ public class DisplayHandler : MonoBehaviour
     public bool CheckAlphaOfUI(string _sUnitName)
     {
         Buttons temp = null;
+        print("Attempting to get : " + _sUnitName);
         if (m_dButtons.TryGetValue(_sUnitName, out temp))
         {
-            if (temp.m_goButton.gameObject.GetComponent<CanvasGroup>().alpha == 1.0f)
+            print("we here");
+            if (temp.m_goButton.GetComponent<CanvasGroup>().alpha == 1.0f)
                 return true;
             else
                 return false;
         }
         else
+        {
+            print("we here2");
             return false;
+        }
+           
     }
 
     public void AlterUIAlpha(bool _bFade,string _sUnitName)
@@ -526,5 +547,43 @@ public class DisplayHandler : MonoBehaviour
             }*/
 
         }
+
+       /* if (!m_bButtonsLoaded)
+        {
+            //GameObject _goTemp = GameObject.FindGameObjectWithTag("WorkerButton");
+            //GameObject _goTemp = m_lgoUIButtons[0].gameObject;
+            Buttons _cWongleButton = null;
+
+            if (_goTemp != null)
+            {
+                _cWongleButton = new Buttons(_goTemp, "WongleButton");
+            }
+            else
+            {
+                print("The button you were trying to add to the dictionary is null!");
+            }
+
+            if (_cWongleButton != null)
+            {
+                m_goButtons.Add(_cWongleButton);
+
+                m_dButtons.Add("Worker", m_goButtons[0]);
+
+                Buttons temp = null;
+                if (m_dButtons.TryGetValue("Worker", out temp))
+                {
+                    // print("Buttons loaded : Name:" + temp.m_sButtonID + ", " + temp.m_goButton.tag);
+                    print("Buttons loaded : Name:" + temp.m_goButton.tag);
+
+                    m_bButtonsLoaded = true;
+                }
+                else
+                {
+                    print("Couldn't load buttons");
+                    m_bButtonsLoaded = false;
+                }
+            }
+            
+        }*/
     }
 }
