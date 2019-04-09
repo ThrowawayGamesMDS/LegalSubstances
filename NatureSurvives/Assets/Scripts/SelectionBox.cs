@@ -737,7 +737,7 @@ public class SelectionBox : MonoBehaviour {
 
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
-
+            bool _bWorkerCheck = false ;
 
             switch (m_bCtrlSelectUnits)
             {
@@ -763,7 +763,7 @@ public class SelectionBox : MonoBehaviour {
                                 }
                             case false:
                                 {
-                                    bool _bWorkerCheck = SelectRegular(ray, layermask, true);
+                                    _bWorkerCheck = SelectRegular(ray, layermask, true);
                                     if (!_bWorkerCheck)
                                     {
                                         m_bUserLClicked = true;
@@ -851,10 +851,12 @@ public class SelectionBox : MonoBehaviour {
                     gameObject.GetComponent<DisplayHandler>().UpdateState(true); // is worker
                 }
             }
-         //   if (m_bPlayerSelected && !isSelecting)
-            if (!CheckForSelectedCircle() && m_bPlayerSelected)
+            //   if (m_bPlayerSelected && !isSelecting)
+            if (!CheckForSelectedCircle() && m_bPlayerSelected
+                           && _bWorkerCheck) // worker check will equal true if worker
             {
-                gameObject.GetComponent<DisplayHandler>().UpdateState(true); // is worker
+
+                DisplayHandler.m_sDHControl.ResetState(true);
                 m_bPlayerSelected = false;
             }
         }
@@ -944,8 +946,10 @@ public class SelectionBox : MonoBehaviour {
                         GameObject healthBarCanvasGameObject;
                         healthBarCanvasGameObject = selectableObject.transform.Find("Health Bar").gameObject;
                         healthBarCanvasGameObject.SetActive(false);
-                        if (!CheckForSelectedCircle() && m_bPlayerSelected)
+                        if (!CheckForSelectedCircle() && m_bPlayerSelected
+                            && selectableObject.GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Worker)
                         {
+                          
                             DisplayHandler.m_sDHControl.ResetState(true);
                             m_bPlayerSelected = false;
                         }
