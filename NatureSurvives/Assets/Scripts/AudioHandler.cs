@@ -114,15 +114,15 @@ public class AudioHandler : MonoBehaviour
     void Start()
     {
 
-        print("we here");
-        Object[] data;
-        data = AssetDatabase.LoadAllAssetsAtPath("Assets\\Sound\\Audio");
-
-        foreach (Object o in data)
-        {
-            Debug.Log(o);
-            print(o.name);
-        }
+        //print("we here");
+        //Object[] data;
+        //data = AssetDatabase.LoadAllAssetsAtPath("Assets\\Sound\\Audio");
+        //
+        //foreach (Object o in data)
+        //{
+        //    Debug.Log(o);
+        //    print(o.name);
+        //}
         
         /*
           for (int i = 0; i < m_lDamageSounds.Count; i++)

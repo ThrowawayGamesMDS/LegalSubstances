@@ -6,13 +6,15 @@ using UnityEngine.EventSystems;
 
 public class checkposofclick : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public Transform player;
+    private Transform player;
     public bool isHovered;
-    public Camera cam;
-    public RawImage minimapRawImage;
+    private Camera cam;
+    private RawImage minimapRawImage;
     private void Start()
     {
         isHovered = false;
+        cam = Camera.main;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         minimapRawImage = GetComponent<RawImage>();
     }
     void Update()

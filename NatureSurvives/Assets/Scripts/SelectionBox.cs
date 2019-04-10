@@ -932,7 +932,7 @@ public class SelectionBox : MonoBehaviour {
                         //AssignUIObjectsToSelected(selectableObject.gameObject);
                     }
 
-                   // selectableObject.isSelected = true;
+                   selectableObject.isSelected = true;
 
                 }
                 else

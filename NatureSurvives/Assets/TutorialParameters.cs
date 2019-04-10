@@ -102,6 +102,6 @@ public class TutorialParameters : MonoBehaviour
 
     public void EndTutorial()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 }
