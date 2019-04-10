@@ -10,6 +10,7 @@ public class DayNight : MonoBehaviour {
     public static bool isDay;
     private bool b_day;
     public static int DaysPlayed;
+    public static bool isWonder = false;
     public int playeddays;
     private bool counted;
 
@@ -95,6 +96,7 @@ public class DayNight : MonoBehaviour {
         //InvokeRepeating("invokeroony", 0.1f, 40.0f);
         daytimer = 1;
         nighttimer = 9999999;
+        isWonder = true;
     }
 
     void invokeroony()

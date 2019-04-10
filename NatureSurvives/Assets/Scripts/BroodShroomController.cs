@@ -9,10 +9,11 @@ public class BroodShroomController : MonoBehaviour
     public GameObject Fiend;
     public Animator anim;
     public float m_fEnemyHealth;
-    private bool triggered;
+    public bool triggered;
     public List<WongleController> targets;
     private bool lockout;
-    private bool cooldown;
+    public bool cooldown;
+    public int cooldownint;
 
     [Header("Health Bar")]
     private Image healthBarImage;
@@ -73,10 +74,14 @@ public class BroodShroomController : MonoBehaviour
             {
                 anim.Play("spawning");
                 cooldown = true;
-                int cooldownint = 30 -  Mathf.FloorToInt(1.5f * DayNight.DaysPlayed);
+                cooldownint = 30 -  Mathf.FloorToInt(1.5f * DayNight.DaysPlayed);
                 if(cooldownint <= 0)
                 {
                     cooldownint = 5;
+                }
+                if(DayNight.isWonder)
+                {
+                    cooldownint = 15;
                 }
                 Invoke("fCooldown", cooldownint);
             }
@@ -135,7 +140,13 @@ public class BroodShroomController : MonoBehaviour
 
     public void fSpawnFiend()
     {
+        print("spawning enemy fiend");
         Instantiate(Fiend, transform.position, transform.rotation);
+        if(DayNight.isWonder)
+        {
+            Instantiate(Fiend, transform.position, transform.rotation);
+            Instantiate(Fiend, transform.position, transform.rotation);
+        }
     }
 
     public void fCooldown()

@@ -1,230 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1077174038817552
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4750670042848336}
-  - component: {fileID: 33541805730975452}
-  - component: {fileID: 23234734568665846}
-  m_Layer: 12
-  m_Name: Farm2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &4750670042848336
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077174038817552}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.48, z: 0}
-  m_LocalScale: {x: 0.009651233, y: 0.09651233, z: 0.009651233}
-  m_Children: []
-  m_Father: {fileID: 4492753931394578}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &33541805730975452
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077174038817552}
-  m_Mesh: {fileID: 4300000, guid: f7ddfaa1905a1cf4c877bd82d34d455c, type: 3}
---- !u!23 &23234734568665846
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077174038817552}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: e4731a5265c179c4ca10f9a018870aeb, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!1 &1134282791682152
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4492753931394578}
-  - component: {fileID: 114123804873814622}
-  - component: {fileID: 114195353990855890}
-  m_Layer: 12
-  m_Name: Farm
-  m_TagString: Building
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4492753931394578
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1134282791682152}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 10}
-  m_Children:
-  - {fileID: 4048308307295358}
-  - {fileID: 4750670042848336}
-  - {fileID: 4257091592006844}
-  m_Father: {fileID: 4216094176393048}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114123804873814622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1134282791682152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20c5bc6e9ae1599488846144c0883d72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  farm1: {fileID: 1719111348878948}
-  farm2: {fileID: 1077174038817552}
-  farm3: {fileID: 1781100764309494}
---- !u!114 &114195353990855890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1134282791682152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fb813aa505fc9044809a6c867cf7e69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  input: Seeds
-  output: White
-  TimeToComplete: 20
-  timer: 0
-  inputAmount: 0
-  outputAmount: 0
-  AmountProduced: 10
-  isOccupied: 1
-  worker: {fileID: 0}
---- !u!1 &1719111348878948
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4048308307295358}
-  - component: {fileID: 33566192355959340}
-  - component: {fileID: 23369113548275538}
-  m_Layer: 12
-  m_Name: Farm1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4048308307295358
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1719111348878948}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.48, z: 0}
-  m_LocalScale: {x: 0.0096512325, y: 0.09651232, z: 0.009651232}
-  m_Children: []
-  m_Father: {fileID: 4492753931394578}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &33566192355959340
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1719111348878948}
-  m_Mesh: {fileID: 4300000, guid: f7ddfaa1905a1cf4c877bd82d34d455c, type: 3}
---- !u!23 &23369113548275538
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1719111348878948}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: e4731a5265c179c4ca10f9a018870aeb, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!1 &1720095209189868
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +31,7 @@ Transform:
   m_LocalPosition: {x: 20, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4492753931394578}
+  - {fileID: 2545777532754336089}
   - {fileID: 5668916864527321412}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -277,6 +52,7 @@ MonoBehaviour:
   CrystalCost: 0
   FoodCost: 0
   FogRadius: 10
+  isFlag: 0
 --- !u!114 &114549211439295278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +68,7 @@ MonoBehaviour:
   BuildingHealth: 50
   isWonder: 0
   healthBarCanvasGameObject: {fileID: 0}
+  isHouse: 0
 --- !u!65 &65862027230197262
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -322,7 +99,7 @@ MonoBehaviour:
   hasSpecificWindow: 0
   UIPanel: {fileID: 0}
   isSelected: 0
---- !u!1 &1781100764309494
+--- !u!1 &2545777532754036089
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -330,45 +107,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4257091592006844}
-  - component: {fileID: 33210441692639510}
-  - component: {fileID: 23303838261607990}
+  - component: {fileID: 2545777532754336089}
+  - component: {fileID: 2545777532750944633}
+  - component: {fileID: 2545777532752042937}
+  - component: {fileID: 3524653933819331988}
   m_Layer: 12
-  m_Name: Farm3
-  m_TagString: Untagged
+  m_Name: FarmBox
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &4257091592006844
+  m_IsActive: 1
+--- !u!4 &2545777532754336089
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1781100764309494}
+  m_GameObject: {fileID: 2545777532754036089}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.48, z: 0}
-  m_LocalScale: {x: 0.009651233, y: 0.09651233, z: 0.009651233}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0}
+  m_LocalScale: {x: 2.2879, y: 2.2879, z: 2.2879}
   m_Children: []
-  m_Father: {fileID: 4492753931394578}
-  m_RootOrder: 2
+  m_Father: {fileID: 4216094176393048}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &33210441692639510
+--- !u!33 &2545777532750944633
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1781100764309494}
-  m_Mesh: {fileID: 4300000, guid: fc2782f98f733e948ab6c48c666cdf77, type: 3}
---- !u!23 &23303838261607990
+  m_GameObject: {fileID: 2545777532754036089}
+  m_Mesh: {fileID: 4300000, guid: 513d9ed832ffb4746a7acd818109e4cc, type: 3}
+--- !u!23 &2545777532752042937
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1781100764309494}
+  m_GameObject: {fileID: 2545777532754036089}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -376,10 +154,10 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
+  m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e4731a5265c179c4ca10f9a018870aeb, type: 2}
+  - {fileID: 2100000, guid: 5ab91237ac004934cabd81506b1be897, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -399,6 +177,27 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &3524653933819331988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2545777532754036089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fb813aa505fc9044809a6c867cf7e69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: Seeds
+  output: White
+  TimeToComplete: 20
+  timer: 0
+  inputAmount: 0
+  outputAmount: 0
+  AmountProduced: 10
+  isOccupied: 0
+  worker: {fileID: 0}
 --- !u!1001 &77047649956966923
 PrefabInstance:
   m_ObjectHideFlags: 0

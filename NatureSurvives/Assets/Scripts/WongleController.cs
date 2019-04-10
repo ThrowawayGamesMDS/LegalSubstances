@@ -334,10 +334,10 @@ public class WongleController : MonoBehaviour
 
                     if (type == SelectableUnitComponent.workerType.Melee)
                     {
-                        if (Vector3.Distance(transform.position, Target.transform.position) > 5)
+                        if (Vector3.Distance(transform.position, Target.transform.position) > 7)
                         {
                             agent.isStopped = false;
-                            agent.stoppingDistance = 4;
+                            agent.stoppingDistance = 6;
                             agent.SetDestination(Target.transform.position);
                         }
                         else
