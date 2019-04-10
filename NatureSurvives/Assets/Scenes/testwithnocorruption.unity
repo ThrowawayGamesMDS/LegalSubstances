@@ -12029,6 +12029,21 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6264537770643061149, guid: f15d47e5eca874e4fb05aac9bad0b8d1,
+        type: 3}
+      propertyPath: startingFood
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6264537770643061149, guid: f15d47e5eca874e4fb05aac9bad0b8d1,
+        type: 3}
+      propertyPath: startingWood
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 6264537770643061149, guid: f15d47e5eca874e4fb05aac9bad0b8d1,
+        type: 3}
+      propertyPath: startingCrystal
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 6264537770643061154, guid: f15d47e5eca874e4fb05aac9bad0b8d1,
         type: 3}
       propertyPath: BuildingHealth

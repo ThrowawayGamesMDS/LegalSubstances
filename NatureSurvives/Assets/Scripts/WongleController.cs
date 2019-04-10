@@ -112,14 +112,7 @@ public class WongleController : MonoBehaviour
         {
             Target = null;
         }
-        if(agent.velocity.magnitude <= 0)
-        {
-            agent.avoidancePriority = 99;
-        }
-        else
-        {
-            agent.avoidancePriority = priority;
-        }
+        
         //check level of resource gathering
         iWoodCutLevel = Mathf.FloorToInt(Mathf.Sqrt((iTreesCut / 3)));
         iFarmLevel = Mathf.FloorToInt(Mathf.Sqrt((iFarmsHarvested / 3)));
@@ -694,7 +687,29 @@ public class WongleController : MonoBehaviour
     }
 
 
+    private void LateUpdate()
+    {
+        if (agent.velocity.magnitude <= 0)
+        {
+            if (!agent.pathPending)
+            {
+                agent.avoidancePriority = Random.Range(90, 98);
+            }
+        }
+        else
+        {
+            agent.avoidancePriority = priority;
+        }
 
+        if(isGoingHome)
+        {
+            agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+        }
+        else
+        {
+            agent.obstacleAvoidanceType = ObstacleAvoidanceType.MedQualityObstacleAvoidance;
+        }
+    }
 
 
 
