@@ -10,6 +10,9 @@ public class checkposofclick : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public bool isHovered;
     private Camera cam;
     private RawImage minimapRawImage;
+    private Vector3 playerStartPosition;
+    private float startTime;
+
     private void Start()
     {
         isHovered = false;
@@ -36,18 +39,37 @@ public class checkposofclick : MonoBehaviour, IPointerEnterHandler, IPointerExit
         float xPositionCameraCoordinates = (xPositionDeltaPoint-165);
         float yPositionCameraCoordinates = (yPositionDeltaPoint-165);
         //Debug.Log((xPositionCameraCoordinates - 130) + ", " + (yPositionCameraCoordinates - 130));
-        
 
+       
 
-        if(isHovered)
+        if (isHovered)
         {
             //print("yes");
             print((xPositionCameraCoordinates) + ", " + (yPositionCameraCoordinates));
             if(!GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>().isSelecting)
             {
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    playerStartPosition = player.position;
+
+                    startTime = Time.time;
+                }
                 if (Input.GetKey(KeyCode.Mouse0))
                 {
-                    player.position = new Vector3((((xPositionCameraCoordinates) / 165) * 250), player.position.y, (((yPositionCameraCoordinates) / 165) * 250));
+                    //player.position = new Vector3((((xPositionCameraCoordinates) / 165) * 250), player.position.y, (((yPositionCameraCoordinates) / 165) * 250));
+
+                    float speed = 1000.0f;
+
+                    float distCovered = (Time.time - startTime) * speed;
+
+
+                    Vector3 newPosition = new Vector3((((xPositionCameraCoordinates) / 165) * 250), player.position.y, (((yPositionCameraCoordinates) / 165) * 250));
+
+                    float journeyLength = Vector3.Distance(playerStartPosition, newPosition);
+
+                    float fracJourney = distCovered / journeyLength;
+
+                    player.position = Vector3.Lerp(playerStartPosition, newPosition, fracJourney);
                 }
             }
             
@@ -67,7 +89,7 @@ public class checkposofclick : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
-        isHovered = true;
+        isHovered = true;     
     }
 
     public void OnPointerExit(PointerEventData pointerEventData)

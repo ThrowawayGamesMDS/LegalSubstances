@@ -14,26 +14,21 @@ public class TutorialParameters : MonoBehaviour
         E_FOUR = 4
     }
 
-
-
-
-
     public TutorialState m_eTutorialLevel;
     public Text UIq1, UIq2, UIq3, UIq4;
     public GameObject Enemy;
     public GameObject enemyInstance;
 
-
+    int startWhiteAmount;
+    int startWoodAmount;
+    int startCrystalAmount;
 
     // Start is called before the first frame update
     void Start()
     {
         m_eTutorialLevel = TutorialState.E_ONE;
-        print(gameObject.name);
+        print(gameObject.name);       
     }
-
-
-
 
     // Update is called once per frame
     void Update()
@@ -54,15 +49,20 @@ public class TutorialParameters : MonoBehaviour
                     }
                     if (amountSelected >= 3)
                     {
+                        startWhiteAmount = HouseController.WhiteAmount;
+                        startWoodAmount = HouseController.WoodAmount;
+                        startCrystalAmount = HouseController.CrystalAmount;
+
                         //change ui to completed version (maybe tick boxes)
                         UIq1.color = Color.green;
-                        m_eTutorialLevel = TutorialState.E_TWO;
+                        m_eTutorialLevel = TutorialState.E_TWO;                      
                     }
                     break;
                 }
             case TutorialState.E_TWO:
                 {
-                    if (HouseController.WhiteAmount >= 170 && HouseController.WoodAmount >= 220 && HouseController.CrystalAmount >= 220)
+                    //if (HouseController.WhiteAmount >= 170 && HouseController.WoodAmount >= 220 && HouseController.CrystalAmount >= 220)
+                    if ( (HouseController.WhiteAmount >= startWhiteAmount + 50) && (HouseController.WoodAmount >= startWoodAmount + 50) && (HouseController.CrystalAmount >= startCrystalAmount + 50) )
                     {
                         //spawn enemy
                         //tick ui box
