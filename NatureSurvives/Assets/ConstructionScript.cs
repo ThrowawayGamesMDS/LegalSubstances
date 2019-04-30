@@ -35,8 +35,7 @@ public class ConstructionScript : MonoBehaviour
                                 float m_buildingRadius = fogComponent.m_buildingRadius;
                                 fogComponent.Unfog(transform.position, m_buildingRadius, gameObject.GetInstanceID());
                             }
-
-                            Instantiate(m_Building, transform.position, transform.rotation);
+                            GameObject.FindGameObjectWithTag("HomeBuilding").GetComponent<PlacementHandler>().m_goObjsPlaced.Add(Instantiate(m_Building, transform.position, transform.rotation));
                             Destroy(gameObject);
                         }
                         break;
@@ -50,8 +49,7 @@ public class ConstructionScript : MonoBehaviour
                             float m_buildingRadius = fogComponent.m_buildingRadius;
                             fogComponent.Unfog(transform.position, m_buildingRadius, gameObject.GetInstanceID());
                         }
-
-                        Instantiate(m_Building, transform.position, transform.rotation);
+                        GameObject.FindGameObjectWithTag("HomeBuilding").GetComponent<PlacementHandler>().m_goObjsPlaced.Add(Instantiate(m_Building, transform.position, transform.rotation));
                         Destroy(gameObject);
                         break;
                     }
@@ -69,7 +67,8 @@ public class ConstructionScript : MonoBehaviour
                     fogComponent.Unfog(transform.position, m_buildingRadius, gameObject.GetInstanceID());
                 }
 
-                Instantiate(m_Building, transform.position, transform.rotation);
+
+                GameObject.FindGameObjectWithTag("HomeBuilding").GetComponent<PlacementHandler>().m_goObjsPlaced.Add(Instantiate(m_Building, transform.position, transform.rotation));
                 Destroy(gameObject);
             }
         }

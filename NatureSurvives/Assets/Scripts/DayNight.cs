@@ -31,7 +31,7 @@ public class DayNight : MonoBehaviour {
         counted = false;
         daytimer = Mathf.RoundToInt(m_fDayTime * 60);
         nighttimer = Mathf.RoundToInt(m_fNightTime * 60);
-
+        isWonder = false;
         roundUI = GameObject.Find("RoundUI");
         //roundImage = roundUI.transform.GetChild(0).GetComponent<Image>();
         roundImage = roundUI.GetComponent<Image>();
