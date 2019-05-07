@@ -95,7 +95,7 @@ public class HomeSpawning : MonoBehaviour {
             bool _bDisplayUI = false;
 
             // Best optimization option
-            /**
+            
             if (m_dExpenseInformation.TryGetValue(unittype, out temp))
             {
                 if (HouseController.WoodAmount >= temp.m_iWoodCost)
@@ -107,197 +107,17 @@ public class HomeSpawning : MonoBehaviour {
                             HouseController.WoodAmount -= temp.m_iWoodCost;
                             HouseController.CrystalAmount -= temp.m_iCrystalCost;
                             HouseController.WhiteAmount -= temp.m_iFoodCost;
-                            GameObject uiobj = temp.InstantiateUi(canvas.gameObject, UIObjQueue.Count - 1);
+                            GameObject uiobj = Instantiate(temp.m_goUiDisplay, canvas);
                             uiobj.transform.SetParent(canvas, false);
-                            uiobj.GetComponent<queueUIScript>().placeInQueue = UnitQueue.Count - 1;
+                            UnitQueue.Insert(UnitQueue.Count, unittype);
+                            if (UnitQueue.Count > 1)
+                            {
+                                uiobj.GetComponent<queueUIScript>().placeInQueue = UnitQueue.Count - 1;
+                            }
                             UIObjQueue.Insert(UIObjQueue.Count, uiobj);
+
                         }
                     }
-                }
-            }
-            **/
-            // Second Best
-            /*
-            if (m_dExpenseInformation.TryGetValue(unittype, out temp))
-            {
-                if (HouseController.WoodAmount >= temp.m_iWoodCost)
-                {
-                    if (HouseController.CrystalAmount >= temp.m_iCrystalCost)
-                    {
-                        if (HouseController.WhiteAmount >= temp.m_iWoodCost)
-                        {
-                            HouseController.WoodAmount -= temp.m_iWoodCost;
-                            HouseController.CrystalAmount -= temp.m_iCrystalCost;
-                            HouseController.WhiteAmount -= temp.m_iFoodCost;
-                            _bDisplayUI = true;
-                        }
-                    }
-                }
-            }
-
-            if (_bDisplayUI)
-            {
-                GameObject uiobj = null;
-                switch (unittype)
-                {
-                    case "Worker":
-                        {
-                            uiobj = Instantiate(workerUI, canvas);
-                            break;
-                        }
-                    case "Knight":
-                        {
-                            uiobj = Instantiate(knightUI, canvas);
-                            break;
-                        }
-                    case "Wizard":
-                        {
-                            uiobj = Instantiate(wizardUI, canvas);
-                            break;
-                        }
-                    case "Scout":
-                        {
-                            uiobj = Instantiate(workerUI, canvas);
-                            break;
-                        }
-                    default:
-                        {
-                            uiobj = Instantiate(workerUI, canvas);
-                            break;
-                        }
-
-                }
-                if (uiobj != null)
-                {
-                    uiobj.transform.SetParent(canvas, false);
-                    uiobj.GetComponent<queueUIScript>().placeInQueue = UnitQueue.Count - 1;
-                    UIObjQueue.Insert(UIObjQueue.Count, uiobj);
-                }
-                else
-                {
-                    print("ui obj is null still?!");
-                }
-            }
-            */
-
-
-            if (unittype == "Worker")
-            {
-                // new style
-                if (m_dExpenseInformation.TryGetValue(unittype, out temp))
-                {
-                    if (HouseController.WoodAmount >= temp.m_iWoodCost)
-                    {
-                        if (HouseController.CrystalAmount >= temp.m_iCrystalCost)
-                        {
-                            if (HouseController.WhiteAmount >= temp.m_iWoodCost)
-                            {
-                                UnitQueue.Insert(UnitQueue.Count, unittype);
-                                GameObject uiobj = Instantiate(workerUI, canvas);
-                                uiobj.transform.SetParent(canvas, false);
-                                uiobj.GetComponent<queueUIScript>().placeInQueue = UnitQueue.Count - 1;
-                                UIObjQueue.Insert(UIObjQueue.Count, uiobj);
-                                HouseController.WoodAmount -= temp.m_iWoodCost;
-                                HouseController.CrystalAmount -= temp.m_iCrystalCost;
-                                HouseController.WhiteAmount -= temp.m_iFoodCost;
-                            }
-                        }
-                    }
-                }
-
-                // old style
-
-                    /* if (HouseController.WoodAmount >= Prefabs[0].GetComponent<costToPlace>().WoodCost)
-                     {
-                         if (HouseController.CrystalAmount >= Prefabs[0].GetComponent<costToPlace>().CrystalCost)
-                         {
-                             if (HouseController.WhiteAmount >= Prefabs[0].GetComponent<costToPlace>().FoodCost)
-                             {
-                                 UnitQueue.Insert(UnitQueue.Count, unittype);
-                                 GameObject uiobj = Instantiate(workerUI, canvas);
-                                 uiobj.transform.SetParent(canvas, false);
-                                 uiobj.GetComponent<queueUIScript>().placeInQueue = UnitQueue.Count - 1;
-                                 UIObjQueue.Insert(UIObjQueue.Count, uiobj);
-                                 HouseController.WoodAmount -= Prefabs[0].GetComponent<costToPlace>().WoodCost;
-                                 HouseController.CrystalAmount -= Prefabs[0].GetComponent<costToPlace>().CrystalCost;
-                                 HouseController.WhiteAmount -= Prefabs[0].GetComponent<costToPlace>().FoodCost;
-                             }
-                         }
-                     }*/
-
-        
-                }
-            else if (unittype == "Wizard")
-            {
-                if (m_dExpenseInformation.TryGetValue(unittype, out temp))
-                {
-                    if (HouseController.WoodAmount >= temp.m_iWoodCost)
-                    {
-                        if (HouseController.CrystalAmount >= temp.m_iCrystalCost)
-                        {
-                            if (HouseController.WhiteAmount >= temp.m_iFoodCost)
-                            {
-                                UnitQueue.Insert(UnitQueue.Count, unittype);
-                                GameObject uiobj = Instantiate(wizardUI, canvas);
-                                uiobj.transform.SetParent(canvas, false);
-                                uiobj.GetComponent<queueUIScript>().placeInQueue = UnitQueue.Count - 1;
-                                UIObjQueue.Insert(UIObjQueue.Count, uiobj);
-                                HouseController.WoodAmount -= temp.m_iWoodCost;
-                                HouseController.CrystalAmount -= temp.m_iCrystalCost;
-                                HouseController.WhiteAmount -= temp.m_iFoodCost;
-                            }
-                        }
-                    }
-                }
-            }
-            else if (unittype == "Knight")
-            {
-                if (m_dExpenseInformation.TryGetValue(unittype, out temp))
-                {
-                    if (HouseController.WoodAmount >= temp.m_iWoodCost)
-                    {
-                        if (HouseController.CrystalAmount >= temp.m_iCrystalCost)
-                        {
-                            if (HouseController.WhiteAmount >= temp.m_iFoodCost)
-                            {
-                                UnitQueue.Insert(UnitQueue.Count, unittype);
-                                GameObject uiobj = Instantiate(knightUI, canvas);
-                                uiobj.transform.SetParent(canvas, false);
-                                uiobj.GetComponent<queueUIScript>().placeInQueue = UnitQueue.Count - 1;
-                                UIObjQueue.Insert(UIObjQueue.Count, uiobj);
-                                HouseController.WoodAmount -= temp.m_iWoodCost;
-                                HouseController.CrystalAmount -= temp.m_iCrystalCost;
-                                HouseController.WhiteAmount -= temp.m_iFoodCost;
-                            }
-                        }
-                    }
-                }
-            }
-            else if (unittype == "Scout")
-            {
-                if (m_dExpenseInformation.TryGetValue("Scout", out temp))
-                {
-                    if (HouseController.WoodAmount >= temp.m_iWoodCost)
-                    {
-                        if (HouseController.CrystalAmount >= temp.m_iCrystalCost)
-                        {
-                            if (HouseController.WhiteAmount >= temp.m_iFoodCost)
-                            {
-                                UnitQueue.Insert(UnitQueue.Count, unittype);
-                                GameObject uiobj = Instantiate(workerUI, canvas);
-                                uiobj.transform.SetParent(canvas, false);
-                                uiobj.GetComponent<queueUIScript>().placeInQueue = UnitQueue.Count - 1;
-                                UIObjQueue.Insert(UIObjQueue.Count, uiobj);
-                                HouseController.WoodAmount -= temp.m_iWoodCost;
-                                HouseController.CrystalAmount -= temp.m_iCrystalCost;
-                                HouseController.WhiteAmount -= temp.m_iFoodCost;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    print("Couldn't load Scout Expense Information");
                 }
             }
         }
@@ -368,6 +188,7 @@ public class HomeSpawning : MonoBehaviour {
         {
             if(!hasTimer)
             {
+                print("here");
                 timerVal = 0;
                 hasTimer = true;
             }
