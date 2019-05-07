@@ -9,14 +9,15 @@ public class Spawning_Cost : MonoBehaviour
     public int m_iCrystalCost;
     public int m_iFoodCost;
     public GameObject m_goUiDisplay;
-    public Spawning_Cost(string _sName, int _iWoodCost, int _iCrystalCost, int _iFoodCost, GameObject _goUiDisplay)
+    public GameObject m_goSpawnableUnit;
+    public Spawning_Cost(string _sName, int _iWoodCost, int _iCrystalCost, int _iFoodCost, GameObject _goUiDisplay, GameObject _goSpawnableUnit)
     {
         m_sName = _sName;
         m_iWoodCost = _iWoodCost;
         m_iCrystalCost = _iCrystalCost;
         m_iFoodCost = _iFoodCost;
         m_goUiDisplay = _goUiDisplay;
-
+        m_goSpawnableUnit = _goSpawnableUnit;
 
     }
 
@@ -60,17 +61,42 @@ public class HomeSpawning : MonoBehaviour {
             g_v3WorkerRally = new Vector3(80, 0, -110);
 
             m_dExpenseInformation = new Dictionary<string, Spawning_Cost>();
+            // for scout
+            GameObject temp = null;
+            temp = Instantiate(Resources.Load("Prefabs/Player_Units/WongleKnight"), gameObject.transform) as GameObject;
+            temp.gameObject.transform.localScale = new Vector3(10, 10, 10); // so weird -> When using resources.load it scales stuff up to 10, and then setting back to 10 sets to 1, honestly idk
+            AddExpenseInformation("Scout", 5, 5, 5, workerUI, temp);
+            temp.SetActive(false);
+            //end of scout stuff
 
-            AddExpenseInformation("Worker", 0, 0, 50, workerUI);
-            AddExpenseInformation("Knight", 0, 20, 60, knightUI);
-            AddExpenseInformation("Wizard", 25, 45, 0, wizardUI);
-            AddExpenseInformation("Scout", 5, 5, 5, workerUI);
+            temp = Instantiate(Resources.Load("Prefabs/Player_Units/WongleWorker"), gameObject.transform) as GameObject;
+            temp.gameObject.transform.localScale = new Vector3(10, 10, 10);
+            AddExpenseInformation("Worker", 0, 0, 50, workerUI, temp);
+            temp.SetActive(false);
+
+            temp = Instantiate(Resources.Load("Prefabs/Player_Units/Wizuk"), gameObject.transform) as GameObject;
+            temp.gameObject.transform.localScale = new Vector3(10, 10, 10);
+            AddExpenseInformation("Wizard", 25, 45, 0, wizardUI, temp);
+            temp.SetActive(false);
+
+            temp = Instantiate(Resources.Load("Prefabs/Player_Units/Knight"), gameObject.transform) as GameObject;
+            temp.gameObject.transform.localScale = new Vector3(10, 10, 10);
+            AddExpenseInformation("Knight", 0, 20, 60, knightUI, Prefabs[2]);
+            temp.SetActive(false);
+           /* if (temp != null)
+            {
+                AddExpenseInformation("Scout", 5, 5, 5, workerUI, temp);
+                temp.SetActive(false);
+               // Destroy(temp);
+            }
+            else
+                AddExpenseInformation("Scout", 5, 5, 5, workerUI, Prefabs[0]);*/
         }
     }
 
-    public void AddExpenseInformation(string _sName, int _iWoodCost, int _iCrystalCost, int _iFoodCost, GameObject _goUiDisplay)
+    public void AddExpenseInformation(string _sName, int _iWoodCost, int _iCrystalCost, int _iFoodCost, GameObject _goUiDisplay, GameObject _goSpawnableUnit)
     {
-        Spawning_Cost _scTemp = new Spawning_Cost(_sName, _iWoodCost, _iCrystalCost, _iFoodCost, _goUiDisplay);
+        Spawning_Cost _scTemp = new Spawning_Cost(_sName, _iWoodCost, _iCrystalCost, _iFoodCost, _goUiDisplay, _goSpawnableUnit);
         m_dExpenseInformation.Add(_sName, _scTemp);
 
         _scTemp = null;
@@ -92,7 +118,6 @@ public class HomeSpawning : MonoBehaviour {
         if (iCurrentWongleCount + UIObjQueue.Count < iMaximumWongleCount)
         {
             Spawning_Cost temp = null;
-            bool _bDisplayUI = false;
 
             // Best optimization option
             
@@ -110,10 +135,7 @@ public class HomeSpawning : MonoBehaviour {
                             GameObject uiobj = Instantiate(temp.m_goUiDisplay, canvas);
                             uiobj.transform.SetParent(canvas, false);
                             UnitQueue.Insert(UnitQueue.Count, unittype);
-                            if (UnitQueue.Count > 1)
-                            {
-                                uiobj.GetComponent<queueUIScript>().placeInQueue = UnitQueue.Count - 1;
-                            }
+                            uiobj.GetComponent<queueUIScript>().placeInQueue = UnitQueue.Count - 1;
                             UIObjQueue.Insert(UIObjQueue.Count, uiobj);
 
                         }
@@ -123,60 +145,40 @@ public class HomeSpawning : MonoBehaviour {
         }
     }
 
-    public void SpawnUnit(string unittype)
-    {        
-        GameObject temp;
-        switch (unittype)
+    private Vector3 GetRallyPoint(string _sUnitType)
+    {
+        switch (_sUnitType)
         {
             case "Worker":
                 {
-                    
-                    temp = Instantiate(Prefabs[0], transform.position, Prefabs[0].transform.rotation);
-                    temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
-                    temp.GetComponent<WongleController>().agent.avoidancePriority = Random.Range(0,99);
-                    temp.GetComponent<WongleController>().priority = temp.GetComponent<WongleController>().agent.avoidancePriority;
-                    temp.GetComponent<WongleController>().agent.SetDestination(g_v3WorkerRally);   
-                    break;
-                }
-            case "Wizard":
-                {
-                    temp = Instantiate(Prefabs[1], transform.position, Prefabs[1].transform.rotation, army.transform);
-                    temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
-                    temp.GetComponent<WongleController>().agent.avoidancePriority = Random.Range(0, 99);
-                    temp.GetComponent<WongleController>().priority = temp.GetComponent<WongleController>().agent.avoidancePriority;
-                    temp.GetComponent<WongleController>().Work = army;
-                    temp.GetComponent<WongleController>().agent.SetDestination(g_v3WizardRally);                                
-                    GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>().m_goRangedUnits.Add(temp);                  
-                    break;
+                    return g_v3WorkerRally;
                 }
             case "Knight":
                 {
-                    
-                    temp = Instantiate(Prefabs[2], transform.position, Prefabs[2].transform.rotation, army.transform);
-                    temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
-                    temp.GetComponent<WongleController>().agent.avoidancePriority = Random.Range(0, 99);
-                    temp.GetComponent<WongleController>().priority = temp.GetComponent<WongleController>().agent.avoidancePriority;
-                    temp.GetComponent<WongleController>().Work = army;
-                    temp.GetComponent<WongleController>().agent.SetDestination(g_v3KnightRally);                                
-                    GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>().m_goMeleeUnits.Add(temp);                   
-                    break;
+                    return g_v3KnightRally;
                 }
-            case "Scout":
+            case "Wizard":
                 {
-
-                    temp = Instantiate(Resources.Load(Application.persistentDataPath + "Assets\\Prefabs\\Wongles\\WongleKnight"), transform.position, Prefabs[0].transform.rotation) as GameObject; // worker rotation?
-                    temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
-                    temp.GetComponent<WongleController>().agent.avoidancePriority = Random.Range(0, 99);
-                    temp.GetComponent<WongleController>().priority = temp.GetComponent<WongleController>().agent.avoidancePriority;
-                    temp.GetComponent<WongleController>().agent.SetDestination(g_v3WorkerRally);
-                    print("Spawning scout...");
-                    break;
+                    return g_v3WizardRally;
                 }
             default:
-                {
-                    break;
-                }
-        }   
+                return g_v3WorkerRally; // Scout etc
+        }
+    }
+
+    public void SpawnUnit(string unittype)
+    {
+        Spawning_Cost _scTemp = null;
+        GameObject temp = null;
+        if (m_dExpenseInformation.TryGetValue(unittype,out _scTemp))
+        {
+            temp = Instantiate(_scTemp.m_goSpawnableUnit, transform.position, Prefabs[0].transform.rotation);
+            temp.SetActive(true);
+            temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
+            temp.GetComponent<WongleController>().agent.avoidancePriority = Random.Range(0, 99);
+            temp.GetComponent<WongleController>().priority = temp.GetComponent<WongleController>().agent.avoidancePriority;
+            temp.GetComponent<WongleController>().agent.SetDestination(GetRallyPoint(unittype));
+        }
     }
 
     private void Update()
