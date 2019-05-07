@@ -20,6 +20,7 @@ public class WongleController : MonoBehaviour
     public GameObject DeadWongle;
     public List<GameObject> Enemies;
     public bool isGoingHome;
+    public bool m_bIsScout; // Utilizing tag as wongleworker for scouts, but this bool will be switched :D
     public int inputAmount;
     public float outputAmount;
     public bool canAttack;

@@ -42,6 +42,7 @@ public class HomeSpawning : MonoBehaviour {
     public GameObject workerUI;
     public GameObject wizardUI;
     public GameObject knightUI;
+    public GameObject m_goScoutUI; //switch to dictionary
     public Transform canvas;
     public GameObject army;
     public Vector3 g_v3WizardRally;
@@ -63,10 +64,14 @@ public class HomeSpawning : MonoBehaviour {
             m_dExpenseInformation = new Dictionary<string, Spawning_Cost>();
             // for scout
             GameObject temp = null;
-            temp = Instantiate(Resources.Load("Prefabs/Player_Units/WongleKnight"), gameObject.transform) as GameObject;
+            GameObject temp2 = null;
+            temp = Instantiate(Resources.Load("Prefabs/UI_Objects/ScoutQueue"), gameObject.transform) as GameObject;
+          //  temp2 = Instantiate(Resources.Load("Prefabs/Player_Units/WongleScout"), canvas) as GameObject;
             temp.gameObject.transform.localScale = new Vector3(10, 10, 10); // so weird -> When using resources.load it scales stuff up to 10, and then setting back to 10 sets to 1, honestly idk
-            AddExpenseInformation("Scout", 5, 5, 5, workerUI, temp);
+          //  temp2.gameObject.transform.localScale = new Vector3(10, 10, 10); -> need to setactive when instantiating...
+            AddExpenseInformation("Scout", 5, 5, 5,m_goScoutUI, temp);
             temp.SetActive(false);
+         //   temp2.SetActive(false);
             //end of scout stuff
 
             temp = Instantiate(Resources.Load("Prefabs/Player_Units/WongleWorker"), gameObject.transform) as GameObject;
@@ -81,7 +86,7 @@ public class HomeSpawning : MonoBehaviour {
 
             temp = Instantiate(Resources.Load("Prefabs/Player_Units/Knight"), gameObject.transform) as GameObject;
             temp.gameObject.transform.localScale = new Vector3(10, 10, 10);
-            AddExpenseInformation("Knight", 0, 20, 60, knightUI, Prefabs[2]);
+            AddExpenseInformation("Knight", 0, 20, 60, knightUI, temp);
             temp.SetActive(false);
            /* if (temp != null)
             {

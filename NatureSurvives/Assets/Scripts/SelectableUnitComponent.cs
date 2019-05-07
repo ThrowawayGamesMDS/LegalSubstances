@@ -8,7 +8,7 @@ public class SelectableUnitComponent : MonoBehaviour {
     public GameObject selectionCircle;
     public bool isSelected;
     public WongleController controller;
-    public enum workerType {Worker, Ranged, Melee};
+    public enum workerType {Worker, Ranged, Melee, Scout};
     public workerType Type;
     public void Start()
     {
