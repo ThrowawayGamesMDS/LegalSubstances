@@ -18,6 +18,7 @@ public class queueBar : MonoBehaviour
             m_sQueueBarHandle = this;
             home = GameObject.FindGameObjectWithTag("HomeBuilding").GetComponent<HomeSpawning>();
             me = gameObject.GetComponent<RectTransform>();
+            m_fTimerValue = 7;
         }
     }
 
