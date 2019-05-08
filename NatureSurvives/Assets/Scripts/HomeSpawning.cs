@@ -65,13 +65,13 @@ public class HomeSpawning : MonoBehaviour {
             // for scout
             GameObject temp = null;
             GameObject temp2 = null;
-            temp = Instantiate(Resources.Load("Prefabs/UI_Objects/ScoutQueue"), gameObject.transform) as GameObject;
-          //  temp2 = Instantiate(Resources.Load("Prefabs/Player_Units/WongleScout"), canvas) as GameObject;
+            temp = Instantiate(Resources.Load("Prefabs/Player_Units/WongleScout"), gameObject.transform) as GameObject;
+            temp2 = Instantiate(Resources.Load("Prefabs/UI_Objects/ScoutQueue"), canvas) as GameObject;
             temp.gameObject.transform.localScale = new Vector3(10, 10, 10); // so weird -> When using resources.load it scales stuff up to 10, and then setting back to 10 sets to 1, honestly idk
-          //  temp2.gameObject.transform.localScale = new Vector3(10, 10, 10); -> need to setactive when instantiating...
-            AddExpenseInformation("Scout", 5, 5, 5,m_goScoutUI, temp);
+           // temp2.gameObject.transform.localScale = new Vector3(10, 10, 10);// -> need to setactive when instantiating...
+            AddExpenseInformation("Scout", 5, 5, 5,temp2, temp);
             temp.SetActive(false);
-         //   temp2.SetActive(false);
+            temp2.SetActive(false);
             //end of scout stuff
 
             temp = Instantiate(Resources.Load("Prefabs/Player_Units/WongleWorker"), gameObject.transform) as GameObject;
@@ -138,6 +138,7 @@ public class HomeSpawning : MonoBehaviour {
                             HouseController.CrystalAmount -= temp.m_iCrystalCost;
                             HouseController.WhiteAmount -= temp.m_iFoodCost;
                             GameObject uiobj = Instantiate(temp.m_goUiDisplay, canvas);
+                            uiobj.SetActive(true);
                             uiobj.transform.SetParent(canvas, false);
                             UnitQueue.Insert(UnitQueue.Count, unittype);
                             uiobj.GetComponent<queueUIScript>().placeInQueue = UnitQueue.Count - 1;
@@ -237,32 +238,11 @@ public class HomeSpawning : MonoBehaviour {
     public void Refund(string x)
     {
         Spawning_Cost temp = null;
-        if(x == "Worker")
+        if (m_dExpenseInformation.TryGetValue(x,out temp))
         {
-            HouseController.WoodAmount += Prefabs[0].GetComponent<costToPlace>().WoodCost;
-            HouseController.WhiteAmount += Prefabs[0].GetComponent<costToPlace>().FoodCost;
-            HouseController.CrystalAmount += Prefabs[0].GetComponent<costToPlace>().CrystalCost;
-        }
-        if (x == "Wizard")
-        {
-            HouseController.WoodAmount += Prefabs[1].GetComponent<costToPlace>().WoodCost;
-            HouseController.WhiteAmount += Prefabs[1].GetComponent<costToPlace>().FoodCost;
-            HouseController.CrystalAmount += Prefabs[1].GetComponent<costToPlace>().CrystalCost;
-        }
-        if (x == "Knight")
-        {
-            HouseController.WoodAmount += Prefabs[2].GetComponent<costToPlace>().WoodCost;
-            HouseController.WhiteAmount += Prefabs[2].GetComponent<costToPlace>().FoodCost;
-            HouseController.CrystalAmount += Prefabs[2].GetComponent<costToPlace>().CrystalCost;
-        }
-        if (x == "Scout")
-        {
-            if (m_dExpenseInformation.TryGetValue("Scout", out temp))
-            {
-                HouseController.WoodAmount += temp.m_iWoodCost;
-                HouseController.WhiteAmount += temp.m_iFoodCost;
-                HouseController.CrystalAmount += temp.m_iCrystalCost;
-            }
+            HouseController.WoodAmount += temp.m_iWoodCost;
+            HouseController.WhiteAmount += temp.m_iFoodCost;
+            HouseController.CrystalAmount += temp.m_iCrystalCost;
         }
     }
 }
