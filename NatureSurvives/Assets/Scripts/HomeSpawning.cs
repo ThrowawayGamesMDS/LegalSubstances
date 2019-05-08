@@ -20,14 +20,6 @@ public class Spawning_Cost : MonoBehaviour
         m_goSpawnableUnit = _goSpawnableUnit;
 
     }
-
-    public GameObject InstantiateUi(GameObject canvas, int _iQueueCount)
-    {
-        GameObject uiobj = Instantiate(m_goUiDisplay, canvas.transform);
-        uiobj.transform.SetParent(canvas.transform.parent, false);
-        uiobj.GetComponent<queueUIScript>().placeInQueue = _iQueueCount;
-        return uiobj;
-    }
 }
 
 public class HomeSpawning : MonoBehaviour {
@@ -38,6 +30,7 @@ public class HomeSpawning : MonoBehaviour {
     public List<string> UnitQueue;
     public List<GameObject> UIObjQueue;
     public bool hasTimer;
+    public bool m_bRemoveQueueTimerCheat;
     public float timerVal;
     public GameObject workerUI;
     public GameObject wizardUI;
@@ -55,6 +48,9 @@ public class HomeSpawning : MonoBehaviour {
         if (m_sHomeSpawningControl == null)
         {
             m_sHomeSpawningControl = this;
+
+            m_bRemoveQueueTimerCheat = false;
+
             iCurrentWongleCount = 5;
             army = GameObject.FindGameObjectWithTag("Army");
             g_v3WorkerRally = new Vector3(120, 0, -110);
@@ -194,24 +190,35 @@ public class HomeSpawning : MonoBehaviour {
         
         if(UnitQueue.Count > 0)
         {
-            if(!hasTimer)
+            if (!m_bRemoveQueueTimerCheat)
             {
-                print("here");
-                timerVal = 0;
-                hasTimer = true;
+                if (!hasTimer)
+                {
+                    timerVal = 0;
+                    hasTimer = true;
+                }
+                else
+                {
+                    timerVal += Time.deltaTime;
+                    if (timerVal >= 7) // make a more intuitive timer with different vars for respectable units...
+                    {
+                        SpawnUnit(UnitQueue[0]);
+                        hasTimer = false;
+                        timerVal = 0;
+                        UnitQueue.RemoveAt(0);
+                        Destroy(UIObjQueue[0]);
+                        UIObjQueue.RemoveAt(0);
+                    }
+                }
             }
             else
             {
-                timerVal += Time.deltaTime;
-                if(timerVal >= 7)
-                {
-                    SpawnUnit(UnitQueue[0]);
-                    hasTimer = false;
-                    timerVal = 0;
-                    UnitQueue.RemoveAt(0);
-                    Destroy(UIObjQueue[0]);
-                    UIObjQueue.RemoveAt(0);
-                }
+                SpawnUnit(UnitQueue[0]);
+                hasTimer = false;
+                timerVal = 0;
+                UnitQueue.RemoveAt(0);
+                Destroy(UIObjQueue[0]);
+                UIObjQueue.RemoveAt(0);
             }
         }   
         

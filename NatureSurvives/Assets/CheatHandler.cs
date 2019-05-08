@@ -13,11 +13,12 @@ public class CheatHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_iCheatCount = 3;
+        m_iCheatCount = 4;
         m_sKnownCheats = new string[m_iCheatCount];
         m_sKnownCheats[0] = "byebyeboxes";
         m_sKnownCheats[1] = "givemedosh";
         m_sKnownCheats[2] = "builderpro";
+        m_sKnownCheats[3] = "nomorequeues";
         m_bDisabledBuildTimer = false;
         m_bPlayerIsEnteringCheat = false;
         gameObject.GetComponent<CanvasGroup>().alpha = 0;
@@ -26,12 +27,14 @@ public class CheatHandler : MonoBehaviour
 
     public void HandleEnteredCheat(string _sEnteredText)
     {
+        string _sCheatResult = "Cheat ";
         switch (_sEnteredText)
         {
             case "byebyeboxes":
                 {
                     if (GameObject.FindGameObjectWithTag("Fog").gameObject != null)
                         GameObject.FindGameObjectWithTag("Fog").gameObject.SetActive(false);
+                    _sCheatResult += "Enabled: Remove Fog of War!";
                     break;
                 }
             case "givemedosh":
@@ -41,6 +44,7 @@ public class CheatHandler : MonoBehaviour
                         HouseController.WhiteAmount += 1000;
                         HouseController.CrystalAmount += 1000;
                         HouseController.WoodAmount += 1000;
+                        _sCheatResult += "Enabled: Give Resources!";
                     }
                         break;
                 }
@@ -53,19 +57,42 @@ public class CheatHandler : MonoBehaviour
                             case true:
                                 {
                                     m_bDisabledBuildTimer = false;
+                                    _sCheatResult += "Disabled: Remove Build Timer!";
                                     break;
                                 }
                             case false:
                                 {
                                     m_bDisabledBuildTimer = true;
+                                    _sCheatResult += "Enabled: Remove Build Timer!";
                                     break;
                                 }
                         }
                     }
                     break;
                 }
+            case "nomorequeues":
+                {
+                    switch (HomeSpawning.m_sHomeSpawningControl.m_bRemoveQueueTimerCheat)
+                    {
+                        case false:
+                            {
+                                HomeSpawning.m_sHomeSpawningControl.m_bRemoveQueueTimerCheat = true;
+                                _sCheatResult += "Enabled: Remove Queue Timer!";
+                                break;
+                            }
+                        case true:
+                            {
+                                HomeSpawning.m_sHomeSpawningControl.m_bRemoveQueueTimerCheat = false;
+                                _sCheatResult += "Disabled: Remove Queue Timer!";
+                                break;
+                            }
+                    }
+                    break;
+                }
 
         }
+
+        NotificationManager.Instance.SetNewNotification(_sCheatResult);
     }
 
     // Update is called once per frame
