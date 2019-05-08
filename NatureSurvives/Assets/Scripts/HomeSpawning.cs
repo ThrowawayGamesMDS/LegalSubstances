@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Spawning_Cost : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class HomeSpawning : MonoBehaviour {
     public bool hasTimer;
     public bool m_bRemoveQueueTimerCheat;
     public float timerVal;
+    public float m_fSpawnTimer;
     public GameObject workerUI;
     public GameObject wizardUI;
     public GameObject knightUI;
@@ -196,11 +198,14 @@ public class HomeSpawning : MonoBehaviour {
                 {
                     timerVal = 0;
                     hasTimer = true;
+                    m_fSpawnTimer = (float)System.Int32.Parse(UIObjQueue[0].gameObject.transform.Find("Text").GetComponent<Text>().text);
+                    print("Spawn Timer: " + m_fSpawnTimer);
                 }
                 else
                 {
                     timerVal += Time.deltaTime;
-                    if (timerVal >= 7) // make a more intuitive timer with different vars for respectable units...
+                    UIObjQueue[0].gameObject.transform.Find("Text").GetComponent<Text>().text = "" + (m_fSpawnTimer - (int)timerVal);
+                    if (timerVal >= m_fSpawnTimer) // make a more intuitive timer with different vars for respectable units...
                     {
                         SpawnUnit(UnitQueue[0]);
                         hasTimer = false;
