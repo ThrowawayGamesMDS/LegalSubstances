@@ -199,6 +199,7 @@ public class HomeSpawning : MonoBehaviour {
                     timerVal = 0;
                     hasTimer = true;
                     m_fSpawnTimer = (float)System.Int32.Parse(UIObjQueue[0].gameObject.transform.Find("Text").GetComponent<Text>().text);
+                    queueBar.m_sQueueBarHandle.m_fTimerValue = m_fSpawnTimer;
                     print("Spawn Timer: " + m_fSpawnTimer);
                 }
                 else
