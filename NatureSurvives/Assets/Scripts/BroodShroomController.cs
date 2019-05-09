@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class BroodShroomController : MonoBehaviour
 {
     public GameObject Fiend;
+    public GameObject Fiend2;
     public Animator anim;
     public float m_fEnemyHealth;
     public bool triggered;
@@ -145,7 +146,7 @@ public class BroodShroomController : MonoBehaviour
         if(DayNight.isWonder)
         {
             Instantiate(Fiend, transform.position, transform.rotation);
-            Instantiate(Fiend, transform.position, transform.rotation);
+            Instantiate(Fiend2, transform.position, transform.rotation);
         }
     }
 

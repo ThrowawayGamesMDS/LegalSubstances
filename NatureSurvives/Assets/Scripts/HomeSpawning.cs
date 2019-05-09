@@ -182,6 +182,7 @@ public class HomeSpawning : MonoBehaviour {
             temp.GetComponent<WongleController>().agent.avoidancePriority = Random.Range(0, 99);
             temp.GetComponent<WongleController>().priority = temp.GetComponent<WongleController>().agent.avoidancePriority;
             temp.GetComponent<WongleController>().agent.SetDestination(GetRallyPoint(unittype));
+            AddtoList(unittype, temp);
         }
     }
 
@@ -257,5 +258,29 @@ public class HomeSpawning : MonoBehaviour {
             HouseController.WhiteAmount += temp.m_iFoodCost;
             HouseController.CrystalAmount += temp.m_iCrystalCost;
         }
+    }
+
+    public void AddtoList(string unittype, GameObject temp)
+    {
+        SelectionBox sb = GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>();
+        switch (unittype)
+        {
+            case "Knight":
+                {
+                    sb.m_goMeleeUnits.Add(temp);
+                    break;
+                }
+            case "Wizard":
+                {
+                    sb.m_goRangedUnits.Add(temp);
+                    break;
+                }
+            default:
+                {
+                    break;
+                }
+        }
+
+        
     }
 }
