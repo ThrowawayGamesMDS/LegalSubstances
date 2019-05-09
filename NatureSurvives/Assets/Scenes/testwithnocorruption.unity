@@ -4253,6 +4253,14 @@ PrefabInstance:
       propertyPath: m_Text
       value: Enter Cheat...
       objectReference: {fileID: 0}
+    - target: {fileID: 1454204565, guid: a7804a4200115c3448df8e3b1a6453d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 897774039}
+    - target: {fileID: 1454204565, guid: a7804a4200115c3448df8e3b1a6453d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: fQueueUnit
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7804a4200115c3448df8e3b1a6453d7, type: 3}
 --- !u!1001 &270022132
@@ -8520,7 +8528,7 @@ PrefabInstance:
     - target: {fileID: 5690009330045996499, guid: 44af6ee979fb97e428d8cfd41c963559,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5690009330045996497, guid: 44af6ee979fb97e428d8cfd41c963559,
         type: 3}

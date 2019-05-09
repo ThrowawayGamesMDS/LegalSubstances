@@ -12,7 +12,7 @@ public class ProjectileScript : MonoBehaviour
     {
         if(collision.gameObject.GetComponent<PlayerBuilding>() != null)
         {
-            collision.gameObject.SendMessage("TakeDamage", 2);
+            collision.gameObject.SendMessage("TakeDamage", 5);
             Destroy(gameObject);
         }
     }

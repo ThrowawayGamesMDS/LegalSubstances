@@ -82,6 +82,10 @@ public class TurretWongle : MonoBehaviour {
                 {
                     Enemies.RemoveAt(i);
                 }
+                if(Vector3.Distance(Enemies[i].transform.position, transform.position) > 40)
+                {
+                    Enemies.RemoveAt(i);
+                }
             }
         }
         

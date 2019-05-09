@@ -99,7 +99,7 @@ public class EnemyController : MonoBehaviour {
         {
             if(isRanged)
             {
-                agent.stoppingDistance = 70;
+                agent.stoppingDistance = 55;
             }
             agent.SetDestination(targetsInArea[0].transform.position);
         }
@@ -131,14 +131,14 @@ public class EnemyController : MonoBehaviour {
         {
             if(targetsInArea.Count > 0)
             {
-                if (Vector3.Distance(transform.position, targetsInArea[0].transform.position) > 70)
+                if (Vector3.Distance(transform.position, targetsInArea[0].transform.position) > 55)
                 {
                     agent.isStopped = false;
                     if(!isPacked)
                     {
                         Pack();
                     }
-                    agent.stoppingDistance = 69;
+                    agent.stoppingDistance = 54;
                     agent.SetDestination(targetsInArea[0].transform.position);
                 }
                 else
@@ -348,6 +348,7 @@ public class EnemyController : MonoBehaviour {
         transform.GetChild(3).gameObject.SetActive(false);
         if (isRanged)
         {
+            transform.GetChild(1).GetChild(1).GetComponent<Renderer>().enabled = false;
             //transform.GetChild(3).gameObject.SetActive(false);
         }
 
@@ -359,6 +360,7 @@ public class EnemyController : MonoBehaviour {
         transform.GetChild(3).gameObject.SetActive(true);
         if (isRanged)
         {
+            transform.GetChild(1).GetChild(1).GetComponent<Renderer>().enabled = true;
             //transform.GetChild(3).gameObject.SetActive(false);
         }
     }
