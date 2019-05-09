@@ -158,7 +158,7 @@ public class SelectableUnitComponent : MonoBehaviour {
                             }
                         case "Wood":
                             {
-                                if (Type == workerType.Worker)
+                                if (Type == workerType.Worker && !controller.m_bIsScout) // so weird, even though the type is scout, they can still chop..
                                 {
                                     if (controller.Work != null)
                                     {
@@ -202,7 +202,7 @@ public class SelectableUnitComponent : MonoBehaviour {
                             }
                         case "Crystal":
                             {
-                                if (Type == workerType.Worker)
+                                if (Type == workerType.Worker && !controller.m_bIsScout)
                                 {
                                     if (controller.Work != null)
                                     {

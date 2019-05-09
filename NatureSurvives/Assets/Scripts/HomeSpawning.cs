@@ -130,7 +130,7 @@ public class HomeSpawning : MonoBehaviour {
                 {
                     if (HouseController.CrystalAmount >= temp.m_iCrystalCost)
                     {
-                        if (HouseController.WhiteAmount >= temp.m_iWoodCost)
+                        if (HouseController.WhiteAmount >= temp.m_iFoodCost)
                         {
                             HouseController.WoodAmount -= temp.m_iWoodCost;
                             HouseController.CrystalAmount -= temp.m_iCrystalCost;

@@ -54,10 +54,25 @@ public class WongleController : MonoBehaviour
 
     [Header("Idle Selection Bool")]
     public bool m_bIdleSelected;
+
+    [Header("Idle Selection Bool")]
+    public float m_fAnimationSpeed;
     // Use this for initialization
     void Start()
     {
-        startingSpeed = agent.speed;
+        if (m_bIsScout)
+        {
+            startingSpeed = agent.speed * 2.5f;
+            m_fAnimationSpeed =  2.5f;
+            WongleHealth = 1;
+        }
+        else
+        {
+            startingSpeed = agent.speed;
+            m_fAnimationSpeed = 1.0f;
+        }
+
+        anim.speed = m_fAnimationSpeed;
         isDead = false;
         type = gameObject.GetComponent<SelectableUnitComponent>().Type;
         Home = GameObject.FindGameObjectWithTag("HomeBuilding");
