@@ -143,9 +143,12 @@ public class BroodShroomController : MonoBehaviour
     {
         print("spawning enemy fiend");
         Instantiate(Fiend, transform.position, transform.rotation);
-        if(DayNight.isWonder)
+        Instantiate(Fiend2, transform.position, transform.rotation);
+        if (DayNight.isWonder)
         {
             Instantiate(Fiend, transform.position, transform.rotation);
+            Instantiate(Fiend, transform.position, transform.rotation);
+            Instantiate(Fiend2, transform.position, transform.rotation);
             Instantiate(Fiend2, transform.position, transform.rotation);
         }
     }

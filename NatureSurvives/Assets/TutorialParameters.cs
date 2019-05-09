@@ -33,6 +33,10 @@ public class TutorialParameters : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            SceneManager.LoadScene(2);
+        }
         switch (m_eTutorialLevel)
         {
             //checking if the player has selected all 3 wongles
@@ -77,6 +81,7 @@ public class TutorialParameters : MonoBehaviour
                         UIq3.color = Color.green;
                         m_eTutorialLevel = TutorialState.E_FOUR;
                         enemyInstance = Instantiate(Enemy, new Vector3(0, 0, 60), Quaternion.Euler(0, 90, 0));
+                        m_goVideoPlayer.clip = m_lVideoClips[3];
                     }
                     break;
                 }
