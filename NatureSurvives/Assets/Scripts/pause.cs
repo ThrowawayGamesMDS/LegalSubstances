@@ -17,7 +17,7 @@ public class pause : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        if (Input.GetKeyDown(KeyCode.Backslash) || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Backslash) || /*Input.GetKeyDown(KeyCode.Escape)*/Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Space)) // changed because we use escape to cancel build..
         {
             if (Pause)
             {
