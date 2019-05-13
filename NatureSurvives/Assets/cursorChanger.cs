@@ -19,11 +19,14 @@ public class cursorChanger : MonoBehaviour
         if(Physics.Raycast(Camera.main.transform.position, ray.direction, out _rh, 1000))
         {
             Cursor.SetCursor(AvailableCursors[0], Vector2.zero, cursorMode);
-            for (int i = 0; i < CursorTags.Count; i++)
+            if (DisplayHandler.m_sDHControl.m_bDisplayingBuildings) // nooby handle for when we ever have wongle workers selected - ones the cursor switch apply too unless its melee?
             {
-                if(_rh.transform.tag == CursorTags[i])
+                for (int i = 0; i < CursorTags.Count; i++)
                 {
-                    Cursor.SetCursor(AvailableCursors[i], Vector2.zero, cursorMode);
+                    if (_rh.transform.tag == CursorTags[i])
+                    {
+                        Cursor.SetCursor(AvailableCursors[i], Vector2.zero, cursorMode);
+                    }
                 }
             }
         }

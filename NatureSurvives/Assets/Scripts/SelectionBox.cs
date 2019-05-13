@@ -79,6 +79,7 @@ public static class Utils
 
 public class SelectionBox : MonoBehaviour {
 
+    public static SelectionBox m_bSBHandle;
     public bool isSelecting = false;
     public bool m_bCtrlSelectUnits = false;
     public List <GameObject> m_lCtrlUnits;
@@ -117,52 +118,93 @@ public class SelectionBox : MonoBehaviour {
 
     private void Awake()
     {
-        #if !UNITY_EDITOR
+#if !UNITY_EDITOR
             //m_iUserID = 0;
-        #endif
-    }
+#endif
 
-    private void Start()
-    {
-        //m_goMeleeUnits = new List<GameObject>();
-        //m_goRangedUnits = new List<GameObject>();
-        m_bUnitsSelected = new bool[2];
-        m_bPlayerSelected = false;
-
-        // bool system cheaper on performance then rechecking through an auto loop...
-        m_bUnitsSelected[0] = false; // Melee units
-        m_bUnitsSelected[1] = false; // Ranged Units
-        m_iWongleWorkerCount = 0;
-        m_iIdleIterCount = 0;
-        m_goActiveWorkers = new List<GameObject>();
-        RefreshWongleWorkerList();
-        /* foreach (var wongle in _goUnits)
-         {
-             if (wongle.GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Worker)
-                 m_goActiveWorkers.Add(wongle);
-         }*/
-
-        //int _iTotalWongles = 3;
-
-        GameObject[] _goUnits;
-        _goUnits = GameObject.FindGameObjectsWithTag("Wongle");
-        int _iTotalWongles = GameObject.FindGameObjectWithTag("HomeBuilding").GetComponent<HomeSpawning>().iCurrentWongleCount;
-
-        // GET THE HOMESPAWNER TOTAL WONGLE SPAWN COUNT
-        for (int i = 0; i < _iTotalWongles; i++)
+        if (m_bSBHandle == null)
         {
-            if (_goUnits[i].GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Melee)
+            m_bSBHandle = this;
+            //m_goMeleeUnits = new List<GameObject>();
+            //m_goRangedUnits = new List<GameObject>();
+            m_bUnitsSelected = new bool[2];
+            m_bPlayerSelected = false;
+
+            // bool system cheaper on performance then rechecking through an auto loop...
+            m_bUnitsSelected[0] = false; // Melee units
+            m_bUnitsSelected[1] = false; // Ranged Units
+            m_iWongleWorkerCount = 0;
+            m_iIdleIterCount = 0;
+            m_goActiveWorkers = new List<GameObject>();
+            RefreshWongleWorkerList();
+            /* foreach (var wongle in _goUnits)
+             {
+                 if (wongle.GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Worker)
+                     m_goActiveWorkers.Add(wongle);
+             }*/
+
+            //int _iTotalWongles = 3;
+
+            GameObject[] _goUnits;
+            _goUnits = GameObject.FindGameObjectsWithTag("Wongle");
+            int _iTotalWongles = GameObject.FindGameObjectWithTag("HomeBuilding").GetComponent<HomeSpawning>().iCurrentWongleCount;
+
+            // GET THE HOMESPAWNER TOTAL WONGLE SPAWN COUNT
+            for (int i = 0; i < _iTotalWongles; i++)
             {
-                m_goMeleeUnits.Add(_goUnits[i]);
-                m_iActiveCombatWongles++;
-            }
-            else if (_goUnits[i].GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Ranged)
-            {
-                m_goRangedUnits.Add(_goUnits[i]);
-                m_iActiveCombatWongles++;
+                if (_goUnits[i].GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Melee)
+                {
+                    m_goMeleeUnits.Add(_goUnits[i]);
+                    m_iActiveCombatWongles++;
+                }
+                else if (_goUnits[i].GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Ranged)
+                {
+                    m_goRangedUnits.Add(_goUnits[i]);
+                    m_iActiveCombatWongles++;
+                }
             }
         }
     }
+
+  /*  private void Start()
+    {
+        if (m_bSBHandle == null)
+        {
+            m_bSBHandle = this;
+            //m_goMeleeUnits = new List<GameObject>();
+            //m_goRangedUnits = new List<GameObject>();
+            m_bUnitsSelected = new bool[2];
+            m_bPlayerSelected = false;
+
+            // bool system cheaper on performance then rechecking through an auto loop...
+            m_bUnitsSelected[0] = false; // Melee units
+            m_bUnitsSelected[1] = false; // Ranged Units
+            m_iWongleWorkerCount = 0;
+            m_iIdleIterCount = 0;
+            m_goActiveWorkers = new List<GameObject>();
+            RefreshWongleWorkerList();
+       
+
+            GameObject[] _goUnits;
+            _goUnits = GameObject.FindGameObjectsWithTag("Wongle");
+            int _iTotalWongles = GameObject.FindGameObjectWithTag("HomeBuilding").GetComponent<HomeSpawning>().iCurrentWongleCount;
+
+            // GET THE HOMESPAWNER TOTAL WONGLE SPAWN COUNT
+            for (int i = 0; i < _iTotalWongles; i++)
+            {
+                if (_goUnits[i].GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Melee)
+                {
+                    m_goMeleeUnits.Add(_goUnits[i]);
+                    m_iActiveCombatWongles++;
+                }
+                else if (_goUnits[i].GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Ranged)
+                {
+                    m_goRangedUnits.Add(_goUnits[i]);
+                    m_iActiveCombatWongles++;
+                }
+            }
+        }
+    }*/
 
     private void RefreshWongleWorkerList()
     {
@@ -615,7 +657,10 @@ public class SelectionBox : MonoBehaviour {
             {
                 case "Wood":
                     {
-                        Instantiate(m_goSelectOBJ[2], hit.point, camera.transform.rotation);
+                        if (DisplayHandler.m_sDHControl.m_bDisplayingBuildings) // worker unit's are selected
+                            Instantiate(m_goSelectOBJ[2], hit.point, camera.transform.rotation);
+                        else
+                            Instantiate(m_goSelectOBJ[0], hit.point, camera.transform.rotation); // else just display white
                         break;
                     }
                 case "Enemy":
@@ -625,7 +670,6 @@ public class SelectionBox : MonoBehaviour {
                     }
                 default:
                     {
-                        print("default");
                         print(hit.point);
                         Instantiate(m_goSelectOBJ[0], hit.point, camera.transform.rotation);
                         break;
