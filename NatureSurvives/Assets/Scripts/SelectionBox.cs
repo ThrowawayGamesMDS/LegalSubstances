@@ -656,6 +656,7 @@ public class SelectionBox : MonoBehaviour {
             switch(_sOriginalHitResult)
             {
                 case "Wood":
+                case "Crystal":
                     {
                         if (DisplayHandler.m_sDHControl.m_bDisplayingBuildings) // worker unit's are selected
                             Instantiate(m_goSelectOBJ[2], hit.point, camera.transform.rotation);
