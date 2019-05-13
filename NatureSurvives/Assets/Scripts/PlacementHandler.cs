@@ -412,23 +412,29 @@ public class PlacementHandler : MonoBehaviour
     
     public void BuildButton(int i)
     {
-
-        if (CanPurchase(i))
+        if (!pause.m_sPauseHandle.m_bPlayerPaused)
         {
-            m_iCurrentlyPlacing = i;
-            //gameObject.GetComponent<AudioHandler>().PlaySound("PurchaseOk");
+            if (CanPurchase(i))
+            {
+                m_iCurrentlyPlacing = i;
+                //gameObject.GetComponent<AudioHandler>().PlaySound("PurchaseOk");
 
-            m_bRefreshBuild = true;
-            Invoke("RefreshBuilder", 0.1f);
+                m_bRefreshBuild = true;
+                Invoke("RefreshBuilder", 0.1f);
 
-            CheckIfPlacementIsOkay();
-            m_vec2MouseCoords = Input.mousePosition;
-            m_ePlayerState = PlayerStates.PLACING;
+                CheckIfPlacementIsOkay();
+                m_vec2MouseCoords = Input.mousePosition;
+                m_ePlayerState = PlayerStates.PLACING;
+            }
+            else
+            {
+                // gameObject.GetComponent<AudioHandler>().PlaySound("PurchaseBad");
+                NotificationManager.Instance.SetNewNotification("You cannot purchase. Check your resources");
+            }
         }
-        else
+       else
         {
-            // gameObject.GetComponent<AudioHandler>().PlaySound("PurchaseBad");
-            NotificationManager.Instance.SetNewNotification("You cannot purchase. Check your resources");
+            NotificationManager.Instance.SetNewNotification("You cannot place buildings whilst paused!");
         }
     }
 

@@ -6,20 +6,31 @@ using UnityEngine.SceneManagement;
 
 public class pause : MonoBehaviour {
 
+    public static pause m_sPauseHandle;
     [SerializeField] private GameObject pauseMenuUI;
-    [SerializeField] private bool Pause;
+    public bool m_bPlayerPaused;
 
     // Use this for initialization
     void Start() {
         //Time.timeScale = 0f;
     }
 
+    private void Awake()
+    {
+        if (m_sPauseHandle == null)
+        {
+            m_sPauseHandle = this;
+            m_bPlayerPaused = false;
+        }
+    }
+
     // Update is called once per frame
     void Update() {
 
-        if (Input.GetKeyDown(KeyCode.Backslash) || /*Input.GetKeyDown(KeyCode.Escape)*/Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Space)) // changed because we use escape to cancel build..
+        //if (Input.GetKeyDown(KeyCode.Backslash) || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space) && PlacementHandler.m_sPHControl.m_ePlayerState != PlacementHandler.PlayerStates.PLACING) // Player can't pause whilst placing buildings
+        if (Input.GetKeyDown(KeyCode.Backslash) || Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Space))
         {
-            if (Pause)
+            if (m_bPlayerPaused)
             {
                 Resume();                
             }
@@ -33,7 +44,7 @@ public class pause : MonoBehaviour {
     }
     void PauseGame()
     {
-        Pause = true;
+        m_bPlayerPaused = true;
         Time.timeScale = 0;
         AudioListener.pause = true;
         pauseMenuUI.SetActive(true);
@@ -42,7 +53,7 @@ public class pause : MonoBehaviour {
     //public void DeactivateMenu()
     public void Resume()
     {
-        Pause = false;
+        m_bPlayerPaused = false;
         Time.timeScale = 1;
         AudioListener.pause = false;
         pauseMenuUI.SetActive(false);
@@ -59,13 +70,13 @@ public class pause : MonoBehaviour {
     }
 
     public void paused (){
-        Pause = true;
+        m_bPlayerPaused = true;
      
     }
 
     public void Unpaused()
     {
-        Pause = false;
+        m_bPlayerPaused = false;
        
     }
 
