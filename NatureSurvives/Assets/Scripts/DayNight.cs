@@ -91,12 +91,20 @@ public class DayNight : MonoBehaviour {
     {
         transform.eulerAngles = new Vector3(180, 0, 0);
         DaysPlayed = 8;
+
         m_fDayTime = 9999999;
         isDay = false;
         //InvokeRepeating("invokeroony", 0.1f, 40.0f);
+
+        ChangeToNight();
+
+        isWonder = true;
+    }
+
+    public void ChangeToNight()
+    {
         daytimer = 1;
         nighttimer = 9999999;
-        isWonder = true;
     }
 
     void invokeroony()

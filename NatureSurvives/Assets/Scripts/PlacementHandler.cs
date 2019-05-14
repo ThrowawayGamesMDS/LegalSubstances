@@ -429,7 +429,28 @@ public class PlacementHandler : MonoBehaviour
             else
             {
                 // gameObject.GetComponent<AudioHandler>().PlaySound("PurchaseBad");
-                NotificationManager.Instance.SetNewNotification("You cannot purchase. Check your resources");
+
+                if (HouseController.WhiteAmount < m_goPossibleObjects[i].GetComponent<costToPlace>().FoodCost)
+                {
+                    int difference = m_goPossibleObjects[i].GetComponent<costToPlace>().FoodCost - HouseController.WhiteAmount;
+                    NotificationManager.Instance.SetNewNotification("You cannot purchase. You need to get " + difference + " more food resources.");
+                }
+
+                if (HouseController.WoodAmount < m_goPossibleObjects[i].GetComponent<costToPlace>().WoodCost)
+                {
+                    int difference = m_goPossibleObjects[i].GetComponent<costToPlace>().WoodCost - HouseController.WoodAmount;
+                    NotificationManager.Instance.SetNewNotification("You cannot purchase. You need to get " + difference + " more wood resources.");
+                }
+
+                if (HouseController.CrystalAmount < m_goPossibleObjects[i].GetComponent<costToPlace>().CrystalCost)
+                {
+                    int difference = m_goPossibleObjects[i].GetComponent<costToPlace>().CrystalCost - HouseController.CrystalAmount;
+                    NotificationManager.Instance.SetNewNotification("You cannot purchase. You need to get " + difference + " more crystal resources.");
+                }
+
+                
+                
+
             }
         }
        else

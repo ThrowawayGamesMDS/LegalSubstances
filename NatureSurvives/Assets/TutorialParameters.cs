@@ -42,6 +42,8 @@ public class TutorialParameters : MonoBehaviour
             //checking if the player has selected all 3 wongles
             case TutorialState.E_ONE:
                 {
+                    NotificationManager.Instance.SetNewNotification("Day time: During the day, you are safe to build things without being attacked by enemies.");
+
                     int amountSelected = 0;
                     GameObject[] temp = GameObject.FindGameObjectsWithTag("Wongle");
                     for (int i = 0; i < temp.Length; i++)
@@ -62,6 +64,8 @@ public class TutorialParameters : MonoBehaviour
                 }
             case TutorialState.E_TWO:
                 {
+                    NotificationManager.Instance.SetNewNotification("Left click on one wongle to select, then right click on the tree, farm or crystal.");
+
                     //if (HouseController.WhiteAmount >= 170 && HouseController.WoodAmount >= 220 && HouseController.CrystalAmount >= 220)
                     if (HouseController.WhiteAmount >= 240 && HouseController.WoodAmount >= 100 && HouseController.CrystalAmount >= 260)
                     {
@@ -76,6 +80,8 @@ public class TutorialParameters : MonoBehaviour
                 }
             case TutorialState.E_THREE:
                 {
+                    NotificationManager.Instance.SetNewNotification("Click on the house. Then click on the knights and wizards on the bottom left corner of the screen.");
+
                     if (GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>().m_goRangedUnits.Count >= 4 && GameObject.FindGameObjectWithTag("Player").GetComponent<SelectionBox>().m_goMeleeUnits.Count >= 4)
                     {
                         UIq3.color = Color.green;
@@ -87,6 +93,10 @@ public class TutorialParameters : MonoBehaviour
                 }
             case TutorialState.E_FOUR:
                 {
+                    GameObject.FindGameObjectWithTag("DAYNIGHT").GetComponent<DayNight>().ChangeToNight();
+
+                    NotificationManager.Instance.SetNewNotification("Night time: During the night, the enemies will come.  Be prepared.");
+
                     if (enemyInstance == null)
                     {
                         UIq4.color = Color.green;

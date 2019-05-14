@@ -1123,6 +1123,7 @@ MonoBehaviour:
   home: {fileID: 0}
   me: {fileID: 8810010542371284429}
   bar: {fileID: 925219743030421398}
+  m_fTimerValue: 0
 --- !u!1 &3714804033988210738
 GameObject:
   m_ObjectHideFlags: 0
@@ -6094,7 +6095,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -60.3, y: -90}
+  m_AnchoredPosition: {x: 60, y: -90}
   m_SizeDelta: {x: 625, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2702330120129703089

@@ -143,7 +143,22 @@ public class HomeSpawning : MonoBehaviour {
                             UIObjQueue.Insert(UIObjQueue.Count, uiobj);
 
                         }
+                        else
+                        {
+                            int difference = temp.m_iFoodCost - HouseController.WhiteAmount;
+                            NotificationManager.Instance.SetNewNotification("Can't add, not enough food resource.  Get " + difference + " more food.");
+                        }
                     }
+                    else
+                    {
+                        int difference = temp.m_iCrystalCost - HouseController.CrystalAmount;
+                        NotificationManager.Instance.SetNewNotification("Can't add, not enough crystal resource.  Get " + difference + " more crystal.");
+                    }
+                }
+                else
+                {
+                    int difference = temp.m_iWoodCost - HouseController.WoodAmount;
+                    NotificationManager.Instance.SetNewNotification("Can't add, not enough wood resource.  Get " + difference + " more wood.");
                 }
             }
         }
