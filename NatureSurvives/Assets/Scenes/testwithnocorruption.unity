@@ -1983,7 +1983,8 @@ PrefabInstance:
       propertyPath: healthBarCanvasGameObject
       value: 
       objectReference: {fileID: 809338950}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114364250981907404, guid: 1fe7335f018e29749a0049a18ff8850d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1fe7335f018e29749a0049a18ff8850d, type: 3}
 --- !u!1001 &136109090
 PrefabInstance:
@@ -15270,7 +15271,8 @@ PrefabInstance:
       propertyPath: healthBarCanvasGameObject
       value: 
       objectReference: {fileID: 1103341749}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114364250981907404, guid: 1fe7335f018e29749a0049a18ff8850d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1fe7335f018e29749a0049a18ff8850d, type: 3}
 --- !u!1001 &875667755
 PrefabInstance:
@@ -23489,7 +23491,8 @@ PrefabInstance:
       propertyPath: healthBarCanvasGameObject
       value: 
       objectReference: {fileID: 2001476618}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114364250981907404, guid: 1fe7335f018e29749a0049a18ff8850d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1fe7335f018e29749a0049a18ff8850d, type: 3}
 --- !u!4 &1309979576 stripped
 Transform:
