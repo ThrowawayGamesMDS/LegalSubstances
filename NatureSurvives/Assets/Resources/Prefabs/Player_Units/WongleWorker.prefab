@@ -3258,7 +3258,6 @@ GameObject:
   - component: {fileID: 114918341632213198}
   - component: {fileID: 114195342817636414}
   - component: {fileID: 82408111932787284}
-  - component: {fileID: 114364250981907404}
   - component: {fileID: 2322749120343071846}
   m_Layer: 11
   m_Name: WongleWorker
@@ -3370,6 +3369,7 @@ MonoBehaviour:
     type: 3}
   Enemies: []
   isGoingHome: 0
+  m_bIsScout: 0
   inputAmount: 0
   outputAmount: 0
   canAttack: 0
@@ -3393,6 +3393,8 @@ MonoBehaviour:
   animlock2: 0
   hide: {fileID: 0}
   healthBarCanvasGameObject: {fileID: 0}
+  m_bIdleSelected: 0
+  m_fAnimationSpeed: 0
 --- !u!114 &114328893541499344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3568,33 +3570,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &114364250981907404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1619824420385786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a09a4f0ecce70b342852ec27a06eee82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_lDamageSounds: []
-  m_lWoodCut:
-  - {fileID: 8300000, guid: 2f2c13a25930c0f49b0493c0a0ec8e74, type: 3}
-  - {fileID: 8300000, guid: 35592b3d898c69b438951b878279a117, type: 3}
-  - {fileID: 8300000, guid: 564c95ff0b59c9e4bbdc432271ed3de9, type: 3}
-  - {fileID: 8300000, guid: c9cb8b6fe7127824795e1541254a6f4f, type: 3}
-  - {fileID: 8300000, guid: 4d6891ee93c886b4e969035244d8f627, type: 3}
-  - {fileID: 8300000, guid: 530ff2fef66e22144a0a14f77c5dad76, type: 3}
-  m_lMine:
-  - {fileID: 8300000, guid: 3caee33ea6fcf6a4383b3f56603f1ef7, type: 3}
-  - {fileID: 8300000, guid: 00d0c94fb78c7d24aa54c7e714788cc0, type: 3}
-  m_arrDamageSounds: []
-  m_lSuccesfulSounds: []
-  m_lFailureSounds: []
-  m_asHandle: {fileID: 82408111932787284}
 --- !u!114 &2322749120343071846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5614,6 +5589,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4210667148688914}
     m_Modifications:
+    - target: {fileID: 100018, guid: a2b8185c38bbcb44888e8883bb90f679, type: 3}
+      propertyPath: m_Name
+      value: wonglebuildinghammerlarger
+      objectReference: {fileID: 0}
     - target: {fileID: 400018, guid: a2b8185c38bbcb44888e8883bb90f679, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.00812853
@@ -5670,10 +5649,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 100018, guid: a2b8185c38bbcb44888e8883bb90f679, type: 3}
-      propertyPath: m_Name
-      value: wonglebuildinghammerlarger
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2b8185c38bbcb44888e8883bb90f679, type: 3}
 --- !u!4 &1372758100143636921 stripped
@@ -5695,6 +5670,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4905784613825096}
     m_Modifications:
+    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
+        type: 3}
+      propertyPath: m_Name
+      value: Health Bar
+      objectReference: {fileID: 0}
     - target: {fileID: 5745946300523346767, guid: eead958fb4f21ee44a41791f7161561b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5800,11 +5780,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
-        type: 3}
-      propertyPath: m_Name
-      value: Health Bar
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eead958fb4f21ee44a41791f7161561b, type: 3}
 --- !u!1 &8088632971737554656 stripped
@@ -5826,6 +5801,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4661724723010600}
     m_Modifications:
+    - target: {fileID: 100016, guid: fa2b0e8cf76922345a63e8c2b624adb1, type: 3}
+      propertyPath: m_Name
+      value: wonglefishinghat
+      objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: fa2b0e8cf76922345a63e8c2b624adb1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.00341152
@@ -5870,21 +5849,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 100016, guid: fa2b0e8cf76922345a63e8c2b624adb1, type: 3}
-      propertyPath: m_Name
-      value: wonglefishinghat
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa2b0e8cf76922345a63e8c2b624adb1, type: 3}
---- !u!4 &5408088782471547215 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400016, guid: fa2b0e8cf76922345a63e8c2b624adb1,
-    type: 3}
-  m_PrefabInstance: {fileID: 5408088782471418847}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5408088782471320943 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100016, guid: fa2b0e8cf76922345a63e8c2b624adb1,
+    type: 3}
+  m_PrefabInstance: {fileID: 5408088782471418847}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5408088782471547215 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400016, guid: fa2b0e8cf76922345a63e8c2b624adb1,
     type: 3}
   m_PrefabInstance: {fileID: 5408088782471418847}
   m_PrefabAsset: {fileID: 0}
@@ -5895,6 +5870,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4478839180917182}
     m_Modifications:
+    - target: {fileID: 100014, guid: 9ad30a1582978184a91631b7cc8e8c52, type: 3}
+      propertyPath: m_Name
+      value: seacreaturecarried
+      objectReference: {fileID: 0}
     - target: {fileID: 400014, guid: 9ad30a1582978184a91631b7cc8e8c52, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.0069548804
@@ -5939,10 +5918,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 100014, guid: 9ad30a1582978184a91631b7cc8e8c52, type: 3}
-      propertyPath: m_Name
-      value: seacreaturecarried
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ad30a1582978184a91631b7cc8e8c52, type: 3}
 --- !u!1 &5455826256410147379 stripped
@@ -5964,6 +5939,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4210667148688914}
     m_Modifications:
+    - target: {fileID: 100032, guid: 832730216c8541d4c97534e38bc98fb1, type: 3}
+      propertyPath: m_Name
+      value: wonglefishingrod
+      objectReference: {fileID: 0}
     - target: {fileID: 400032, guid: 832730216c8541d4c97534e38bc98fb1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.00812853
@@ -6008,12 +5987,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 100032, guid: 832730216c8541d4c97534e38bc98fb1, type: 3}
-      propertyPath: m_Name
-      value: wonglefishingrod
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 832730216c8541d4c97534e38bc98fb1, type: 3}
+--- !u!1 &6888912453645461472 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100032, guid: 832730216c8541d4c97534e38bc98fb1,
+    type: 3}
+  m_PrefabInstance: {fileID: 6888912453645426976}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6888912453645302710 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400022, guid: 832730216c8541d4c97534e38bc98fb1,
@@ -6023,12 +6004,6 @@ Transform:
 --- !u!4 &6888912453645302656 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400032, guid: 832730216c8541d4c97534e38bc98fb1,
-    type: 3}
-  m_PrefabInstance: {fileID: 6888912453645426976}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6888912453645461472 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100032, guid: 832730216c8541d4c97534e38bc98fb1,
     type: 3}
   m_PrefabInstance: {fileID: 6888912453645426976}
   m_PrefabAsset: {fileID: 0}

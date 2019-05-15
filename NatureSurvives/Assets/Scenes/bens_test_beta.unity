@@ -2284,7 +2284,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114364250981907404, guid: 1fe7335f018e29749a0049a18ff8850d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1fe7335f018e29749a0049a18ff8850d, type: 3}
 --- !u!1001 &134993212
 PrefabInstance:
@@ -16791,7 +16792,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114364250981907404, guid: 1fe7335f018e29749a0049a18ff8850d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1fe7335f018e29749a0049a18ff8850d, type: 3}
 --- !u!1001 &875667755
 PrefabInstance:
@@ -22206,7 +22208,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_arrMasterMusic.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: c91a7f2330e3f624e9b0a474ebe51b08, type: 3}
+      objectReference: {fileID: 8300000, guid: 20e116e132e7d084d8f0dc3d09779e40, type: 3}
     m_RemovedComponents:
     - {fileID: 7868119282809492090, guid: 948bc0424816ed24c8f65b159a082210, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 948bc0424816ed24c8f65b159a082210, type: 3}
@@ -24559,7 +24561,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114364250981907404, guid: 1fe7335f018e29749a0049a18ff8850d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1fe7335f018e29749a0049a18ff8850d, type: 3}
 --- !u!1001 &1310922624
 PrefabInstance:
