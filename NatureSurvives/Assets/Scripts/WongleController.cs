@@ -269,10 +269,11 @@ public class WongleController : MonoBehaviour
                                 inputAmount += Work.GetComponent<BuildingController>().AmountProduced;
 
                                 //HouseController.WhiteAmount += Mathf.RoundToInt(outputAmount * (iFarmLevel / 3));
-                                if (iFarmLevel > 0)
+                              /*  if (iFarmLevel > 0)
                                 {
                                     outputAmount += ((iFarmLevel * outputAmount) / 3);
-                                }
+                                    print("Wongle's farm output: " + outputAmount);
+                                }*/
                                 HouseController.WhiteAmount += Mathf.RoundToInt(outputAmount);
                                 outputAmount = 0;
                                 isGoingHome = !isGoingHome;
@@ -447,10 +448,11 @@ public class WongleController : MonoBehaviour
                         {
                             if (isGoingHome)
                             {
-                                if (iWoodCutLevel > 0)
+                               /* if (iWoodCutLevel > 0)
                                 {
                                     outputAmount += ((iWoodCutLevel * outputAmount) / 3);
-                                }
+                                    print("Wongle's wood output: " + outputAmount);
+                                }*/
                                 HouseController.WoodAmount += Mathf.RoundToInt(outputAmount);
                                 outputAmount = 0;
                                 iTreesCut++;
@@ -540,10 +542,11 @@ public class WongleController : MonoBehaviour
                         {
                             if (isGoingHome)
                             {
-                                if (iMineLevel > 0)
+                               /* if (iMineLevel > 0)
                                 {
                                     outputAmount += ((iMineLevel * outputAmount) / 3);
-                                }
+                                    print("Wongle's mining output: " + outputAmount);
+                                }*/
                                 HouseController.CrystalAmount += Mathf.RoundToInt(outputAmount);
                                 outputAmount = 0;
                                 iRocksMined++;
