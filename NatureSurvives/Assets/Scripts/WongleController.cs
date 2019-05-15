@@ -417,7 +417,7 @@ public class WongleController : MonoBehaviour
                             {
                                 anim.Play("AxeChop");
                             }
-
+                            ChopEvent();
                             Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
                             outputAmount += (Time.deltaTime * 0.6f);
                             if (Target.GetComponent<WoodScript>().WoodHealth <= 0)
@@ -508,6 +508,7 @@ public class WongleController : MonoBehaviour
                             agent.isStopped = true;
                             //Mining Animation animation
                             anim.Play("PickaxeSwing");
+                            MineEvent();
                             Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
                             outputAmount += (Time.deltaTime * 0.55f);
                             if (Target.GetComponent<WoodScript>().WoodHealth <= 0)
@@ -875,12 +876,14 @@ public class WongleController : MonoBehaviour
 //woodcut anim
     public void ChopEvent()
     {
-        gameObject.GetComponent<AudioHandler>().PlaySound(AudioHandler.m_soundTypes.WOOD);
+       // gameObject.GetComponent<AudioHandler>().PlaySound(AudioHandler.m_soundTypes.WOOD);
+        AudioHandler.m_ahHandler.UpdatedPlaySound(AudioHandler.m_soundTypes.WOOD, gameObject.GetComponent<AudioSource>());
     }
     //mining animation
     public void MineEvent()
     {
-        gameObject.GetComponent<AudioHandler>().PlaySound(AudioHandler.m_soundTypes.MINE);
+        //gameObject.GetComponent<AudioHandler>().PlaySound(AudioHandler.m_soundTypes.MINE);
+        AudioHandler.m_ahHandler.UpdatedPlaySound(AudioHandler.m_soundTypes.MINE, gameObject.GetComponent<AudioSource>());
     }
 
     //end of admire animation
