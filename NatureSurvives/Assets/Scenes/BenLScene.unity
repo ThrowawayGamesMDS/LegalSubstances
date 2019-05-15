@@ -305,11 +305,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3686201839173188124, guid: 6e01653e3dc1024428cccadd0b75033a,
-        type: 3}
-      propertyPath: m_Name
-      value: wonderbase
-      objectReference: {fileID: 0}
     - target: {fileID: 48193331, guid: 6e01653e3dc1024428cccadd0b75033a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -118
@@ -365,6 +360,11 @@ PrefabInstance:
     - target: {fileID: 48193331, guid: 6e01653e3dc1024428cccadd0b75033a, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.2391938
+      objectReference: {fileID: 0}
+    - target: {fileID: 3686201839173188124, guid: 6e01653e3dc1024428cccadd0b75033a,
+        type: 3}
+      propertyPath: m_Name
+      value: wonderbase
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e01653e3dc1024428cccadd0b75033a, type: 3}
@@ -821,10 +821,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 100002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
-      propertyPath: m_Name
-      value: huthouse (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -884,6 +880,10 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
       propertyPath: m_LocalScale.z
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
+      propertyPath: m_Name
+      value: huthouse (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
@@ -1085,10 +1085,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 100002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
-      propertyPath: m_Name
-      value: huthouse (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1148,6 +1144,10 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
       propertyPath: m_LocalScale.z
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
+      propertyPath: m_Name
+      value: huthouse (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
@@ -1356,10 +1356,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 100002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
-      propertyPath: m_Name
-      value: huthouse (6)
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1419,6 +1415,10 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
       propertyPath: m_LocalScale.z
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
+      propertyPath: m_Name
+      value: huthouse (6)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
@@ -3888,11 +3888,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4664880691963550676, guid: 22195697af2a1744591165a06adda6c2,
-        type: 3}
-      propertyPath: m_Name
-      value: ConstructionScaffolding
-      objectReference: {fileID: 0}
     - target: {fileID: 849572621, guid: 22195697af2a1744591165a06adda6c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 80
@@ -3936,6 +3931,11 @@ PrefabInstance:
     - target: {fileID: 849572621, guid: 22195697af2a1744591165a06adda6c2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4664880691963550676, guid: 22195697af2a1744591165a06adda6c2,
+        type: 3}
+      propertyPath: m_Name
+      value: ConstructionScaffolding
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22195697af2a1744591165a06adda6c2, type: 3}
@@ -4019,10 +4019,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 100002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
-      propertyPath: m_Name
-      value: huthouse (4)
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4082,6 +4078,10 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
       propertyPath: m_LocalScale.z
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
+      propertyPath: m_Name
+      value: huthouse (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
@@ -4721,10 +4721,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 100016, guid: fa2b0e8cf76922345a63e8c2b624adb1, type: 3}
-      propertyPath: m_Name
-      value: wonglefishinghat
-      objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: fa2b0e8cf76922345a63e8c2b624adb1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 52.756
@@ -4780,6 +4776,10 @@ PrefabInstance:
     - target: {fileID: 400016, guid: fa2b0e8cf76922345a63e8c2b624adb1, type: 3}
       propertyPath: m_LocalScale.z
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: fa2b0e8cf76922345a63e8c2b624adb1, type: 3}
+      propertyPath: m_Name
+      value: wonglefishinghat
       objectReference: {fileID: 0}
     - target: {fileID: 13700000, guid: fa2b0e8cf76922345a63e8c2b624adb1, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -6313,21 +6313,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a09a4f0ecce70b342852ec27a06eee82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lDamageSounds: []
-  m_lWoodCut:
-  - {fileID: 8300000, guid: 2f2c13a25930c0f49b0493c0a0ec8e74, type: 3}
-  - {fileID: 8300000, guid: 35592b3d898c69b438951b878279a117, type: 3}
-  - {fileID: 8300000, guid: 564c95ff0b59c9e4bbdc432271ed3de9, type: 3}
-  - {fileID: 8300000, guid: c9cb8b6fe7127824795e1541254a6f4f, type: 3}
-  - {fileID: 8300000, guid: 4d6891ee93c886b4e969035244d8f627, type: 3}
-  - {fileID: 8300000, guid: 530ff2fef66e22144a0a14f77c5dad76, type: 3}
-  m_lMine:
-  - {fileID: 8300000, guid: 00d0c94fb78c7d24aa54c7e714788cc0, type: 3}
-  - {fileID: 8300000, guid: 3caee33ea6fcf6a4383b3f56603f1ef7, type: 3}
+  m_arrSuccessSounds: []
+  m_arrFailureSounds: []
   m_arrDamageSounds: []
-  m_lSuccesfulSounds: []
-  m_lFailureSounds: []
-  m_asHandle: {fileID: 1424207995}
+  m_arrWoodcutSounds: []
+  m_arrMiningSounds: []
+  m_arrDayMusic: []
+  m_arrNightMusic: []
+  m_arrMasterMusic: []
+  m_asPlayerSF: {fileID: 0}
+  m_asMusicMaster: {fileID: 0}
 --- !u!114 &1424207989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6589,10 +6584,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 100002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
-      propertyPath: m_Name
-      value: huthouse
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -6652,6 +6643,10 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
       propertyPath: m_LocalScale.z
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
+      propertyPath: m_Name
+      value: huthouse
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
@@ -7316,10 +7311,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 100002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
-      propertyPath: m_Name
-      value: huthouse (5)
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -7380,6 +7371,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
+      propertyPath: m_Name
+      value: huthouse (5)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
 --- !u!1001 &1661711078
@@ -7389,10 +7384,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 100002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
-      propertyPath: m_Name
-      value: huthouse (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -7452,6 +7443,10 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
       propertyPath: m_LocalScale.z
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
+      propertyPath: m_Name
+      value: huthouse (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
@@ -7844,10 +7839,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 100002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
-      propertyPath: m_Name
-      value: huthouse (7)
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -7907,6 +7898,10 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
       propertyPath: m_LocalScale.z
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
+      propertyPath: m_Name
+      value: huthouse (7)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86746f12d18e7444b8be7e6f2ea2d132, type: 3}
@@ -8537,7 +8532,7 @@ PrefabInstance:
     - target: {fileID: 13700000, guid: 16d9ab3d04ba52844875b90336fddc65, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3d8eace32e8a1694b886d365bca67179, type: 2}
+      objectReference: {fileID: 2100000, guid: 87d2f58233b45964c9e26a8978c675b9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16d9ab3d04ba52844875b90336fddc65, type: 3}
 --- !u!1 &1924993646
@@ -9422,11 +9417,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7971047963652202897, guid: d09220aaf20afdf488f39842eb92bf78,
-        type: 3}
-      propertyPath: m_Name
-      value: StoragePrefab
-      objectReference: {fileID: 0}
     - target: {fileID: 3772656323711921600, guid: d09220aaf20afdf488f39842eb92bf78,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9481,6 +9471,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7971047963652202897, guid: d09220aaf20afdf488f39842eb92bf78,
+        type: 3}
+      propertyPath: m_Name
+      value: StoragePrefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d09220aaf20afdf488f39842eb92bf78, type: 3}
