@@ -119,6 +119,34 @@ public class WongleController : MonoBehaviour
 
 
     }
+    private void RetainPlayerReources(int _case)
+    {
+        switch (_case)
+        {
+            case 0:
+                {
+                    HouseController.WoodAmount += Mathf.RoundToInt(outputAmount);
+                    iTreesCut++;
+                    break;
+                }
+            case 1:
+                {
+                    HouseController.CrystalAmount += Mathf.RoundToInt(outputAmount);
+                    iRocksMined++;
+                    break;
+                }
+            case 2:
+                {
+                    HouseController.m_iFoodCount += Mathf.RoundToInt(outputAmount);
+                    break;
+                }
+            default:
+                return;
+        }
+
+        outputAmount = 0;
+        isGoingHome = !isGoingHome;
+    }
 
 
     // Update is called once per frame
@@ -268,15 +296,13 @@ public class WongleController : MonoBehaviour
                             {
                                 inputAmount += Work.GetComponent<BuildingController>().AmountProduced;
 
-                                //HouseController.WhiteAmount += Mathf.RoundToInt(outputAmount * (iFarmLevel / 3));
-                              /*  if (iFarmLevel > 0)
-                                {
-                                    outputAmount += ((iFarmLevel * outputAmount) / 3);
-                                    print("Wongle's farm output: " + outputAmount);
-                                }*/
-                                HouseController.WhiteAmount += Mathf.RoundToInt(outputAmount);
-                                outputAmount = 0;
-                                isGoingHome = !isGoingHome;
+                                //HouseController.m_iFoodCount += Mathf.RoundToInt(outputAmount * (iFarmLevel / 3));
+                                /*  if (iFarmLevel > 0)
+                                  {
+                                      outputAmount += ((iFarmLevel * outputAmount) / 3);
+                                      print("Wongle's farm output: " + outputAmount);
+                                  }*/
+                                RetainPlayerReources(2);
                             }
                             else
                             {
@@ -448,15 +474,12 @@ public class WongleController : MonoBehaviour
                         {
                             if (isGoingHome)
                             {
-                               /* if (iWoodCutLevel > 0)
-                                {
-                                    outputAmount += ((iWoodCutLevel * outputAmount) / 3);
-                                    print("Wongle's wood output: " + outputAmount);
-                                }*/
-                                HouseController.WoodAmount += Mathf.RoundToInt(outputAmount);
-                                outputAmount = 0;
-                                iTreesCut++;
-                                isGoingHome = !isGoingHome;
+                                /* if (iWoodCutLevel > 0)
+                                 {
+                                     outputAmount += ((iWoodCutLevel * outputAmount) / 3);
+                                     print("Wongle's wood output: " + outputAmount);
+                                 }*/
+                                RetainPlayerReources(0);
                             }
                         }
                     }
@@ -547,10 +570,7 @@ public class WongleController : MonoBehaviour
                                     outputAmount += ((iMineLevel * outputAmount) / 3);
                                     print("Wongle's mining output: " + outputAmount);
                                 }*/
-                                HouseController.CrystalAmount += Mathf.RoundToInt(outputAmount);
-                                outputAmount = 0;
-                                iRocksMined++;
-                                isGoingHome = !isGoingHome;
+                                RetainPlayerReources(1);
                             }
                         }
                     }
@@ -668,7 +688,7 @@ public class WongleController : MonoBehaviour
                                 {
                                     outputAmount += ((iFishingLevel * outputAmount) / 3);
                                 }
-                                HouseController.WhiteAmount += Mathf.RoundToInt(outputAmount);
+                                HouseController.m_iFoodCount += Mathf.RoundToInt(outputAmount);
                                 outputAmount = 0;
                                 m_fCurrentFishTime = 0;
                                 iFishCaught++;

@@ -41,7 +41,7 @@ public class CheatHandler : MonoBehaviour
                 {
                     if (GameObject.FindGameObjectWithTag("Player").gameObject != null)
                     {
-                        HouseController.WhiteAmount += 1000;
+                        HouseController.m_iFoodCount += 1000;
                         HouseController.CrystalAmount += 1000;
                         HouseController.WoodAmount += 1000;
                         _sCheatResult += "Enabled: Give Resources!";

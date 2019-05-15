@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlantController : MonoBehaviour {
     public int TimeToProcess;
     public int greenAmount;
-    public int whiteAmount;
+    public int m_iFoodCount;
     public int timer;
     public string typeOfPlant;
     // Use this for initialization
@@ -35,7 +35,7 @@ public class PlantController : MonoBehaviour {
         }
         if(typeOfPlant == "White")
         {
-            if(whiteAmount > 0)
+            if(m_iFoodCount > 0)
             {
                 timer += 1;
             }

@@ -66,8 +66,8 @@ public class TutorialParameters : MonoBehaviour
                 {
                     NotificationManager.Instance.SetNewNotification("Left click on one wongle to select, then right click on the tree, farm or crystal.");
 
-                    //if (HouseController.WhiteAmount >= 170 && HouseController.WoodAmount >= 220 && HouseController.CrystalAmount >= 220)
-                    if (HouseController.WhiteAmount >= 240 && HouseController.WoodAmount >= 100 && HouseController.CrystalAmount >= 260)
+                    //if (HouseController.m_iFoodCount >= 170 && HouseController.WoodAmount >= 220 && HouseController.CrystalAmount >= 220)
+                    if (HouseController.m_iFoodCount >= 240 && HouseController.WoodAmount >= 100 && HouseController.CrystalAmount >= 260)
                     {
                         //spawn enemy
                         //tick ui box

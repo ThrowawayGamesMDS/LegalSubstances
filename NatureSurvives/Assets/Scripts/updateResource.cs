@@ -14,7 +14,7 @@ public class updateResource : MonoBehaviour {
 	void Update () {
         wood.text = HouseController.WoodAmount.ToString();
         crystal.text = HouseController.CrystalAmount.ToString();
-        food.text = HouseController.WhiteAmount.ToString();
+        food.text = HouseController.m_iFoodCount.ToString();
 
 	}
 }

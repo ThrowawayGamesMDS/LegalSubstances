@@ -130,11 +130,11 @@ public class HomeSpawning : MonoBehaviour {
                 {
                     if (HouseController.CrystalAmount >= temp.m_iCrystalCost)
                     {
-                        if (HouseController.WhiteAmount >= temp.m_iFoodCost)
+                        if (HouseController.m_iFoodCount >= temp.m_iFoodCost)
                         {
                             HouseController.WoodAmount -= temp.m_iWoodCost;
                             HouseController.CrystalAmount -= temp.m_iCrystalCost;
-                            HouseController.WhiteAmount -= temp.m_iFoodCost;
+                            HouseController.m_iFoodCount -= temp.m_iFoodCost;
                             GameObject uiobj = Instantiate(temp.m_goUiDisplay, canvas);
                             uiobj.SetActive(true);
                             uiobj.transform.SetParent(canvas, false);
@@ -145,7 +145,7 @@ public class HomeSpawning : MonoBehaviour {
                         }
                         else
                         {
-                            int difference = temp.m_iFoodCost - HouseController.WhiteAmount;
+                            int difference = temp.m_iFoodCost - HouseController.m_iFoodCount;
                             NotificationManager.Instance.SetNewNotification("Can't add, not enough food resource.  Get " + difference + " more food.");
                         }
                     }
@@ -270,7 +270,7 @@ public class HomeSpawning : MonoBehaviour {
         if (m_dExpenseInformation.TryGetValue(x,out temp))
         {
             HouseController.WoodAmount += temp.m_iWoodCost;
-            HouseController.WhiteAmount += temp.m_iFoodCost;
+            HouseController.m_iFoodCount += temp.m_iFoodCost;
             HouseController.CrystalAmount += temp.m_iCrystalCost;
         }
     }

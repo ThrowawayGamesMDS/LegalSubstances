@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.Linq;
 
 [RequireComponent(typeof(AudioSource))]
 
@@ -17,16 +18,16 @@ public class AudioHandler : MonoBehaviour
     private GameObject[] m_asSoundFiles;
 
     public List<AudioClip> m_lDamageSounds;
-    public List<AudioClip> m_lWoodCut;
-    public List<AudioClip> m_lMine;
     public AudioClip[] m_arrDamageSounds;
+    public AudioClip[] m_arrWoodcutSounds;
+    public AudioClip[] m_arrMiningSounds;
     public List<AudioClip> m_lSuccesfulSounds;
     public List<AudioClip> m_lFailureSounds;
     public AudioSource m_asHandle;
     private bool m_bPlaySound;
     public enum m_soundTypes
     {
-        DAMAGE, SUCCESS, FAILURE, WOOD, MINE
+        DAMAGE, SUCCESS, FAILURE, WOOD, MINE, WARNING
     };
 
     public void PlaySound(m_soundTypes _playType)
@@ -59,56 +60,20 @@ public class AudioHandler : MonoBehaviour
                     }
                 case m_soundTypes.WOOD:
                     {
-                        _play = Random.Range(0, m_lWoodCut.Count);
-                        m_asHandle.clip = m_lWoodCut[_play];
+                        _play = Random.Range(0, m_arrWoodcutSounds.Length);
+                        m_asHandle.clip = m_arrWoodcutSounds[_play];
                         break;
                     }
                 case m_soundTypes.MINE:
                     {
-                        _play = Random.Range(0, m_lMine.Count);
-                        m_asHandle.clip = m_lMine[_play];
+                        _play = Random.Range(0, m_arrMiningSounds.Length);
+                        m_asHandle.clip = m_arrMiningSounds[_play];
                         break;
                     }
             }
             m_asHandle.Play();
         }
     }
-
-   /* private void AssignAndLoadSounds(string _sName)
-    {
-        Dictionary<string, Buttons> m_dButtons = new Dictionary<string, Buttons>();
-        GameObject _goTemp = GameObject.FindGameObjectWithTag(_sName + "Button");
-        //GameObject _goTemp = m_lgoUIButtons[0].gameObject;
-        Buttons _cWongleButton = null;
-
-        if (_goTemp != null)
-        {
-            _cWongleButton = new Buttons(_goTemp, _sName + "Button");
-        }
-        else
-        {
-            print("The button you were trying to add to the dictionary is null!");
-        }
-        if (_cWongleButton != null)
-        {
-
-            m_dButtons.Add(_sName, _cWongleButton);
-
-            Buttons temp = null;
-            if (m_dButtons.TryGetValue(_sName, out temp))
-            {
-                // print("Buttons loaded : Name:" + temp.m_sButtonID + ", " + temp.m_goButton.tag);
-                print("Buttons loaded : Name:" + temp.m_goButton.tag);
-
-                m_bButtonsLoaded = true;
-            }
-            else
-            {
-                print("Couldn't load buttons");
-                m_bButtonsLoaded = false;
-            }
-        }
-    }*/
 
     // Use this for initialization
     void Start()
@@ -124,8 +89,11 @@ public class AudioHandler : MonoBehaviour
         //    print(o.name);
         //}
         
-        /*
-          for (int i = 0; i < m_lDamageSounds.Count; i++)
+        m_arrDamageSounds = Resources.LoadAll("Audio/Damage", typeof(AudioClip)).Cast<AudioClip>().ToArray() ;
+        m_arrWoodcutSounds = Resources.LoadAll("Audio/Woodcut", typeof(AudioClip)).Cast<AudioClip>().ToArray();
+        m_arrMiningSounds = Resources.LoadAll("Audio/Mining", typeof(AudioClip)).Cast<AudioClip>().ToArray();
+
+        /*  for (int i = 0; i < m_lDamageSounds.Count; i++)
           {
               m_arrDamageSounds[i] = m_lDamageSounds[i];
           }*/

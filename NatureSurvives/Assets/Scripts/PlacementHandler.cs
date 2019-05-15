@@ -166,7 +166,7 @@ public class PlacementHandler : MonoBehaviour
             case false:
                 {
                     // Adjust player resources
-                    HouseController.WhiteAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().FoodCost;
+                    HouseController.m_iFoodCount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().FoodCost;
                     HouseController.WoodAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().WoodCost;
                     HouseController.CrystalAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().CrystalCost;
                     //Placement Occurs Here
@@ -261,7 +261,7 @@ public class PlacementHandler : MonoBehaviour
             else
             {
                 // BASE PLACEMENT
-                if (HouseController.WhiteAmount >= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().FoodCost)
+                if (HouseController.m_iFoodCount >= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().FoodCost)
                 {
                     if (HouseController.WoodAmount >= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().WoodCost)
                     {
@@ -396,7 +396,7 @@ public class PlacementHandler : MonoBehaviour
     {
         bool _bAccepted = false;
 
-        if (HouseController.WhiteAmount >= m_goPossibleObjects[_iPurchasing].GetComponent<costToPlace>().FoodCost)
+        if (HouseController.m_iFoodCount >= m_goPossibleObjects[_iPurchasing].GetComponent<costToPlace>().FoodCost)
         {
             if (HouseController.WoodAmount >= m_goPossibleObjects[_iPurchasing].GetComponent<costToPlace>().WoodCost)
             {
@@ -430,9 +430,9 @@ public class PlacementHandler : MonoBehaviour
             {
                 // gameObject.GetComponent<AudioHandler>().PlaySound("PurchaseBad");
 
-                if (HouseController.WhiteAmount < m_goPossibleObjects[i].GetComponent<costToPlace>().FoodCost)
+                if (HouseController.m_iFoodCount < m_goPossibleObjects[i].GetComponent<costToPlace>().FoodCost)
                 {
-                    int difference = m_goPossibleObjects[i].GetComponent<costToPlace>().FoodCost - HouseController.WhiteAmount;
+                    int difference = m_goPossibleObjects[i].GetComponent<costToPlace>().FoodCost - HouseController.m_iFoodCount;
                     NotificationManager.Instance.SetNewNotification("You cannot purchase. You need to get " + difference + " more food resources.");
                 }
 

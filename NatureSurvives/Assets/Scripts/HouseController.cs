@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class HouseController : MonoBehaviour {
     public int startingWood, startingCrystal, startingFood;
-    public static int WhiteAmount;
+    public static int m_iFoodCount;
     public static int WoodAmount;
     public static int CrystalAmount;
 
 	// Use this for initialization
 	void Start () {
-        WhiteAmount    = startingFood;
+        m_iFoodCount    = startingFood;
         WoodAmount     = startingWood;
         CrystalAmount  = startingCrystal;
 	}
