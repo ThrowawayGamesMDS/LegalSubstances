@@ -1254,8 +1254,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 0.8591049, b: 0, a: 1}
-  m_Intensity: 2.89
+  m_Color: {r: 1, g: 0.9527192, b: 0.6650944, a: 1}
+  m_Intensity: 1.63
   m_Range: 7.17
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -3370,6 +3370,7 @@ MonoBehaviour:
     type: 3}
   Enemies: []
   isGoingHome: 0
+  m_bIsScout: 0
   inputAmount: 0
   outputAmount: 0
   canAttack: 0
@@ -3393,6 +3394,8 @@ MonoBehaviour:
   animlock2: 0
   hide: {fileID: 0}
   healthBarCanvasGameObject: {fileID: 0}
+  m_bIdleSelected: 0
+  m_fAnimationSpeed: 0
 --- !u!114 &114328893541499344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3580,21 +3583,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a09a4f0ecce70b342852ec27a06eee82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lDamageSounds: []
-  m_lWoodCut:
-  - {fileID: 8300000, guid: 2f2c13a25930c0f49b0493c0a0ec8e74, type: 3}
-  - {fileID: 8300000, guid: 35592b3d898c69b438951b878279a117, type: 3}
-  - {fileID: 8300000, guid: 564c95ff0b59c9e4bbdc432271ed3de9, type: 3}
-  - {fileID: 8300000, guid: c9cb8b6fe7127824795e1541254a6f4f, type: 3}
-  - {fileID: 8300000, guid: 4d6891ee93c886b4e969035244d8f627, type: 3}
-  - {fileID: 8300000, guid: 530ff2fef66e22144a0a14f77c5dad76, type: 3}
-  m_lMine:
-  - {fileID: 8300000, guid: 3caee33ea6fcf6a4383b3f56603f1ef7, type: 3}
-  - {fileID: 8300000, guid: 00d0c94fb78c7d24aa54c7e714788cc0, type: 3}
+  m_arrSuccessSounds: []
+  m_arrFailureSounds: []
   m_arrDamageSounds: []
-  m_lSuccesfulSounds: []
-  m_lFailureSounds: []
-  m_asHandle: {fileID: 82408111932787284}
+  m_arrWoodcutSounds: []
+  m_arrMiningSounds: []
+  m_arrDayMusic: []
+  m_arrNightMusic: []
+  m_arrMasterMusic: []
+  m_asPlayerSF: {fileID: 0}
+  m_asMusicMaster: {fileID: 0}
 --- !u!114 &2322749120343071846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3753,7 +3751,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d2b57bf5def0cdf49b6f87a7222398f1, type: 2}
+  - {fileID: 2100000, guid: 6c65057fa8d435a4abbc69a37206fe4e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

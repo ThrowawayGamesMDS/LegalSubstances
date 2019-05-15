@@ -1189,7 +1189,6 @@ GameObject:
   - component: {fileID: 6120359687082896543}
   - component: {fileID: 6363852920778919945}
   - component: {fileID: 184003055205644183}
-  - component: {fileID: 1766890025138542172}
   m_Layer: 11
   m_Name: WongleScout
   m_TagString: Wongle
@@ -1322,7 +1321,7 @@ MonoBehaviour:
   m_vFishingSpot: {x: 0, y: 0, z: 0}
   animlock: 0
   animlock2: 0
-  hide: {fileID: 1766890025138542172}
+  hide: {fileID: 0}
   healthBarCanvasGameObject: {fileID: 6228069733279796183}
   m_bIdleSelected: 0
   m_fAnimationSpeed: 0
@@ -1513,35 +1512,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a09a4f0ecce70b342852ec27a06eee82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lDamageSounds: []
-  m_lWoodCut:
-  - {fileID: 8300000, guid: 2f2c13a25930c0f49b0493c0a0ec8e74, type: 3}
-  - {fileID: 8300000, guid: 35592b3d898c69b438951b878279a117, type: 3}
-  - {fileID: 8300000, guid: 564c95ff0b59c9e4bbdc432271ed3de9, type: 3}
-  - {fileID: 8300000, guid: c9cb8b6fe7127824795e1541254a6f4f, type: 3}
-  - {fileID: 8300000, guid: 4d6891ee93c886b4e969035244d8f627, type: 3}
-  - {fileID: 8300000, guid: 530ff2fef66e22144a0a14f77c5dad76, type: 3}
-  m_lMine:
-  - {fileID: 8300000, guid: 3caee33ea6fcf6a4383b3f56603f1ef7, type: 3}
-  - {fileID: 8300000, guid: 00d0c94fb78c7d24aa54c7e714788cc0, type: 3}
+  m_arrSuccessSounds: []
+  m_arrFailureSounds: []
   m_arrDamageSounds: []
-  m_lSuccesfulSounds: []
-  m_lFailureSounds: []
-  m_asHandle: {fileID: 6363852920778919945}
---- !u!114 &1766890025138542172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7124765720417143725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8ad37db781b55949821fdc4b06b6e27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fish: {fileID: 0}
-  isVisible: 0
+  m_arrWoodcutSounds: []
+  m_arrMiningSounds: []
+  m_arrDayMusic: []
+  m_arrNightMusic: []
+  m_arrMasterMusic: []
+  m_asPlayerSF: {fileID: 0}
+  m_asMusicMaster: {fileID: 0}
 --- !u!1 &7281511165339636479
 GameObject:
   m_ObjectHideFlags: 0

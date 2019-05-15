@@ -386,6 +386,7 @@ MonoBehaviour:
     type: 3}
   Enemies: []
   isGoingHome: 0
+  m_bIsScout: 0
   inputAmount: 0
   outputAmount: 0
   canAttack: 0
@@ -409,6 +410,8 @@ MonoBehaviour:
   animlock2: 0
   hide: {fileID: 0}
   healthBarCanvasGameObject: {fileID: 5745946301750882450}
+  m_bIdleSelected: 0
+  m_fAnimationSpeed: 0
 --- !u!195 &1971081879
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -479,7 +482,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3d8eace32e8a1694b886d365bca67179, type: 2}
+  - {fileID: 2100000, guid: 87d2f58233b45964c9e26a8978c675b9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

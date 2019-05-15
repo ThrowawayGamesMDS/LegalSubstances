@@ -39,7 +39,7 @@ public class cameraController : MonoBehaviour
     [SerializeField]
     private bool m_bLerpTarget;
     private bool m_bCameraRotLerp;
-    [Range(0.1f, 1.0f)]
+    [Range(0.0f, 1.0f)]
     public float m_fTransitionSpeed;
 
     // Use this for initialization
