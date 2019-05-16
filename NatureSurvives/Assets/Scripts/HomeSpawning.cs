@@ -56,8 +56,8 @@ public class HomeSpawning : MonoBehaviour {
             iCurrentWongleCount = 5;
             army = GameObject.FindGameObjectWithTag("Army");
             g_v3WorkerRally = new Vector3(120, 0, -110);
-            g_v3WorkerRally = new Vector3(100, 0, -110);
-            g_v3WorkerRally = new Vector3(80, 0, -110);
+            g_v3KnightRally = new Vector3(100, 0, -110);
+            g_v3WizardRally = new Vector3(80, 0, -110);
 
             m_dExpenseInformation = new Dictionary<string, Spawning_Cost>();
             // for scout

@@ -345,6 +345,24 @@ public class SelectableUnitComponent : MonoBehaviour {
         }
     }
 
+    public void becomeConstructor(GameObject building)
+    {
+        if (Type == workerType.Worker)
+        {
+            if (controller.Work != null)
+            {
+                if (controller.Work.tag == "Building")
+                {
+                    controller.Work.GetComponent<BuildingController>().worker = null;
+                }
+            }
+            controller.agent.stoppingDistance = 7;
+            controller.Work = GameObject.FindGameObjectWithTag("Builder");
+            transform.parent = controller.Work.transform;
+            controller.Target = building;
+            controller.isGoingHome = false;
+        }
+    }
 
     public void minimapRightClick(float x, float z)
     {

@@ -146,6 +146,7 @@ public class PlacementHandler : MonoBehaviour
     private void PlaceHandle(bool _bBarricade, Vector3 _vec3Pos)
     {
         m_goSuccessfulBuild = Instantiate(m_goParticleEffects[0], _vec3Pos, m_goParticleEffects[0].transform.rotation) as GameObject;
+
         switch (_bBarricade)
         {
             case true:
@@ -170,8 +171,16 @@ public class PlacementHandler : MonoBehaviour
                     HouseController.WoodAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().WoodCost;
                     HouseController.CrystalAmount -= m_goPossibleObjects[m_iCurrentlyPlacing].GetComponent<costToPlace>().CrystalCost;
                     //Placement Occurs Here
-                    m_goObjsPlaced.Add(Instantiate(m_goPossibleObjects[m_iCurrentlyPlacing], _vec3Pos, Quaternion.identity));
-
+                    GameObject temp = Instantiate(m_goPossibleObjects[m_iCurrentlyPlacing], _vec3Pos, Quaternion.identity);
+                    m_goObjsPlaced.Add(temp);
+                    GameObject[] templistofWongles = GameObject.FindGameObjectsWithTag("Wongle");
+                    for (int i = 0; i < templistofWongles.Length; i++)
+                    {
+                        if (templistofWongles[i].GetComponent<SelectableUnitComponent>().isSelected)
+                        {
+                            templistofWongles[i].GetComponent<SelectableUnitComponent>().becomeConstructor(temp);
+                        }
+                    }
                     // Bundy Null fix
                     if (m_goObjsPlaced.Count != 0)
                     {
