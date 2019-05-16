@@ -7,6 +7,19 @@ using UnityEngine.SceneManagement;
 
 public class TutorialParameters : MonoBehaviour
 {
+    //select the scout
+    //send it into the fog
+    //send a wongle to a crystal
+    //send a wongle to a tree
+    //send a wongle to the farm
+    //build a defence tower
+    //create a wizard
+    //create a knight
+    //sellect wizard and knight with box
+    //send to kill enemy
+
+
+
     public enum TutorialState
     {
         E_ONE = 1,
@@ -88,6 +101,7 @@ public class TutorialParameters : MonoBehaviour
                         m_eTutorialLevel = TutorialState.E_FOUR;
                         enemyInstance = Instantiate(Enemy, new Vector3(0, 0, 60), Quaternion.Euler(0, 90, 0));
                         Vector3 _newPos = new Vector3(enemyInstance.transform.position.x, Camera.main.transform.position.y, enemyInstance.transform.position.z - (Camera.main.transform.forward.magnitude * 50));
+                        cameraController.m_sCameraControl.m_fTransitionSpeed = 0.01f;
                         cameraController.m_sCameraControl.UpdateCameraTargetForLerping(_newPos);
                         m_goVideoPlayer.clip = m_lVideoClips[3];
                     }

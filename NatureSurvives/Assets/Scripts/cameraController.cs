@@ -31,7 +31,7 @@ public class cameraController : MonoBehaviour
 
     [Header("Lerp for Idle camera shift")]
     private Vector3 m_vec3LerpPos;
-    private float m_fTransitionTime;
+    public float m_fTransitionTime;
     private float m_fRotationTransitionTime;
     private Vector3 m_vec3OrigPos;
     private Vector3 m_vec3OrigRot;

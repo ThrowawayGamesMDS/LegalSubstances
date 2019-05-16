@@ -194,7 +194,7 @@ public class HomeSpawning : MonoBehaviour {
             temp = Instantiate(_scTemp.m_goSpawnableUnit, transform.position, Prefabs[0].transform.rotation);
             temp.SetActive(true);
             temp.GetComponent<WongleController>().agent.stoppingDistance = 7;
-            temp.GetComponent<WongleController>().agent.avoidancePriority = Random.Range(0, 99);
+            temp.GetComponent<WongleController>().agent.avoidancePriority = Random.Range(1, 99);
             temp.GetComponent<WongleController>().priority = temp.GetComponent<WongleController>().agent.avoidancePriority;
             temp.GetComponent<WongleController>().agent.SetDestination(GetRallyPoint(unittype));
             AddtoList(unittype, temp);

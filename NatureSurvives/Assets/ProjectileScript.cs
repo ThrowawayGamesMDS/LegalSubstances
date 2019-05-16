@@ -15,5 +15,9 @@ public class ProjectileScript : MonoBehaviour
             collision.gameObject.SendMessage("TakeDamage", 5);
             Destroy(gameObject);
         }
+        else if (collision.gameObject.GetComponent<WoodScript>() != null)
+        {
+            Destroy(gameObject);
+        }
     }
 }
