@@ -417,7 +417,6 @@ public class WongleController : MonoBehaviour
                             {
                                 anim.Play("AxeChop");
                             }
-                            ChopEvent();
                             Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
                             outputAmount += (Time.deltaTime * 0.6f);
                             if (Target.GetComponent<WoodScript>().WoodHealth <= 0)
@@ -508,7 +507,6 @@ public class WongleController : MonoBehaviour
                             agent.isStopped = true;
                             //Mining Animation animation
                             anim.Play("PickaxeSwing");
-                            MineEvent();
                             Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
                             outputAmount += (Time.deltaTime * 0.55f);
                             if (Target.GetComponent<WoodScript>().WoodHealth <= 0)
@@ -703,6 +701,16 @@ public class WongleController : MonoBehaviour
             }
         }
 
+     /*   if (Work == null && Target == null && type == SelectableUnitComponent.workerType.Worker) // they are a worker, and they are idle..
+        {
+
+            Target = FindNearTarget("Construction");
+            if (Target != null)
+            {
+                Work = FindClosestTag("Builder");
+            }
+        }*/
+
         if (agent.isStopped)
         {
             if (Target != null)
@@ -776,6 +784,25 @@ public class WongleController : MonoBehaviour
         {
             Enemies.Remove(other.gameObject);
         }
+    }
+
+    public GameObject FindNearTarget(string _sTag)
+    {
+        GameObject[] _temp = null;
+        _temp = GameObject.FindGameObjectsWithTag(_sTag);
+        GameObject _closest = null;
+        
+        Vector3 position = transform.position;
+        foreach (GameObject go in _temp)
+        {
+            if (Vector3.Distance(gameObject.transform.position, go.transform.position) < 30)
+            {
+                _closest = go;
+                print("Obtaining nearest [" + _sTag + "] Object");
+                return _closest;
+            }
+        }
+        return null;
     }
 
     public GameObject FindClosestTag(string tag)

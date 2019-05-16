@@ -116,10 +116,12 @@ public class SelectionBox : MonoBehaviour {
     public List<GameObject> m_goActiveWorkers;
     public int m_iWongleWorkerCount;
 
+    public int m_iUserID;
+
     private void Awake()
     {
 #if !UNITY_EDITOR
-            //m_iUserID = 0;
+            m_iUserID = 0;
 #endif
 
         if (m_bSBHandle == null)
@@ -166,45 +168,55 @@ public class SelectionBox : MonoBehaviour {
         }
     }
 
-  /*  private void Start()
+    /*  private void Start()
+      {
+          if (m_bSBHandle == null)
+          {
+              m_bSBHandle = this;
+              //m_goMeleeUnits = new List<GameObject>();
+              //m_goRangedUnits = new List<GameObject>();
+              m_bUnitsSelected = new bool[2];
+              m_bPlayerSelected = false;
+
+              // bool system cheaper on performance then rechecking through an auto loop...
+              m_bUnitsSelected[0] = false; // Melee units
+              m_bUnitsSelected[1] = false; // Ranged Units
+              m_iWongleWorkerCount = 0;
+              m_iIdleIterCount = 0;
+              m_goActiveWorkers = new List<GameObject>();
+              RefreshWongleWorkerList();
+
+
+              GameObject[] _goUnits;
+              _goUnits = GameObject.FindGameObjectsWithTag("Wongle");
+              int _iTotalWongles = GameObject.FindGameObjectWithTag("HomeBuilding").GetComponent<HomeSpawning>().iCurrentWongleCount;
+
+              // GET THE HOMESPAWNER TOTAL WONGLE SPAWN COUNT
+              for (int i = 0; i < _iTotalWongles; i++)
+              {
+                  if (_goUnits[i].GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Melee)
+                  {
+                      m_goMeleeUnits.Add(_goUnits[i]);
+                      m_iActiveCombatWongles++;
+                  }
+                  else if (_goUnits[i].GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Ranged)
+                  {
+                      m_goRangedUnits.Add(_goUnits[i]);
+                      m_iActiveCombatWongles++;
+                  }
+              }
+          }
+      }*/
+
+    private void OnMouseOver()
     {
-        if (m_bSBHandle == null)
-        {
-            m_bSBHandle = this;
-            //m_goMeleeUnits = new List<GameObject>();
-            //m_goRangedUnits = new List<GameObject>();
-            m_bUnitsSelected = new bool[2];
-            m_bPlayerSelected = false;
+        print("mouse is over game Object");
+    }
 
-            // bool system cheaper on performance then rechecking through an auto loop...
-            m_bUnitsSelected[0] = false; // Melee units
-            m_bUnitsSelected[1] = false; // Ranged Units
-            m_iWongleWorkerCount = 0;
-            m_iIdleIterCount = 0;
-            m_goActiveWorkers = new List<GameObject>();
-            RefreshWongleWorkerList();
-       
-
-            GameObject[] _goUnits;
-            _goUnits = GameObject.FindGameObjectsWithTag("Wongle");
-            int _iTotalWongles = GameObject.FindGameObjectWithTag("HomeBuilding").GetComponent<HomeSpawning>().iCurrentWongleCount;
-
-            // GET THE HOMESPAWNER TOTAL WONGLE SPAWN COUNT
-            for (int i = 0; i < _iTotalWongles; i++)
-            {
-                if (_goUnits[i].GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Melee)
-                {
-                    m_goMeleeUnits.Add(_goUnits[i]);
-                    m_iActiveCombatWongles++;
-                }
-                else if (_goUnits[i].GetComponent<WongleController>().type == SelectableUnitComponent.workerType.Ranged)
-                {
-                    m_goRangedUnits.Add(_goUnits[i]);
-                    m_iActiveCombatWongles++;
-                }
-            }
-        }
-    }*/
+    private void OnMouseExit()
+    {
+        print("mouse exited gameobject");
+    }
 
     private void RefreshWongleWorkerList()
     {
@@ -561,7 +573,7 @@ public class SelectionBox : MonoBehaviour {
 
     void Update()
     {
-
+        print("Mouse is over UI: " + EventSystem.current.IsPointerOverGameObject(-1));
         // Wee c++ style timer handle for double click select - coroutine was fucking out mega
         if (m_fUserClickedTime < Time.time && m_bUserLClicked == true)
         {
@@ -682,7 +694,10 @@ public class SelectionBox : MonoBehaviour {
         //if (Input.GetMouseButtonDown(0) && PlacementHandler.m_sPHControl.m_ePlayerState != PlacementHandler.PlayerStates.PLACING)
         if (Input.GetMouseButtonDown(0) )
         {
-            if(!Checkposofclick.isHovered)
+            if (PlacementHandler.m_sPHControl.m_ePlayerState == PlacementHandler.PlayerStates.PLACING || EventSystem.current.IsPointerOverGameObject(-1) == true) // we need to watch this, -1 is the user id. could change dependent on build type
+                return;
+
+            if(!Checkposofclick.isHovered) // this might be obsolete
             {
                 bool _bResetState = false;
                 if (!m_bUserLClicked)
@@ -778,6 +793,11 @@ public class SelectionBox : MonoBehaviour {
         //if (Input.GetMouseButtonUp(0) && PlacementHandler.m_sPHControl.m_ePlayerState != PlacementHandler.PlayerStates.PLACING)
         if (Input.GetMouseButtonUp(0))
         {
+            if (PlacementHandler.m_sPHControl.m_ePlayerState == PlacementHandler.PlayerStates.PLACING || EventSystem.current.IsPointerOverGameObject(-1) == true)
+                return;
+
+
+
             int layermask = LayerMask.GetMask("Wongle");
 
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
@@ -998,13 +1018,6 @@ public class SelectionBox : MonoBehaviour {
                             DisplayHandler.m_sDHControl.ResetState(true);
                             m_bPlayerSelected = false;
                         }
-                       /* if (!_bResetState)
-                        {
-                            //if (DisplayHandler.m_sDHControl.m_bDisplayingText)
-                            DisplayHandler.m_sDHControl.ResetState(true);
-                            print("resetting state");
-                            _bResetState = true;
-                        }*/
                     }
                 }
             }
