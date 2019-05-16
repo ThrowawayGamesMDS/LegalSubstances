@@ -65,6 +65,7 @@ public class WongleController : MonoBehaviour
             startingSpeed = agent.speed * 2.5f;
             m_fAnimationSpeed =  2.5f;
             WongleHealth = 1;
+            
         }
         else
         {

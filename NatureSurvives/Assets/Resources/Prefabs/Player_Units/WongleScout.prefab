@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108031164768553948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.166, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children: []
   m_Father: {fileID: 8568947569144987154}
@@ -898,13 +898,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: blonkanimationmaster
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 5135c7525c0977846b1b503ffa9139e2, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3dbd6b8f031d6884ca8ac2ddc263c46a, type: 2}
     - target: {fileID: 400000, guid: 5135c7525c0977846b1b503ffa9139e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5135c7525c0977846b1b503ffa9139e2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.55
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5135c7525c0977846b1b503ffa9139e2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -954,15 +958,15 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: 5135c7525c0977846b1b503ffa9139e2, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 3dbd6b8f031d6884ca8ac2ddc263c46a, type: 2}
+    - target: {fileID: 400022, guid: 5135c7525c0977846b1b503ffa9139e2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 5135c7525c0977846b1b503ffa9139e2, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400022, guid: 5135c7525c0977846b1b503ffa9139e2, type: 3}
+    - target: {fileID: 400004, guid: 5135c7525c0977846b1b503ffa9139e2, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}

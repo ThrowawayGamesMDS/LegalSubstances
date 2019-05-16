@@ -66,7 +66,7 @@ public class HomeSpawning : MonoBehaviour {
             temp = Instantiate(Resources.Load("Prefabs/Player_Units/WongleScout"), gameObject.transform) as GameObject;
             temp2 = Instantiate(Resources.Load("Prefabs/UI_Objects/ScoutQueue"), canvas) as GameObject;
             temp.gameObject.transform.localScale = new Vector3(10, 10, 10); // so weird -> When using resources.load it scales stuff up to 10, and then setting back to 10 sets to 1, honestly idk
-           // temp2.gameObject.transform.localScale = new Vector3(10, 10, 10);// -> need to setactive when instantiating...
+            //temp2.gameObject.transform.localScale = new Vector3(10, 10, 10);// -> need to setactive when instantiating...
             AddExpenseInformation("Scout", 5, 5, 5,temp2, temp);
             temp.SetActive(false);
             temp2.SetActive(false);
