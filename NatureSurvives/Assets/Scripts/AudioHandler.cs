@@ -34,60 +34,83 @@ public class AudioHandler : MonoBehaviour
 
     public void PlaySound(m_soundTypes _playType)
     {
-        
-        if (!m_asPlayerSF.isPlaying)
+
+        if (_playType != m_soundTypes.MUSIC) // Is a sound effect
         {
-            int _play;
-            switch (_playType)
+            if (m_asPlayerSF.isPlaying) // Sound effect is playing, we don't want to update the effect?..
             {
-                case m_soundTypes.MUSIC:
-                    {
-                        if (!DayNight.isDay) // false to is day = is day... fucking retarded
-                        {
-                            _play = Random.Range(0, m_arrMasterMusic.Length);
-                            m_asMusicMaster.clip = m_arrMasterMusic[_play];
-                        }
-                        else
-                        {
-                            _play = Random.Range(0, m_arrNightMusic.Length);
-                            m_asMusicMaster.clip = m_arrNightMusic[_play];
-                        }
-                        break;
-                    }
-                case m_soundTypes.DAMAGE:
-                    {
-                        _play = Random.Range(0, m_arrDamageSounds.Length);
-                        m_asPlayerSF.clip = m_arrDamageSounds[_play];
-                        break;
-                    }
-
-                case m_soundTypes.SUCCESS:
-                    {
-                        _play = Random.Range(0, m_arrSuccessSounds.Length);
-                        m_asPlayerSF.clip = m_arrSuccessSounds[_play];
-                        break;
-                    }
-
-                case m_soundTypes.FAILURE:
-                    {
-                        _play = Random.Range(0, m_arrFailureSounds.Length);
-                        m_asPlayerSF.clip = m_arrFailureSounds[_play];
-                        break;
-                    }
-                case m_soundTypes.WOOD:
-                    {
-                        _play = Random.Range(0, m_arrWoodcutSounds.Length);
-                        m_asPlayerSF.clip = m_arrWoodcutSounds[_play];
-                        break;
-                    }
-                case m_soundTypes.MINE:
-                    {
-                        _play = Random.Range(0, m_arrMiningSounds.Length);
-                        m_asPlayerSF.clip = m_arrMiningSounds[_play];
-                        break;
-                    }
+                return; // could add to like a queue system here, but fuck having delayed sounds lol
             }
-            m_asPlayerSF.Play();
+            else
+            {
+                //alter pitch of music?
+                m_asMusicMaster.pitch = m_asMusicMaster.pitch = 0.5f;
+            }
+        }
+        
+        int _play;
+        switch (_playType)
+        {
+            case m_soundTypes.MUSIC:
+                {
+                    if (!DayNight.isDay) // false to is day = is day... fucking retarded
+                    {
+                        _play = Random.Range(0, m_arrMasterMusic.Length - 1);
+                        print("Lenght of daytime songs:" + m_arrDayMusic.Length);
+                        m_asMusicMaster.clip = m_arrDayMusic[_play];
+                    }
+                    else
+                    {
+                        _play = Random.Range(0, m_arrNightMusic.Length - 1);
+                        print("It is daytime, playing tune: " + m_arrNightMusic[_play].name);
+                        m_asMusicMaster.clip = m_arrNightMusic[_play];
+                    }
+                    break;
+                }
+            case m_soundTypes.DAMAGE:
+                {
+                    _play = Random.Range(0, m_arrDamageSounds.Length);
+                    m_asPlayerSF.clip = m_arrDamageSounds[_play];
+                    break;
+                }
+
+            case m_soundTypes.SUCCESS:
+                {
+                    _play = Random.Range(0, m_arrSuccessSounds.Length);
+                    m_asPlayerSF.clip = m_arrSuccessSounds[_play];
+                    break;
+                }
+
+            case m_soundTypes.FAILURE:
+                {
+                    _play = Random.Range(0, m_arrFailureSounds.Length);
+                    m_asPlayerSF.clip = m_arrFailureSounds[_play];
+                    break;
+                }
+            case m_soundTypes.WOOD:
+                {
+                    _play = Random.Range(0, m_arrWoodcutSounds.Length);
+                    m_asPlayerSF.clip = m_arrWoodcutSounds[_play];
+                    break;
+                }
+            case m_soundTypes.MINE:
+                {
+                    _play = Random.Range(0, m_arrMiningSounds.Length);
+                    m_asPlayerSF.clip = m_arrMiningSounds[_play];
+                    break;
+                }
+        }
+
+        switch(_playType)
+        {
+            case m_soundTypes.MUSIC:
+                {
+                    m_asMusicMaster.Play();
+                    break;
+                }
+            default:
+                m_asPlayerSF.Play();
+                break;
         }
     }
 
@@ -151,17 +174,38 @@ public class AudioHandler : MonoBehaviour
             m_arrDayMusic = Resources.LoadAll("Audio/Music/Day", typeof(AudioClip)).Cast<AudioClip>().ToArray();
             m_arrNightMusic = Resources.LoadAll("Audio/Music/Night", typeof(AudioClip)).Cast<AudioClip>().ToArray();
 
+
+            /***
+             * 
+             * Weird bug - READ THE PRINT
+             * 
+             ***/
+            m_asPlayerSF = null;
+            m_asMusicMaster = null;
             var _audioSources = GetComponents(typeof(AudioSource)).Cast<AudioSource>().ToArray();
+         if (_audioSources.Length == 1)
+            {
+                print("PLEASE RE-ASSIGN THE AUDIOHANDLER COMPONENT TO THE PLAYER OBJECT!!!");
+            }
             m_asPlayerSF = _audioSources[0];
             m_asMusicMaster = _audioSources[1];
 
-         //   PlaySound(m_soundTypes.MUSIC);
+            m_asMusicMaster.pitch = 0.6f;
+
+            PlaySound(m_soundTypes.MUSIC);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (m_asMusicMaster != null)
+        {
+            if (!m_asMusicMaster.isPlaying)
+            {
+                PlaySound(m_soundTypes.MUSIC);
+            }
+        }
+       
     }
 }

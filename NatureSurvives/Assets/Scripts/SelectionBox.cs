@@ -208,16 +208,6 @@ public class SelectionBox : MonoBehaviour {
           }
       }*/
 
-    private void OnMouseOver()
-    {
-        print("mouse is over game Object");
-    }
-
-    private void OnMouseExit()
-    {
-        print("mouse exited gameobject");
-    }
-
     private void RefreshWongleWorkerList()
     {
         GameObject[] _goUnits;
@@ -573,7 +563,7 @@ public class SelectionBox : MonoBehaviour {
 
     void Update()
     {
-        print("Mouse is over UI: " + EventSystem.current.IsPointerOverGameObject(-1));
+      //  print("Mouse is over UI: " + EventSystem.current.IsPointerOverGameObject(-1));
         // Wee c++ style timer handle for double click select - coroutine was fucking out mega
         if (m_fUserClickedTime < Time.time && m_bUserLClicked == true)
         {
