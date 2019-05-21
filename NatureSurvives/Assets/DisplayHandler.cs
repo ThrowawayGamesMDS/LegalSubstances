@@ -92,6 +92,7 @@ public class DisplayHandler : MonoBehaviour
             AssignAndLoadButton("Worker");
             AssignAndLoadButton("Knight");
             AssignAndLoadButton("Wizard");
+            AssignAndLoadButton("Scout");
 
             for (int i = 0; i < m_goUIObj.Count; i++)
             {
@@ -581,7 +582,7 @@ public class DisplayHandler : MonoBehaviour
         {
             print("Unable to attain button information for: " + _sName);
         }*/
-           string[] _vars = { "Worker", "Knight", "Wizard" };
+           string[] _vars = { "Worker", "Knight", "Wizard", "Scout" };
            Buttons temp = null;
            Spawning_Cost scTemp = null;
            for (int i = 0; i < _vars.Length; i++)
@@ -627,13 +628,18 @@ public class DisplayHandler : MonoBehaviour
 
     private void Update()
     {
-        if (m_bDisplayingText)
-            TextUpdateHandle();
-        else 
+        if (m_goTextGroup != null)
         {
-            if (m_goTextGroup.GetComponent<CanvasGroup>().alpha != 0)
-                m_goTextGroup.GetComponent<CanvasGroup>().alpha = 0;
+            if (m_bDisplayingText)
+                TextUpdateHandle();
+            else
+            {
+                if (m_goTextGroup.GetComponent<CanvasGroup>().alpha != 0)
+                    m_goTextGroup.GetComponent<CanvasGroup>().alpha = 0;
+            }
+
         }
+      
 
         /***
          * 

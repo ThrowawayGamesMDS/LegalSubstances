@@ -544,7 +544,6 @@ GameObject:
   - component: {fileID: 5019658307776357508}
   - component: {fileID: 6120359687082896543}
   - component: {fileID: 6363852920778919945}
-  - component: {fileID: 184003055205644183}
   m_Layer: 11
   m_Name: WongleScout
   m_TagString: Wongle
@@ -835,28 +834,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &184003055205644183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7124765720417143725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a09a4f0ecce70b342852ec27a06eee82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_arrSuccessSounds: []
-  m_arrFailureSounds: []
-  m_arrDamageSounds: []
-  m_arrWoodcutSounds: []
-  m_arrMiningSounds: []
-  m_arrDayMusic: []
-  m_arrNightMusic: []
-  m_arrMasterMusic: []
-  m_asPlayerSF: {fileID: 0}
-  m_asMusicMaster: {fileID: 0}
 --- !u!1 &8308538112660213185
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,11 +935,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 400022, guid: 5135c7525c0977846b1b503ffa9139e2, type: 3}
+    - target: {fileID: 400002, guid: 5135c7525c0977846b1b503ffa9139e2, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 5135c7525c0977846b1b503ffa9139e2, type: 3}
+    - target: {fileID: 400022, guid: 5135c7525c0977846b1b503ffa9139e2, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
