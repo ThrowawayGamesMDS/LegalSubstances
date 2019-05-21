@@ -687,7 +687,7 @@ public class SelectionBox : MonoBehaviour {
             if (PlacementHandler.m_sPHControl.m_ePlayerState == PlacementHandler.PlayerStates.PLACING || EventSystem.current.IsPointerOverGameObject(-1) == true) // we need to watch this, -1 is the user id. could change dependent on build type
                 return;
 
-            if(!Checkposofclick.isHovered) // this might be obsolete
+            //if(!Checkposofclick.isHovered) // this might be obsolete
             {
                 bool _bResetState = false;
                 if (!m_bUserLClicked)
