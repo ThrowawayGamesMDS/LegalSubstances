@@ -27,6 +27,7 @@ public class AudioHandler : MonoBehaviour
     public AudioSource m_asPlayerSF;
     public AudioSource m_asMusicMaster;
     private bool m_bPlaySound;
+    private bool m_bDayMusicPlaying;
     public enum m_soundTypes
     {
         DAMAGE, SUCCESS, FAILURE, WOOD, MINE, WARNING, MUSIC
@@ -53,17 +54,18 @@ public class AudioHandler : MonoBehaviour
         {
             case m_soundTypes.MUSIC:
                 {
-                    if (!DayNight.isDay) // false to is day = is day... fucking retarded
+                    if (DayNight.isDay) 
                     {
-                        _play = Random.Range(0, m_arrMasterMusic.Length - 1);
-                        print("Lenght of daytime songs:" + m_arrDayMusic.Length);
+                        _play = Random.Range(0, m_arrDayMusic.Length);
                         m_asMusicMaster.clip = m_arrDayMusic[_play];
+                        m_bDayMusicPlaying = true;
+                        //invoke song reset at clip length to avoid an update func?
                     }
                     else
                     {
-                        _play = Random.Range(0, m_arrNightMusic.Length - 1);
-                        print("It is daytime, playing tune: " + m_arrNightMusic[_play].name);
+                        _play = Random.Range(0, m_arrNightMusic.Length);
                         m_asMusicMaster.clip = m_arrNightMusic[_play];
+                        m_bDayMusicPlaying = false;
                     }
                     break;
                 }
@@ -192,7 +194,11 @@ public class AudioHandler : MonoBehaviour
 
             m_asMusicMaster.pitch = 0.6f;
 
-            PlaySound(m_soundTypes.MUSIC);
+            m_bDayMusicPlaying = false;
+        }
+        else
+        {
+            Destroy(this);
         }
     }
 
@@ -205,6 +211,21 @@ public class AudioHandler : MonoBehaviour
             {
                 PlaySound(m_soundTypes.MUSIC);
             }
+
+            if (!m_bDayMusicPlaying &&  DayNight.isDay )
+            {
+                PlaySound(m_soundTypes.MUSIC);
+            }
+            else if (m_bDayMusicPlaying && !DayNight.isDay)
+            {
+                PlaySound(m_soundTypes.MUSIC);
+            }
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            PlaySound(m_soundTypes.MUSIC);
         }
        
     }
