@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class CheatHandler : MonoBehaviour
 {
-    private bool m_bPlayerIsEnteringCheat;
+    public static CheatHandler m_sCheatHandler;
+    public bool m_bPlayerIsEnteringCheat;
     public GameObject m_goEntryField;
     private string[] m_sKnownCheats;
     private int m_iCheatCount;
@@ -13,16 +14,22 @@ public class CheatHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_iCheatCount = 4;
-        m_sKnownCheats = new string[m_iCheatCount];
-        m_sKnownCheats[0] = "byebyeboxes";
-        m_sKnownCheats[1] = "givemedosh";
-        m_sKnownCheats[2] = "builderpro";
-        m_sKnownCheats[3] = "nomorequeues";
-        m_bDisabledBuildTimer = false;
-        m_bPlayerIsEnteringCheat = false;
-        gameObject.GetComponent<CanvasGroup>().alpha = 0;
-        gameObject.GetComponent<InputField>().DeactivateInputField();
+        if (m_sCheatHandler == null)
+        {
+            m_sCheatHandler = this;
+            m_iCheatCount = 4;
+            m_sKnownCheats = new string[m_iCheatCount];
+            m_sKnownCheats[0] = "byebyeboxes";
+            m_sKnownCheats[1] = "givemedosh";
+            m_sKnownCheats[2] = "builderpro";
+            m_sKnownCheats[3] = "nomorequeues";
+            m_bDisabledBuildTimer = false;
+            m_bPlayerIsEnteringCheat = false;
+            gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            gameObject.GetComponent<InputField>().DeactivateInputField();
+        }
+        else
+            Destroy(this); //this = gameObject.component?
     }
 
     public void HandleEnteredCheat(string _sEnteredText)

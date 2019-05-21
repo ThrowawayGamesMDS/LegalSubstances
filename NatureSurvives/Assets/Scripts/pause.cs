@@ -30,14 +30,20 @@ public class pause : MonoBehaviour {
         //if (Input.GetKeyDown(KeyCode.Backslash) || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space) && PlacementHandler.m_sPHControl.m_ePlayerState != PlacementHandler.PlayerStates.PLACING) // Player can't pause whilst placing buildings
         if (Input.GetKeyDown(KeyCode.Backslash) || Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Space))
         {
-            if (m_bPlayerPaused)
+            //if (!CheatHandler.m_sCheatHandler.m_bPlayerIsEnteringCheat || PlacementHandler.m_sPHControl.m_ePlayerState == PlacementHandler.PlayerStates.DEFAULT)
+            if (!CheatHandler.m_sCheatHandler.m_bPlayerIsEnteringCheat)
             {
-                Resume();                
+                if (m_bPlayerPaused)
+                {
+                    Resume();
+                }
+                else
+                {
+                    PauseGame();
+                }
+
             }
-            else
-            {
-                PauseGame();
-            }
+          
 
         }
         
