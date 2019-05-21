@@ -14,12 +14,43 @@ using UnityEngine.UI;
 public class Buttons
 {
     public GameObject m_goButton;
+    public Sprite m_sAvailableSprite;
+    public Sprite m_sUnavailableSprite;
+    bool m_bIsAvailable;
     public string m_sButtonID;
 
-    public Buttons(GameObject _goButton, string _sName)
+    public Buttons(GameObject _goButton, Sprite _sUnavailableSprite, string _sName)
     {
         m_goButton = _goButton;
+        m_sUnavailableSprite = _sUnavailableSprite;
+        m_sAvailableSprite = _goButton.GetComponent<Image>().sprite;
         m_sButtonID = _sName;
+        m_bIsAvailable = true; // displaying available
+    }
+
+    public void UpdateSprite(bool _bPlayerCanAfford)
+    {
+        switch(_bPlayerCanAfford)
+        {
+            case true:
+                {
+                    if (!m_bIsAvailable)
+                    {
+                        m_goButton.GetComponent<Image>().sprite = m_sAvailableSprite;
+                        m_bIsAvailable = true;
+                    }
+                    break;
+                }
+            case false:
+                {
+                    if (m_bIsAvailable)
+                    {
+                        m_goButton.GetComponent<Image>().sprite = m_sUnavailableSprite;
+                        m_bIsAvailable = false;
+                    }
+                    break;
+                }
+        }
     }
 }
 
@@ -35,7 +66,7 @@ public class DisplayHandler : MonoBehaviour
     public List<GameObject> m_goUIObj;
     public List<GameObject> m_lgoUIButtons;
 
-    private Dictionary<string, Buttons> m_dButtons;
+    public Dictionary<string, Buttons> m_dButtons;
     private List<Buttons> m_goButtons;
     public bool m_bButtonsLoaded;
 
@@ -57,6 +88,7 @@ public class DisplayHandler : MonoBehaviour
         {
             DisplayHandler.m_sDHControl = this;
 
+            m_dButtons = new Dictionary<string, Buttons>();
             AssignAndLoadButton("Worker");
             AssignAndLoadButton("Knight");
             AssignAndLoadButton("Wizard");
@@ -98,14 +130,17 @@ public class DisplayHandler : MonoBehaviour
 
     private void AssignAndLoadButton(string _sName)
     {
-        Dictionary<string, Buttons> m_dButtons = new Dictionary<string, Buttons>();
+       // Dictionary<string, Buttons> m_dButtons = new Dictionary<string, Buttons>();
         GameObject _goTemp = GameObject.FindGameObjectWithTag(_sName + "Button");
+        // Sprite _sTemp = Resources.Load("UI_Objects/" + _sName, typeof(Sprite).Cast<Sprite>();
+        Sprite _sTemp = Resources.Load<Sprite>("Sprites/UI_Objects/" + _sName + "/" + _sName + "Greyed");
+        print(_sTemp.name);
         //GameObject _goTemp = m_lgoUIButtons[0].gameObject;
         Buttons _cWongleButton = null;
 
         if (_goTemp != null)
         {
-            _cWongleButton = new Buttons(_goTemp, _sName + "Button");
+            _cWongleButton = new Buttons(_goTemp, _sTemp, _sName + "Button" );
         }
         else
         {
@@ -121,13 +156,10 @@ public class DisplayHandler : MonoBehaviour
             {
                 // print("Buttons loaded : Name:" + temp.m_sButtonID + ", " + temp.m_goButton.tag);
                 print("Buttons loaded : Name:" + temp.m_goButton.tag);
-
-                m_bButtonsLoaded = true;
             }
             else
             {
                 print("Couldn't load buttons");
-                m_bButtonsLoaded = false;
             }
         }
     }
@@ -143,7 +175,6 @@ public class DisplayHandler : MonoBehaviour
         print("Attempting to get : " + _sUnitName);
         if (m_dButtons.TryGetValue(_sUnitName, out temp))
         {
-            print("we here");
             if (temp.m_goButton.GetComponent<CanvasGroup>().alpha == 1.0f)
                 return true;
             else
@@ -151,7 +182,6 @@ public class DisplayHandler : MonoBehaviour
         }
         else
         {
-            print("we here2");
             return false;
         }
            
@@ -517,6 +547,83 @@ public class DisplayHandler : MonoBehaviour
         }
     }
 
+    private void CheckUnitButtonDisplay()
+    {
+       /* Buttons temp = null;
+        Spawning_Cost scTemp = null;
+        bool _failed = false;
+        if (m_dButtons.TryGetValue(_sName, out temp))
+        {
+            if (HomeSpawning.m_sHomeSpawningControl.m_dExpenseInformation.TryGetValue(_sName, out scTemp))
+            {
+                if (scTemp.m_iCrystalCost > HouseController.CrystalAmount)
+                {
+                    _failed = true;
+                }
+
+                else if (scTemp.m_iFoodCost > HouseController.m_iFoodCount)
+                {
+                    _failed = true;
+                }
+
+                else if (scTemp.m_iWoodCost > HouseController.WoodAmount)
+                {
+                    _failed = true;
+                }
+            }
+
+            if (_failed)
+            {
+                temp.m_goButton.GetComponent<Image>().sprite = temp.m_sUnavailableSprite;
+            }
+        }
+        else
+        {
+            print("Unable to attain button information for: " + _sName);
+        }*/
+           string[] _vars = { "Worker", "Knight", "Wizard" };
+           Buttons temp = null;
+           Spawning_Cost scTemp = null;
+           for (int i = 0; i < _vars.Length; i++)
+           {
+               bool _failed = false;
+               if (m_dButtons.TryGetValue(_vars[i], out temp))
+               {
+                    if (HomeSpawning.m_sHomeSpawningControl.m_dExpenseInformation.TryGetValue(_vars[i], out scTemp))
+                    {
+                        if (scTemp.m_iCrystalCost > HouseController.CrystalAmount)
+                        {
+                            _failed = true;
+                        }
+
+                        else if (scTemp.m_iFoodCost > HouseController.m_iFoodCount)
+                        {
+                            _failed = true;
+                        }
+
+                        else if (scTemp.m_iWoodCost > HouseController.WoodAmount)
+                        {
+                            _failed = true;
+                        }
+                    }
+
+                    if (_failed)
+                    {
+                        // temp.m_goButton.GetComponent<Image>().sprite = temp.m_sUnavailableSprite;
+                        temp.UpdateSprite(false);
+                    }
+                    else
+                    {
+                        temp.UpdateSprite(true);
+                    }
+               }
+               else
+               {
+                   print("Unable to attain button information for: " + _vars[i]);
+               }
+           }
+    }
+
 
     private void Update()
     {
@@ -528,7 +635,20 @@ public class DisplayHandler : MonoBehaviour
                 m_goTextGroup.GetComponent<CanvasGroup>().alpha = 0;
         }
 
-        if (Input.GetMouseButtonUp(0))
+        /***
+         * 
+         * So many ways we could handle this, use this update and always check to see if we need to update the sprite.
+         * or alternatively, run a function each time that the disply is utilized, and thereafter each time a player succesfully
+         * purchases a unit. IDK
+         * 
+         ***/
+
+
+        if (m_bDisplayingUnit)
+        {
+            CheckUnitButtonDisplay();
+        }
+            if (Input.GetMouseButtonUp(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             //  int layermask = LayerMask.NameToLayer("");

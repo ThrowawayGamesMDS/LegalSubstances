@@ -21404,14 +21404,8 @@ PrefabInstance:
       propertyPath: m_goUIObj.Array.data[1]
       value: 
       objectReference: {fileID: 2071604301}
-    - target: {fileID: 7868119282809492094, guid: 948bc0424816ed24c8f65b159a082210,
-        type: 3}
-      propertyPath: Loop
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 1519851612, guid: 948bc0424816ed24c8f65b159a082210, type: 3}
-    - {fileID: 1519851608, guid: 948bc0424816ed24c8f65b159a082210, type: 3}
+    - {fileID: 1775031220, guid: 948bc0424816ed24c8f65b159a082210, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 948bc0424816ed24c8f65b159a082210, type: 3}
 --- !u!1001 &1183462807
 PrefabInstance:
@@ -22445,6 +22439,34 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 164488482}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1250114711 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7868119282809492092, guid: 948bc0424816ed24c8f65b159a082210,
+    type: 3}
+  m_PrefabInstance: {fileID: 1183322544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1250114712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250114711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a09a4f0ecce70b342852ec27a06eee82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_arrSuccessSounds: []
+  m_arrFailureSounds: []
+  m_arrDamageSounds: []
+  m_arrWoodcutSounds: []
+  m_arrMiningSounds: []
+  m_arrDayMusic: []
+  m_arrNightMusic: []
+  m_arrMasterMusic: []
+  m_asPlayerSF: {fileID: 0}
+  m_asMusicMaster: {fileID: 0}
 --- !u!4 &1252488672 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1103244057, guid: b77925f602859944d9bb52a4bdddbf24,
@@ -32231,34 +32253,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4812438612541344}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1775031219 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7868119282809492092, guid: 948bc0424816ed24c8f65b159a082210,
-    type: 3}
-  m_PrefabInstance: {fileID: 1183322544}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1775031220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1775031219}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a09a4f0ecce70b342852ec27a06eee82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_arrSuccessSounds: []
-  m_arrFailureSounds: []
-  m_arrDamageSounds: []
-  m_arrWoodcutSounds: []
-  m_arrMiningSounds: []
-  m_arrDayMusic: []
-  m_arrNightMusic: []
-  m_arrMasterMusic: []
-  m_asPlayerSF: {fileID: 0}
-  m_asMusicMaster: {fileID: 0}
 --- !u!4 &1778199589 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1103244057, guid: b77925f602859944d9bb52a4bdddbf24,
