@@ -36,7 +36,7 @@ public class DayNight : MonoBehaviour {
         //roundImage = roundUI.transform.GetChild(0).GetComponent<Image>();
         roundImage = roundUI.GetComponent<Image>();
 
-        roundUI.transform.SetSiblingIndex(1);
+        //roundUI.transform.SetSiblingIndex(1);
 
         //timerUI = FindObjectOfType<Slider>().gameObject;
         //timerUI.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load("sunindicator", typeof(Sprite)) as Sprite;
