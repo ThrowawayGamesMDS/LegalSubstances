@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e05d658aeaf5f441a7c13c7df98fede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_bPlayerIsEnteringCheat: 0
   m_goEntryField: {fileID: 265589252}
   m_bDisabledBuildTimer: 0
 --- !u!225 &8284009314311191643
@@ -2762,7 +2763,7 @@ GameObject:
   - component: {fileID: 6136651012568615498}
   m_Layer: 5
   m_Name: Farm
-  m_TagString: Untagged
+  m_TagString: FarmButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2779,7 +2780,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6136651013495006593}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3075,7 +3076,7 @@ GameObject:
   - component: {fileID: 6136651012639541644}
   m_Layer: 5
   m_Name: DEFENCE
-  m_TagString: Untagged
+  m_TagString: TowerButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3790,7 +3791,7 @@ GameObject:
   - component: {fileID: 6136651013009611571}
   m_Layer: 5
   m_Name: Storage
-  m_TagString: Untagged
+  m_TagString: StorageButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3807,7 +3808,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6136651013495006593}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4430,7 +4431,7 @@ GameObject:
   - component: {fileID: 6136651013421478369}
   m_Layer: 5
   m_Name: House
-  m_TagString: Untagged
+  m_TagString: HouseButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4447,7 +4448,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6136651013495006593}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4651,7 +4652,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6136651013495006593
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4663,11 +4664,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6136651012568615497}
-  - {fileID: 6136651013627188399}
-  - {fileID: 6136651012639541643}
   - {fileID: 6136651013009611570}
+  - {fileID: 6136651012568615497}
+  - {fileID: 6136651012639541643}
   - {fileID: 6136651013421478368}
+  - {fileID: 6136651013627188399}
   m_Father: {fileID: 6136651012213837673}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4807,7 +4808,7 @@ GameObject:
   - component: {fileID: 6136651013627188368}
   m_Layer: 5
   m_Name: Wonder
-  m_TagString: Untagged
+  m_TagString: WonderButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4824,7 +4825,7 @@ RectTransform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 6136651013495006593}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

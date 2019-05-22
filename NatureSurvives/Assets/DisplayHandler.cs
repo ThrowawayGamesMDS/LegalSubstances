@@ -18,14 +18,33 @@ public class Buttons
     public Sprite m_sUnavailableSprite;
     bool m_bIsAvailable;
     public string m_sButtonID;
+    public bool m_bUtilizesExpenseInfo;
+    public int m_iWoodCost;
+    public int m_iFoodCost;
+    public int m_iCrystalCost;
 
-    public Buttons(GameObject _goButton, Sprite _sUnavailableSprite, string _sName)
+    public Buttons(GameObject _goButton, Sprite _sUnavailableSprite, string _sName, bool _bUtilizesInfo, int _iWoodCost, int _iFoodCost, int _iCrystalCost)
     {
         m_goButton = _goButton;
         m_sUnavailableSprite = _sUnavailableSprite;
         m_sAvailableSprite = _goButton.GetComponent<Image>().sprite;
         m_sButtonID = _sName;
         m_bIsAvailable = true; // displaying available
+
+        if (_bUtilizesInfo)
+        {
+            m_bUtilizesExpenseInfo = true;
+            m_iWoodCost = _iWoodCost;
+            m_iFoodCost = _iFoodCost;
+            m_iCrystalCost = _iCrystalCost;
+        }
+        else
+        {
+            m_bUtilizesExpenseInfo = false;
+            m_iWoodCost = 0;
+            m_iFoodCost = 0;
+            m_iCrystalCost = 0;
+        }
     }
 
     public void UpdateSprite(bool _bPlayerCanAfford)
@@ -89,10 +108,17 @@ public class DisplayHandler : MonoBehaviour
             DisplayHandler.m_sDHControl = this;
 
             m_dButtons = new Dictionary<string, Buttons>();
-            AssignAndLoadButton("Worker");
-            AssignAndLoadButton("Knight");
-            AssignAndLoadButton("Wizard");
-            AssignAndLoadButton("Scout");
+            AssignAndLoadButton("Worker", false, 0,0,0);
+            AssignAndLoadButton("Knight", false, 0, 0, 0);
+            AssignAndLoadButton("Wizard", false, 0, 0, 0);
+            AssignAndLoadButton("Scout", false, 0, 0, 0);
+
+            AssignAndLoadButton("Storage", true, 100, 0, 0);
+            AssignAndLoadButton("Farm", true, 30,0,0);
+            AssignAndLoadButton("Tower", true,25,0,125);
+            AssignAndLoadButton("House",true,30,0,0);
+            AssignAndLoadButton("Wonder",true,500,500,500);
+
 
             for (int i = 0; i < m_goUIObj.Count; i++)
             {
@@ -129,19 +155,31 @@ public class DisplayHandler : MonoBehaviour
     }
 
 
-    private void AssignAndLoadButton(string _sName)
+    private void AssignAndLoadButton(string _sName, bool _bUtilizeInfo, int _iWoodCost, int _iFoodCost, int _iCrystalCost)
     {
        // Dictionary<string, Buttons> m_dButtons = new Dictionary<string, Buttons>();
-        GameObject _goTemp = GameObject.FindGameObjectWithTag(_sName + "Button");
+        GameObject _goTemp = null;
+       _goTemp = GameObject.FindGameObjectWithTag(_sName + "Button");
+
+        if (_goTemp == null)
+        {
+            print("Unable to find gameobject for " + _sName + " Button");
+        }
         // Sprite _sTemp = Resources.Load("UI_Objects/" + _sName, typeof(Sprite).Cast<Sprite>();
-        Sprite _sTemp = Resources.Load<Sprite>("Sprites/UI_Objects/" + _sName + "/" + _sName + "Greyed");
-        print(_sTemp.name);
+        Sprite _sTemp = null;
+            _sTemp = Resources.Load<Sprite>("Sprites/UI_Objects/" + _sName + "/" + _sName + "Greyed");
+        if (_sTemp == null)
+        {
+            print("Unable to load sprite for " + _sName + " Button");
+        }
+        else
+            print(_sTemp.name);
         //GameObject _goTemp = m_lgoUIButtons[0].gameObject;
         Buttons _cWongleButton = null;
 
         if (_goTemp != null)
         {
-            _cWongleButton = new Buttons(_goTemp, _sTemp, _sName + "Button" );
+            _cWongleButton = new Buttons(_goTemp, _sTemp, _sName + "Button", _bUtilizeInfo, _iWoodCost, _iFoodCost, _iCrystalCost);
         }
         else
         {
@@ -212,14 +250,6 @@ public class DisplayHandler : MonoBehaviour
         {
             print("Couldn't update the alpha because we weren't able to access the Dictionary");
         }
-     /*   switch (_sUnitName) // might rename to buttons
-        {
-            case "Knight":
-                {
-                    m_dButtons["Knight"].m_goButton
-                    break;
-                }
-        }*/
     }
 
     private Text_Tags ReturnNewTag(int _tagVal)
@@ -548,41 +578,22 @@ public class DisplayHandler : MonoBehaviour
         }
     }
 
-    private void CheckUnitButtonDisplay()
+    private void CheckUnitButtonDisplay(bool _bCheckUnit)
     {
-       /* Buttons temp = null;
-        Spawning_Cost scTemp = null;
-        bool _failed = false;
-        if (m_dButtons.TryGetValue(_sName, out temp))
+        string[] _vars;
+
+        if (_bCheckUnit)
         {
-            if (HomeSpawning.m_sHomeSpawningControl.m_dExpenseInformation.TryGetValue(_sName, out scTemp))
-            {
-                if (scTemp.m_iCrystalCost > HouseController.CrystalAmount)
-                {
-                    _failed = true;
-                }
-
-                else if (scTemp.m_iFoodCost > HouseController.m_iFoodCount)
-                {
-                    _failed = true;
-                }
-
-                else if (scTemp.m_iWoodCost > HouseController.WoodAmount)
-                {
-                    _failed = true;
-                }
-            }
-
-            if (_failed)
-            {
-                temp.m_goButton.GetComponent<Image>().sprite = temp.m_sUnavailableSprite;
-            }
+            _vars = new string[4];
+            string[] _vals =  {"Worker", "Knight", "Wizard", "Scout" };
+            _vars = _vals;
         }
         else
         {
-            print("Unable to attain button information for: " + _sName);
-        }*/
-           string[] _vars = { "Worker", "Knight", "Wizard", "Scout" };
+            _vars = new string[5];
+            string[] _vals = { "Storage", "Farm", "Tower", "House", "Wonder" };
+            _vars = _vals;
+        }
            Buttons temp = null;
            Spawning_Cost scTemp = null;
            for (int i = 0; i < _vars.Length; i++)
@@ -590,33 +601,66 @@ public class DisplayHandler : MonoBehaviour
                bool _failed = false;
                if (m_dButtons.TryGetValue(_vars[i], out temp))
                {
-                    if (HomeSpawning.m_sHomeSpawningControl.m_dExpenseInformation.TryGetValue(_vars[i], out scTemp))
+                    if (_bCheckUnit)
                     {
-                        if (scTemp.m_iCrystalCost > HouseController.CrystalAmount)
+                        if (HomeSpawning.m_sHomeSpawningControl.m_dExpenseInformation.TryGetValue(_vars[i], out scTemp))
                         {
-                            _failed = true;
+                            if (scTemp.m_iCrystalCost > HouseController.CrystalAmount)
+                            {
+                                _failed = true;
+                            }
+
+                            else if (scTemp.m_iFoodCost > HouseController.m_iFoodCount)
+                            {
+                                _failed = true;
+                            }
+
+                            else if (scTemp.m_iWoodCost > HouseController.WoodAmount)
+                            {
+                                _failed = true;
+                            }
                         }
 
-                        else if (scTemp.m_iFoodCost > HouseController.m_iFoodCount)
+                        if (_failed)
                         {
-                            _failed = true;
+                            // temp.m_goButton.GetComponent<Image>().sprite = temp.m_sUnavailableSprite;
+                            temp.UpdateSprite(false);
                         }
-
-                        else if (scTemp.m_iWoodCost > HouseController.WoodAmount)
+                        else
                         {
-                            _failed = true;
+                            temp.UpdateSprite(true);
                         }
-                    }
-
-                    if (_failed)
-                    {
-                        // temp.m_goButton.GetComponent<Image>().sprite = temp.m_sUnavailableSprite;
-                        temp.UpdateSprite(false);
                     }
                     else
                     {
-                        temp.UpdateSprite(true);
-                    }
+                        if (temp.m_bUtilizesExpenseInfo) // double check to see if info actually is loaded..
+                        {
+                             if (temp.m_iCrystalCost > HouseController.CrystalAmount)
+                            {
+                                _failed = true;
+                            }
+
+                            else if (temp.m_iFoodCost > HouseController.m_iFoodCount)
+                            {
+                                _failed = true;
+                            }
+
+                            else if (temp.m_iWoodCost > HouseController.WoodAmount)
+                            {
+                                _failed = true;
+                            }
+                        }
+
+                        if (_failed)
+                        {
+                            // temp.m_goButton.GetComponent<Image>().sprite = temp.m_sUnavailableSprite;
+                            temp.UpdateSprite(false);
+                        }
+                        else
+                        {
+                            temp.UpdateSprite(true);
+                        }
+                    }  
                }
                else
                {
@@ -652,8 +696,14 @@ public class DisplayHandler : MonoBehaviour
 
         if (m_bDisplayingUnit)
         {
-            CheckUnitButtonDisplay();
+            CheckUnitButtonDisplay(true);
         }
+
+        if (m_bDisplayingBuildings)
+        {
+            CheckUnitButtonDisplay(false);
+        }
+
             if (Input.GetMouseButtonUp(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
