@@ -15,6 +15,13 @@ public class PlayerBuilding : MonoBehaviour {
     public GameObject healthBarCanvasGameObject;
     public bool isHouse;
 
+    float speed = 100.0f; //how fast it shakes
+    float amount = 0.5f; //how much it shakes
+    Vector3 startPosition;
+    float ShakeTime = 0.2f;
+    float counter = 0.0f;
+    bool isShaking = false;
+
     // Use this for initialization
     void Start ()
     {
@@ -24,6 +31,8 @@ public class PlayerBuilding : MonoBehaviour {
         healthBarImage = healthBarCanvasTransform.GetChild(0).GetChild(0).GetComponent<Image>();
         healthBarCanvasGameObject = healthBarCanvasTransform.gameObject;
         healthBarCanvasGameObject.SetActive(false);
+
+        startPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 	
 	// Update is called once per frame
@@ -42,6 +51,23 @@ public class PlayerBuilding : MonoBehaviour {
             }
             Destroy(gameObject);
         }
+
+        
+        if (isShaking)
+        {
+            counter += Time.deltaTime;
+            if (counter >= ShakeTime)
+            {
+                isShaking = false;
+                counter = 0;
+            }
+            else
+            {
+                transform.position = new Vector3(startPosition.x + Mathf.Sin(Time.time * speed) * amount, startPosition.y, startPosition.z + Mathf.Sin(Time.time * speed) * amount);
+            }
+        }
+        
+          
     }
 
     public void TakeDamage(int damage)
@@ -68,5 +94,7 @@ public class PlayerBuilding : MonoBehaviour {
             }
 
         }
+
+        isShaking = true;
     }
 }
