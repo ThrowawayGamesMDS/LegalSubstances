@@ -193,6 +193,7 @@ public class AudioHandler : MonoBehaviour
             m_asMusicMaster = _audioSources[1];
 
             m_asMusicMaster.pitch = 0.6f;
+            m_asMusicMaster.volume = 0.2f;
 
             m_bDayMusicPlaying = false;
         }
