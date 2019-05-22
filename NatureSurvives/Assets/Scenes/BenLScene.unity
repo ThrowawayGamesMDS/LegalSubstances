@@ -4721,6 +4721,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 100016, guid: fa2b0e8cf76922345a63e8c2b624adb1, type: 3}
+      propertyPath: m_Name
+      value: wonglefishinghat
+      objectReference: {fileID: 0}
     - target: {fileID: 400016, guid: fa2b0e8cf76922345a63e8c2b624adb1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 52.756
@@ -4776,10 +4780,6 @@ PrefabInstance:
     - target: {fileID: 400016, guid: fa2b0e8cf76922345a63e8c2b624adb1, type: 3}
       propertyPath: m_LocalScale.z
       value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100016, guid: fa2b0e8cf76922345a63e8c2b624adb1, type: 3}
-      propertyPath: m_Name
-      value: wonglefishinghat
       objectReference: {fileID: 0}
     - target: {fileID: 13700000, guid: fa2b0e8cf76922345a63e8c2b624adb1, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5053,6 +5053,80 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 86e9e834c2036e74e96ea1da25e7a36b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89cb71735ae3b004496fdc7e99562e88, type: 3}
+--- !u!1001 &1091693699
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6860233103037728444, guid: 0eb2750e736ee40488a543cfe050ba8f,
+        type: 3}
+      propertyPath: m_Name
+      value: JungerAnimationMaster (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860233103038159516, guid: 0eb2750e736ee40488a543cfe050ba8f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860233103038159516, guid: 0eb2750e736ee40488a543cfe050ba8f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860233103038159516, guid: 0eb2750e736ee40488a543cfe050ba8f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -16.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860233103038159516, guid: 0eb2750e736ee40488a543cfe050ba8f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860233103038159516, guid: 0eb2750e736ee40488a543cfe050ba8f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860233103038159516, guid: 0eb2750e736ee40488a543cfe050ba8f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860233103038159516, guid: 0eb2750e736ee40488a543cfe050ba8f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860233103038159516, guid: 0eb2750e736ee40488a543cfe050ba8f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860233103038159516, guid: 0eb2750e736ee40488a543cfe050ba8f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860233103038159516, guid: 0eb2750e736ee40488a543cfe050ba8f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860233103038159516, guid: 0eb2750e736ee40488a543cfe050ba8f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860233103024065460, guid: 0eb2750e736ee40488a543cfe050ba8f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: aeaee1d260d4cf04fbae5b18db6304b7, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0eb2750e736ee40488a543cfe050ba8f, type: 3}
 --- !u!1 &1111470387
 GameObject:
   m_ObjectHideFlags: 0
@@ -6441,6 +6515,7 @@ MonoBehaviour:
   m_goActiveWongles: []
   m_goActiveWorkers: []
   m_iWongleWorkerCount: 0
+  m_iUserID: 0
 --- !u!114 &1424207993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6462,6 +6537,7 @@ MonoBehaviour:
   m_bCamSelObjRotation: 0
   m_goRotateAround: {fileID: 0}
   m_bCamReset: 0
+  m_fTransitionTime: 0
   m_bLerpTarget: 0
   m_fTransitionSpeed: 0
 --- !u!114 &1424207994
