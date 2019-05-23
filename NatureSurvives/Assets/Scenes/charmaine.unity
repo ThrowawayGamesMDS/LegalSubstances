@@ -197,6 +197,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Seiger
       objectReference: {fileID: 0}
+    - target: {fileID: 5018618896885148523, guid: 9e0311a0ab4818141bb9525fff104d20,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5022435168556847275, guid: 9e0311a0ab4818141bb9525fff104d20,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4328,6 +4333,11 @@ PrefabInstance:
       objectReference: {fileID: 548885623}
     - target: {fileID: 6136651012081733690, guid: a7804a4200115c3448df8e3b1a6453d7,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136651012081733690, guid: a7804a4200115c3448df8e3b1a6453d7,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 897774039}
@@ -4336,6 +4346,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: fQueueUnit
       objectReference: {fileID: 0}
+    - target: {fileID: 6136651012081733690, guid: a7804a4200115c3448df8e3b1a6453d7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136651012081733690, guid: a7804a4200115c3448df8e3b1a6453d7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136651012081733690, guid: a7804a4200115c3448df8e3b1a6453d7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136651012081733690, guid: a7804a4200115c3448df8e3b1a6453d7,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6136651012919650398, guid: a7804a4200115c3448df8e3b1a6453d7,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4346,6 +4376,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: fQueueUnit
       objectReference: {fileID: 0}
+    - target: {fileID: 6136651012919650398, guid: a7804a4200115c3448df8e3b1a6453d7,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6136651013366916891, guid: a7804a4200115c3448df8e3b1a6453d7,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4355,6 +4390,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: fQueueUnit
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136651013366916891, guid: a7804a4200115c3448df8e3b1a6453d7,
+        type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6136651013014816290, guid: a7804a4200115c3448df8e3b1a6453d7,
         type: 3}
@@ -4466,6 +4506,21 @@ PrefabInstance:
       value: fQueueUnit
       objectReference: {fileID: 0}
     - target: {fileID: 1276575691, guid: a7804a4200115c3448df8e3b1a6453d7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7227595110208723263, guid: a7804a4200115c3448df8e3b1a6453d7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -202.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7227595110208723263, guid: a7804a4200115c3448df8e3b1a6453d7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158579945335103660, guid: a7804a4200115c3448df8e3b1a6453d7,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

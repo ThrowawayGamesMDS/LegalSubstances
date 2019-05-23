@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Spawning_Cost : MonoBehaviour
@@ -118,12 +119,14 @@ public class HomeSpawning : MonoBehaviour {
 
     public void fQueueUnit(string unittype)
     {
+        EventSystem.current.SetSelectedGameObject(null);
+
         if (iCurrentWongleCount + UIObjQueue.Count < iMaximumWongleCount)
         {
             Spawning_Cost temp = null;
 
             // Best optimization option
-            
+
             if (m_dExpenseInformation.TryGetValue(unittype, out temp))
             {
                 if (HouseController.WoodAmount >= temp.m_iWoodCost)
