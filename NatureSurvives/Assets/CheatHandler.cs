@@ -11,20 +11,23 @@ public class CheatHandler : MonoBehaviour
     private string[] m_sKnownCheats;
     private int m_iCheatCount;
     public bool m_bDisabledBuildTimer;
+    public bool m_bEnabledTimeIncrease;
     // Start is called before the first frame update
     void Start()
     {
         if (m_sCheatHandler == null)
         {
             m_sCheatHandler = this;
-            m_iCheatCount = 4;
+            m_iCheatCount = 5;
             m_sKnownCheats = new string[m_iCheatCount];
             m_sKnownCheats[0] = "byebyeboxes";
             m_sKnownCheats[1] = "givemedosh";
             m_sKnownCheats[2] = "builderpro";
             m_sKnownCheats[3] = "nomorequeues";
+            m_sKnownCheats[4] = "boosttimepls";
             m_bDisabledBuildTimer = false;
             m_bPlayerIsEnteringCheat = false;
+            m_bEnabledTimeIncrease = false;
             gameObject.GetComponent<CanvasGroup>().alpha = 0;
             gameObject.GetComponent<InputField>().DeactivateInputField();
         }
@@ -96,10 +99,33 @@ public class CheatHandler : MonoBehaviour
                     }
                     break;
                 }
+            case "boosttimepls":
+                {
+                    switch (m_bEnabledTimeIncrease)
+                    {
+                        case true:
+                            {
+                                Time.timeScale = 1.0f;
+                                m_bEnabledTimeIncrease = false;
+                                NotificationManager.Instance.AdjustFadeTime(m_bEnabledTimeIncrease);
+                                break;
+                            }
+                        case false:
+                            {
+                                Time.timeScale = 3.0f;
+                                m_bEnabledTimeIncrease = true;
+                                NotificationManager.Instance.AdjustFadeTime(m_bEnabledTimeIncrease);
+                                NotificationManager.Instance.SetWarningNotification("Time-Scale-Cheat speeds time up, game events will occur faster!");
+                                break;
+                            }
+                    }
+                    _sCheatResult += "Time-Scale-Cheat: " + m_bEnabledTimeIncrease;
+                    break;
+                }
 
         }
-
-        NotificationManager.Instance.SetNewNotification(_sCheatResult);
+        if (_sEnteredText!= "boosttimepls")
+            NotificationManager.Instance.SetNewNotification(_sCheatResult);
     }
 
     // Update is called once per frame
