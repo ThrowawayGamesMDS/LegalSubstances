@@ -150,6 +150,393 @@ public class WongleController : MonoBehaviour
     }
 
 
+
+    private void CheckWongleStatus()
+    {
+
+        switch(type)
+        {
+            case SelectableUnitComponent.workerType.Ranged:
+            case SelectableUnitComponent.workerType.Melee:
+                {
+                    switch(Work.tag)
+                    {
+                        case "Army":
+                            {
+                                if (Work.tag == "Army")
+                                {
+
+                                    if (Target == null)
+                                    {
+                                        if (FindClosestTag("Enemy") != null)
+                                        {
+                                            //gameObject.transform.LookAt(Target.transform);
+                                            GameObject obj = FindClosestTag("Enemy");
+                                            if (Vector3.Distance(transform.position, obj.transform.position) <= 30)
+                                            {
+                                                Target = obj;
+                                            }
+                                        }
+                                    }
+
+
+                                    if (Target != null)
+                                    {
+                                        if (type == SelectableUnitComponent.workerType.Ranged)
+                                        {
+                                            if (Vector3.Distance(transform.position, Target.transform.position) > 20)
+                                            {
+                                                agent.isStopped = false;
+                                                agent.stoppingDistance = 19;
+                                                agent.SetDestination(Target.transform.position);
+                                            }
+                                            else
+                                            {
+                                                agent.isStopped = true;
+                                                if (canAttack)
+                                                {
+                                                    attackinstance = Instantiate(attackEffect, handPosition.transform.position, handPosition.transform.rotation);
+                                                    attackinstance.transform.parent = handPosition.transform;
+                                                    attackinstance.GetComponent<LookAtTarget>().target = Target.transform.GetChild(1).gameObject;
+
+                                                    StartCoroutine(PlayAnim());
+
+                                                    canAttack = false;
+                                                    Invoke("AttackCooldown", 5f);
+                                                }
+                                            }
+                                        }
+
+                                        if (type == SelectableUnitComponent.workerType.Melee)
+                                        {
+                                            if (Vector3.Distance(transform.position, Target.transform.position) > 7)
+                                            {
+                                                agent.isStopped = false;
+                                                agent.stoppingDistance = 6;
+                                                agent.SetDestination(Target.transform.position);
+                                            }
+                                            else
+                                            {
+                                                agent.isStopped = true;
+                                                if (canAttack)
+                                                {
+                                                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
+                                                    {
+                                                        anim.Play("Attack1");
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+                                break;
+                            }
+                    }
+                    break;
+                }
+            case SelectableUnitComponent.workerType.Worker:
+                {
+
+                    int _iResourceID = -1;
+                    int _iDistanceFromTarget = -1;
+                    int _iStoppingDistance = -1;
+                    int _iOutputAmount = -1;
+                    float _fOutputMultiplier = -1.0f;
+                    string _sAnimationClip = "NA";
+                    string _sTarget = "NA";
+                    Vector3 _vec3DesiredPosition = new Vector3();
+                    switch(Work.tag)
+                    {
+                        case "Building":
+                            {
+                                if (isGoingHome)
+                                {
+                                    agent.SetDestination(StorageBuilding.transform.position);
+                                }
+                                else
+                                {
+                                    agent.SetDestination(Work.transform.position);
+                                }
+
+
+                                if (!agent.pathPending)
+                                {
+                                    if (agent.remainingDistance <= agent.stoppingDistance)
+                                    {
+                                        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                                        {
+                                            if (isGoingHome)
+                                            {
+                                                inputAmount += Work.GetComponent<BuildingController>().AmountProduced;
+
+                                                RetainPlayerReources(2);
+                                            }
+                                            else
+                                            {
+                                                Work.GetComponent<BuildingController>().inputAmount += inputAmount;
+                                                inputAmount = 0;
+                                                anim.Play("FarmingLoop");
+                                                Work.GetComponent<BuildingController>().isOccupied = true;
+                                                if (Work.GetComponent<BuildingController>().outputAmount > 0)
+                                                {
+                                                    outputAmount += Work.GetComponent<BuildingController>().outputAmount;
+                                                    Work.GetComponent<BuildingController>().outputAmount = 0;
+                                                    iFarmsHarvested++;
+                                                    isGoingHome = !isGoingHome;
+                                                    Work.GetComponent<BuildingController>().isOccupied = false;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                break;
+                            }
+                        case "Builder":
+                            {
+                                if (Target != null)
+                                {
+                                    if (Vector3.Distance(transform.position, Target.transform.position) > 6)
+                                    {
+                                        if (!isGoingHome)
+                                        {
+                                            agent.isStopped = false;
+                                            agent.stoppingDistance = 5;
+                                            agent.SetDestination(Target.transform.position);
+                                            anim.Play("WalkCycle");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        agent.isStopped = true;
+                                        //building Animation animation
+                                        anim.Play("PickaxeSwing");
+                                        Target.GetComponent<ConstructionScript>().m_fCurrentCompletion += 1 * Time.deltaTime;
+                                    }
+                                }
+                                else
+                                {
+                                    placeholderPosition = transform.position;
+                                    FindNewTarget("Construction");
+                                }
+                                break;
+                            }
+                        case "WoodCutter":
+                            {
+                                _iResourceID = 0;
+                                _sAnimationClip = "AxeChop";
+                                _sTarget = "Wood";
+                                _iDistanceFromTarget = 5;
+                                _vec3DesiredPosition = Target.transform.position;
+                                _iStoppingDistance = 4;
+                                _iOutputAmount = 10;
+                                _fOutputMultiplier = 0.6f;
+                                break;
+                            }
+                        case "Miner":
+                            {
+                                _iResourceID = 1;
+                                _sAnimationClip = "PickaxeSwing";
+                                _sTarget = "Crystal";
+                                _iDistanceFromTarget = 6;
+                                _vec3DesiredPosition = Target.transform.position;
+                                _iStoppingDistance = 5;
+                                _iOutputAmount = 10;
+                                _fOutputMultiplier = 0.55f;
+                                break;
+                            }
+                        case "Fishermen":
+                            {
+                                if (Target != null)
+                                {
+                                    if (Vector3.Distance(transform.position, m_vFishingSpot) > 3)
+                                    {
+                                        if (!isGoingHome)
+                                        {
+                                            agent.isStopped = false;
+                                            agent.stoppingDistance = 2;
+                                            agent.SetDestination(m_vFishingSpot);
+                                            anim.Play("WalkCycle");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (!isGoingHome)
+                                        {
+                                            agent.isStopped = true;
+                                            //fishing animation
+                                            if (!animlock2)
+                                            {
+                                                if (agent.velocity.magnitude == 0)
+                                                {
+                                                    anim.Play("RodCast");
+                                                }
+                                            }
+                                            m_fCurrentFishTime += Time.deltaTime;
+                                            if (m_fCurrentFishTime >= m_fTimeToFish)
+                                            {
+                                                if (!animlock)
+                                                {
+                                                    anim.Play("CatchReel");
+                                                    hide.isVisible = true;
+                                                    animlock = true;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+
+
+                                if (isGoingHome)
+                                {
+                                    if (FindClosestTag("Storage") != null)
+                                    {
+                                        GameObject obj = FindClosestTag("Storage");
+                                        if (Vector3.Distance(Home.transform.position, transform.position) > Vector3.Distance(obj.transform.position, transform.position))
+                                        {
+                                            StorageBuilding = obj;
+                                        }
+                                        else
+                                        {
+                                            StorageBuilding = Home;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        StorageBuilding = Home;
+                                    }
+
+                                    anim.Play("WalkCycle");
+                                    agent.isStopped = false;
+                                    agent.SetDestination(StorageBuilding.transform.position);
+
+                                }
+
+                                if (!agent.pathPending)
+                                {
+                                    if (agent.remainingDistance <= agent.stoppingDistance)
+                                    {
+                                        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                                        {
+                                            if (isGoingHome)
+                                            {
+                                                if (iFishingLevel > 0)
+                                                {
+                                                    outputAmount += ((iFishingLevel * outputAmount) / 3);
+                                                }
+                                                HouseController.m_iFoodCount += Mathf.RoundToInt(outputAmount);
+                                                outputAmount = 0;
+                                                m_fCurrentFishTime = 0;
+                                                iFishCaught++;
+                                                animlock = false;
+                                                animlock2 = false;
+                                                isGoingHome = !isGoingHome;
+                                            }
+                                        }
+                                    }
+                                }
+                                break;
+                            }
+                    }
+
+                    if (Work.tag == "Builder" || Work.tag == "Building" | Work.tag == "Fishermen")
+                        break;
+
+                    if (Target != null)
+                    {
+                        if (Vector3.Distance(transform.position, _vec3DesiredPosition) > _iDistanceFromTarget)
+                        {
+                            if (!isGoingHome)
+                            {
+                                agent.isStopped = false;
+                                agent.stoppingDistance = _iStoppingDistance;
+                                agent.SetDestination(Target.transform.position);
+                                anim.Play("WalkCycle");
+                            }
+                        }
+                        else
+                        {
+                            if (!isGoingHome)
+                            {
+                                agent.isStopped = true;
+                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName(_sAnimationClip))
+                                {
+                                    anim.Play(_sAnimationClip);
+                                }
+
+                                Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
+                                outputAmount += (Time.deltaTime * _fOutputMultiplier);
+                                if (Target.GetComponent<WoodScript>().WoodHealth <= 0)
+                                {
+                                    placeholderPosition = Target.transform.position;
+                                    if (Work.tag == "WoodCutter")
+                                    {
+                                        Instantiate(Target.GetComponent<WoodScript>().trunk, Target.transform.position, Target.transform.rotation);
+                                    }
+                                    Destroy(Target);
+                                }
+                                
+                            }
+                        }
+                    }
+                    else
+                    {
+                        FindNewTarget(_sTarget);
+                    }
+
+                    if (outputAmount >= _iOutputAmount)
+                    {
+                        isGoingHome = true;
+
+                    }
+
+
+                    if (isGoingHome)
+                    {
+                        if (FindClosestTag("Storage") != null)
+                        {
+                            GameObject obj = FindClosestTag("Storage");
+                            if (Vector3.Distance(Home.transform.position, transform.position) > Vector3.Distance(obj.transform.position, transform.position))
+                            {
+                                StorageBuilding = obj;
+                            }
+                            else
+                            {
+                                StorageBuilding = Home;
+                            }
+                        }
+                        else
+                        {
+                            StorageBuilding = Home;
+                        }
+
+                        anim.Play("WalkCycle");
+                        agent.isStopped = false;
+                        agent.SetDestination(StorageBuilding.transform.position);
+
+                    }
+
+                    if (!agent.pathPending)
+                    {
+                        if (agent.remainingDistance <= agent.stoppingDistance)
+                        {
+                            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                            {
+                                if (isGoingHome)
+                                {
+                                    RetainPlayerReources(_iResourceID);
+                                }
+                            }
+                        }
+                    }
+
+
+                    break;
+                }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -275,6 +662,12 @@ public class WongleController : MonoBehaviour
 
         if (Work != null)
         {
+            CheckWongleStatus();
+        }
+
+        /*
+        if (Work != null)
+        {
             if (Work.tag == "Building")
             {
                 if (isGoingHome)
@@ -296,13 +689,7 @@ public class WongleController : MonoBehaviour
                             if (isGoingHome)
                             {
                                 inputAmount += Work.GetComponent<BuildingController>().AmountProduced;
-
-                                //HouseController.m_iFoodCount += Mathf.RoundToInt(outputAmount * (iFarmLevel / 3));
-                                /*  if (iFarmLevel > 0)
-                                  {
-                                      outputAmount += ((iFarmLevel * outputAmount) / 3);
-                                      print("Wongle's farm output: " + outputAmount);
-                                  }*/
+                                
                                 RetainPlayerReources(2);
                             }
                             else
@@ -477,11 +864,6 @@ public class WongleController : MonoBehaviour
                         {
                             if (isGoingHome)
                             {
-                                /* if (iWoodCutLevel > 0)
-                                 {
-                                     outputAmount += ((iWoodCutLevel * outputAmount) / 3);
-                                     print("Wongle's wood output: " + outputAmount);
-                                 }*/
                                 RetainPlayerReources(0);
                             }
                         }
@@ -568,11 +950,6 @@ public class WongleController : MonoBehaviour
                         {
                             if (isGoingHome)
                             {
-                               /* if (iMineLevel > 0)
-                                {
-                                    outputAmount += ((iMineLevel * outputAmount) / 3);
-                                    print("Wongle's mining output: " + outputAmount);
-                                }*/
                                 RetainPlayerReources(1);
                             }
                         }
@@ -609,7 +986,7 @@ public class WongleController : MonoBehaviour
                     FindNewTarget("Construction");
                 }
             }
-
+            
             if (Work.tag == "Fishermen")
             {
 
@@ -704,17 +1081,8 @@ public class WongleController : MonoBehaviour
                 }
             }
         }
-
-     /*   if (Work == null && Target == null && type == SelectableUnitComponent.workerType.Worker) // they are a worker, and they are idle..
-        {
-
-            Target = FindNearTarget("Construction");
-            if (Target != null)
-            {
-                Work = FindClosestTag("Builder");
-            }
-        }*/
-
+        */
+        
         if (agent.isStopped)
         {
             if (Target != null)
