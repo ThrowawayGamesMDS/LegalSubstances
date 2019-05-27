@@ -419,11 +419,7 @@ public class WongleController : MonoBehaviour
                                 anim.Play("AxeChop");
                             }
 
-                            Animator treeAnimator = Target.GetComponent<Animator>();
-                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("PineTreeOnHit"))
-                            {
-                                treeAnimator.Play("PineTreeOnHit");
-                            }
+                            
 
                             Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
                             outputAmount += (Time.deltaTime * 0.6f);
@@ -913,6 +909,7 @@ public class WongleController : MonoBehaviour
     {
        // gameObject.GetComponent<AudioHandler>().PlaySound(AudioHandler.m_soundTypes.WOOD);
         AudioHandler.m_ahHandler.UpdatedPlaySound(AudioHandler.m_soundTypes.WOOD, gameObject.GetComponent<AudioSource>());
+        Target.GetComponent<Animator>().Play("PineTreeOnHit");
     }
     //mining animation
     public void MineEvent()
