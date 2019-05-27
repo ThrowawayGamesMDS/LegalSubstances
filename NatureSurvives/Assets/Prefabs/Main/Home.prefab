@@ -177,6 +177,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a1e8864d4fcee6469e4e87b284fc5aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingWood: 0
+  startingCrystal: 0
+  startingFood: 0
 --- !u!114 &6264537770643061154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +195,10 @@ MonoBehaviour:
   BuildingHealth: 100
   isWonder: 0
   healthBarCanvasGameObject: {fileID: 0}
+  isHouse: 0
+  particleEffect: {fileID: 6296496104586776032, guid: 624b2ef32a97eb649a5b035beec882be,
+    type: 3}
+  height: 11
 --- !u!65 &6264537770643061155
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -226,10 +233,13 @@ MonoBehaviour:
   UnitQueue: []
   UIObjQueue: []
   hasTimer: 0
+  m_bRemoveQueueTimerCheat: 0
   timerVal: 0
+  m_fSpawnTimer: 0
   workerUI: {fileID: 0}
   wizardUI: {fileID: 0}
   knightUI: {fileID: 0}
+  m_goScoutUI: {fileID: 0}
   canvas: {fileID: 0}
   army: {fileID: 0}
   g_v3WizardRally: {x: 0, y: 0, z: 0}
@@ -496,18 +506,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: WongleBase
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: da6ae23293c624a44a8c0516a459bc56, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: da6ae23293c624a44a8c0516a459bc56, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: da6ae23293c624a44a8c0516a459bc56, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.74
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: da6ae23293c624a44a8c0516a459bc56, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -563,6 +561,18 @@ PrefabInstance:
     - target: {fileID: 400002, guid: da6ae23293c624a44a8c0516a459bc56, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.10000017
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: da6ae23293c624a44a8c0516a459bc56, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: da6ae23293c624a44a8c0516a459bc56, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: da6ae23293c624a44a8c0516a459bc56, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.74
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: da6ae23293c624a44a8c0516a459bc56, type: 3}
       propertyPath: m_Materials.Array.data[0]

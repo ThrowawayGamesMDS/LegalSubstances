@@ -69,6 +69,9 @@ MonoBehaviour:
   isWonder: 0
   healthBarCanvasGameObject: {fileID: 0}
   isHouse: 0
+  particleEffect: {fileID: 6296496104586776032, guid: 624b2ef32a97eb649a5b035beec882be,
+    type: 3}
+  height: 4
 --- !u!65 &65862027230197262
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -349,6 +352,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2545777532754336089}
     m_Modifications:
+    - target: {fileID: 100000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
+      propertyPath: m_Name
+      value: Fruit
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.27
@@ -405,10 +412,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 24.603785
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
-      propertyPath: m_Name
-      value: Fruit
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -428,6 +431,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2545777532754336089}
     m_Modifications:
+    - target: {fileID: 100000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
+      propertyPath: m_Name
+      value: Fruit (7)
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.02644062
@@ -484,10 +491,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 31.15824
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
-      propertyPath: m_Name
-      value: Fruit (7)
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -507,6 +510,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2545777532754336089}
     m_Modifications:
+    - target: {fileID: 100000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
+      propertyPath: m_Name
+      value: Fruit (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.1708593
@@ -563,10 +570,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 24.603786
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
-      propertyPath: m_Name
-      value: Fruit (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -586,6 +589,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2545777532754336089}
     m_Modifications:
+    - target: {fileID: 100000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
+      propertyPath: m_Name
+      value: Fruit (8)
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.01365757
@@ -642,10 +649,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 24.603823
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
-      propertyPath: m_Name
-      value: Fruit (8)
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -665,6 +668,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2545777532754336089}
     m_Modifications:
+    - target: {fileID: 100000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
+      propertyPath: m_Name
+      value: Fruit (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.2088099
@@ -721,10 +728,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 31.15828
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
-      propertyPath: m_Name
-      value: Fruit (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -744,6 +747,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2545777532754336089}
     m_Modifications:
+    - target: {fileID: 100000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
+      propertyPath: m_Name
+      value: Fruit (6)
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.06140232
@@ -800,10 +807,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 24.603786
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
-      propertyPath: m_Name
-      value: Fruit (6)
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -823,6 +826,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2545777532754336089}
     m_Modifications:
+    - target: {fileID: 100000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
+      propertyPath: m_Name
+      value: Fruit (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.3511229
@@ -879,10 +886,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 24.603786
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
-      propertyPath: m_Name
-      value: Fruit (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -902,6 +905,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2545777532754336089}
     m_Modifications:
+    - target: {fileID: 100000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
+      propertyPath: m_Name
+      value: Fruit (5)
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.0794764
@@ -958,10 +965,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 24.60381
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
-      propertyPath: m_Name
-      value: Fruit (5)
-      objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -981,6 +984,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2545777532754336089}
     m_Modifications:
+    - target: {fileID: 100000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
+      propertyPath: m_Name
+      value: Fruit (4)
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.2482347
@@ -1036,10 +1043,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
       propertyPath: m_LocalScale.z
       value: 31.158232
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
-      propertyPath: m_Name
-      value: Fruit (4)
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 737dff075ddbdfa43b8c61432412c30d, type: 3}
       propertyPath: m_Materials.Array.data[0]

@@ -22,6 +22,9 @@ public class PlayerBuilding : MonoBehaviour {
     float counter = 0.0f;
     bool isShaking = false;
 
+    public GameObject particleEffect;
+    public float height;
+
     // Use this for initialization
     void Start ()
     {
@@ -72,6 +75,13 @@ public class PlayerBuilding : MonoBehaviour {
 
     public void TakeDamage(int damage)
     {
+        //Instantiate(particleEffect, particleEffect.transform.position, Quaternion.identity);
+
+        Vector3 vec = new Vector3(gameObject.transform.position.x, height, gameObject.transform.position.z);
+        Instantiate(particleEffect, vec, particleEffect.transform.rotation);
+
+        print("damage");
+
         BuildingHealth -= damage;
 
         healthBarImage.fillAmount = BuildingHealth / startHealth;
