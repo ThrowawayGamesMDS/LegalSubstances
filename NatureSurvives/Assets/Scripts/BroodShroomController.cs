@@ -13,8 +13,10 @@ public class BroodShroomController : MonoBehaviour
     public bool triggered;
     public List<WongleController> targets;
     private bool lockout;
+    public bool isTutorial;
     public bool cooldown;
     public int cooldownint;
+    public FogGenerator fog;
 
     [Header("Health Bar")]
     private Image healthBarImage;
@@ -26,8 +28,7 @@ public class BroodShroomController : MonoBehaviour
     void Start()
     {
         triggered = false;
-        lockout = false;
-
+        lockout = false;        
         startHealth = m_fEnemyHealth;
         healthBarCanvasTransform = transform.Find("Health Bar");
         healthBarImage = healthBarCanvasTransform.GetChild(0).GetChild(0).GetComponent<Image>();
@@ -87,7 +88,6 @@ public class BroodShroomController : MonoBehaviour
                 Invoke("fCooldown", cooldownint);
             }
         }
-
         
         if (m_fEnemyHealth <= 0)
         {
@@ -141,22 +141,31 @@ public class BroodShroomController : MonoBehaviour
 
     public void fSpawnFiend()
     {
-        print("spawning enemy fiend");
-        Instantiate(Fiend, transform.position, transform.rotation);
-        Instantiate(Fiend2, transform.position, transform.rotation);
-        if (DayNight.isWonder)
+        if(!isTutorial)
         {
-            Instantiate(Fiend, transform.position, transform.rotation);
+            print("spawning enemy fiend");
             Instantiate(Fiend, transform.position, transform.rotation);
             Instantiate(Fiend2, transform.position, transform.rotation);
-            Instantiate(Fiend2, transform.position, transform.rotation);
+            if (DayNight.isWonder)
+            {
+                Instantiate(Fiend, transform.position, transform.rotation);
+                Instantiate(Fiend, transform.position, transform.rotation);
+                Instantiate(Fiend2, transform.position, transform.rotation);
+                Instantiate(Fiend2, transform.position, transform.rotation);
+            }
         }
+        
     }
 
     public void fCooldown()
     {
         cooldown = false;
 
+    }
+
+    public void Unfog()
+    {
+        fog.Unfog(transform.position, 25, gameObject.GetInstanceID());
     }
 
 }

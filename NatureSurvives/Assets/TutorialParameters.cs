@@ -37,11 +37,11 @@ public class TutorialParameters : MonoBehaviour
     public TutorialState m_eTutorialLevel;
     public Text UIq1;
     public GameObject Enemy;
-    public GameObject enemyInstance;
     public List<VideoClip> m_lVideoClips;
     public VideoPlayer m_goVideoPlayer;
     public GameObject scout;
     public List<string> m_lsQuestTexts;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -246,11 +246,13 @@ public class TutorialParameters : MonoBehaviour
                     {
                         //change ui to completed version (maybe tick boxes)
                         UIq1.text = m_lsQuestTexts[9];
-                        m_eTutorialLevel = TutorialState.E_TWO;
+                        m_eTutorialLevel = TutorialState.E_TEN;
                         m_goVideoPlayer.clip = m_lVideoClips[1];
+                        //spawn enemy
                         Vector3 _newPos = new Vector3(140, Camera.main.transform.position.y, -20 - (Camera.main.transform.forward.magnitude * 50));
                         cameraController.m_sCameraControl.m_fTransitionSpeed = 0.01f;
-                        cameraController.m_sCameraControl.UpdateCameraTargetForLerping(_newPos);
+                        cameraController.m_sCameraControl.UpdateCameraTargetForLerping(Enemy.transform.position);
+                        Enemy.GetComponent<BroodShroomController>().Unfog();
                         NotificationManager.Instance.SetNewNotification("send the scout out into the fog by right clicking");
                     }
                     break;
@@ -258,8 +260,6 @@ public class TutorialParameters : MonoBehaviour
             //kill da enemy
             case TutorialState.E_TEN:
                 {
-                    //NotificationManager.Instance.SetNewNotification("Day time: During the day, you are safe to build things without being attacked by enemies.");
-
                     int amountSelected = 0;
                     GameObject[] temp = GameObject.FindGameObjectsWithTag("Wongle");
                     for (int i = 0; i < temp.Length; i++)
