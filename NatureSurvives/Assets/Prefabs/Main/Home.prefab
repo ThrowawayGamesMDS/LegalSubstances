@@ -196,9 +196,9 @@ MonoBehaviour:
   isWonder: 0
   healthBarCanvasGameObject: {fileID: 0}
   isHouse: 0
-  particleEffect: {fileID: 6296496104586776032, guid: 624b2ef32a97eb649a5b035beec882be,
+  fireEffect: {fileID: 7611269943313463323, guid: 007633dc5e635574898da334df75664b,
     type: 3}
-  height: 11
+  height: 10
 --- !u!65 &6264537770643061155
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -367,16 +367,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6264537770643061148}
     m_Modifications:
-    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
-        type: 3}
-      propertyPath: m_Name
-      value: Health Bar
-      objectReference: {fileID: 0}
-    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5745946300523346767, guid: eead958fb4f21ee44a41791f7161561b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -481,6 +471,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
+        type: 3}
+      propertyPath: m_Name
+      value: Health Bar
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5745946302072493809, guid: eead958fb4f21ee44a41791f7161561b,
         type: 3}

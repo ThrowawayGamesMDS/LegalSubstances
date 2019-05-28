@@ -22,7 +22,7 @@ public class PlayerBuilding : MonoBehaviour {
     float counter = 0.0f;
     bool isShaking = false;
 
-    public GameObject particleEffect;
+    public GameObject fireEffect;
     public float height;
 
     // Use this for initialization
@@ -75,10 +75,8 @@ public class PlayerBuilding : MonoBehaviour {
 
     public void TakeDamage(int damage)
     {
-        //Instantiate(particleEffect, particleEffect.transform.position, Quaternion.identity);
-
         Vector3 vec = new Vector3(gameObject.transform.position.x, height, gameObject.transform.position.z);
-        Instantiate(particleEffect, vec, particleEffect.transform.rotation);
+        Instantiate(fireEffect, vec, fireEffect.transform.rotation);
 
         print("damage");
 

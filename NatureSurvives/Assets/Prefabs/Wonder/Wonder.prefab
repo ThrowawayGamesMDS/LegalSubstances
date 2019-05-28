@@ -158,6 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endtimer: 300
   buildingHealth: 200
+  winlosetext: {fileID: 0}
 --- !u!114 &5771552248094719737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +175,9 @@ MonoBehaviour:
   isWonder: 1
   healthBarCanvasGameObject: {fileID: 0}
   isHouse: 0
+  fireEffect: {fileID: 7611269943313463323, guid: 007633dc5e635574898da334df75664b,
+    type: 3}
+  height: 0
 --- !u!1 &3129078069892528839
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,11 +216,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5380286738796707725}
     m_Modifications:
-    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
-        type: 3}
-      propertyPath: m_Name
-      value: Health Bar
-      objectReference: {fileID: 0}
     - target: {fileID: 5745946300523346767, guid: eead958fb4f21ee44a41791f7161561b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -337,22 +336,27 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.000020000001
       objectReference: {fileID: 0}
-    - target: {fileID: 5745946302072493810, guid: eead958fb4f21ee44a41791f7161561b,
+    - target: {fileID: 5745946300395319952, guid: eead958fb4f21ee44a41791f7161561b,
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 100
       objectReference: {fileID: 0}
-    - target: {fileID: 5745946302072493810, guid: eead958fb4f21ee44a41791f7161561b,
+    - target: {fileID: 5745946300395319952, guid: eead958fb4f21ee44a41791f7161561b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 50
       objectReference: {fileID: 0}
-    - target: {fileID: 5745946300395319952, guid: eead958fb4f21ee44a41791f7161561b,
+    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
+        type: 3}
+      propertyPath: m_Name
+      value: Health Bar
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745946302072493810, guid: eead958fb4f21ee44a41791f7161561b,
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 100
       objectReference: {fileID: 0}
-    - target: {fileID: 5745946300395319952, guid: eead958fb4f21ee44a41791f7161561b,
+    - target: {fileID: 5745946302072493810, guid: eead958fb4f21ee44a41791f7161561b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 50
@@ -372,11 +376,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4987019179813220}
     m_Modifications:
-    - target: {fileID: 3686201839173188124, guid: 6e01653e3dc1024428cccadd0b75033a,
-        type: 3}
-      propertyPath: m_Name
-      value: wonderbase
-      objectReference: {fileID: 0}
     - target: {fileID: 48193331, guid: 6e01653e3dc1024428cccadd0b75033a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -420,6 +419,11 @@ PrefabInstance:
     - target: {fileID: 48193331, guid: 6e01653e3dc1024428cccadd0b75033a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3686201839173188124, guid: 6e01653e3dc1024428cccadd0b75033a,
+        type: 3}
+      propertyPath: m_Name
+      value: wonderbase
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e01653e3dc1024428cccadd0b75033a, type: 3}
