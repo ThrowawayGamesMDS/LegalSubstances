@@ -100,6 +100,8 @@ public class AudioHandler : MonoBehaviour
                     }
                     break;
                 }
+            default:
+                return;
         }
 
         m_asPlayerSF.Play();
