@@ -60,12 +60,16 @@ public class WongleController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        isDead = false;
+        type = gameObject.GetComponent<SelectableUnitComponent>().Type;
+
+
         if (m_bIsScout)
         {
             startingSpeed = agent.speed * 2.5f;
-            m_fAnimationSpeed =  2.5f;
+            m_fAnimationSpeed = 2.5f;
             WongleHealth = 1;
-            
+            type = SelectableUnitComponent.workerType.Scout;
         }
         else
         {
@@ -74,8 +78,7 @@ public class WongleController : MonoBehaviour
         }
 
         anim.speed = m_fAnimationSpeed;
-        isDead = false;
-        type = gameObject.GetComponent<SelectableUnitComponent>().Type;
+
         Home = GameObject.FindGameObjectWithTag("HomeBuilding");
         StorageBuilding = Home;
         isGoingHome = true;
@@ -87,6 +90,8 @@ public class WongleController : MonoBehaviour
         healthBarImage = healthBarCanvasTransform.GetChild(0).GetChild(0).GetComponent<Image>();
         healthBarCanvasGameObject = healthBarCanvasTransform.gameObject;
         healthBarCanvasGameObject.SetActive(false);
+
+
     }
 
 
@@ -660,12 +665,12 @@ public class WongleController : MonoBehaviour
         }
 
 
-        if (Work != null)
+        /*if (Work != null)
         {
             CheckWongleStatus();
-        }
+        }*/
 
-        /*
+        
         if (Work != null)
         {
             if (Work.tag == "Building")
@@ -1081,7 +1086,7 @@ public class WongleController : MonoBehaviour
                 }
             }
         }
-        */
+        
         
         if (agent.isStopped)
         {

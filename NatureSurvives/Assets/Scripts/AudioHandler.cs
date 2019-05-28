@@ -24,14 +24,87 @@ public class AudioHandler : MonoBehaviour
     public AudioClip[] m_arrDayMusic;
     public AudioClip[] m_arrNightMusic;
     public AudioClip[] m_arrMasterMusic;
+    public AudioClip[] m_arrInteractionSounds;
+    public AudioClip[] m_arrButtonAccepted;
+    public AudioClip[] m_arrButtonFailure; 
     public AudioSource m_asPlayerSF;
     public AudioSource m_asMusicMaster;
     private bool m_bPlaySound;
     private bool m_bDayMusicPlaying;
     public enum m_soundTypes
     {
-        DAMAGE, SUCCESS, FAILURE, WOOD, MINE, WARNING, MUSIC
+        DAMAGE, SUCCESS, FAILURE, WOOD, MINE, WARNING, MUSIC, INTERACTION, UI_INTERACTION
     };
+
+    private bool CheckAudioClip(AudioClip _acClipToCheck, AudioSource _asSourceToCheck)
+    {
+        if (!_asSourceToCheck.isPlaying)
+            return false;
+
+        if (_asSourceToCheck.clip == _acClipToCheck)
+        {
+            print("Failure: trying to play same clip!");
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public void PlayButtonInteraction(bool _bAccepted)
+    {
+        int _play = -1;
+        switch(_bAccepted)
+        {
+            case false:
+                {
+                    _play = Random.Range(0, m_arrButtonFailure.Length);
+                    m_asPlayerSF.clip = m_arrButtonFailure[_play];
+                    break;
+                }
+
+            case true:
+                {
+                    _play = Random.Range(0, m_arrButtonAccepted.Length);
+                    m_asPlayerSF.clip = m_arrButtonAccepted[_play];
+                    break;
+                }
+        }
+        m_asPlayerSF.Play();
+    }
+
+    public void PlayInteractionSound(SelectableUnitComponent.workerType _cType)
+    {
+        /*
+        if (m_asPlayerSF.isPlaying)
+        {
+            if (CheckAudioClip(m_arrInteractionSounds[(int)_cType], m_asPlayerSF))
+            {
+                return;
+            }
+        }
+        m_asPlayerSF.clip = m_arrInteractionSounds[(int)_cType]; // it bugged out, but if we set the enum types to integers could use this setup
+        m_asPlayerSF.Play();
+         */
+
+        switch (_cType)
+        {
+            case SelectableUnitComponent.workerType.Scout:
+                {
+                    if (!CheckAudioClip(m_arrInteractionSounds[0],m_asPlayerSF))
+                    {
+                        m_asPlayerSF.clip = m_arrInteractionSounds[0];
+                    }
+                    else
+                    {
+                        return;
+                    }
+                    break;
+                }
+        }
+
+        m_asPlayerSF.Play();
+        
+    }
 
     public void PlaySound(m_soundTypes _playType)
     {
@@ -175,7 +248,9 @@ public class AudioHandler : MonoBehaviour
             m_arrMiningSounds = Resources.LoadAll("Audio/Mining", typeof(AudioClip)).Cast<AudioClip>().ToArray();
             m_arrDayMusic = Resources.LoadAll("Audio/Music/Day", typeof(AudioClip)).Cast<AudioClip>().ToArray();
             m_arrNightMusic = Resources.LoadAll("Audio/Music/Night", typeof(AudioClip)).Cast<AudioClip>().ToArray();
-
+            m_arrInteractionSounds = Resources.LoadAll("Audio/Interaction", typeof(AudioClip)).Cast<AudioClip>().ToArray();
+            m_arrButtonFailure = Resources.LoadAll("Audio/Buttons/Failure", typeof(AudioClip)).Cast<AudioClip>().ToArray();
+            m_arrButtonAccepted = Resources.LoadAll("Audio/Buttons/Accepted", typeof(AudioClip)).Cast<AudioClip>().ToArray();
 
             /***
              * 
@@ -194,6 +269,8 @@ public class AudioHandler : MonoBehaviour
 
             m_asMusicMaster.pitch = 0.6f;
             m_asMusicMaster.volume = 0.2f;
+
+            m_asPlayerSF.volume = 0.35f;
 
             m_bDayMusicPlaying = false;
         }

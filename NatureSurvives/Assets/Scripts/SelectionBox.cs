@@ -241,8 +241,6 @@ public class SelectionBox : MonoBehaviour {
                 {
                     SelectableUnitComponent unit = hit.transform.gameObject.GetComponent<SelectableUnitComponent>();
 
-
-
                     switch (unit.Type.ToString())
                     {
                         case "Melee":
@@ -794,6 +792,9 @@ public class SelectionBox : MonoBehaviour {
 
             bool _bWorkerCheck = false ;
 
+            bool _bPlayedInteractionSound = false; // to prevent spamming, esp within like ctrl/drag select
+
+
             switch (m_bCtrlSelectUnits)
             {
                 case false:
@@ -830,6 +831,12 @@ public class SelectionBox : MonoBehaviour {
                                         {
                                             if (m_goSelected != null)
                                             {
+                                                if (!_bPlayedInteractionSound)
+                                                {
+                                                    _bPlayedInteractionSound = true;
+                                                    AudioHandler.m_ahHandler.PlayInteractionSound(m_goSelected.GetComponent<WongleController>().type);
+                                                    print("Selected obj type: " + m_goSelected.GetComponent<WongleController>().type);
+                                                }
                                                 if (gameObject.GetComponent<DisplayHandler>().m_bDisplayingBuildings == false)
                                                 {
                                                     gameObject.GetComponent<DisplayHandler>().UpdateState(true); // is worker

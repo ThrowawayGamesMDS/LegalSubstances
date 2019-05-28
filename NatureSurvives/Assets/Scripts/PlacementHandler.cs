@@ -425,6 +425,7 @@ public class PlacementHandler : MonoBehaviour
         {
             if (CanPurchase(i))
             {
+                AudioHandler.m_ahHandler.PlayButtonInteraction(true);
                 m_iCurrentlyPlacing = i;
                 //gameObject.GetComponent<AudioHandler>().PlaySound("PurchaseOk");
 
@@ -438,7 +439,7 @@ public class PlacementHandler : MonoBehaviour
             else
             {
                 // gameObject.GetComponent<AudioHandler>().PlaySound("PurchaseBad");
-
+                AudioHandler.m_ahHandler.PlayButtonInteraction(false);
                 if (HouseController.m_iFoodCount < m_goPossibleObjects[i].GetComponent<costToPlace>().FoodCost)
                 {
                     int difference = m_goPossibleObjects[i].GetComponent<costToPlace>().FoodCost - HouseController.m_iFoodCount;
