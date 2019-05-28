@@ -57,6 +57,10 @@ public class WongleController : MonoBehaviour
 
     [Header("Idle Selection Bool")]
     public float m_fAnimationSpeed;
+
+    public GameObject woodEffect;
+    public GameObject leafEffect;
+
     // Use this for initialization
     void Start()
     {
@@ -158,7 +162,6 @@ public class WongleController : MonoBehaviour
 
     private void CheckWongleStatus()
     {
-
         switch(type)
         {
             case SelectableUnitComponent.workerType.Ranged:
@@ -242,6 +245,7 @@ public class WongleController : MonoBehaviour
                 }
             case SelectableUnitComponent.workerType.Worker:
                 {
+                    print("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
 
                     int _iResourceID = -1;
                     int _iDistanceFromTarget = -1;
@@ -468,7 +472,14 @@ public class WongleController : MonoBehaviour
                                 if (!anim.GetCurrentAnimatorStateInfo(0).IsName(_sAnimationClip))
                                 {
                                     anim.Play(_sAnimationClip);
+
+                                    
                                 }
+
+                                //particle
+                                Vector3 vec = new Vector3(Target.transform.position.x, 4, Target.transform.position.z);
+                                Instantiate(woodEffect, vec, gameObject.transform.rotation);
+                                Instantiate(leafEffect, vec, gameObject.transform.rotation);
 
                                 Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
                                 outputAmount += (Time.deltaTime * _fOutputMultiplier);
@@ -809,9 +820,22 @@ public class WongleController : MonoBehaviour
                             if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AxeChop"))
                             {
                                 anim.Play("AxeChop");
+
+                                
+                                
+                            }                           
+
+                            float normTime = anim.GetCurrentAnimatorStateInfo(0).normalizedTime % 1;
+
+                            print("length = " + normTime);
+
+                            if (normTime >= 0.33f && normTime < 0.43f)
+                            {
+                                Vector3 vec = new Vector3(Target.transform.position.x, 4, Target.transform.position.z);
+                                Instantiate(woodEffect, vec, gameObject.transform.rotation);
+                                Instantiate(leafEffect, vec, gameObject.transform.rotation);
                             }
 
-                            
 
                             Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
                             outputAmount += (Time.deltaTime * 0.6f);
