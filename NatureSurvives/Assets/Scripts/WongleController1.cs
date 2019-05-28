@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class WongleController : MonoBehaviour
+public class WongleController1 : MonoBehaviour
 {
     public NavMeshAgent agent;
     public Animator anim;
