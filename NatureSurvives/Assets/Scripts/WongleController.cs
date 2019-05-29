@@ -476,10 +476,7 @@ public class WongleController : MonoBehaviour
                                     
                                 }
 
-                                //particle
-                                Vector3 vec = new Vector3(Target.transform.position.x, 4, Target.transform.position.z);
-                                Instantiate(woodEffect, vec, gameObject.transform.rotation);
-                                Instantiate(leafEffect, vec, gameObject.transform.rotation);
+                                
 
                                 Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
                                 outputAmount += (Time.deltaTime * _fOutputMultiplier);
@@ -1307,6 +1304,10 @@ public class WongleController : MonoBehaviour
        // gameObject.GetComponent<AudioHandler>().PlaySound(AudioHandler.m_soundTypes.WOOD);
         AudioHandler.m_ahHandler.UpdatedPlaySound(AudioHandler.m_soundTypes.WOOD, gameObject.GetComponent<AudioSource>());
         Target.GetComponent<Animator>().Play("PineTreeOnHit");
+        //particle
+        Vector3 vec = new Vector3(Target.transform.position.x, 4, Target.transform.position.z);
+        Instantiate(woodEffect, vec, gameObject.transform.rotation);
+        Instantiate(leafEffect, vec, gameObject.transform.rotation);
     }
     //mining animation
     public void MineEvent()
