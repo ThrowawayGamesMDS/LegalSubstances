@@ -23,6 +23,8 @@ public class PlayerBuilding : MonoBehaviour {
     bool isShaking = false;
 
     public GameObject fireEffect;
+    public GameObject attackEffect;
+    public GameObject placedEffect;
     public float height;
 
     // Use this for initialization
@@ -36,13 +38,20 @@ public class PlayerBuilding : MonoBehaviour {
         healthBarCanvasGameObject.SetActive(false);
 
         startPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+
+        Vector3 vec = new Vector3(transform.position.x, 1, transform.position.z);
+        Instantiate(placedEffect, vec, placedEffect.transform.rotation);
     }
 	
 	// Update is called once per frame
 	void Update () {
+
         if (BuildingHealth <= 0)
         {
-            if(isWonder)
+            Vector3 vec = new Vector3(transform.position.x, height, transform.position.z);
+            Instantiate(attackEffect, vec, attackEffect.transform.rotation);
+
+            if (isWonder)
             {
                 SceneManager.LoadScene(0);
             }

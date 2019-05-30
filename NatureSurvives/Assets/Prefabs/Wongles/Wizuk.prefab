@@ -412,6 +412,9 @@ MonoBehaviour:
   healthBarCanvasGameObject: {fileID: 5745946301750882450}
   m_bIdleSelected: 0
   m_fAnimationSpeed: 0
+  woodEffect: {fileID: 0}
+  leafEffect: {fileID: 0}
+  foragingEffect: {fileID: 0}
 --- !u!195 &1971081879
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1396,6 +1399,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1971081872}
     m_Modifications:
+    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
+        type: 3}
+      propertyPath: m_Name
+      value: Health Bar
+      objectReference: {fileID: 0}
     - target: {fileID: 5745946300523346767, guid: eead958fb4f21ee44a41791f7161561b,
         type: 3}
       propertyPath: m_RootOrder
@@ -1430,11 +1438,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.5000092
-      objectReference: {fileID: 0}
-    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
-        type: 3}
-      propertyPath: m_Name
-      value: Health Bar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eead958fb4f21ee44a41791f7161561b, type: 3}

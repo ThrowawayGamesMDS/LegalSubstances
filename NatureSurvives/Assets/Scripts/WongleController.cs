@@ -60,6 +60,7 @@ public class WongleController : MonoBehaviour
 
     public GameObject woodEffect;
     public GameObject leafEffect;
+    public GameObject foragingEffect;
 
     // Use this for initialization
     void Start()
@@ -710,6 +711,19 @@ public class WongleController : MonoBehaviour
                                 Work.GetComponent<BuildingController>().inputAmount += inputAmount;
                                 inputAmount = 0;
                                 anim.Play("FarmingLoop");
+
+                                float normTime = anim.GetCurrentAnimatorStateInfo(0).normalizedTime % 1;
+
+                                if (normTime >= 0.33f && normTime < 0.43f)
+                                {
+                                    Vector3 vec = new Vector3(transform.position.x, 0, transform.position.z);
+                                    Vector3 rot = transform.rotation.eulerAngles;
+                                    rot = new Vector3(rot.x - 25, rot.y + 180, rot.z);
+                                    Instantiate(foragingEffect, vec, Quaternion.Euler(rot));
+                                }
+
+                                
+
                                 Work.GetComponent<BuildingController>().isOccupied = true;
                                 if (Work.GetComponent<BuildingController>().outputAmount > 0)
                                 {
@@ -824,8 +838,6 @@ public class WongleController : MonoBehaviour
 
                             float normTime = anim.GetCurrentAnimatorStateInfo(0).normalizedTime % 1;
 
-                            print("length = " + normTime);
-
                             if (normTime >= 0.33f && normTime < 0.43f)
                             {
                                 Vector3 vec = new Vector3(Target.transform.position.x, 4, Target.transform.position.z);
@@ -833,6 +845,7 @@ public class WongleController : MonoBehaviour
                                 Instantiate(leafEffect, vec, gameObject.transform.rotation);
                             }
 
+                            
 
                             Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
                             outputAmount += (Time.deltaTime * 0.6f);

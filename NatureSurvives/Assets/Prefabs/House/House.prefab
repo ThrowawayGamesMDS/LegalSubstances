@@ -112,6 +112,10 @@ MonoBehaviour:
   isHouse: 1
   fireEffect: {fileID: 7611269943313463323, guid: 007633dc5e635574898da334df75664b,
     type: 3}
+  attackEffect: {fileID: 6296496104586776032, guid: 624b2ef32a97eb649a5b035beec882be,
+    type: 3}
+  placedEffect: {fileID: 7248341468669716376, guid: 76c21c508cef6a5419a4a9bbe6ced2b6,
+    type: 3}
   height: 10
 --- !u!208 &7246157511385137419
 NavMeshObstacle:
@@ -198,6 +202,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5595193795096912267}
     m_Modifications:
+    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
+        type: 3}
+      propertyPath: m_Name
+      value: Health Bar
+      objectReference: {fileID: 0}
     - target: {fileID: 5745946300523346767, guid: eead958fb4f21ee44a41791f7161561b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -317,11 +326,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.007524268
-      objectReference: {fileID: 0}
-    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
-        type: 3}
-      propertyPath: m_Name
-      value: Health Bar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eead958fb4f21ee44a41791f7161561b, type: 3}
