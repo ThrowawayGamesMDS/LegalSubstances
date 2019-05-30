@@ -115,7 +115,11 @@ MonoBehaviour:
   isHouse: 0
   fireEffect: {fileID: 7611269943313463323, guid: 007633dc5e635574898da334df75664b,
     type: 3}
-  height: 10
+  attackEffect: {fileID: 6296496104586776032, guid: 624b2ef32a97eb649a5b035beec882be,
+    type: 3}
+  placedEffect: {fileID: 7248341468669716376, guid: 76c21c508cef6a5419a4a9bbe6ced2b6,
+    type: 3}
+  height: 9
 --- !u!1 &2064604883254733495
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,6 +223,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2754038950773358171}
     m_Modifications:
+    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
+        type: 3}
+      propertyPath: m_Name
+      value: Health Bar
+      objectReference: {fileID: 0}
     - target: {fileID: 5745946300523346767, guid: eead958fb4f21ee44a41791f7161561b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -324,11 +333,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
-        type: 3}
-      propertyPath: m_Name
-      value: Health Bar
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eead958fb4f21ee44a41791f7161561b, type: 3}
 --- !u!224 &7964554108472258245 stripped
@@ -344,6 +348,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3122694172622680650}
     m_Modifications:
+    - target: {fileID: 7971047963652202897, guid: d09220aaf20afdf488f39842eb92bf78,
+        type: 3}
+      propertyPath: m_Name
+      value: StoragePrefab
+      objectReference: {fileID: 0}
     - target: {fileID: 3772656323711921600, guid: d09220aaf20afdf488f39842eb92bf78,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -413,11 +422,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 7971047963652202897, guid: d09220aaf20afdf488f39842eb92bf78,
-        type: 3}
-      propertyPath: m_Name
-      value: StoragePrefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d09220aaf20afdf488f39842eb92bf78, type: 3}

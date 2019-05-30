@@ -33318,6 +33318,7 @@ GameObject:
   - component: {fileID: 301265425286830931}
   - component: {fileID: 4327423807166176266}
   - component: {fileID: 7510158447930768631}
+  - component: {fileID: 5260580693685485097}
   m_Layer: 0
   m_Name: Magic attack
   m_TagString: Untagged
@@ -38027,12 +38028,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6930961346448147395}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a7334f2332fad44c8c2f2de54b3185d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 4
+  timer: 5
+--- !u!114 &5260580693685485097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6930961346448147395}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407b90fce10876241b6ffc8e929f2ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!1 &7293914625200315237
 GameObject:
   m_ObjectHideFlags: 0
