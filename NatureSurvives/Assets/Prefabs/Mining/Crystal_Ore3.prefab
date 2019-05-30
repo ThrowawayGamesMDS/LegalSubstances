@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3346875769134356587}
   - component: {fileID: 1488467393365297391}
   - component: {fileID: 8965428003204438114}
-  m_Layer: 1
+  m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,9 +88,10 @@ GameObject:
   - component: {fileID: 7418360207182621889}
   - component: {fileID: 1028975753801830247}
   - component: {fileID: 8299185194137005878}
-  m_Layer: 0
+  - component: {fileID: 7152429795563765368}
+  m_Layer: 13
   m_Name: Crystal_Ore3
-  m_TagString: Untagged
+  m_TagString: Crystal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -190,6 +191,19 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: -0.21, z: 0}
   m_TimeToStationary: 0.5
+--- !u!135 &7152429795563765368
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4052215846482757997}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.7
+  m_Center: {x: 0, y: 1.400336, z: 0}
 --- !u!1 &6032104415189399355
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +215,7 @@ GameObject:
   - component: {fileID: 1743692729889483270}
   - component: {fileID: 4832695652036758625}
   - component: {fileID: 3548823852861658630}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +293,7 @@ GameObject:
   - component: {fileID: 942103918050590107}
   - component: {fileID: 5213408595280047422}
   - component: {fileID: 5445062236163917773}
-  m_Layer: 1
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,6 +390,22 @@ PrefabInstance:
     - target: {fileID: 100002, guid: 14c6dcc04f6c65c4f9e8e2b5e3534b7d, type: 3}
       propertyPath: m_Name
       value: GeigerRemasteredPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 14c6dcc04f6c65c4f9e8e2b5e3534b7d, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 14c6dcc04f6c65c4f9e8e2b5e3534b7d, type: 3}
+      propertyPath: m_TagString
+      value: Crystal
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 14c6dcc04f6c65c4f9e8e2b5e3534b7d, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 14c6dcc04f6c65c4f9e8e2b5e3534b7d, type: 3}
+      propertyPath: m_TagString
+      value: Crystal
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 14c6dcc04f6c65c4f9e8e2b5e3534b7d, type: 3}
       propertyPath: m_LocalPosition.x
