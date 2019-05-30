@@ -46,6 +46,8 @@ public class TutorialParameters : MonoBehaviour
     void Start()
     {
         m_eTutorialLevel = TutorialState.E_ONE;
+
+        m_goVideoPlayer.clip = m_lVideoClips[0];
         print(gameObject.name);       
     }
 
@@ -61,7 +63,7 @@ public class TutorialParameters : MonoBehaviour
             //select the scout
             case TutorialState.E_ONE:
                 {
-                    //NotificationManager.Instance.SetNewNotification("Day time: During the day, you are safe to build things without being attacked by enemies.");
+                    NotificationManager.Instance.SetNewNotification("The Scout is the little purple guy on the left, you can select him by left clicking him or holding the left mouse button down and dragging to crerate a box");
 
                     int amountSelected = 0;
                     GameObject[] temp = GameObject.FindGameObjectsWithTag("Wongle");
@@ -81,8 +83,8 @@ public class TutorialParameters : MonoBehaviour
                         m_goVideoPlayer.clip = m_lVideoClips[1];
                         Vector3 _newPos = new Vector3(140, Camera.main.transform.position.y, -20 - (Camera.main.transform.forward.magnitude * 50));
                         cameraController.m_sCameraControl.m_fTransitionSpeed = 0.01f;
-                        cameraController.m_sCameraControl.UpdateCameraTargetForLerping(_newPos);
-                        NotificationManager.Instance.SetNewNotification("send the scout out into the fog by right clicking in the black area");
+                        //cameraController.m_sCameraControl.UpdateCameraTargetForLerping(_newPos);
+                        NotificationManager.Instance.SetNewNotification("Send the scout to the this location by right clicking on the black area, send the scout to the edge of the map on the left.");
                     }
                     break;
                 }
@@ -94,13 +96,16 @@ public class TutorialParameters : MonoBehaviour
                         UIq1.text = m_lsQuestTexts[2];
                         m_eTutorialLevel = TutorialState.E_THREE;                        
                         m_goVideoPlayer.clip = m_lVideoClips[2];
+                        Vector3 _newPos = new Vector3(0, Camera.main.transform.position.y, -25 - (Camera.main.transform.forward.magnitude * 50));
+                        cameraController.m_sCameraControl.m_fTransitionSpeed = 0.02f;
+                        //cameraController.m_sCameraControl.UpdateCameraTargetForLerping(_newPos);
+                        NotificationManager.Instance.SetNewNotification("Select a wongle and right click the farm to assign the wongle to the farm.");
                     }
                     break;
                 }
             //send a wongle to a farm
             case TutorialState.E_THREE:
                 {
-                    NotificationManager.Instance.SetNewNotification("Send the wongles to collect resourcesby left clicking them to select then and then right clicking on the resource.");
                     GameObject[] temp = GameObject.FindGameObjectsWithTag("Wongle");
                     for (int i = 0; i < temp.Length; i++)
                     {
@@ -111,6 +116,7 @@ public class TutorialParameters : MonoBehaviour
                                 UIq1.text = m_lsQuestTexts[3];
                                 m_eTutorialLevel = TutorialState.E_FOUR;
                                 m_goVideoPlayer.clip = m_lVideoClips[3];
+                                NotificationManager.Instance.SetNewNotification("Select a wongle and right click a tree to make the wongle become a woodcutter.");
                             }
                         }                        
                     }
@@ -129,6 +135,7 @@ public class TutorialParameters : MonoBehaviour
                                 UIq1.text = m_lsQuestTexts[4];
                                 m_eTutorialLevel = TutorialState.E_FIVE;
                                 m_goVideoPlayer.clip = m_lVideoClips[4];
+                                NotificationManager.Instance.SetNewNotification("Select a wongle and right click a crystal to make the wongle become a miner.");
                             }
                         }
                         
@@ -148,6 +155,7 @@ public class TutorialParameters : MonoBehaviour
                                 UIq1.text = m_lsQuestTexts[5];
                                 m_eTutorialLevel = TutorialState.E_SIX;
                                 m_goVideoPlayer.clip = m_lVideoClips[4];
+                                NotificationManager.Instance.SetNewNotification("Select the last wongle and click the tower button in the bottom left corner of the screen and place the turret in the world, the wongle will automatically start building it.");
                             }
                         }
                     }
@@ -156,7 +164,6 @@ public class TutorialParameters : MonoBehaviour
             //build a defence tower
             case TutorialState.E_SIX:
                 {
-                    //NotificationManager.Instance.SetNewNotification("Day time: During the day, you are safe to build things without being attacked by enemies.");
 
                     int amountSelected = 0;
                     GameObject[] temp = GameObject.FindGameObjectsWithTag("Turret");
@@ -166,11 +173,8 @@ public class TutorialParameters : MonoBehaviour
                         //change ui to completed version (maybe tick boxes)
                         UIq1.text = m_lsQuestTexts[6];
                         m_eTutorialLevel = TutorialState.E_SEVEN;
-                        m_goVideoPlayer.clip = m_lVideoClips[1];
-                        Vector3 _newPos = new Vector3(140, Camera.main.transform.position.y, -20 - (Camera.main.transform.forward.magnitude * 50));
-                        cameraController.m_sCameraControl.m_fTransitionSpeed = 0.01f;
-                        cameraController.m_sCameraControl.UpdateCameraTargetForLerping(_newPos);
-                        NotificationManager.Instance.SetNewNotification("send the scout out into the fog by right clicking");
+                        m_goVideoPlayer.clip = m_lVideoClips[6];
+                        NotificationManager.Instance.SetNewNotification("Create a wizard by clicking the main house in the middle of the map and clicking the wizard button in the bottom left");
                     }
                     break;
 
@@ -178,13 +182,12 @@ public class TutorialParameters : MonoBehaviour
             //create a wizard
             case TutorialState.E_SEVEN:
                 {
-                    //NotificationManager.Instance.SetNewNotification("Day time: During the day, you are safe to build things without being attacked by enemies.");
 
                     int amountSelected = 0;
                     GameObject[] temp = GameObject.FindGameObjectsWithTag("Wongle");
                     for (int i = 0; i < temp.Length; i++)
                     {
-                        if (temp[i].GetComponent<SelectableUnitComponent>().isSelected && temp[i].GetComponent<SelectableUnitComponent>().Type == SelectableUnitComponent.workerType.Ranged)
+                        if (temp[i].GetComponent<SelectableUnitComponent>().Type == SelectableUnitComponent.workerType.Ranged)
                         {
                             amountSelected++;
                         }
@@ -194,8 +197,8 @@ public class TutorialParameters : MonoBehaviour
                         //change ui to completed version (maybe tick boxes)
                         UIq1.text = m_lsQuestTexts[7];
                         m_eTutorialLevel = TutorialState.E_EIGHT;
-                        m_goVideoPlayer.clip = m_lVideoClips[1];
-                        NotificationManager.Instance.SetNewNotification("send the scout out into the fog by right clicking");
+                        m_goVideoPlayer.clip = m_lVideoClips[7];
+                        NotificationManager.Instance.SetNewNotification("Create a wizard by clicking the main house in the middle of the map and clicking the wizard button in the bottom left");
                     }
                     break;
                 }
@@ -208,7 +211,7 @@ public class TutorialParameters : MonoBehaviour
                     GameObject[] temp = GameObject.FindGameObjectsWithTag("Wongle");
                     for (int i = 0; i < temp.Length; i++)
                     {
-                        if (temp[i].GetComponent<SelectableUnitComponent>().isSelected && temp[i].GetComponent<SelectableUnitComponent>().Type == SelectableUnitComponent.workerType.Melee)
+                        if (temp[i].GetComponent<SelectableUnitComponent>().Type == SelectableUnitComponent.workerType.Melee)
                         {
                             amountSelected++;
                         }
@@ -218,8 +221,8 @@ public class TutorialParameters : MonoBehaviour
                         //change ui to completed version (maybe tick boxes)
                         UIq1.text = m_lsQuestTexts[8];
                         m_eTutorialLevel = TutorialState.E_NINE;
-                        m_goVideoPlayer.clip = m_lVideoClips[1];
-                        NotificationManager.Instance.SetNewNotification("send the scout out into the fog by right clicking");
+                        m_goVideoPlayer.clip = m_lVideoClips[8];
+                        NotificationManager.Instance.SetNewNotification("Select both the Knight and the wizard by clicking and dragging over them");
                     }
                     break;
                 }
@@ -247,39 +250,26 @@ public class TutorialParameters : MonoBehaviour
                         //change ui to completed version (maybe tick boxes)
                         UIq1.text = m_lsQuestTexts[9];
                         m_eTutorialLevel = TutorialState.E_TEN;
-                        m_goVideoPlayer.clip = m_lVideoClips[1];
+                        m_goVideoPlayer.clip = m_lVideoClips[9];
                         //spawn enemy
-                        Vector3 _newPos = new Vector3(140, Camera.main.transform.position.y, -20 - (Camera.main.transform.forward.magnitude * 50));
+                        Vector3 _newPos = new Vector3(140, Camera.main.transform.position.y, -10 - (Camera.main.transform.forward.magnitude * 50));
                         cameraController.m_sCameraControl.m_fTransitionSpeed = 0.01f;
-                        cameraController.m_sCameraControl.UpdateCameraTargetForLerping(Enemy.transform.position);
+                        //cameraController.m_sCameraControl.UpdateCameraTargetForLerping(Enemy.transform.position);
                         Enemy.GetComponent<BroodShroomController>().Unfog();
-                        NotificationManager.Instance.SetNewNotification("send the scout out into the fog by right clicking");
+                        NotificationManager.Instance.SetNewNotification("Right click on the enemy to make the selected units attack it");
                     }
                     break;
                 }
             //kill da enemy
             case TutorialState.E_TEN:
                 {
-                    int amountSelected = 0;
-                    GameObject[] temp = GameObject.FindGameObjectsWithTag("Wongle");
-                    for (int i = 0; i < temp.Length; i++)
-                    {
-                        if (temp[i].GetComponent<SelectableUnitComponent>().isSelected && temp[i].GetComponent<SelectableUnitComponent>().Type == SelectableUnitComponent.workerType.Scout)
-                        {
-                            amountSelected++;
-                            scout = temp[i];
-                        }
-                    }
-                    if (amountSelected > 0)
+                    
+                    if (Enemy == null)
                     {
                         //change ui to completed version (maybe tick boxes)
                         UIq1.color = Color.green;
-                        m_eTutorialLevel = TutorialState.E_TWO;
-                        m_goVideoPlayer.clip = m_lVideoClips[1];
-                        Vector3 _newPos = new Vector3(140, Camera.main.transform.position.y, -20 - (Camera.main.transform.forward.magnitude * 50));
-                        cameraController.m_sCameraControl.m_fTransitionSpeed = 0.01f;
-                        cameraController.m_sCameraControl.UpdateCameraTargetForLerping(_newPos);
-                        NotificationManager.Instance.SetNewNotification("send the scout out into the fog by right clicking");
+                        Invoke("EndTutorial", 4);
+                        NotificationManager.Instance.SetNewNotification("You have completed the tutorial!");
                     }
                     break;
                 }
