@@ -128,6 +128,9 @@ public class cameraController : MonoBehaviour
     void Update()
     {
 
+        if (CheatHandler.m_sCheatHandler.m_bPlayerIsEnteringCheat)
+            return;
+
         //I'm using my own delta time calculation, so that the camera can't be paused when Time.timeScale = 0
         float myDeltaTime = Time.realtimeSinceStartup - lastFrameTime;
         lastFrameTime = Time.realtimeSinceStartup;

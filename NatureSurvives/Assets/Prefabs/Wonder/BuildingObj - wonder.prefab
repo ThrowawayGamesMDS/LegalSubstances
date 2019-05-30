@@ -147,7 +147,7 @@ MonoBehaviour:
   m_fCurrentCompletion: 0
   worker: {fileID: 0}
   m_Building: {fileID: 1939373043451518, guid: 13d8c0d472368574392e7ec4972782ba, type: 3}
-  constructionRenderer: {fileID: 87253641638719363}
+  constructionRenderer: {fileID: 4922552333514265353}
   ProgressBarImage: {fileID: 1970627266060577992}
 --- !u!114 &3131045212036026036
 MonoBehaviour:
@@ -239,6 +239,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 18612613fbb9027489863e256f4e91f3, type: 2}
+    - target: {fileID: 5000570076855700532, guid: 6e01653e3dc1024428cccadd0b75033a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 18612613fbb9027489863e256f4e91f3, type: 2}
+    - target: {fileID: 5000570076855700532, guid: 6e01653e3dc1024428cccadd0b75033a,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e01653e3dc1024428cccadd0b75033a, type: 3}
 --- !u!4 &87253641866674190 stripped
@@ -247,9 +257,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 87253641887342397}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &87253641638719363 stripped
+--- !u!23 &4922552333514265353 stripped
 MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 288485566, guid: 6e01653e3dc1024428cccadd0b75033a,
+  m_CorrespondingSourceObject: {fileID: 5000570076855700532, guid: 6e01653e3dc1024428cccadd0b75033a,
     type: 3}
   m_PrefabInstance: {fileID: 87253641887342397}
   m_PrefabAsset: {fileID: 0}

@@ -561,6 +561,9 @@ public class SelectionBox : MonoBehaviour {
 
     void Update()
     {
+        if (CheatHandler.m_sCheatHandler.m_bPlayerIsEnteringCheat)
+            return;
+
       //  print("Mouse is over UI: " + EventSystem.current.IsPointerOverGameObject(-1));
         // Wee c++ style timer handle for double click select - coroutine was fucking out mega
         if (m_fUserClickedTime < Time.time && m_bUserLClicked == true)
