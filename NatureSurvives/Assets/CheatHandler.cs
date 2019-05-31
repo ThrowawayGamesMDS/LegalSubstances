@@ -18,13 +18,14 @@ public class CheatHandler : MonoBehaviour
         if (m_sCheatHandler == null)
         {
             m_sCheatHandler = this;
-            m_iCheatCount = 5;
+            m_iCheatCount = 6;
             m_sKnownCheats = new string[m_iCheatCount];
             m_sKnownCheats[0] = "byebyeboxes";
             m_sKnownCheats[1] = "givemedosh";
             m_sKnownCheats[2] = "builderpro";
             m_sKnownCheats[3] = "nomorequeues";
             m_sKnownCheats[4] = "boosttimepls";
+            m_sKnownCheats[5] = "gimmiepower";
             m_bDisabledBuildTimer = false;
             m_bPlayerIsEnteringCheat = false;
             m_bEnabledTimeIncrease = false;
@@ -122,7 +123,10 @@ public class CheatHandler : MonoBehaviour
                     _sCheatResult += "Time-Scale-Cheat: " + m_bEnabledTimeIncrease;
                     break;
                 }
-
+            case "gimmiepower":
+                {
+                    break;
+                }
         }
         if (_sEnteredText!= "boosttimepls")
             NotificationManager.Instance.SetNewNotification(_sCheatResult);

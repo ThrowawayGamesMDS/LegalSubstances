@@ -160,15 +160,112 @@ public class WongleController : MonoBehaviour
     }
 
 
+    private void HandleWongleAnimation(bool _bUnitMoving)
+    {
+        switch (_bUnitMoving)
+        {
+            case true:
+                {
+                    if (m_bIdleSelected && Target != null)
+                    {
+                        m_bIdleSelected = false;
+                        Debug.Log("Reset WongleController bool 'm_bIdleSelected' of OBJ (" + gameObject + ")");
+                    }
+
+                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("StartMagic"))
+                    {
+                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("magicattack"))
+                        {
+                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AxeChop"))
+                            {
+                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("PickaxeSwing"))
+                                {
+                                    if (type == SelectableUnitComponent.workerType.Melee)
+                                    {
+                                        anim.Play("RunCycle");
+                                    }
+                                    else
+                                    {
+                                        anim.Play("WalkCycle");
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                    break;
+                }
+            case false:
+                {
+                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("StartMagic"))
+                    {
+                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("magicattack"))
+                        {
+                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AxeChop"))
+                            {
+                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("PickaxeSwing"))
+                                {
+                                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FlossDance"))
+                                    {
+                                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("RodCast"))
+                                        {
+                                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FishingIdle"))
+                                            {
+                                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("CatchReel"))
+                                                {
+                                                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("CatchAdmireIdle"))
+                                                    {
+                                                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FishingEnd"))
+                                                        {
+                                                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FarmingLoop"))
+                                                            {
+                                                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1"))
+                                                                {
+                                                                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2"))
+                                                                    {
+                                                                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
+                                                                        {
+                                                                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("DamageTaken"))
+                                                                            {
+                                                                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
+                                                                                {
+                                                                                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("DeathAnimation"))
+                                                                                    {
+                                                                                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("DeathLoop"))
+                                                                                        {
+                                                                                            anim.Play("Idle");
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    break;
+                }
+        }
+
+    }
 
     private void CheckWongleStatus()
     {
-        switch(type)
+        switch (type)
         {
             case SelectableUnitComponent.workerType.Ranged:
             case SelectableUnitComponent.workerType.Melee:
                 {
-                    switch(Work.tag)
+                    switch (Work.tag)
                     {
                         case "Army":
                             {
@@ -246,8 +343,6 @@ public class WongleController : MonoBehaviour
                 }
             case SelectableUnitComponent.workerType.Worker:
                 {
-                    print("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-
                     int _iResourceID = -1;
                     int _iDistanceFromTarget = -1;
                     int _iStoppingDistance = -1;
@@ -256,7 +351,7 @@ public class WongleController : MonoBehaviour
                     string _sAnimationClip = "NA";
                     string _sTarget = "NA";
                     Vector3 _vec3DesiredPosition = new Vector3();
-                    switch(Work.tag)
+                    switch (Work.tag)
                     {
                         case "Building":
                             {
@@ -474,10 +569,10 @@ public class WongleController : MonoBehaviour
                                 {
                                     anim.Play(_sAnimationClip);
 
-                                    
+
                                 }
 
-                                
+
 
                                 Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
                                 outputAmount += (Time.deltaTime * _fOutputMultiplier);
@@ -490,7 +585,7 @@ public class WongleController : MonoBehaviour
                                     }
                                     Destroy(Target);
                                 }
-                                
+
                             }
                         }
                     }
@@ -554,11 +649,11 @@ public class WongleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Target == null)
+        if (Target == null)
         {
             Target = null;
         }
-        
+
         //check level of resource gathering
         iWoodCutLevel = Mathf.FloorToInt(Mathf.Sqrt((iTreesCut / 3)));
         iFarmLevel = Mathf.FloorToInt(Mathf.Sqrt((iFarmsHarvested / 3)));
@@ -572,561 +667,37 @@ public class WongleController : MonoBehaviour
 
         ChangePriority();
         if (WongleHealth <= 0)
-        {           
-            if(isDead == false)
+        {
+            if (isDead == false)
             {
                 NotificationManager.Instance.SetNewNotification("Wongle Died");
                 isDead = true;
                 Death();
             }
-            
+
         }
 
 
         if (agent.velocity.magnitude > 0)
         {
-            if (m_bIdleSelected && Target != null)
-            {
-                m_bIdleSelected = false;
-                Debug.Log("Reset WongleController bool 'm_bIdleSelected' of OBJ (" + gameObject + ")");
-            }
-
-            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("StartMagic"))
-            {
-                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("magicattack"))
-                {
-                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AxeChop"))
-                    {
-                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("PickaxeSwing"))
-                        {
-                            if (type == SelectableUnitComponent.workerType.Melee)
-                            {
-                                anim.Play("RunCycle");
-                            }
-                            else
-                            {
-                                anim.Play("WalkCycle");
-                            }
-
-                        }
-                    }
-                }
-            }
-
+            HandleWongleAnimation(true);
         }
         else
         {
-            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("StartMagic"))
-            {
-                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("magicattack"))
-                {
-                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AxeChop"))
-                    {
-                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("PickaxeSwing"))
-                        {
-                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FlossDance"))
-                            {
-                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("RodCast"))
-                                {
-                                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FishingIdle"))
-                                    {
-                                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("CatchReel"))
-                                        {
-                                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("CatchAdmireIdle"))
-                                            {
-                                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FishingEnd"))
-                                                {
-                                                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("FarmingLoop"))
-                                                    {
-                                                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1"))
-                                                        {
-                                                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2"))
-                                                            {
-                                                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
-                                                                {
-                                                                    if (!anim.GetCurrentAnimatorStateInfo(0).IsName("DamageTaken"))
-                                                                    {
-                                                                        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Death"))
-                                                                        {
-                                                                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("DeathAnimation"))
-                                                                            {
-                                                                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("DeathLoop"))
-                                                                                {
-                                                                                    anim.Play("Idle");
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            HandleWongleAnimation(false);
         }
 
 
-        /*if (Work != null)
-        {
-            CheckWongleStatus();
-        }*/
-
-        
         if (Work != null)
         {
-            if (Work.tag == "Building")
-            {
-                if (isGoingHome)
-                {
-                    agent.SetDestination(StorageBuilding.transform.position);
-                }
-                else
-                {
-                    agent.SetDestination(Work.transform.position);
-                }
-
-
-                if (!agent.pathPending)
-                {
-                    if (agent.remainingDistance <= agent.stoppingDistance)
-                    {
-                        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-                        {
-                            if (isGoingHome)
-                            {
-                                inputAmount += Work.GetComponent<BuildingController>().AmountProduced;
-                                
-                                RetainPlayerReources(2);
-                            }
-                            else
-                            {
-                                Work.GetComponent<BuildingController>().inputAmount += inputAmount;
-                                inputAmount = 0;
-                                anim.Play("FarmingLoop");
-
-                                float normTime = anim.GetCurrentAnimatorStateInfo(0).normalizedTime % 1;
-
-                                if (normTime >= 0.33f && normTime < 0.43f)
-                                {
-                                    Vector3 vec = new Vector3(transform.position.x, 0, transform.position.z);
-                                    Vector3 rot = transform.rotation.eulerAngles;
-                                    rot = new Vector3(rot.x - 25, rot.y + 180, rot.z);
-                                    Instantiate(foragingEffect, vec, Quaternion.Euler(rot));
-                                }
-
-                                
-
-                                Work.GetComponent<BuildingController>().isOccupied = true;
-                                if (Work.GetComponent<BuildingController>().outputAmount > 0)
-                                {
-                                    outputAmount += Work.GetComponent<BuildingController>().outputAmount;
-                                    Work.GetComponent<BuildingController>().outputAmount = 0;
-                                    iFarmsHarvested++;
-                                    isGoingHome = !isGoingHome;
-                                    Work.GetComponent<BuildingController>().isOccupied = false;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (Work.tag == "Army")
-            {
-
-                if (Target == null)
-                {
-                    if (FindClosestTag("Enemy") != null)
-                    {
-                        //gameObject.transform.LookAt(Target.transform);
-                        GameObject obj = FindClosestTag("Enemy");
-                        if (Vector3.Distance(transform.position, obj.transform.position) <= 30)
-                        {
-                            Target = obj;
-                        }
-                    }
-                }
-
-
-                if (Target != null)
-                {
-                    if (type == SelectableUnitComponent.workerType.Ranged)
-                    {
-                        if (Vector3.Distance(transform.position, Target.transform.position) > 20)
-                        {
-                            agent.isStopped = false;
-                            agent.stoppingDistance = 19;
-                            agent.SetDestination(Target.transform.position);
-                        }
-                        else
-                        {
-                            agent.isStopped = true;
-                            if (canAttack)
-                            {
-                                attackinstance = Instantiate(attackEffect, handPosition.transform.position, handPosition.transform.rotation);
-                                attackinstance.transform.parent = handPosition.transform;
-                                attackinstance.GetComponent<LookAtTarget>().target = Target.transform.GetChild(1).gameObject;
-
-                                StartCoroutine(PlayAnim());
-
-                                canAttack = false;
-                                Invoke("AttackCooldown", 5f);
-                            }
-                        }
-                    }
-
-                    if (type == SelectableUnitComponent.workerType.Melee)
-                    {
-                        if (Vector3.Distance(transform.position, Target.transform.position) > 7)
-                        {
-                            agent.isStopped = false;
-                            agent.stoppingDistance = 6;
-                            agent.SetDestination(Target.transform.position);
-                        }
-                        else
-                        {
-                            agent.isStopped = true;
-                            if (canAttack)
-                            {
-                                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
-                                {
-                                    anim.Play("Attack1");
-                                }
-                            }
-                        }
-                    }
-
-                }
-            }
-
-            if (Work.tag == "WoodCutter")
-            {
-
-                if (Target != null)
-                {
-                    if (Vector3.Distance(transform.position, Target.transform.position) > 5)
-                    {
-                        if (!isGoingHome)
-                        {
-                            agent.isStopped = false;
-                            agent.stoppingDistance = 4;
-                            agent.SetDestination(Target.transform.position);
-                            anim.Play("WalkCycle");
-                        }
-                    }
-                    else
-                    {
-                        if (!isGoingHome)
-                        {
-                            agent.isStopped = true;
-                            //woodchop animation
-                            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("AxeChop"))
-                            {
-                                anim.Play("AxeChop");
-
-                                
-                                
-                            }                           
-
-                            float normTime = anim.GetCurrentAnimatorStateInfo(0).normalizedTime % 1;
-
-                            if (normTime >= 0.33f && normTime < 0.43f)
-                            {
-                                Vector3 vec = new Vector3(Target.transform.position.x, 4, Target.transform.position.z);
-                                Instantiate(woodEffect, vec, gameObject.transform.rotation);
-                                Instantiate(leafEffect, vec, gameObject.transform.rotation);
-                            }
-
-                            
-
-                            Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
-                            outputAmount += (Time.deltaTime * 0.6f);
-                            if (Target.GetComponent<WoodScript>().WoodHealth <= 0)
-                            {
-                                placeholderPosition = Target.transform.position;
-                                Instantiate(Target.GetComponent<WoodScript>().trunk, Target.transform.position, Target.transform.rotation);
-                                Destroy(Target);
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    FindNewTarget("Wood");
-                }
-
-                if (outputAmount >= 10)
-                {
-                    isGoingHome = true;
-
-                }
-
-
-                if (isGoingHome)
-                {
-                    if (FindClosestTag("Storage") != null)
-                    {
-                        GameObject obj = FindClosestTag("Storage");
-                        if (Vector3.Distance(Home.transform.position, transform.position) > Vector3.Distance(obj.transform.position, transform.position))
-                        {
-                            StorageBuilding = obj;
-                        }
-                        else
-                        {
-                            StorageBuilding = Home;
-                        }
-                    }
-                    else
-                    {
-                        StorageBuilding = Home;
-                    }
-
-                    anim.Play("WalkCycle");
-                    agent.isStopped = false;
-                    agent.SetDestination(StorageBuilding.transform.position);
-
-                }
-
-                if (!agent.pathPending)
-                {
-                    if (agent.remainingDistance <= agent.stoppingDistance)
-                    {
-                        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-                        {
-                            if (isGoingHome)
-                            {
-                                RetainPlayerReources(0);
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (Work.tag == "Miner")
-            {
-
-                if (Target != null)
-                {
-                    if (Vector3.Distance(transform.position, Target.transform.position) > 6)
-                    {
-                        if (!isGoingHome)
-                        {
-                            agent.isStopped = false;
-                            agent.stoppingDistance = 5;
-                            agent.SetDestination(Target.transform.position);
-                            anim.Play("WalkCycle");
-                        }
-                    }
-                    else
-                    {
-                        if (!isGoingHome)
-                        {
-                            agent.isStopped = true;
-                            //Mining Animation animation
-                            anim.Play("PickaxeSwing");
-                            Target.GetComponent<WoodScript>().WoodHealth -= 1 * Time.deltaTime;
-                            outputAmount += (Time.deltaTime * 0.55f);
-                            if (Target.GetComponent<WoodScript>().WoodHealth <= 0)
-                            {
-                                placeholderPosition = Target.transform.position;
-                                Destroy(Target);
-                            }
-                        }
-
-                    }
-                }
-                else
-                {
-                    FindNewTarget("Crystal");
-                }
-
-                if (outputAmount >= 10)
-                {
-                    isGoingHome = true;
-
-                }
-
-
-                if (isGoingHome)
-                {
-                    if (FindClosestTag("Storage") != null)
-                    {
-                        GameObject obj = FindClosestTag("Storage");
-                        if (Vector3.Distance(Home.transform.position, transform.position) > Vector3.Distance(obj.transform.position, transform.position))
-                        {
-                            StorageBuilding = obj;
-                        }
-                        else
-                        {
-                            StorageBuilding = Home;
-                        }
-                    }
-                    else
-                    {
-                        StorageBuilding = Home;
-                    }
-
-
-                    anim.Play("WalkCycle");
-                    agent.isStopped = false;
-                    agent.SetDestination(StorageBuilding.transform.position);
-
-                }
-
-                if (!agent.pathPending)
-                {
-                    if (agent.remainingDistance <= agent.stoppingDistance)
-                    {
-                        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-                        {
-                            if (isGoingHome)
-                            {
-                                RetainPlayerReources(1);
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (Work.tag == "Builder")
-            {
-
-                if (Target != null)
-                {
-                    if (Vector3.Distance(transform.position, Target.transform.position) > 6)
-                    {
-                        if (!isGoingHome)
-                        {
-                            agent.isStopped = false;
-                            agent.stoppingDistance = 5;
-                            agent.SetDestination(Target.transform.position);
-                            anim.Play("WalkCycle");
-                        }
-                    }
-                    else
-                    {
-                        agent.isStopped = true;
-                        //building Animation animation
-                        anim.Play("PickaxeSwing");
-                        Target.GetComponent<ConstructionScript>().m_fCurrentCompletion += 1 * Time.deltaTime;
-                    }
-                }
-                else
-                {
-                    placeholderPosition = transform.position;
-                    FindNewTarget("Construction");
-                }
-            }
-            
-            if (Work.tag == "Fishermen")
-            {
-
-                if (Target != null)
-                {
-                    if (Vector3.Distance(transform.position, m_vFishingSpot) > 3)
-                    {
-                        if (!isGoingHome)
-                        {
-                            agent.isStopped = false;
-                            agent.stoppingDistance = 2;
-                            agent.SetDestination(m_vFishingSpot);
-                            anim.Play("WalkCycle");
-                        }
-                    }
-                    else
-                    {
-                        if (!isGoingHome)
-                        {
-                            agent.isStopped = true;
-                            //fishing animation
-                            if (!animlock2)
-                            {
-                                if(agent.velocity.magnitude == 0)
-                                {
-                                    anim.Play("RodCast");
-                                }      
-                            }
-                            m_fCurrentFishTime += Time.deltaTime;
-                            if (m_fCurrentFishTime >= m_fTimeToFish)
-                            {
-                                if (!animlock)
-                                {
-                                    anim.Play("CatchReel");
-                                    hide.isVisible = true;
-                                    animlock = true;
-                                }
-                            }
-                        }
-                    }
-                }
-
-
-
-                if (isGoingHome)
-                {
-                    if (FindClosestTag("Storage") != null)
-                    {
-                        GameObject obj = FindClosestTag("Storage");
-                        if (Vector3.Distance(Home.transform.position, transform.position) > Vector3.Distance(obj.transform.position, transform.position))
-                        {
-                            StorageBuilding = obj;
-                        }
-                        else
-                        {
-                            StorageBuilding = Home;
-                        }
-                    }
-                    else
-                    {
-                        StorageBuilding = Home;
-                    }
-
-                    anim.Play("WalkCycle");
-                    agent.isStopped = false;
-                    agent.SetDestination(StorageBuilding.transform.position);
-
-                }
-
-                if (!agent.pathPending)
-                {
-                    if (agent.remainingDistance <= agent.stoppingDistance)
-                    {
-                        if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-                        {
-                            if (isGoingHome)
-                            {
-                                if (iFishingLevel > 0)
-                                {
-                                    outputAmount += ((iFishingLevel * outputAmount) / 3);
-                                }
-                                HouseController.m_iFoodCount += Mathf.RoundToInt(outputAmount);
-                                outputAmount = 0;
-                                m_fCurrentFishTime = 0;
-                                iFishCaught++;
-                                animlock = false;
-                                animlock2 = false;
-                                isGoingHome = !isGoingHome;
-                            }
-                        }
-                    }
-                }
-            }
+            CheckWongleStatus();
         }
-        
-        
+
         if (agent.isStopped)
         {
             if (Target != null)
             {
-                if(Work.tag == "Fishermen")
+                if (Work.tag == "Fishermen")
                 {
                     Vector3 lookpos2 = m_vFishingSpot - transform.position;
                     lookpos2.y = 0;
@@ -1140,11 +711,10 @@ public class WongleController : MonoBehaviour
                     Quaternion rotation = Quaternion.LookRotation(lookpos);
                     transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 10);
                 }
-                
+
             }
         }
     }
-
 
     private void LateUpdate()
     {
@@ -1160,7 +730,7 @@ public class WongleController : MonoBehaviour
             agent.avoidancePriority = priority;
         }
 
-        if(isGoingHome)
+        if (isGoingHome)
         {
             //agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
         }
@@ -1170,16 +740,10 @@ public class WongleController : MonoBehaviour
         }
     }
 
-
-
-
     public void AttackCooldown()
     {
         canAttack = true;
     }
-    
-
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -1202,7 +766,7 @@ public class WongleController : MonoBehaviour
         GameObject[] _temp = null;
         _temp = GameObject.FindGameObjectsWithTag(_sTag);
         GameObject _closest = null;
-        
+
         Vector3 position = transform.position;
         foreach (GameObject go in _temp)
         {
@@ -1236,12 +800,11 @@ public class WongleController : MonoBehaviour
         return closest;
     }
 
-
     IEnumerator PlayAnim()
     {
         yield return new WaitForSeconds(1.2f);
         print("anim");
-        anim.Play("StartMagic");        
+        anim.Play("StartMagic");
         yield return new WaitForSeconds(0.5f);
         if (attackinstance != null)
         {
@@ -1278,7 +841,7 @@ public class WongleController : MonoBehaviour
             {
                 healthBarImage.GetComponent<Image>().color = Color.green;
             }
-            
+
         }
     }
 
@@ -1308,25 +871,23 @@ public class WongleController : MonoBehaviour
 
 
 
-    
+
     // these functions get called in certain frames of the animations animations
 
-//woodcut anim
+    //woodcut anim
     public void ChopEvent()
     {
-       // gameObject.GetComponent<AudioHandler>().PlaySound(AudioHandler.m_soundTypes.WOOD);
         AudioHandler.m_ahHandler.UpdatedPlaySound(AudioHandler.m_soundTypes.WOOD, gameObject.GetComponent<AudioSource>());
         if (Target.GetComponent<Animator>() != null)
             Target.GetComponent<Animator>().Play("PineTreeOnHit");
         //particle
-      //  Vector3 vec = new Vector3(Target.transform.position.x, 4, Target.transform.position.z);
-       // Instantiate(woodEffect, vec, gameObject.transform.rotation);
-       // Instantiate(leafEffect, vec, gameObject.transform.rotation);
+        Vector3 vec = new Vector3(Target.transform.position.x, 4, Target.transform.position.z);
+        Instantiate(woodEffect, vec, gameObject.transform.rotation);
+        Instantiate(leafEffect, vec, gameObject.transform.rotation);
     }
     //mining animation
     public void MineEvent()
     {
-        //gameObject.GetComponent<AudioHandler>().PlaySound(AudioHandler.m_soundTypes.MINE);
         AudioHandler.m_ahHandler.UpdatedPlaySound(AudioHandler.m_soundTypes.MINE, gameObject.GetComponent<AudioSource>());
     }
 
@@ -1349,19 +910,11 @@ public class WongleController : MonoBehaviour
         hide.isVisible = false;
     }
 
-
-    
     public void Death()
     {
         //instead should instantiate a fake wongle but in the dead animation so that we dont have to remove the dead wongle from every list
         Instantiate(DeadWongle, transform.position, transform.rotation);
-        
+
         Destroy(gameObject);
     }
-
-    
-
-
-    
-
 }
