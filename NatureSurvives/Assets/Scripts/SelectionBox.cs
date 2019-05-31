@@ -784,7 +784,7 @@ public class SelectionBox : MonoBehaviour {
         //if (Input.GetMouseButtonUp(0) && PlacementHandler.m_sPHControl.m_ePlayerState != PlacementHandler.PlayerStates.PLACING)
         if (Input.GetMouseButtonUp(0))
         {
-            if (PlacementHandler.m_sPHControl.m_ePlayerState == PlacementHandler.PlayerStates.PLACING || EventSystem.current.IsPointerOverGameObject(-1) == true)
+            if (PlacementHandler.m_sPHControl.m_ePlayerState == PlacementHandler.PlayerStates.PLACING || EventSystem.current.IsPointerOverGameObject(-1) == true && isSelecting == false)
                 return;
 
 
