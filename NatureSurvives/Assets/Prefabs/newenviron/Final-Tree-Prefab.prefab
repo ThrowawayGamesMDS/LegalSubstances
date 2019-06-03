@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 562969881}
   - component: {fileID: 562969883}
   - component: {fileID: 562969882}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Final_Tree
-  m_TagString: Untagged
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &562969881
 Transform:
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 562969880}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.53863, y: 0.8, z: 0.044067}
+  m_LocalPosition: {x: 0.131, y: -0.186, z: -0.083}
   m_LocalScale: {x: 0.3522758, y: 0.3522759, z: 0.3522759}
   m_Children: []
   m_Father: {fileID: 1103244057}
@@ -86,12 +86,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1103244057}
-  m_Layer: 0
+  - component: {fileID: 3556179565421831972}
+  - component: {fileID: 8656254827368880110}
+  m_Layer: 13
   m_Name: Final-Tree-Prefab
-  m_TagString: Untagged
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1103244057
 Transform:
@@ -101,10 +103,40 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918710602}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35.713356, y: -0.37, z: -29.450388}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 562969881}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3556179565421831972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918710602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcd93ae54ae797e47ac7f6b2c4b257d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WoodHealth: 75
+  yield: 25
+  worker: {fileID: 0}
+  trunk: {fileID: 8365856621471668556, guid: 30cf744cbefbdb04ba63c096842536d3, type: 3}
+  m_HasBeenMined: 0
+--- !u!65 &8656254827368880110
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918710602}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.3369036, y: 12.470203, z: 4.2317066}
+  m_Center: {x: 0.38348246, y: 5.7351017, z: -0.10116243}

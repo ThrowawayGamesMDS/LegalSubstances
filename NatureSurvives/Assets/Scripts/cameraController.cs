@@ -27,6 +27,9 @@ public class cameraController : MonoBehaviour
     public GameObject m_goRotateAround;
     public bool m_bCamReset;
 
+    public bool m_bPlayerCheatReset;
+    public Vector3 m_vec3PlayerPos;
+
     private float lastFrameTime;
 
     [Header("Lerp for Idle camera shift")]
@@ -65,6 +68,7 @@ public class cameraController : MonoBehaviour
             m_vec3OrigRot = new Vector3();
             m_vec3OrigRot = gameObject.transform.rotation.eulerAngles;
             m_bLerpTarget = false;
+            m_bPlayerCheatReset = false;
             m_bCameraRotLerp = false;
             m_fTransitionTime = 0.0f;
             m_fTransitionSpeed = 0.2f;
@@ -128,6 +132,22 @@ public class cameraController : MonoBehaviour
     void Update()
     {
 
+        if (CheatHandler.m_sCheatHandler.m_bPlayerIsEnteringCheat && !m_bPlayerCheatReset)
+        {
+           m_bPlayerCheatReset = true;
+           m_vec3PlayerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+           return;
+        }
+
+        if (CheatHandler.m_sCheatHandler.m_bPlayerIsEnteringCheat)
+            return;
+
+        if (!CheatHandler.m_sCheatHandler.m_bPlayerIsEnteringCheat && m_bPlayerCheatReset)
+        {
+            m_bPlayerCheatReset = false;
+            GameObject.FindGameObjectWithTag("Player").transform.position = m_vec3PlayerPos;
+        }
+         
         //I'm using my own delta time calculation, so that the camera can't be paused when Time.timeScale = 0
         float myDeltaTime = Time.realtimeSinceStartup - lastFrameTime;
         lastFrameTime = Time.realtimeSinceStartup;

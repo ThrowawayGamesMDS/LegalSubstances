@@ -31,10 +31,42 @@ public class AudioHandler : MonoBehaviour
     public AudioSource m_asMusicMaster;
     private bool m_bPlaySound;
     private bool m_bDayMusicPlaying;
+    private bool m_bFadeMusicPitch;
     public enum m_soundTypes
     {
         DAMAGE, SUCCESS, FAILURE, WOOD, MINE, WARNING, MUSIC, INTERACTION, UI_INTERACTION
     };
+
+    private void AdjustPitch(AudioSource _asSourceToAdj)
+    {
+        if (_asSourceToAdj == m_asPlayerSF)
+        {
+
+        }
+        else
+        {
+
+        }
+    }
+
+    private void FadeMasterPitch(bool _fadeIn)
+    {
+
+        float _fNewPitch = (float)(System.Convert.ToInt32(_fadeIn));
+
+        print("Pitch: " + _fNewPitch);
+
+        while (m_asMusicMaster.pitch != _fNewPitch)
+        {
+            m_asMusicMaster.pitch -= 0.05f;
+        }
+
+        if (_fadeIn == true)
+        {
+            m_asMusicMaster.pitch = 0.6f;
+        }
+
+    }
 
     private bool CheckAudioClip(AudioClip _acClipToCheck, AudioSource _asSourceToCheck)
     {
@@ -49,7 +81,6 @@ public class AudioHandler : MonoBehaviour
         else
             return false;
     }
-
     public void PlayButtonInteraction(bool _bAccepted)
     {
         int _play = -1;
@@ -71,7 +102,6 @@ public class AudioHandler : MonoBehaviour
         }
         m_asPlayerSF.Play();
     }
-
     public void PlayInteractionSound(SelectableUnitComponent.workerType _cType)
     {
         /*
@@ -107,7 +137,6 @@ public class AudioHandler : MonoBehaviour
         m_asPlayerSF.Play();
         
     }
-
     public void PlaySound(m_soundTypes _playType)
     {
 
@@ -129,6 +158,7 @@ public class AudioHandler : MonoBehaviour
         {
             case m_soundTypes.MUSIC:
                 {
+                   // FadeMasterPitch(false);
                     if (DayNight.isDay) 
                     {
                         _play = Random.Range(0, m_arrDayMusic.Length);
@@ -142,6 +172,7 @@ public class AudioHandler : MonoBehaviour
                         m_asMusicMaster.clip = m_arrNightMusic[_play];
                         m_bDayMusicPlaying = false;
                     }
+                  //  FadeMasterPitch(true);
                     break;
                 }
             case m_soundTypes.DAMAGE:
@@ -190,8 +221,6 @@ public class AudioHandler : MonoBehaviour
                 break;
         }
     }
-
-
     public void UpdatedPlaySound(m_soundTypes _playType, AudioSource _asUpdateAudio)
     {
 
@@ -236,7 +265,6 @@ public class AudioHandler : MonoBehaviour
             _asUpdateAudio.Play();
         }
     }
-
     // Use this for initialization
     void Start()
     {
@@ -275,6 +303,7 @@ public class AudioHandler : MonoBehaviour
             m_asPlayerSF.volume = 0.35f;
 
             m_bDayMusicPlaying = false;
+            m_bFadeMusicPitch = false;
         }
         else
         {
@@ -302,6 +331,7 @@ public class AudioHandler : MonoBehaviour
             }
 
         }
+        
 
         if (Input.GetKeyDown(KeyCode.V))
         {

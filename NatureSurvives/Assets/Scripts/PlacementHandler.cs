@@ -173,12 +173,22 @@ public class PlacementHandler : MonoBehaviour
                     //Placement Occurs Here
                     GameObject temp = Instantiate(m_goPossibleObjects[m_iCurrentlyPlacing], _vec3Pos, Quaternion.identity);
                     m_goObjsPlaced.Add(temp);
-                    GameObject[] templistofWongles = GameObject.FindGameObjectsWithTag("Wongle");
-                    for (int i = 0; i < templistofWongles.Length; i++)
+
+
+                    /***
+                     * 
+                     * Wongle Builder Initialization
+                     * 
+                     ***/
+                     if (m_iCurrentlyPlacing != 0) // Farm - >> could create a becomeFarmer function..
                     {
-                        if (templistofWongles[i].GetComponent<SelectableUnitComponent>().isSelected)
+                        GameObject[] templistofWongles = GameObject.FindGameObjectsWithTag("Wongle");
+                        for (int i = 0; i < templistofWongles.Length; i++)
                         {
-                            templistofWongles[i].GetComponent<SelectableUnitComponent>().becomeConstructor(temp);
+                            if (templistofWongles[i].GetComponent<SelectableUnitComponent>().isSelected)
+                            {
+                                templistofWongles[i].GetComponent<SelectableUnitComponent>().becomeConstructor(temp);
+                            }
                         }
                     }
                     // Bundy Null fix
