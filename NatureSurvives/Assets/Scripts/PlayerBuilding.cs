@@ -25,6 +25,7 @@ public class PlayerBuilding : MonoBehaviour {
     public GameObject fireEffect;
     public GameObject attackEffect;
     public GameObject placedEffect;
+    public GameObject fire;
     public float height;
 
     // Use this for initialization
@@ -46,10 +47,16 @@ public class PlayerBuilding : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            TakeDamage(10);
+        }
+
+
         if (BuildingHealth <= 0)
         {
-            Vector3 vec = new Vector3(transform.position.x, height, transform.position.z);
-            Instantiate(attackEffect, vec, attackEffect.transform.rotation);
+            //Vector3 vec = new Vector3(transform.position.x, height, transform.position.z);
+            //Instantiate(attackEffect, vec, attackEffect.transform.rotation);
 
             if (isWonder)
             {
@@ -64,6 +71,14 @@ public class PlayerBuilding : MonoBehaviour {
             Destroy(gameObject);
         }
 
+        if(BuildingHealth < (startHealth/2))
+        {
+            if (fire == null)
+            {
+                Vector3 vec = new Vector3(gameObject.transform.position.x, height, gameObject.transform.position.z);
+                fire = Instantiate(fireEffect, vec, fireEffect.transform.rotation, transform);
+            }
+        }
         
         if (isShaking)
         {
@@ -84,9 +99,7 @@ public class PlayerBuilding : MonoBehaviour {
 
     public void TakeDamage(int damage)
     {
-        Vector3 vec = new Vector3(gameObject.transform.position.x, height, gameObject.transform.position.z);
-        Instantiate(fireEffect, vec, fireEffect.transform.rotation);
-
+        
         print("damage");
 
         BuildingHealth -= damage;

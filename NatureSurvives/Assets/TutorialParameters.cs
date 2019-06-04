@@ -63,7 +63,7 @@ public class TutorialParameters : MonoBehaviour
             //select the scout
             case TutorialState.E_ONE:
                 {
-                    NotificationManager.Instance.SetNewNotification("The Scout is the little purple guy on the left, you can select him by left clicking him or holding the left mouse button down and dragging to crerate a box");
+                    NotificationManager.Instance.SetNewNotification("The Scout is the little purple guy on the left, you can select him by left clicking him or holding the left mouse button down and dragging to create a box");
 
                     int amountSelected = 0;
                     GameObject[] temp = GameObject.FindGameObjectsWithTag("Wongle");
