@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 1206098114}
   - component: {fileID: 1206098115}
   m_Layer: 11
-  m_Name: warscrungusanimationsmaster
+  m_Name: Knight
   m_TagString: Wongle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -255,7 +255,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.16
+  m_Radius: 4.48
   m_Center: {x: 0, y: 0.1993269, z: -0.092643574}
 --- !u!136 &1206098116
 CapsuleCollider:
@@ -362,6 +362,7 @@ MonoBehaviour:
     type: 3}
   Enemies: []
   isGoingHome: 0
+  m_bIsScout: 0
   inputAmount: 0
   outputAmount: 0
   canAttack: 0
@@ -385,6 +386,11 @@ MonoBehaviour:
   animlock2: 0
   hide: {fileID: 0}
   healthBarCanvasGameObject: {fileID: 0}
+  m_bIdleSelected: 0
+  m_fAnimationSpeed: 0
+  woodEffect: {fileID: 0}
+  leafEffect: {fileID: 0}
+  foragingEffect: {fileID: 0}
 --- !u!195 &1206098115
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -849,6 +855,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1206098108}
     m_Modifications:
+    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
+        type: 3}
+      propertyPath: m_Name
+      value: Health Bar
+      objectReference: {fileID: 0}
     - target: {fileID: 5745946300523346767, guid: eead958fb4f21ee44a41791f7161561b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -953,11 +964,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5745946300523346766, guid: eead958fb4f21ee44a41791f7161561b,
-        type: 3}
-      propertyPath: m_Name
-      value: Health Bar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eead958fb4f21ee44a41791f7161561b, type: 3}
