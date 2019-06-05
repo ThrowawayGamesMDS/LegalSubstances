@@ -32,11 +32,13 @@ public class PlayerBuilding : MonoBehaviour {
     void Start ()
     {
         startHealth = BuildingHealth;
-
-        healthBarCanvasTransform = transform.Find("Health Bar");
-        healthBarImage = healthBarCanvasTransform.GetChild(0).GetChild(0).GetComponent<Image>();
-        healthBarCanvasGameObject = healthBarCanvasTransform.gameObject;
-        healthBarCanvasGameObject.SetActive(false);
+        if (healthBarCanvasTransform != null)
+        {
+            healthBarCanvasTransform = transform.Find("Health Bar");
+            healthBarImage = healthBarCanvasTransform.GetChild(0).GetChild(0).GetComponent<Image>();
+            healthBarCanvasGameObject = healthBarCanvasTransform.gameObject;
+            healthBarCanvasGameObject.SetActive(false);
+        }
 
         startPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
