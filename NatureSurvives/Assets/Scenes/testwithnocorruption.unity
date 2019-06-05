@@ -10880,6 +10880,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8653674098498311131, guid: 0254d443183dc6643afddc7c775c7868,
         type: 3}
+    - target: {fileID: 6264537770643061153, guid: f15d47e5eca874e4fb05aac9bad0b8d1,
+        type: 3}
+      propertyPath: m_goObjPlacementOk.Array.data[1]
+      value: 
+      objectReference: {fileID: 5454092007990003297, guid: 124f25658dcd99c4a8fd62e4a187876f,
+        type: 3}
+    - target: {fileID: 6264537770643061153, guid: f15d47e5eca874e4fb05aac9bad0b8d1,
+        type: 3}
+      propertyPath: m_goObjPlacementBad.Array.data[1]
+      value: 
+      objectReference: {fileID: 9056280608529114204, guid: 911c128a504c2d7409c2c6bdc0aa8e9d,
+        type: 3}
     - target: {fileID: 6264537770643061159, guid: f15d47e5eca874e4fb05aac9bad0b8d1,
         type: 3}
       propertyPath: m_goResources.Array.size
