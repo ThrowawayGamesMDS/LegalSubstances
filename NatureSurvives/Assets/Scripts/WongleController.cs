@@ -23,6 +23,7 @@ public class WongleController : MonoBehaviour
     public bool m_bIsScout; // Utilizing tag as wongleworker for scouts, but this bool will be switched :D
     public int inputAmount;
     public float outputAmount;
+    public string WongleName;
     public bool canAttack;
     public float WongleHealth;
     public SelectableUnitComponent.workerType type;
@@ -48,7 +49,7 @@ public class WongleController : MonoBehaviour
 
     [Header("Health Bar")]
     private Image healthBarImage;
-    private float startHealth;
+    public float startHealth;
     private Transform healthBarCanvasTransform;
     public GameObject healthBarCanvasGameObject;
 
@@ -67,7 +68,7 @@ public class WongleController : MonoBehaviour
     {
         isDead = false;
         type = gameObject.GetComponent<SelectableUnitComponent>().Type;
-
+        Invoke("givename", 1);
 
         if (m_bIsScout)
         {
@@ -927,5 +928,9 @@ public class WongleController : MonoBehaviour
         Instantiate(DeadWongle, transform.position, transform.rotation);
 
         Destroy(gameObject);
+    }
+    void givename()
+    {
+        WongleName = WorkerInfoUI.lines[Random.Range(0, WorkerInfoUI.lines.Length)];
     }
 }
