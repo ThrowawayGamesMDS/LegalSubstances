@@ -10868,6 +10868,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3010333702646487647, guid: 5010bdd30b811d34fa4531ab2e580f19,
         type: 3}
+    - target: {fileID: 6264537770643061153, guid: f15d47e5eca874e4fb05aac9bad0b8d1,
+        type: 3}
+      propertyPath: m_goObjPlacementOk.Array.data[2]
+      value: 
+      objectReference: {fileID: 3166970945929668612, guid: 1818cfa02006de348a0575aa0cdac445,
+        type: 3}
+    - target: {fileID: 6264537770643061153, guid: f15d47e5eca874e4fb05aac9bad0b8d1,
+        type: 3}
+      propertyPath: m_goObjPlacementBad.Array.data[2]
+      value: 
+      objectReference: {fileID: 8653674098498311131, guid: 0254d443183dc6643afddc7c775c7868,
+        type: 3}
     - target: {fileID: 6264537770643061159, guid: f15d47e5eca874e4fb05aac9bad0b8d1,
         type: 3}
       propertyPath: m_goResources.Array.size
@@ -35471,7 +35483,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2108031164768553948, guid: 37cd5c63fe2e1fe49929389b39eae17d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8308538112660213185, guid: 37cd5c63fe2e1fe49929389b39eae17d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329919436912998279, guid: 37cd5c63fe2e1fe49929389b39eae17d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195893007072171166, guid: 37cd5c63fe2e1fe49929389b39eae17d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6228069733279796183, guid: 37cd5c63fe2e1fe49929389b39eae17d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4158593692734792817, guid: 37cd5c63fe2e1fe49929389b39eae17d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050355110141723392, guid: 37cd5c63fe2e1fe49929389b39eae17d,
         type: 3}
       propertyPath: m_Layer
       value: 11
@@ -35480,16 +35522,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 8308538112660213185, guid: 37cd5c63fe2e1fe49929389b39eae17d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2108031164768553948, guid: 37cd5c63fe2e1fe49929389b39eae17d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6266650288013318218, guid: 37cd5c63fe2e1fe49929389b39eae17d,
         type: 3}
@@ -35501,32 +35533,12 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5329919436912998279, guid: 37cd5c63fe2e1fe49929389b39eae17d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 4158593692734792817, guid: 37cd5c63fe2e1fe49929389b39eae17d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5195893007072171166, guid: 37cd5c63fe2e1fe49929389b39eae17d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 6266650288013318216, guid: 37cd5c63fe2e1fe49929389b39eae17d,
         type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6266650288013318236, guid: 37cd5c63fe2e1fe49929389b39eae17d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 4050355110141723392, guid: 37cd5c63fe2e1fe49929389b39eae17d,
         type: 3}
       propertyPath: m_Layer
       value: 11
