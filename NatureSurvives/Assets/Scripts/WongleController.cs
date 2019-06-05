@@ -902,6 +902,10 @@ public class WongleController : MonoBehaviour
     {
         AudioHandler.m_ahHandler.UpdatedPlaySound(AudioHandler.m_soundTypes.MINE, gameObject.GetComponent<AudioSource>());
     }
+    public void StepEvent()
+    {
+        AudioHandler.m_ahHandler.UpdatedPlaySound(AudioHandler.m_soundTypes.FOOTSTEP, gameObject.GetComponent<AudioSource>());
+    }
 
     //end of admire animation
     public void GoHome()

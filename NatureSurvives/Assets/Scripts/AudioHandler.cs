@@ -21,6 +21,7 @@ public class AudioHandler : MonoBehaviour
     public AudioClip[] m_arrDamageSounds;
     public AudioClip[] m_arrWoodcutSounds;
     public AudioClip[] m_arrMiningSounds;
+    public AudioClip[] m_arrFootstepSounds;
     public AudioClip[] m_arrDayMusic;
     public AudioClip[] m_arrNightMusic;
     public AudioClip[] m_arrMasterMusic;
@@ -34,7 +35,7 @@ public class AudioHandler : MonoBehaviour
     private bool m_bFadeMusicPitch;
     public enum m_soundTypes
     {
-        DAMAGE, SUCCESS, FAILURE, WOOD, MINE, WARNING, MUSIC, INTERACTION, UI_INTERACTION
+        DAMAGE, SUCCESS, FAILURE, WOOD, MINE, WARNING, MUSIC, INTERACTION, UI_INTERACTION, FOOTSTEP
     };
 
     private void AdjustPitch(AudioSource _asSourceToAdj)
@@ -261,6 +262,12 @@ public class AudioHandler : MonoBehaviour
                         _asUpdateAudio.clip = m_arrMiningSounds[_play];
                         break;
                     }
+                case m_soundTypes.FOOTSTEP:
+                    {
+                        _play = Random.Range(0, m_arrFootstepSounds.Length);
+                        _asUpdateAudio.clip = m_arrFootstepSounds[_play];
+                        break;
+                    }
             }
             _asUpdateAudio.Play();
         }
@@ -276,6 +283,7 @@ public class AudioHandler : MonoBehaviour
             m_arrDamageSounds = Resources.LoadAll("Audio/Damage", typeof(AudioClip)).Cast<AudioClip>().ToArray();
             m_arrWoodcutSounds = Resources.LoadAll("Audio/Woodcut", typeof(AudioClip)).Cast<AudioClip>().ToArray();
             m_arrMiningSounds = Resources.LoadAll("Audio/Mining", typeof(AudioClip)).Cast<AudioClip>().ToArray();
+            m_arrFootstepSounds = Resources.LoadAll("Audio/Footsteps", typeof(AudioClip)).Cast<AudioClip>().ToArray();
             m_arrDayMusic = Resources.LoadAll("Audio/Music/Day", typeof(AudioClip)).Cast<AudioClip>().ToArray();
             m_arrNightMusic = Resources.LoadAll("Audio/Music/Night", typeof(AudioClip)).Cast<AudioClip>().ToArray();
             m_arrInteractionSounds = Resources.LoadAll("Audio/Interaction", typeof(AudioClip)).Cast<AudioClip>().ToArray();

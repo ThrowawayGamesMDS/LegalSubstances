@@ -3372,6 +3372,7 @@ MonoBehaviour:
   m_bIsScout: 0
   inputAmount: 0
   outputAmount: 0
+  WongleName: 
   canAttack: 0
   WongleHealth: 100
   type: 0
@@ -3392,6 +3393,7 @@ MonoBehaviour:
   animlock: 0
   animlock2: 0
   hide: {fileID: 0}
+  startHealth: 0
   healthBarCanvasGameObject: {fileID: 0}
   m_bIdleSelected: 0
   m_fAnimationSpeed: 0
@@ -3492,7 +3494,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3500,10 +3502,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 12.6
-  MaxDistance: 88.55245
+  MinDistance: 1.6050959
+  MaxDistance: 49.8152
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
