@@ -630,13 +630,14 @@ MonoBehaviour:
   attackinstance: {fileID: 0}
   WandEnd: {fileID: 0}
   UnitSelect: {fileID: 0}
-  DeadWongle: {fileID: 2808974246901751251, guid: c053b6f2ab1f66a429dbc4a2c0915b9f,
+  DeadWongle: {fileID: 4883621121653194010, guid: 6b37e4517f5e08d49ade07b7ad0f3029,
     type: 3}
   Enemies: []
   isGoingHome: 0
   m_bIsScout: 1
   inputAmount: 0
   outputAmount: 0
+  WongleName: 
   canAttack: 0
   WongleHealth: 100
   type: 3
@@ -657,9 +658,13 @@ MonoBehaviour:
   animlock: 0
   animlock2: 0
   hide: {fileID: 0}
+  startHealth: 0
   healthBarCanvasGameObject: {fileID: 6228069733279796183}
   m_bIdleSelected: 0
   m_fAnimationSpeed: 0
+  woodEffect: {fileID: 0}
+  leafEffect: {fileID: 0}
+  foragingEffect: {fileID: 0}
 --- !u!114 &7316686334870301383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -885,10 +890,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8568947569144987154}
     m_Modifications:
-    - target: {fileID: 100000, guid: 5135c7525c0977846b1b503ffa9139e2, type: 3}
-      propertyPath: m_Name
-      value: blonkanimationmaster
-      objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 5135c7525c0977846b1b503ffa9139e2, type: 3}
       propertyPath: m_Controller
       value: 
@@ -948,6 +949,10 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 5135c7525c0977846b1b503ffa9139e2, type: 3}
       propertyPath: m_LocalScale.z
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5135c7525c0977846b1b503ffa9139e2, type: 3}
+      propertyPath: m_Name
+      value: blonkanimationmaster
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 5135c7525c0977846b1b503ffa9139e2, type: 3}
       propertyPath: m_LocalPosition.y
