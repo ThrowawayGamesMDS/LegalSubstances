@@ -99,9 +99,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Fiend: {fileID: 1839611185692650, guid: 07a746f4a0db39943a16b2ef81507f33, type: 3}
+  Fiend2: {fileID: 0}
   anim: {fileID: 95694252377532898}
   m_fEnemyHealth: 200
+  triggered: 0
   targets: []
+  isTutorial: 0
+  cooldown: 0
+  cooldownint: 0
+  fog: {fileID: 0}
 --- !u!1 &1122216938923858
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,7 +496,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 378ccedd12e2804438e10ef038b08e1d, type: 2}
+  - {fileID: 2100000, guid: d8b247bba7c3b714abc3dcb8f17a1950, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

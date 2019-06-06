@@ -393,7 +393,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 43c480c26569e364ba6bba353ece7f3e, type: 2}
+  - {fileID: 2100000, guid: c86a824d7a325d74f9ec7f4c5c6ccb4c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -869,8 +869,12 @@ MonoBehaviour:
   m_fEnemyHealth: 100
   deadFiend: {fileID: 1389796123583651978, guid: d352570cbf113414b9b4335397938be5,
     type: 3}
+  isRanged: 0
   wanderRadius: 30
   wanderTimer: 3
+  shell: {fileID: 0}
+  turretTransform: {fileID: 0}
+  isPacked: 0
 --- !u!135 &135847557775760700
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1328,16 +1332,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5745946302072493810, guid: eead958fb4f21ee44a41791f7161561b,
         type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 100
+      propertyPath: m_AnchoredPosition.y
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5745946302072493810, guid: eead958fb4f21ee44a41791f7161561b,
         type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5745946300395319952, guid: eead958fb4f21ee44a41791f7161561b,
-        type: 3}
       propertyPath: m_SizeDelta.y
       value: 100
       objectReference: {fileID: 0}
@@ -1345,6 +1344,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745946300395319952, guid: eead958fb4f21ee44a41791f7161561b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5745946300395319966, guid: eead958fb4f21ee44a41791f7161561b,
         type: 3}
