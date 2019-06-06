@@ -19,7 +19,7 @@ public class WorkerInfoUI : MonoBehaviour
 
         if (uiPanel == null)
         {
-            Destroy(this);
+            //Destroy(this);
         }
     }
     private void Update()
