@@ -16,6 +16,11 @@ public class WorkerInfoUI : MonoBehaviour
         //list of names stored here
         string path = "Assets/Resources/names.txt";
         lines = System.IO.File.ReadAllLines(path);
+
+        if (uiPanel == null)
+        {
+            Destroy(this);
+        }
     }
     private void Update()
     {

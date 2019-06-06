@@ -943,6 +943,6 @@ public class WongleController : MonoBehaviour
     }
     void givename()
     {
-        WongleName = WorkerInfoUI.lines[Random.Range(0, WorkerInfoUI.lines.Length)];
+       // WongleName = WorkerInfoUI.lines[Random.Range(0, WorkerInfoUI.lines.Length)];
     }
 }
