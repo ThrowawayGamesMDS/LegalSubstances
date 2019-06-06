@@ -327,7 +327,10 @@ public class WongleController : MonoBehaviour
                                             }
                                             else
                                             {
-                                                agent.isStopped = true;
+                                                if (agent.isOnNavMesh)
+                                                {
+                                                    agent.isStopped = true;
+                                                }
                                                 if (canAttack)
                                                 {
                                                     if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack1") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack2") && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack3"))
@@ -707,26 +710,28 @@ public class WongleController : MonoBehaviour
         {
             CheckWongleStatus();
         }
-
-        if (agent.isStopped)
+        if (agent.isOnNavMesh)
         {
-            if (Target != null)
+            if (agent.isStopped)
             {
-                if (Work.tag == "Fishermen")
+                if (Target != null)
                 {
-                    Vector3 lookpos2 = m_vFishingSpot - transform.position;
-                    lookpos2.y = 0;
-                    Quaternion rotation2 = Quaternion.LookRotation(lookpos2);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, rotation2, Time.deltaTime * 10);
-                }
-                else
-                {
-                    Vector3 lookpos = Target.transform.position - transform.position;
-                    lookpos.y = 0;
-                    Quaternion rotation = Quaternion.LookRotation(lookpos);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 10);
-                }
+                    if (Work.tag == "Fishermen")
+                    {
+                        Vector3 lookpos2 = m_vFishingSpot - transform.position;
+                        lookpos2.y = 0;
+                        Quaternion rotation2 = Quaternion.LookRotation(lookpos2);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, rotation2, Time.deltaTime * 10);
+                    }
+                    else
+                    {
+                        Vector3 lookpos = Target.transform.position - transform.position;
+                        lookpos.y = 0;
+                        Quaternion rotation = Quaternion.LookRotation(lookpos);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 10);
+                    }
 
+                }
             }
         }
     }
