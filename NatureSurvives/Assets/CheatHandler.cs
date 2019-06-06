@@ -12,13 +12,15 @@ public class CheatHandler : MonoBehaviour
     private int m_iCheatCount;
     public bool m_bDisabledBuildTimer;
     public bool m_bEnabledTimeIncrease;
+    public bool m_bCanvasDisabled;
+    private GameObject m_goCanvasObject;
     // Start is called before the first frame update
     void Start()
     {
         if (m_sCheatHandler == null)
         {
             m_sCheatHandler = this;
-            m_iCheatCount = 6;
+            m_iCheatCount = 7;
             m_sKnownCheats = new string[m_iCheatCount];
             m_sKnownCheats[0] = "byebyeboxes";
             m_sKnownCheats[1] = "givemedosh";
@@ -26,11 +28,15 @@ public class CheatHandler : MonoBehaviour
             m_sKnownCheats[3] = "nomorequeues";
             m_sKnownCheats[4] = "boosttimepls";
             m_sKnownCheats[5] = "gimmiepower";
+            m_sKnownCheats[6] = "hidetheui";
             m_bDisabledBuildTimer = false;
             m_bPlayerIsEnteringCheat = false;
             m_bEnabledTimeIncrease = false;
+            m_bCanvasDisabled = false;
             gameObject.GetComponent<CanvasGroup>().alpha = 0;
             gameObject.GetComponent<InputField>().DeactivateInputField();
+
+            m_goCanvasObject = GameObject.FindGameObjectWithTag("Canvas");
         }
         else
             Destroy(this); //this = gameObject.component?
@@ -127,14 +133,35 @@ public class CheatHandler : MonoBehaviour
                 {
                     break;
                 }
+            case "hidetheui":
+                {
+                    if (m_goCanvasObject.activeSelf)
+                    {
+                        _sEnteredText += "Canvas disabled";
+                        m_bCanvasDisabled = true;
+                        m_goCanvasObject.SetActive(false);
+                    }
+                    else
+                    {
+                        _sEnteredText += "Canvas enabled";
+                        m_bCanvasDisabled = false;
+                        m_goCanvasObject.SetActive(true);
+                    }
+                    break;
+                }
         }
-        if (_sEnteredText!= "boosttimepls")
+        if (_sEnteredText != "boosttimepls")
             NotificationManager.Instance.SetNewNotification(_sCheatResult);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyUp(KeyCode.H) && m_bCanvasDisabled)
+        {
+            HandleEnteredCheat("hidetheui");
+        }
+
         if (Input.GetKeyUp(KeyCode.KeypadEnter) || Input.GetKeyUp(KeyCode.Return))
         {
             gameObject.GetComponent<InputField>().text = "";
@@ -166,8 +193,11 @@ public class CheatHandler : MonoBehaviour
                 {
                     HandleEnteredCheat(gameObject.GetComponent<InputField>().text.ToLower());
                     m_bPlayerIsEnteringCheat = false;
-                    gameObject.GetComponent<CanvasGroup>().alpha = 0;
-                    gameObject.GetComponent<InputField>().DeactivateInputField();
+                    if (gameObject.activeSelf)
+                    {
+                        gameObject.GetComponent<CanvasGroup>().alpha = 0;
+                        gameObject.GetComponent<InputField>().DeactivateInputField();
+                    }
                 }
             }
         }

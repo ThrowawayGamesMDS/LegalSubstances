@@ -88,7 +88,8 @@ public class NotificationManager : MonoBehaviour
             StopCoroutine(notificationCoroutine);
         }
         notificationCoroutine = FadeOutNotification(message, false);
-        StartCoroutine(notificationCoroutine);
+        if (!CheatHandler.m_sCheatHandler.m_bCanvasDisabled)
+            StartCoroutine(notificationCoroutine);
     }
 
     private IEnumerator FadeOutNotification(string message, bool _bWarningMessage)

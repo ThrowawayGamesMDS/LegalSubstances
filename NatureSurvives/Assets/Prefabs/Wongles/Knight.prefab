@@ -182,7 +182,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 11ab162ee7224c640a7dbb6312b83b76, type: 2}
+  - {fileID: 2100000, guid: 09703f3afc63a0b4da52953ad8e734f2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -365,6 +365,7 @@ MonoBehaviour:
   m_bIsScout: 0
   inputAmount: 0
   outputAmount: 0
+  WongleName: 
   canAttack: 0
   WongleHealth: 100
   type: 2
@@ -385,6 +386,7 @@ MonoBehaviour:
   animlock: 0
   animlock2: 0
   hide: {fileID: 0}
+  startHealth: 0
   healthBarCanvasGameObject: {fileID: 0}
   m_bIdleSelected: 0
   m_fAnimationSpeed: 0

@@ -431,7 +431,7 @@ public class PlacementHandler : MonoBehaviour
     
     public void BuildButton(int i)
     {
-        if (!pause.m_sPauseHandle.m_bPlayerPaused)
+        if (!pause.m_sPauseHandle.m_bPlayerPaused && m_ePlayerState == PlayerStates.DEFAULT)
         {
             if (CanPurchase(i))
             {

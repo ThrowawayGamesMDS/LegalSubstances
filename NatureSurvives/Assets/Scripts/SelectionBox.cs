@@ -564,18 +564,6 @@ public class SelectionBox : MonoBehaviour {
         if (CheatHandler.m_sCheatHandler.m_bPlayerIsEnteringCheat)
             return;
 
-        if (Input.GetKeyUp(KeyCode.H))
-        {
-            if (GameObject.FindGameObjectWithTag("Canvas").activeSelf == true)
-            {
-                GameObject.FindGameObjectWithTag("Canvas").SetActive(false);
-            }
-            else
-            {
-                GameObject.FindGameObjectWithTag("Canvas").SetActive(true);
-            }
-        }
-
       //  print("Mouse is over UI: " + EventSystem.current.IsPointerOverGameObject(-1));
         // Wee c++ style timer handle for double click select - coroutine was fucking out mega
         if (m_fUserClickedTime < Time.time && m_bUserLClicked == true)
