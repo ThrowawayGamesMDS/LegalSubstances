@@ -95,13 +95,37 @@ public class EnemyController : MonoBehaviour {
             }
         }
 
-        if (targetsInArea.Count > 0)
+        /*if (targetsInArea.Count > 0)
         {
             if(isRanged)
             {
                 agent.stoppingDistance = 55;
             }
             agent.SetDestination(targetsInArea[0].transform.position);
+        }
+        else
+        {
+            agent.stoppingDistance = 5;
+        }*/
+        if (targetsInArea.Count > 0)
+        {
+            bool _targetAsssigned = false;
+            if (isRanged)
+            {
+                agent.stoppingDistance = 55;
+            }
+
+            for (int i = 0; i < targetsInArea.Count; i++)
+            {
+                if (targetsInArea[i] != null)
+                {
+                    agent.SetDestination(targetsInArea[i].transform.position);
+                    _targetAsssigned = true;
+                    break;
+                }
+            }
+            if (!_targetAsssigned)//double safety
+                Debug.Log("Enemy [" + gameObject + "] has no remaining targets.");
         }
         else
         {

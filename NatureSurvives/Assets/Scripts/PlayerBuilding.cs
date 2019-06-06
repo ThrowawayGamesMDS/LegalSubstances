@@ -43,7 +43,11 @@ public class PlayerBuilding : MonoBehaviour {
         startPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
         Vector3 vec = new Vector3(transform.position.x, 1, transform.position.z);
-        Instantiate(placedEffect, vec, placedEffect.transform.rotation);
+
+        if (placedEffect != null)
+        {
+            Instantiate(placedEffect, vec, placedEffect.transform.rotation);
+        }
     }
 	
 	// Update is called once per frame
@@ -105,28 +109,29 @@ public class PlayerBuilding : MonoBehaviour {
         print("damage");
 
         BuildingHealth -= damage;
-
-        healthBarImage.fillAmount = BuildingHealth / startHealth;
-
-        if (healthBarImage.fillAmount < 1.0f && !healthBarCanvasGameObject.activeSelf)
+        if (healthBarImage != null)
         {
-            healthBarImage.GetComponent<Image>().color = Color.green;
-            healthBarCanvasGameObject.SetActive(true);
-        }
+            healthBarImage.fillAmount = BuildingHealth / startHealth;
 
-        if (healthBarImage.fillAmount < 0.5)
-        {
-            if (healthBarImage.GetComponent<Image>().color == Color.green)
-            {
-                healthBarImage.GetComponent<Image>().color = Color.red;
-            }
-            else
+            if (healthBarImage.fillAmount < 1.0f && !healthBarCanvasGameObject.activeSelf)
             {
                 healthBarImage.GetComponent<Image>().color = Color.green;
+                healthBarCanvasGameObject.SetActive(true);
             }
 
-        }
+            if (healthBarImage.fillAmount < 0.5)
+            {
+                if (healthBarImage.GetComponent<Image>().color == Color.green)
+                {
+                    healthBarImage.GetComponent<Image>().color = Color.red;
+                }
+                else
+                {
+                    healthBarImage.GetComponent<Image>().color = Color.green;
+                }
 
+            }
+        }
         isShaking = true;
     }
 }

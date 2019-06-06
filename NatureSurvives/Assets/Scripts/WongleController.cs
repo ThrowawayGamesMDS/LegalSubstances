@@ -299,7 +299,10 @@ public class WongleController : MonoBehaviour
                                             }
                                             else
                                             {
-                                                agent.isStopped = true;
+                                                if (agent.isOnNavMesh)
+                                                {
+                                                    agent.isStopped = true;
+                                                }
                                                 if (canAttack)
                                                 {
                                                     attackinstance = Instantiate(attackEffect, handPosition.transform.position, handPosition.transform.rotation);
