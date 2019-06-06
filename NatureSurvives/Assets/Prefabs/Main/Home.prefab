@@ -518,13 +518,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuildingHealth: 1000
   isWonder: 0
+  healthBarCanvasTransform: {fileID: 0}
   healthBarCanvasGameObject: {fileID: 0}
   isHouse: 0
   fireEffect: {fileID: 7611269943313463323, guid: 007633dc5e635574898da334df75664b,
     type: 3}
-  attackEffect: {fileID: 0}
-  placedEffect: {fileID: 0}
-  fire: {fileID: 0}
+  attackEffect: {fileID: 6296496104586776032, guid: 624b2ef32a97eb649a5b035beec882be,
+    type: 3}
+  placedEffect: {fileID: 7248341468669716376, guid: 76c21c508cef6a5419a4a9bbe6ced2b6,
+    type: 3}
+  fire: {fileID: 7611269943313463323, guid: 007633dc5e635574898da334df75664b, type: 3}
   height: 10
 --- !u!114 &6264537770643061152
 MonoBehaviour:
@@ -825,10 +828,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6264537770643061148}
     m_Modifications:
-    - target: {fileID: 100002, guid: da6ae23293c624a44a8c0516a459bc56, type: 3}
-      propertyPath: m_Name
-      value: WongleBase
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: da6ae23293c624a44a8c0516a459bc56, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -884,6 +883,10 @@ PrefabInstance:
     - target: {fileID: 400002, guid: da6ae23293c624a44a8c0516a459bc56, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.10000017
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: da6ae23293c624a44a8c0516a459bc56, type: 3}
+      propertyPath: m_Name
+      value: WongleBase
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: da6ae23293c624a44a8c0516a459bc56, type: 3}
       propertyPath: m_LocalPosition.x

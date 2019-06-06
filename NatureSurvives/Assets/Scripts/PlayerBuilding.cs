@@ -11,7 +11,7 @@ public class PlayerBuilding : MonoBehaviour {
     [Header("Health Bar")]
     private Image healthBarImage;
     private float startHealth;
-    private Transform healthBarCanvasTransform;
+    public Transform healthBarCanvasTransform;
     public GameObject healthBarCanvasGameObject;
     public bool isHouse;
 
@@ -32,7 +32,7 @@ public class PlayerBuilding : MonoBehaviour {
     void Start ()
     {
         startHealth = BuildingHealth;
-        if (healthBarCanvasTransform != null)
+        if (healthBarCanvasTransform == null)
         {
             healthBarCanvasTransform = transform.Find("Health Bar");
             healthBarImage = healthBarCanvasTransform.GetChild(0).GetChild(0).GetComponent<Image>();
