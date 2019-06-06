@@ -185,6 +185,10 @@ public class WongleController : MonoBehaviour
                                     {
                                         anim.Play("RunCycle");
                                     }
+                                    else if (m_bIsScout)
+                                    {
+                                        anim.Play("WalkCycleScout");
+                                    }
                                     else
                                     {
                                         anim.Play("WalkCycle");
