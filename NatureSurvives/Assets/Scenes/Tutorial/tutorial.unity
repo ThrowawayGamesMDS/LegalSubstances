@@ -5051,6 +5051,11 @@ PrefabInstance:
       propertyPath: g_v3KnightRally.z
       value: -20
       objectReference: {fileID: 0}
+    - target: {fileID: 6264537770643061152, guid: f15d47e5eca874e4fb05aac9bad0b8d1,
+        type: 3}
+      propertyPath: g_v3WorkerRally.z
+      value: -20
+      objectReference: {fileID: 0}
     - target: {fileID: 6264537770643061153, guid: f15d47e5eca874e4fb05aac9bad0b8d1,
         type: 3}
       propertyPath: m_goPossibleObjects.Array.size
@@ -8759,46 +8764,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7868119282526164570, guid: 948bc0424816ed24c8f65b159a082210,
-        type: 3}
-      propertyPath: m_TargetTexture
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7868119282526164570, guid: 948bc0424816ed24c8f65b159a082210,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7868119282526164570, guid: 948bc0424816ed24c8f65b159a082210,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7868119282526164570, guid: 948bc0424816ed24c8f65b159a082210,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7868119282526164570, guid: 948bc0424816ed24c8f65b159a082210,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7868119282526164570, guid: 948bc0424816ed24c8f65b159a082210,
-        type: 3}
-      propertyPath: m_AllowMSAA
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7868119282526164570, guid: 948bc0424816ed24c8f65b159a082210,
-        type: 3}
-      propertyPath: m_HDR
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7868119282526164570, guid: 948bc0424816ed24c8f65b159a082210,
-        type: 3}
-      propertyPath: orthographic
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7868119282809492095, guid: 948bc0424816ed24c8f65b159a082210,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8965,6 +8930,46 @@ PrefabInstance:
     - target: {fileID: 7868119282809492087, guid: 948bc0424816ed24c8f65b159a082210,
         type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868119282526164570, guid: 948bc0424816ed24c8f65b159a082210,
+        type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868119282526164570, guid: 948bc0424816ed24c8f65b159a082210,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868119282526164570, guid: 948bc0424816ed24c8f65b159a082210,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868119282526164570, guid: 948bc0424816ed24c8f65b159a082210,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868119282526164570, guid: 948bc0424816ed24c8f65b159a082210,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868119282526164570, guid: 948bc0424816ed24c8f65b159a082210,
+        type: 3}
+      propertyPath: m_AllowMSAA
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868119282526164570, guid: 948bc0424816ed24c8f65b159a082210,
+        type: 3}
+      propertyPath: m_HDR
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868119282526164570, guid: 948bc0424816ed24c8f65b159a082210,
+        type: 3}
+      propertyPath: orthographic
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7868119282378628515, guid: 948bc0424816ed24c8f65b159a082210,
@@ -12649,6 +12654,15 @@ PrefabInstance:
       propertyPath: m_SpriteState.m_PressedSprite
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 856574691, guid: 2a4795040dfa06448a1b9da4de849162, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200332661169339442, guid: 2a4795040dfa06448a1b9da4de849162,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a4795040dfa06448a1b9da4de849162, type: 3}
 --- !u!4 &1740206879 stripped
@@ -15457,6 +15471,7 @@ MonoBehaviour:
   m_goEntryField: {fileID: 1303074784}
   m_bDisabledBuildTimer: 0
   m_bEnabledTimeIncrease: 0
+  m_bCanvasDisabled: 0
 --- !u!222 &167862940786365440
 CanvasRenderer:
   m_ObjectHideFlags: 0
