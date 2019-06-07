@@ -10,14 +10,17 @@ public class WinBuilding : MonoBehaviour {
     public float buildingHealth;
     public Text winlosetext;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
         GameObject.FindGameObjectWithTag("WonderUI2").transform.GetChild(0).gameObject.SetActive(true);
         GameObject temp = GameObject.FindGameObjectWithTag("WonderUi").GetComponent<UpdateWonderUi>().wonder = gameObject;
         GameObject.FindGameObjectWithTag("DAYNIGHT").GetComponent<DayNight>().WonderMode();
         print("wonder mode start");
 
-        winlosetext = GameObject.Find("WinLoseText").GetComponent<Text>();
+        if (GameObject.Find("WinLoseText") != null)
+        {
+            winlosetext = GameObject.Find("WinLoseText").GetComponent<Text>();
+        }
     }
 	
 	// Update is called once per frame
